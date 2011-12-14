@@ -28,7 +28,7 @@
       } else {
         oldUrl = "API Documentation Index";
       }
-      $("[role=main]").load("/"+url+ " #documentation", function(){
+      $("[role=main]").load("./"+url+ " #documentation", function(){
         $("body").scrollTop(0);
         var scrollTo = $("#list span").removeClass("active").filter(function() {
           return this.firstChild.firstChild.nodeValue === oldUrl;
@@ -42,7 +42,7 @@
 
     } else {
       url = "symbols/src/" + url  + ".html";
-      elem = $("[role=main] #documentation").load("/"+url, function(){ elem.scrollTop(0); });
+      elem = $("[role=main] #documentation").load("./"+url, function(){ elem.scrollTop(0); });
     }
   }
 
@@ -56,7 +56,7 @@
   function filterList(){
     $("input").
       change(function(){
-        // The following code has been adapted from http://kilianvalkhof.com/2010/javascript/how-to-build-a-fast-simple-list-filter-with-jquery/ 
+        // The following code has been adapted from http://kilianvalkhof.com/2010/javascript/how-to-build-a-fast-simple-list-filter-with-jquery/
         var filter = $(this).val();
         if (filter) {
           $("#list").find("a:not(:Contains(" + filter + "))").parents("span").hide();
@@ -99,7 +99,7 @@
       } else if (url.match(/#/)) {
         var location = $(this).attr("href").replace(/.*\#/,"");
         scrollDocsTo(location);
-        $.bbq.pushState({ 
+        $.bbq.pushState({
           method: location
         })
       } else {
