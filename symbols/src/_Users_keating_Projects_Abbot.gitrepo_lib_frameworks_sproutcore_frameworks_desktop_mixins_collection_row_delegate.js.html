@@ -1,0 +1,105 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="COMM">/** 
+<span class='line'> 10</span>   @namespace
+<span class='line'> 11</span>   
+<span class='line'> 12</span>   `CollectionRowDelegate`s are consulted by `SC.ListView` and `SC.TableView` to
+<span class='line'> 13</span>   control the height of rows, including specifying custom heights for
+<span class='line'> 14</span>   specific rows.
+<span class='line'> 15</span>   
+<span class='line'> 16</span>   You can implement a custom row height in one of two ways.
+<span class='line'> 17</span> */</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="NAME">SC.CollectionRowDelegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 19</span> 
+<span class='line'> 20</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 21</span>     Walk like a duck.
+<span class='line'> 22</span>   
+<span class='line'> 23</span>     @type Boolean
+<span class='line'> 24</span>     @default YES
+<span class='line'> 25</span>   */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">isCollectionRowDelegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  
+<span class='line'> 28</span>   </span><span class="COMM">/**
+<span class='line'> 29</span>     Size of an item without spacing or padding.
+<span class='line'> 30</span>     Unless you implement some custom row height
+<span class='line'> 31</span>     support, this row height will be used for all items.
+<span class='line'> 32</span>     
+<span class='line'> 33</span>     @type Number
+<span class='line'> 34</span>     @default 18
+<span class='line'> 35</span>   */</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="NAME">itemHeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">24</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">  
+<span class='line'> 38</span>   </span><span class="COMM">/**
+<span class='line'> 39</span>     This inserts empty space between rows that you can use for borders.
+<span class='line'> 40</span>     
+<span class='line'> 41</span>     @type Number
+<span class='line'> 42</span>     @default 0
+<span class='line'> 43</span>   */</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">  </span><span class="NAME">rowSpacing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">  
+<span class='line'> 46</span>   </span><span class="COMM">/**
+<span class='line'> 47</span>     This is useful if you are using a custom item view that needs to be padded.
+<span class='line'> 48</span>     This value is added to the top and bottom of the `itemHeight`.
+<span class='line'> 49</span>     
+<span class='line'> 50</span>     @type Number
+<span class='line'> 51</span>     @default 0
+<span class='line'> 52</span>   */</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">rowPadding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  
+<span class='line'> 55</span>   </span><span class="COMM">/**
+<span class='line'> 56</span>     Total row height used for calculation. Equal to `itemHeight + (2 * rowPadding)`.
+<span class='line'> 57</span>     
+<span class='line'> 58</span>     @type Number
+<span class='line'> 59</span>   */</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="NAME">rowHeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">rowPadding</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'rowPadding'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">itemHeight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemHeight'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'itemHeight'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">-</span><span class="NAME">rowPadding</span><span class="PUNC">*</span><span class="NUMB">2</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">itemHeight</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">rowPadding</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'itemHeight'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'rowPadding'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 71</span> 
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 73</span>     Index set of rows that should have a custom row height. If you need
+<span class='line'> 74</span>     certains rows to have a custom row height, then set this property to a
+<span class='line'> 75</span>     non-null value.  Otherwise leave it blank to disable custom row heights.
+<span class='line'> 76</span>     
+<span class='line'> 77</span>     @type SC.IndexSet
+<span class='line'> 78</span>   */</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">customRowHeightIndexes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  
+<span class='line'> 81</span>   </span><span class="COMM">/**
+<span class='line'> 82</span>     Called for each index in the `customRowHeightIndexes` set to get the
+<span class='line'> 83</span>     actual row height for the index.  This method should return the default
+<span class='line'> 84</span>     rowHeight if you don't want the row to have a custom height.
+<span class='line'> 85</span>     
+<span class='line'> 86</span>     The default implementation just returns the default rowHeight.
+<span class='line'> 87</span>     
+<span class='line'> 88</span>     @param {SC.CollectionView} view the calling view
+<span class='line'> 89</span>     @param {Object} content the content array
+<span class='line'> 90</span>     @param {Number} contentIndex the index 
+<span class='line'> 91</span>     @returns {Number} row height
+<span class='line'> 92</span>   */</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="NAME">contentIndexRowHeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">contentIndex</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'rowHeight'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 96</span> 
+<span class='line'> 97</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 98</span> </span></pre></body></html>

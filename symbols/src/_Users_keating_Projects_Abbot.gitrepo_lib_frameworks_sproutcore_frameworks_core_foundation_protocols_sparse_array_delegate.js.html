@@ -1,0 +1,139 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore Costello - Property Observing Library</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @namespace
+<span class='line'>  9</span> 
+<span class='line'> 10</span>   Delegate that provides data for a sparse array.  If you set the delegate for
+<span class='line'> 11</span>   a sparse array to an object that implements one or more of these methods,
+<span class='line'> 12</span>   they will be invoked by the sparse array to fetch data or to update the
+<span class='line'> 13</span>   array content as needed.
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   Your object does not need to implement all of these methods, but it should
+<span class='line'> 16</span>   at least implment the sparseArrayDidRequestIndex() method.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   @since SproutCore 1.0
+<span class='line'> 19</span> */</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="NAME">SC.SparseArrayDelegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 23</span>     Invoked when an object requests the length of the sparse array and the
+<span class='line'> 24</span>     length has not yet been set.  You can implement this method to update
+<span class='line'> 25</span>     the length property of the sparse array immediately or at a later time
+<span class='line'> 26</span>     by calling the provideLength() method on the sparse array.
+<span class='line'> 27</span> 
+<span class='line'> 28</span>     This method will only be called once on your delegate unless you
+<span class='line'> 29</span>     subsequently call provideLength(null) on the array, which will effectively
+<span class='line'> 30</span>     "empty" the array and cause the array to invoke the delegate again the
+<span class='line'> 31</span>     next time its length is request.
+<span class='line'> 32</span> 
+<span class='line'> 33</span>     If you do not set a length on the sparse array immediately, it will return
+<span class='line'> 34</span>     a length of 0 until you provide the length.
+<span class='line'> 35</span> 
+<span class='line'> 36</span>     @param {SC.SparseArray} sparseArray the array that needs a length.
+<span class='line'> 37</span>     @returns {void}
+<span class='line'> 38</span>   */</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayDidRequestLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">    </span><span class="COMM">// Default does nothing.</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 42</span> 
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 44</span>     Invoked when an object requests an index on the sparse array that has not
+<span class='line'> 45</span>     yet been set.  You should implement this method to set the object at the
+<span class='line'> 46</span>     index using provideObjectsAtIndex() or provideObjectsInRange() on the
+<span class='line'> 47</span>     sparse array.  You can call these methods immediately during this handler
+<span class='line'> 48</span>     or you can wait and call them at a later time once you have loaded any
+<span class='line'> 49</span>     data.
+<span class='line'> 50</span> 
+<span class='line'> 51</span>     This method will only be called when an index is requested on the sparse
+<span class='line'> 52</span>     array that has not yet been filled.  If you have filled an index or range
+<span class='line'> 53</span>     and you would like to reset it, call the objectsDidChangeInRange() method
+<span class='line'> 54</span>     on the sparse array.
+<span class='line'> 55</span> 
+<span class='line'> 56</span>     Note that if you implement the sparseArrayDidRequestRange() method, that
+<span class='line'> 57</span>     method will be invoked instead of this one whenever possible to allow you
+<span class='line'> 58</span>     to fill in the array with the most efficiency possible.
+<span class='line'> 59</span> 
+<span class='line'> 60</span>     @param {SC.SparseArray} sparseArray the sparse array
+<span class='line'> 61</span>     @param {Number} index the requested index
+<span class='line'> 62</span>     @returns {void}
+<span class='line'> 63</span>   */</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayDidRequestIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">index</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 65</span> 
+<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 69</span>     Alternative method invoked when an object requests an index on the
+<span class='line'> 70</span>     sparse array that has not yet been set.  If you set the
+<span class='line'> 71</span>     rangeWindowSize property on the Sparse Array, then all object index
+<span class='line'> 72</span>     requests will be expanded to to nearest range window and then this
+<span class='line'> 73</span>     method will be called with that range.
+<span class='line'> 74</span> 
+<span class='line'> 75</span>     You should fill in the passed range by calling the provideObjectsInRange()
+<span class='line'> 76</span>     method on the sparse array.
+<span class='line'> 77</span> 
+<span class='line'> 78</span>     If you do not implement this method but set the rangeWindowSize anyway,
+<span class='line'> 79</span>     then the sparseArrayDidRequestIndex() method will be invoked instead.
+<span class='line'> 80</span> 
+<span class='line'> 81</span>     Note that the passed range is a temporary object.  Be sure to clone it if
+<span class='line'> 82</span>     you want to keep the range for later use.
+<span class='line'> 83</span> 
+<span class='line'> 84</span>     @param {SC.SparseArray} sparseArray the sparse array
+<span class='line'> 85</span>     @param {Range} range read only range.
+<span class='line'> 86</span>     @returns {void}
+<span class='line'> 87</span>   */</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayDidRequestRange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">range</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 89</span> 
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 91</span> 
+<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 93</span>     Optional delegate method you can use to determine the index of a
+<span class='line'> 94</span>     particular object.  If you do not implement this method, then the
+<span class='line'> 95</span>     sparse array will just search the objects it has loaded already.
+<span class='line'> 96</span> 
+<span class='line'> 97</span>     @param {SC.SparseArray} sparseArray the sparse array
+<span class='line'> 98</span>     @param {Object} object the object to find the index of
+<span class='line'> 99</span>     @return {Number} the index or -1
+<span class='line'>100</span>     @returns {void}
+<span class='line'>101</span>   */</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayDidRequestIndexOf</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">object</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>103</span> 
+<span class='line'>104</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>105</span> 
+<span class='line'>106</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>107</span>     Optional delegate method invoked whenever the sparse array attempts to
+<span class='line'>108</span>     changes its contents.  If you do not implement this method or if you
+<span class='line'>109</span>     return NO from this method, then the edit will not be allowed.
+<span class='line'>110</span> 
+<span class='line'>111</span>     @param {SC.SparseArray} sparseArray the sparse array
+<span class='line'>112</span>     @param {Number} idx the starting index to replace
+<span class='line'>113</span>     @param {Number} amt the number if items to replace
+<span class='line'>114</span>     @param {Array} objects the array of objects to insert
+<span class='line'>115</span>     @returns {Boolean} YES to allow replace, NO to deny
+<span class='line'>116</span> <span class='line'>117</span>   */</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayShouldReplace</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">amt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">objects</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>121</span> 
+<span class='line'>122</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>123</span>     Invoked whenever the sparse array is reset.  Resetting a sparse array
+<span class='line'>124</span>     will cause it to flush its content and go back to the delegate for all
+<span class='line'>125</span>     property requests again.
+<span class='line'>126</span> 
+<span class='line'>127</span>     @param {SC.SparseArray} sparseArray the sparse array
+<span class='line'>128</span>     @returns {void}
+<span class='line'>129</span>   */</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">  </span><span class="NAME">sparseArrayDidReset</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sparseArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>133</span> </span></pre></body></html>

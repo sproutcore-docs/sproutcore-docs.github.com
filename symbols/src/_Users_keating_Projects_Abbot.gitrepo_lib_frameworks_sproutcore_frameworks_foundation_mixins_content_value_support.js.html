@@ -1,0 +1,235 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2010 Sprout Systems, Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   @namespace
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   This mixin allows a view to get its value from a content object based
+<span class='line'> 12</span>   on the value of its contentValueKey.
+<span class='line'> 13</span> 
+<span class='line'> 14</span>       myView = SC.View.create({
+<span class='line'> 15</span>         content: {prop: "abc123"},
+<span class='line'> 16</span> 
+<span class='line'> 17</span>         contentValueKey: 'prop'
+<span class='line'> 18</span>       });
+<span class='line'> 19</span> 
+<span class='line'> 20</span>       // myView.get('value') will be "abc123"
+<span class='line'> 21</span> 
+<span class='line'> 22</span> <span class='line'> 23</span>   This is useful if you have a nested record structure and want to have
+<span class='line'> 24</span>   it be reflected in a nested view structure. If your data structures
+<span class='line'> 25</span>   only have primitive values, consider using SC.Control instead.
+<span class='line'> 26</span> */</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="NAME">SC.ContentValueSupport</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 30</span>     Walk like a duck.
+<span class='line'> 31</span> 
+<span class='line'> 32</span>     @type Boolean
+<span class='line'> 33</span>     @default YES
+<span class='line'> 34</span>   */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="NAME">hasContentValueSupport</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="NAME">initMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">    </span><span class="NAME">this._control_contentDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// setup content observing if needed.</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">  
+<span class='line'> 42</span>   </span><span class="COMM">/**
+<span class='line'> 43</span>     The value represented by this control.
+<span class='line'> 44</span>     
+<span class='line'> 45</span>     Most controls represent a value of some type, such as a number, string
+<span class='line'> 46</span>     or image URL.  This property should hold that value.  It is bindable
+<span class='line'> 47</span>     and observable.  Changing this value will immediately change the
+<span class='line'> 48</span>     appearance of the control.  Likewise, editing the control 
+<span class='line'> 49</span>     will immediately change this value.
+<span class='line'> 50</span>     
+<span class='line'> 51</span>     If instead of setting a single value on a control, you would like to 
+<span class='line'> 52</span>     set a content object and have the control display a single property
+<span class='line'> 53</span>     of that control, then you should use the content property instead.
+<span class='line'> 54</span> 
+<span class='line'> 55</span>     @type Object
+<span class='line'> 56</span>     @default null
+<span class='line'> 57</span>   */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">value</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">  
+<span class='line'> 60</span>   </span><span class="COMM">/**
+<span class='line'> 61</span>     The content object represented by this control.
+<span class='line'> 62</span>     
+<span class='line'> 63</span>     Often you need to use a control to display some single aspect of an 
+<span class='line'> 64</span>     object, especially if you are using the control as an item view in a
+<span class='line'> 65</span>     collection view.
+<span class='line'> 66</span>     
+<span class='line'> 67</span>     In those cases, you can set the content and contentValueKey for the
+<span class='line'> 68</span>     control.  This will cause the control to observe the content object for
+<span class='line'> 69</span>     changes to the value property and then set the value of that property 
+<span class='line'> 70</span>     on the "value" property of this object.
+<span class='line'> 71</span>     
+<span class='line'> 72</span>     Note that unless you are using this control as part of a form or 
+<span class='line'> 73</span>     collection view, then it would be better to instead bind the value of
+<span class='line'> 74</span>     the control directly to a controller property.
+<span class='line'> 75</span>     
+<span class='line'> 76</span>     @type SC.Object
+<span class='line'> 77</span>     @default null
+<span class='line'> 78</span>   */</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  
+<span class='line'> 81</span>   </span><span class="COMM">/**
+<span class='line'> 82</span>     The property on the content object that would want to represent the 
+<span class='line'> 83</span>     value of this control.  This property should only be set before the
+<span class='line'> 84</span>     content object is first set.  If you have a displayDelegate, then
+<span class='line'> 85</span>     you can also use the contentValueKey of the displayDelegate.
+<span class='line'> 86</span>     
+<span class='line'> 87</span>     @type String
+<span class='line'> 88</span>     @default null
+<span class='line'> 89</span>   */</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="NAME">contentValueKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">  
+<span class='line'> 92</span>   </span><span class="COMM">/**
+<span class='line'> 93</span>     Invoked whenever any property on the content object changes.  
+<span class='line'> 94</span>     
+<span class='line'> 95</span>     The default implementation will update the value property of the view
+<span class='line'> 96</span>     if the contentValueKey property has changed.  You can override this
+<span class='line'> 97</span>     method to implement whatever additional changes you would like.
+<span class='line'> 98</span>     
+<span class='line'> 99</span>     The key will typically contain the name of the property that changed or 
+<span class='line'>100</span>     '*' if the content object itself has changed.  You should generally do
+<span class='line'>101</span>     a total reset if '*' is changed.
+<span class='line'>102</span>     
+<span class='line'>103</span>     @param {Object} target the content object
+<span class='line'>104</span>     @param {String} key the property that changes
+<span class='line'>105</span>     @returns {void}
+<span class='line'>106</span>     @test in content
+<span class='line'>107</span>   */</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">  </span><span class="NAME">contentPropertyDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.updatePropertyFromContent</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'contentValueKey'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">  
+<span class='line'>112</span>   </span><span class="COMM">/**
+<span class='line'>113</span>     Helper method you can use from your own implementation of 
+<span class='line'>114</span>     contentPropertyDidChange().  This method will look up the content key to
+<span class='line'>115</span>     extract a property and then update the property if needed.  If you do
+<span class='line'>116</span>     not pass the content key or the content object, they will be computed 
+<span class='line'>117</span>     for you.  It is more efficient, however, for you to compute these values
+<span class='line'>118</span>     yourself if you expect this method to be called frequently.
+<span class='line'>119</span>     
+<span class='line'>120</span>     @param {String} prop local property to update
+<span class='line'>121</span>     @param {String} key the contentproperty that changed
+<span class='line'>122</span>     @param {String} contentKey the local property that contains the key
+<span class='line'>123</span>     @param {Object} content
+<span class='line'>124</span>     @returns {SC.Control} receiver
+<span class='line'>125</span>   */</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">  </span><span class="NAME">updatePropertyFromContent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">prop</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">contentKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">del</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">v</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    
+<span class='line'>129</span>     </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">contentKey</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">contentKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"content"</span><span class="PUNC">+</span><span class="NAME">prop.capitalize</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">+</span><span class="STRN">"Key"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">    
+<span class='line'>131</span>     </span><span class="COMM">// prefer our own definition of contentKey</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">[</span><span class="NAME">contentKey</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">contentKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">contentKey</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">    </span><span class="COMM">// if we don't have one defined check the delegate</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">del</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.displayDelegate</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">del</span><span class="PUNC">[</span><span class="NAME">contentKey</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">contentKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">del.get</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">del.get</span><span class="PUNC">(</span><span class="NAME">contentKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">v</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">    </span><span class="COMM">// if we have no key we can't do anything so just short circuit out</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">    
+<span class='line'>138</span>     </span><span class="COMM">// only bother setting value if the observer triggered for the correct key</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'*'</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">contentKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">      
+<span class='line'>142</span>       </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">content.get</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">content.get</span><span class="PUNC">(</span><span class="NAME">contentKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">[</span><span class="NAME">contentKey</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">      
+<span class='line'>145</span>       </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="NAME">prop</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">v</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">    
+<span class='line'>148</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">  
+<span class='line'>151</span>   </span><span class="COMM">/**
+<span class='line'>152</span>     Relays changes to the value back to the content object if you are using
+<span class='line'>153</span>     a content object.
+<span class='line'>154</span>     
+<span class='line'>155</span>     This observer is triggered whenever the value changes.  It will only do
+<span class='line'>156</span>     something if it finds you are using the content property and
+<span class='line'>157</span>     contentValueKey and the new value does not match the old value of the
+<span class='line'>158</span>     content object.  
+<span class='line'>159</span>     
+<span class='line'>160</span>     If you are using contentValueKey in some other way than typically
+<span class='line'>161</span>     implemented by this mixin, then you may want to override this method as
+<span class='line'>162</span>     well.
+<span class='line'>163</span>     
+<span class='line'>164</span>     @returns {void}
+<span class='line'>165</span>   */</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="NAME">updateContentWithValueObserver</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.contentValueKey</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">      </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'contentValueKey'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">      </span><span class="NAME">this.getDelegateProperty</span><span class="PUNC">(</span><span class="STRN">'contentValueKey'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.displayDelegate</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">      </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>171</span> 
+<span class='line'>172</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// do nothing if disabled</span><span class="WHIT">
+<span class='line'>173</span> 
+<span class='line'>174</span> </span><span class="WHIT">    </span><span class="COMM">// get value -- set on content if changed</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>176</span> 
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">content.setIfChanged</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_FUNCTION</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">      </span><span class="NAME">content.setIfChanged</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">    </span><span class="COMM">// avoid re-writing inherited props</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">      </span><span class="NAME">content</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">  
+<span class='line'>187</span>   </span><span class="COMM">/** @private
+<span class='line'>188</span>     This should be null so that if content is also null, the
+<span class='line'>189</span>     _contentDidChange won't do anything on init.
+<span class='line'>190</span>   */</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">  </span><span class="NAME">_control_content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>192</span> 
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>194</span>     Observes when a content object has changed and handles notifying 
+<span class='line'>195</span>     changes to the value of the content object.
+<span class='line'>196</span>   */</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">  </span><span class="COMM">// TODO: observing * is unnecessary and inefficient, but a bunch of stuff in sproutcore depends on it (like button)</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">  </span><span class="NAME">_control_contentDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    
+<span class='line'>201</span>     </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._control_content</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// nothing changed</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">    
+<span class='line'>203</span>     </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">f</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.contentPropertyDidChange</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="COMM">// remove an observer from the old content if necessary</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">        </span><span class="NAME">old</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._control_content</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>206</span> 
+<span class='line'>207</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">old</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">old.removeObserver</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">old.removeObserver</span><span class="PUNC">(</span><span class="STRN">'*'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">f</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">  
+<span class='line'>209</span>     </span><span class="COMM">// update previous values</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">    </span><span class="NAME">this._control_content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">  
+<span class='line'>212</span>     </span><span class="COMM">// add observer to new content if necessary.</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">content.addObserver</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">content.addObserver</span><span class="PUNC">(</span><span class="STRN">'*'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">f</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>214</span> 
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="COMM">// notify that value did change.</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="NAME">this.contentPropertyDidChange</span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'*'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">    
+<span class='line'>218</span>   </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  
+<span class='line'>220</span>   </span><span class="COMM">/** @private
+<span class='line'>221</span>     Since we always observe *, just call the update function
+<span class='line'>222</span>   */</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">  </span><span class="NAME">_control_contentValueKeyDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">    </span><span class="COMM">// notify that value did change.</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">    </span><span class="NAME">this.contentPropertyDidChange</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'*'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'contentValueKey'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> 
+<span class='line'>229</span> </span></pre></body></html>

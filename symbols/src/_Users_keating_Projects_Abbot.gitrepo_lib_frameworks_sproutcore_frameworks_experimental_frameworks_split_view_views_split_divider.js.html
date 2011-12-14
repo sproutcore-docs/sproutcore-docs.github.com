@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2010 Sprout Systems, Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'mixins/split_child'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'mixins/split_thumb'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>   @class
+<span class='line'> 13</span> 
+<span class='line'> 14</span>   A SplitDividerView sits between any two other views in a SplitView.
+<span class='line'> 15</span>   The SplitDivider mixes in SC.SplitThumb to allow the user to drag
+<span class='line'> 16</span>   it around. The dragging process will cause SC.SplitView to adjust
+<span class='line'> 17</span>   other children as needed.
+<span class='line'> 18</span> 
+<span class='line'> 19</span>   @extends SC.View
+<span class='line'> 20</span>   @author Alex Iskander
+<span class='line'> 21</span> */</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="NAME">SC.SplitDividerView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="NAME">SC.SplitChild</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.SplitThumb</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.SplitDividerView.prototype */</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-split-divider-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  
+<span class='line'> 27</span>   </span><span class="COMM">// set to prevent SC.SplitView from automatically creating dividers</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="COMM">// to sit between this divider and another view.</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="NAME">isSplitDivider</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="COMM">// NOTE: 'sc-fixed-size' is only hard-coded because SC.SplitView requires</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="COMM">// this file, and SC.FIXED_SIZE is defined inside SC.SplitView.</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="NAME">autoResizeStyle</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'sc-fixed-size'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  
+<span class='line'> 35</span>   </span><span class="NAME">movesSibling</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.MOVES_CHILD</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  
+<span class='line'> 37</span>   </span><span class="NAME">size</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.propertyFromRenderDelegate</span><span class="PUNC">(</span><span class="STRN">'dividerSize'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 38</span> 
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'splitDividerRenderDelegate'</span><span class="WHIT">
+<span class='line'> 40</span> <span class='line'> 41</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span></pre></body></html>

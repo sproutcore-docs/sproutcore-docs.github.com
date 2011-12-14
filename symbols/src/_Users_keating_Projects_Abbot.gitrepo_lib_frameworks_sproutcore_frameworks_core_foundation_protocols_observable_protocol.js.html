@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore Costello - Property Observing Library</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   The SC.ObservableProtocol defines optional methods you can implement on your
+<span class='line'> 10</span>   objects.  They will be used if defined but are not required for observing to
+<span class='line'> 11</span>   work.
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">SC.ObservableProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 16</span>     Generic property observer called whenever a property on the receiver
+<span class='line'> 17</span>     changes.
+<span class='line'> 18</span> 
+<span class='line'> 19</span>     If you need to observe a large number of properties on your object, it
+<span class='line'> 20</span>     is sometimes more efficient to implement this observer only and then to
+<span class='line'> 21</span>     handle requests yourself.  Although this observer will be triggered
+<span class='line'> 22</span>     more often than an observer registered on a specific property, it also
+<span class='line'> 23</span>     does not need to be registered which can make it faster to setup your
+<span class='line'> 24</span>     object instance.
+<span class='line'> 25</span> 
+<span class='line'> 26</span>     You will often implement this observer using a switch statement on the
+<span class='line'> 27</span>     key parameter, taking appropriate action.
+<span class='line'> 28</span> 
+<span class='line'> 29</span>     @param observer {null} no longer used; usually null
+<span class='line'> 30</span>     @param target {Object} the target of the change.  usually this
+<span class='line'> 31</span>     @param key {String} the name of the property that changed
+<span class='line'> 32</span>     @param value {Object} the new value of the property.
+<span class='line'> 33</span>     @param revision {Number} a revision you can use to quickly detect changes.
+<span class='line'> 34</span>     @returns {void}
+<span class='line'> 35</span>   */</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="NAME">propertyObserver</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">observer</span><span class="PUNC">,</span><span class="NAME">target</span><span class="PUNC">,</span><span class="NAME">key</span><span class="PUNC">,</span><span class="NAME">value</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">revision</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 39</span> <span class='line'> 40</span> 
+</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 41</span> </span></pre></body></html>

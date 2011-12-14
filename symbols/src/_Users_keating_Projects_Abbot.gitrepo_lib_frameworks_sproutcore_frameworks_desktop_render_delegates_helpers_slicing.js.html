@@ -1,0 +1,43 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="NAME">SC.THREE_SLICE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'left'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'middle'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'right'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="NAME">SC.NINE_SLICE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="STRN">'top-left'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'top'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'top-right'</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 13</span>   </span><span class="STRN">'left'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'middle'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'right'</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'> 14</span>   </span><span class="STRN">'bottom-left'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'bottom'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'bottom-right'</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 16</span> 
+<span class='line'> 17</span> </span><span class="NAME">SC.RenderDelegate.reopen</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="COMM">/*@scope SC.RenderDelegate.prototype*/</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  
+<span class='line'> 20</span>   </span><span class="COMM">/**
+<span class='line'> 21</span>     Use this to render slices that you can match in CSS. This matches with the
+<span class='line'> 22</span>     Chance @include slices directive, so that you can automatically do 
+<span class='line'> 23</span>     multi-slice images for controls.
+<span class='line'> 24</span> 
+<span class='line'> 25</span>     @param {SC.Object} dataSource The data source for rendering information.
+<span class='line'> 26</span>     @param {SC.RenderContext} context the render context instance
+<span class='line'> 27</span>     @param {Slice Configuration} slices Instructions on how to slice. Can be a constant
+<span class='line'> 28</span>     like SC.THREE_SLICE or SC.NINE_SLICE, or an array of slice names.
+<span class='line'> 29</span>   */</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">  </span><span class="NAME">includeSlices</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">slices</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">slices.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">      </span><span class="NAME">context.push</span><span class="PUNC">(</span><span class="STRN">'&lt;div class="'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">slices</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">'">&lt;/div>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> </span></pre></body></html>

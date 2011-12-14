@@ -1,0 +1,90 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @class
+<span class='line'>  9</span> 
+<span class='line'> 10</span>   Provides a button that displays an image instead of the standard button
+<span class='line'> 11</span>   user interface.
+<span class='line'> 12</span> 
+<span class='line'> 13</span>   It behaves the same as an SC.ButtonView, but has an image property that
+<span class='line'> 14</span>   should be set to a unique class name.
+<span class='line'> 15</span> 
+<span class='line'> 16</span>   For example:
+<span class='line'> 17</span> 
+<span class='line'> 18</span>       SC.ImageButtonView.create({
+<span class='line'> 19</span>         action: 'imageButtonWasClicked',
+<span class='line'> 20</span> 
+<span class='line'> 21</span>         image: 'my-image-button-icon'
+<span class='line'> 22</span>       });
+<span class='line'> 23</span> 
+<span class='line'> 24</span>   You could then add some CSS rule for a normal state:
+<span class='line'> 25</span> 
+<span class='line'> 26</span>       $theme.image-button .my-image-button-icon {
+<span class='line'> 27</span>         @include slice('my-image-button-image.png');
+<span class='line'> 28</span> 
+<span class='line'> 29</span>         // and an active state:
+<span class='line'> 30</span> <span class='line'> 31</span>         &.active {
+<span class='line'> 32</span>           @include slice('my-image-button-image-active.png');
+<span class='line'> 33</span>         }
+<span class='line'> 34</span>       }
+<span class='line'> 35</span> 
+<span class='line'> 36</span>   Note: in addition to using SCSS and the Chance directives shown above, you
+<span class='line'> 37</span>   can use normal CSS syntax and sc_static.
+<span class='line'> 38</span> 
+<span class='line'> 39</span>   @extends SC.View
+<span class='line'> 40</span>   @extends SC.Control
+<span class='line'> 41</span>   @extends SC.ButtonView
+<span class='line'> 42</span>   @since SproutCore 1.5
+<span class='line'> 43</span> */</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="NAME">SC.ImageButtonView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ButtonView.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="COMM">/** @scope SC.ImageButtonView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 46</span> 
+<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 48</span>     @type Array
+<span class='line'> 49</span>     @default ['sc-image-button-view']
+<span class='line'> 50</span>     @see SC.View#classNames
+<span class='line'> 51</span>   */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-image-button-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> 
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 55</span>     Unlike SC.ButtonView, SC.ImageButtonView does not have a default theme
+<span class='line'> 56</span>     that needs to be applied for backwards compatibility.
+<span class='line'> 57</span> 
+<span class='line'> 58</span>     @type String
+<span class='line'> 59</span>     @default null
+<span class='line'> 60</span>   */</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="NAME">themeName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 62</span> 
+<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 64</span>     @type String
+<span class='line'> 65</span>     @default 'imageButtonRenderDelegate'
+<span class='line'> 66</span>   */</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'imageButtonRenderDelegate'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  
+<span class='line'> 69</span>   </span><span class="COMM">/**
+<span class='line'> 70</span>     @type Array
+<span class='line'> 71</span>     @default ['image']
+<span class='line'> 72</span>   */</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'image'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 74</span> 
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 76</span>     A class name that will be applied to the img tag of the button.
+<span class='line'> 77</span>     
+<span class='line'> 78</span>     @type String
+<span class='line'> 79</span>     @default null
+<span class='line'> 80</span>   */</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="NAME">image</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'> 82</span> 
+<span class='line'> 83</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span></pre></body></html>

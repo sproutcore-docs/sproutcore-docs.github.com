@@ -1,0 +1,74 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.platform</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="COMM">/** @scope SC.platform */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 12</span>     YES if the ondeviceorientation event on window is supported.
+<span class='line'> 13</span>     
+<span class='line'> 14</span>     @property {Boolean}
+<span class='line'> 15</span>     @default NO
+<span class='line'> 16</span>   */</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">  </span><span class="NAME">supportsGyroscope</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="STRN">'ondeviceorientation'</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">window</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">  
+<span class='line'> 19</span>   </span><span class="COMM">/**
+<span class='line'> 20</span>     YES if the ondeviceorientation event on window has actually been
+<span class='line'> 21</span>     fired. Some platforms have the event but will never fire it.
+<span class='line'> 22</span>     
+<span class='line'> 23</span>     @property {Boolean}
+<span class='line'> 24</span>     @default NO
+<span class='line'> 25</span>   */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">hasGyroscope</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  
+<span class='line'> 28</span>   </span><span class="COMM">/**
+<span class='line'> 29</span>     YES if the ondevicemotion event on window is supported.
+<span class='line'> 30</span>     
+<span class='line'> 31</span>     @property {Boolean}
+<span class='line'> 32</span>     @default NO
+<span class='line'> 33</span>   */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="NAME">supportsAccelerometer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="STRN">'ondevicemotion'</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">window</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  
+<span class='line'> 36</span>   </span><span class="COMM">/**
+<span class='line'> 37</span>     YES if the ondevicemotion event on window has actually been
+<span class='line'> 38</span>     fired. Some platforms have the event but will never fire it.
+<span class='line'> 39</span>     
+<span class='line'> 40</span>     @property {Boolean}
+<span class='line'> 41</span>     @default NO
+<span class='line'> 42</span>   */</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="NAME">hasAccelerometer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">  
+<span class='line'> 45</span>   </span><span class="COMM">/*
+<span class='line'> 46</span>     TODO [CC] Find out the actual values on a multitude of devices.
+<span class='line'> 47</span>               We would want this to be a 'normal' use value...
+<span class='line'> 48</span>   */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 50</span>     @property {Number}
+<span class='line'> 51</span>     @default -10
+<span class='line'> 52</span>   */</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">accelerationMinimum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">    </span><span class="COMM">// we may want finer grained control of this by platform later</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">10</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">  
+<span class='line'> 58</span>   </span><span class="COMM">/**
+<span class='line'> 59</span>     @property {Number}
+<span class='line'> 60</span>     @default 10
+<span class='line'> 61</span>   */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="NAME">accelerationMaximum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="COMM">// we may want finer grained control of this by platform later</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 66</span> 
+<span class='line'> 67</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

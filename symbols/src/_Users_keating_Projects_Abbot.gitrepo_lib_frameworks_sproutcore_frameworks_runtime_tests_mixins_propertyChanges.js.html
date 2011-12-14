@@ -1,0 +1,95 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ObjectA</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="NAME">module</span><span class="PUNC">(</span><span class="STRN">"object.propertyChanges()"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">	
+<span class='line'>  9</span> 	</span><span class="NAME">setup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">		</span><span class="NAME">ObjectA</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">			</span><span class="NAME">normal</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">			</span><span class="NAME">normal1</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'zeroValue'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">						
+<span class='line'> 14</span> 			</span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">				</span><span class="NAME">this.normal1</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'newValue'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'normal'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">			
+<span class='line'> 18</span> 			</span><span class="NAME">normal2</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'dependentValue'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">			</span><span class="NAME">normal3</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'notifiedValue'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">			
+<span class='line'> 21</span> 			</span><span class="NAME">notifyAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">				</span><span class="NAME">this.normal3</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'newDependentValue'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'normal2'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">			
+<span class='line'> 25</span> 			</span><span class="NAME">notifyAllAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">				</span><span class="NAME">this.normal2</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'newZeroValue'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">			</span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'normal1'</span><span class="PUNC">)</span><span class="WHIT">			
+<span class='line'> 28</span> 		</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> 
+<span class='line'> 32</span> </span><span class="COMM">// CAJ: These tests are OK but the purpose of begin/end property changes is</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="COMM">// to suspend notifications.  you should do something like:</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="COMM">/*
+<span class='line'> 35</span>   obj.beginPropertyChanges()
+<span class='line'> 36</span>   obj.set('foo', 'bar');
+<span class='line'> 37</span>   -- verify that observer for 'foo' did not fire
+<span class='line'> 38</span>   obj.endPropertyChanges()
+<span class='line'> 39</span>   -- verify that observer for 'foo' did fire
+<span class='line'> 40</span> */</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="COMM">// also, we need some tests verifying that begin/end property changes can</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="COMM">// be nested.  When they are nested, observers should not fire until you </span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="COMM">// unnest them.  i.e.  </span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="COMM">/*
+<span class='line'> 45</span>   obj.beginPropertyChanges()
+<span class='line'> 46</span>     obj.beginPropertyChanges() // nested!
+<span class='line'> 47</span>       obj.set('foo', 'bar')
+<span class='line'> 48</span>     obj.endPropertyChanges(); // nested - do not fire.
+<span class='line'> 49</span>   obj.endProeprtyChanges()
+<span class='line'> 50</span>   -- observers fire here!
+<span class='line'> 51</span> */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"should increment the indicator before begining the changes to the object"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">    </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_kvo_changeLevel</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"should decrement the indicator after ending the changes to the object"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">    </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_kvo_changeLevel</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> 
+<span class='line'> 61</span> </span><span class="COMM">// CAJ: This test works but its confusing.  the relationship between 'normal' </span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="COMM">// and 'normal1' is really unclear.  Rename these properties</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="COMM">// to something more descriptive and add comments to this test explaining </span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="COMM">// what you expect to have happen.  You should always comment in the test </span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="COMM">// anytime you expect something to happen in the background (such as expecting</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="COMM">// an observer to fire.) </span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"should indicate that the property of an object has just changed"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">	</span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.propertyWillChange</span><span class="PUNC">(</span><span class="STRN">'normal'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NAME">ObjectA</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">	</span><span class="NAME">ObjectA.normal</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'newValue'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">	</span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.propertyDidChange</span><span class="PUNC">(</span><span class="STRN">'normal'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NAME">ObjectA</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">	</span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.normal1</span><span class="PUNC">,</span><span class="STRN">'newValue'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> 
+<span class='line'> 74</span> </span><span class="COMM">// CAJ:  See my comment from above.  It's not clear how this test works.  </span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="COMM">// Consider using different property names and add a comment inline to </span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="COMM">// explain that you expect an observer to fire.</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"should notify that the property of an object has changed"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">	</span><span class="NAME">ObjectA.notifyPropertyChange</span><span class="PUNC">(</span><span class="STRN">'normal2'</span><span class="PUNC">,</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">	</span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.normal3</span><span class="PUNC">,</span><span class="STRN">'newDependentValue'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="COMM">// CAJ:  Same comment here as the previous two tests.</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"should notify all observers that their property might have changed"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">	</span><span class="NAME">ObjectA.allPropertiesDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">	</span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">ObjectA.normal2</span><span class="PUNC">,</span><span class="STRN">'newZeroValue'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 87</span> 
+<span class='line'> 88</span> </span></pre></body></html>

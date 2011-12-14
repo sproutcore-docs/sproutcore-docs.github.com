@@ -1,0 +1,340 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @class
+<span class='line'>  9</span> 
+<span class='line'> 10</span>   Displays a horizontal or vertical scroller.
+<span class='line'> 11</span> 
+<span class='line'> 12</span>   You will not usually need to work with scroller views directly,
+<span class='line'> 13</span>   but you may override this class to implement your own custom scrollers.
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   Because the scroller uses the dimensions of its constituent elements to
+<span class='line'> 16</span>   calculate layout, you may need to override the default display metrics.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   You can either create a subclass of ScrollerView with the new values, or
+<span class='line'> 19</span>   provide your own in your theme:
+<span class='line'> 20</span> 
+<span class='line'> 21</span>       SC.mixin(SC.ScrollerView.prototype, {
+<span class='line'> 22</span>         scrollbarThickness: 14,
+<span class='line'> 23</span>         capLength: 18,
+<span class='line'> 24</span>         capOverlap: 14,
+<span class='line'> 25</span>         buttonOverlap: 11,
+<span class='line'> 26</span>         buttonLength: 41
+<span class='line'> 27</span>       });
+<span class='line'> 28</span> 
+<span class='line'> 29</span>   You can change whether scroll buttons are displayed by setting the
+<span class='line'> 30</span>   hasButtons property.
+<span class='line'> 31</span> 
+<span class='line'> 32</span>   @extends SC.View
+<span class='line'> 33</span>   @since SproutCore 1.6
+<span class='line'> 34</span>  */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="NAME">SC.CoreScrollerView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.CoreScrollerView.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 39</span>     @type Array
+<span class='line'> 40</span>     @default ['sc-scroller-view']
+<span class='line'> 41</span>     @see SC.View#classNames
+<span class='line'> 42</span>    */</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-scroller-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 44</span> 
+<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 46</span>     @type Array
+<span class='line'> 47</span>     @default ['thumbPosition', 'thumbLength', 'isEnabled', 'controlsHidden', 'capLength'
+<span class='line'> 48</span>               'layoutDirection', 'hasButtons', 'value', 'controlsId', 'maximum', 'minimum']
+<span class='line'> 49</span>     @see SC.View#displayProperties
+<span class='line'> 50</span>    */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'thumbPosition'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'thumbLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'isEnabled'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'controlsHidden'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">                      </span><span class="STRN">'layoutDirection'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'hasButtons'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'capLength'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">                      </span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'controlsId'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'maximum'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'minimum'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// WAI-ARIA attrs</span><span class="WHIT">
+<span class='line'> 54</span> 
+<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 56</span>     The WAI-ARIA role for scroller view.
+<span class='line'> 57</span> 
+<span class='line'> 58</span>     @type String
+<span class='line'> 59</span>     @default 'scrollbar'
+<span class='line'> 60</span>     @readOnly
+<span class='line'> 61</span>    */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="NAME">ariaRole</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'scrollbar'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">// PROPERTIES</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 69</span>     If YES, a click on the track will cause the scrollbar to scroll to that position.
+<span class='line'> 70</span>     Otherwise, a click on the track will cause a page down.
+<span class='line'> 71</span> 
+<span class='line'> 72</span>     In either case, alt-clicks will perform the opposite behavior.
+<span class='line'> 73</span> 
+<span class='line'> 74</span>     @type Boolean
+<span class='line'> 75</span>     @default NO
+<span class='line'> 76</span>    */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="NAME">shouldScrollToClick</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> 
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 80</span>     WAI-ARIA ID to the control that this scroller is controlling.
+<span class='line'> 81</span> 
+<span class='line'> 82</span>     @field
+<span class='line'> 83</span>     @type String
+<span class='line'> 84</span>    */</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">controlsIdBinding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.oneWay</span><span class="PUNC">(</span><span class="STRN">'.parentView*contentView.layerId'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 88</span>     @type Number
+<span class='line'> 89</span>     @observes value
+<span class='line'> 90</span>     @observes touchValue
+<span class='line'> 91</span>    */</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="NAME">displayValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">"value"</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 95</span> 
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 97</span>     The value of the scroller.
+<span class='line'> 98</span>     The value represents the position of the scroller's thumb.
+<span class='line'> 99</span> 
+<span class='line'>100</span>     @field
+<span class='line'>101</span>     @type Number
+<span class='line'>102</span>     @observes maximum
+<span class='line'>103</span>     @observes minimum
+<span class='line'>104</span>    */</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="NAME">value</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">minimum</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'minimum'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">      </span><span class="NAME">this._scs_value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>110</span> 
+<span class='line'>111</span> </span><span class="WHIT">    </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._scs_value</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">minimum</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// default value is at top / left</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Math.max</span><span class="PUNC">(</span><span class="NAME">Math.min</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'maximum'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">minimum</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'maximum'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'minimum'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> 
+<span class='line'>115</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>116</span>     The portion of the track that the thumb should fill. Usually the
+<span class='line'>117</span>     proportion will be the ratio of the size of the scroll view's content view
+<span class='line'>118</span>     to the size of the scroll view.
+<span class='line'>119</span> 
+<span class='line'>120</span>     Should be specified as a value between 0.0 (minimal size) and 1.0 (fills
+<span class='line'>121</span>     the slot). Note that if the proportion is 1.0 then the control will be
+<span class='line'>122</span>     disabled.
+<span class='line'>123</span> 
+<span class='line'>124</span>     @type Number
+<span class='line'>125</span>     @default 0.0
+<span class='line'>126</span>    */</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">  </span><span class="NAME">proportion</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>128</span> 
+<span class='line'>129</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>130</span>     The maximum offset value for the scroller.  This will be used to calculate
+<span class='line'>131</span>     the internal height/width of the scroller itself.
+<span class='line'>132</span> 
+<span class='line'>133</span>     When set less than the height of the scroller, the scroller is disabled.
+<span class='line'>134</span> 
+<span class='line'>135</span>     @type Number
+<span class='line'>136</span>     @default 100
+<span class='line'>137</span>    */</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">  </span><span class="NAME">maximum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">100</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>139</span> 
+<span class='line'>140</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>141</span>     The minimum offset value for the scroller.  This will be used to calculate
+<span class='line'>142</span>     the internal height/width of the scroller itself.
+<span class='line'>143</span> 
+<span class='line'>144</span>     @type Number
+<span class='line'>145</span>     @default 0
+<span class='line'>146</span>    */</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="NAME">minimum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>148</span> 
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>150</span>     YES to enable scrollbar, NO to disable it. Scrollbars will automatically
+<span class='line'>151</span>     disable if the maximum scroll width does not exceed their capacity.
+<span class='line'>152</span> 
+<span class='line'>153</span>     @field
+<span class='line'>154</span>     @type Boolean
+<span class='line'>155</span>     @default YES
+<span class='line'>156</span>     @observes proportion
+<span class='line'>157</span>    */</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">  </span><span class="NAME">isEnabled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">enabled</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="STRN">"undefined"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">      </span><span class="NAME">this._scsv_isEnabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">    </span><span class="NAME">enabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._scsv_isEnabled</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>164</span> 
+<span class='line'>165</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">enabled</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">enabled</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'proportion'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'proportion'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>167</span> 
+<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="NAME">_scsv_isEnabled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>170</span> 
+<span class='line'>171</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>172</span>     Determine the layout direction.  Determines whether the scrollbar should
+<span class='line'>173</span>     appear horizontal or vertical.  This must be set when the view is created.
+<span class='line'>174</span>     Changing this once the view has been created will have no effect. Possible
+<span class='line'>175</span>     values:
+<span class='line'>176</span> 
+<span class='line'>177</span>       - SC.LAYOUT_VERTICAL
+<span class='line'>178</span>       - SC.LAYOUT_HORIZONTAL
+<span class='line'>179</span> 
+<span class='line'>180</span>     @type String
+<span class='line'>181</span>     @default SC.LAYOUT_VERTICAL
+<span class='line'>182</span>    */</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="NAME">layoutDirection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.LAYOUT_VERTICAL</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>184</span> 
+<span class='line'>185</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>186</span>     Whether or not the scroller should display scroll buttons
+<span class='line'>187</span> 
+<span class='line'>188</span>     @type Boolean
+<span class='line'>189</span>     @default YES
+<span class='line'>190</span>    */</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">  </span><span class="NAME">hasButtons</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>192</span> 
+<span class='line'>193</span> 
+<span class='line'>194</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">  </span><span class="COMM">// DISPLAY METRICS</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>197</span> 
+<span class='line'>198</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>199</span>     The width (if vertical scroller) or height (if horizontal scroller) of the
+<span class='line'>200</span>     scrollbar.
+<span class='line'>201</span> 
+<span class='line'>202</span>     @type Number
+<span class='line'>203</span>     @default 14
+<span class='line'>204</span>    */</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">  </span><span class="NAME">scrollbarThickness</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">14</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>206</span> 
+<span class='line'>207</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>208</span>     Whether or not the scrollbar is translucent.
+<span class='line'>209</span>     This effectively means you would like the scroller to be overlaid.
+<span class='line'>210</span> 
+<span class='line'>211</span>     @type Boolean
+<span class='line'>212</span>     @default NO
+<span class='line'>213</span>    */</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">  </span><span class="NAME">isTranslucent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>215</span> 
+<span class='line'>216</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>217</span>     The width or height of the cap that encloses the track.
+<span class='line'>218</span> 
+<span class='line'>219</span>     @type Number
+<span class='line'>220</span>     @default 18
+<span class='line'>221</span>    */</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">  </span><span class="NAME">capLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">18</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>223</span> 
+<span class='line'>224</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>225</span>     The amount by which the thumb overlaps the cap.
+<span class='line'>226</span> 
+<span class='line'>227</span>     @type Number
+<span class='line'>228</span>     @default 14
+<span class='line'>229</span>    */</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">  </span><span class="NAME">capOverlap</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">14</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>231</span> 
+<span class='line'>232</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>233</span>     The width or height of the up/down or left/right arrow buttons. If the
+<span class='line'>234</span>     scroller is not displaying arrows, this is the width or height of the end
+<span class='line'>235</span>     cap.
+<span class='line'>236</span> 
+<span class='line'>237</span>     @type Number
+<span class='line'>238</span>     @defaut 41
+<span class='line'>239</span>    */</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">  </span><span class="NAME">buttonLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">41</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>241</span> 
+<span class='line'>242</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>243</span>     The amount by which the thumb overlaps the arrow buttons. If the scroller
+<span class='line'>244</span>     is not displaying arrows, this is the amount by which the thumb overlaps
+<span class='line'>245</span>     the end cap.
+<span class='line'>246</span> 
+<span class='line'>247</span>     @type Number
+<span class='line'>248</span>     @default 11
+<span class='line'>249</span>    */</span><span class="WHIT">
+<span class='line'>250</span> </span><span class="WHIT">  </span><span class="NAME">buttonOverlap</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">11</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>251</span> 
+<span class='line'>252</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>253</span>     The minimium length that the thumb will be, regardless of how much content
+<span class='line'>254</span>     is in the scroll view.
+<span class='line'>255</span> 
+<span class='line'>256</span>     @type Number
+<span class='line'>257</span>     @default 20
+<span class='line'>258</span>    */</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">  </span><span class="NAME">minimumThumbLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>260</span> 
+<span class='line'>261</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">  </span><span class="COMM">// SCROLLER DIMENSION COMPUTED PROPERTIES</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>264</span> 
+<span class='line'>265</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>266</span>     Returns the total length of the track in which the thumb sits.
+<span class='line'>267</span> 
+<span class='line'>268</span>     The length of the track is the height or width of the scroller, less the
+<span class='line'>269</span>     cap length and the button length. This property is used to calculate the
+<span class='line'>270</span>     position of the thumb relative to the view.
+<span class='line'>271</span> 
+<span class='line'>272</span>     @property
+<span class='line'>273</span>    */</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">  </span><span class="NAME">trackLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'scrollerLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">      </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'capLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'capOverlap'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT">      </span><span class="COMM">// Subtract the size of the top/left cap</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">      </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonOverlap'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// Subtract the size of the scroll buttons,</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">                                                              </span><span class="COMM">// or the end cap if they are not shown.</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'scrollerLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'capLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'capOverlap'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'buttonLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'buttonOverlap'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>280</span> 
+<span class='line'>281</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>282</span>     Returns the height of the view if this is a vertical scroller or the width
+<span class='line'>283</span>     of the view if this is a horizontal scroller. This is used when scrolling
+<span class='line'>284</span>     up and down by page, as well as in various layout calculations.
+<span class='line'>285</span> 
+<span class='line'>286</span>     @type Number
+<span class='line'>287</span>    */</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">  </span><span class="NAME">scrollerLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">frame</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'frame'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">        </span><span class="NAME">layoutDirection</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layoutDirection'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>291</span> 
+<span class='line'>292</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">layoutDirection</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.LAYOUT_VERTICAL</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">frame.height</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">           </span><span class="NAME">layoutDirection</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.LAYOUT_HORIZONTAL</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">frame.width</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'frame'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>295</span> 
+<span class='line'>296</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>297</span>     The total length of the thumb. The size of the thumb is the
+<span class='line'>298</span>     length of the track times the content proportion.
+<span class='line'>299</span> 
+<span class='line'>300</span>     @property
+<span class='line'>301</span>    */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">thumbLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">length</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'trackLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'proportion'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> 
+<span class='line'>305</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Math.max</span><span class="PUNC">(</span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">length</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'minimumThumbLength'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'trackLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'proportion'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'minimumThumbLength'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>307</span> 
+<span class='line'>308</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>309</span>     The position of the thumb in the track.
+<span class='line'>310</span> 
+<span class='line'>311</span>     @type Number
+<span class='line'>312</span>     @isReadOnly
+<span class='line'>313</span>    */</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">  </span><span class="NAME">thumbPosition</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>315</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayValue'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'maximum'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT">
+<span class='line'>316</span> </span><span class="WHIT">                    </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'trackLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'thumbLength'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">                    </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'capLength'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'capOverlap'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// account for the top / left cap</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Math.floor</span><span class="PUNC">(</span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">position</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">position</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>319</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'displayValue'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'maximum'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'trackLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'thumbLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'capLength'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'capOverlap'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>320</span> 
+<span class='line'>321</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>322</span>     YES if the maximum value exceeds the frame size of the scroller.  This
+<span class='line'>323</span>     will hide the thumb and buttons.
+<span class='line'>324</span> 
+<span class='line'>325</span>     @type Boolean
+<span class='line'>326</span>     @isReadOnly
+<span class='line'>327</span>    */</span><span class="WHIT">
+<span class='line'>328</span> </span><span class="WHIT">  </span><span class="NAME">controlsHidden</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'proportion'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'proportion'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>331</span> 
+<span class='line'>332</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>333</span> </span></pre></body></html>
