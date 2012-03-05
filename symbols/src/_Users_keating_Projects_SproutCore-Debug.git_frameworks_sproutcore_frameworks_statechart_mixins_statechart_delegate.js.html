@@ -1,0 +1,120 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SC.Statechart - A Statechart Framework for SproutCore</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2010, 2011 Michael Cohen, and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions @2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/*globals SC */</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/**
+<span class='line'> 11</span>   @class
+<span class='line'> 12</span>   
+<span class='line'> 13</span>   Apply to objects that are to represent a delegate for a SC.Statechart object.
+<span class='line'> 14</span>   When assigned to a statechart, the statechart and its associated states will
+<span class='line'> 15</span>   use the delegate in order to make various decisions.
+<span class='line'> 16</span>   
+<span class='line'> 17</span>   @see SC.Statechart#delegate 
+<span class='line'> 18</span> 
+<span class='line'> 19</span>   @author Michael Cohen
+<span class='line'> 20</span> */</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="NAME">SC.StatechartDelegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="COMM">/** @scope SC.StatechartDelegate.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  
+<span class='line'> 24</span>   </span><span class="COMM">// Walk like a duck</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="NAME">isStatechartDelegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  
+<span class='line'> 27</span>   </span><span class="COMM">// Route Handling Management</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">  
+<span class='line'> 29</span>   </span><span class="COMM">/**
+<span class='line'> 30</span>     Called to update the application's current location. 
+<span class='line'> 31</span>     
+<span class='line'> 32</span>     The location provided is dependent upon the application's underlying
+<span class='line'> 33</span>     routing mechanism.
+<span class='line'> 34</span> <span class='line'> 35</span>     
+<span class='line'> 36</span>     @param {SC.StatechartManager} statechart the statechart
+<span class='line'> 37</span>     @param {String|Hash} location the new location 
+<span class='line'> 38</span>     @param {SC.State} state the state requesting the location update
+<span class='line'> 39</span>   */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="NAME">statechartUpdateLocationForState</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">statechart</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">location</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="NAME">SC.routes.set</span><span class="PUNC">(</span><span class="STRN">'location'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">location</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  
+<span class='line'> 44</span>   </span><span class="COMM">/**
+<span class='line'> 45</span>     Called to acquire the application's current location.
+<span class='line'> 46</span>     
+<span class='line'> 47</span>     @param {SC.StatechartManager} statechart the statechart
+<span class='line'> 48</span>     @param {SC.State} state the state requesting the location
+<span class='line'> 49</span>     @returns {String} the location 
+<span class='line'> 50</span>   */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">statechartAcquireLocationForState</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">statechart</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.routes.get</span><span class="PUNC">(</span><span class="STRN">'location'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  
+<span class='line'> 55</span>   </span><span class="COMM">/**
+<span class='line'> 56</span>     Used to bind a state's handler to a route. When the application's location
+<span class='line'> 57</span>     matches the given route, the state's handler is to be invoked. 
+<span class='line'> 58</span>     
+<span class='line'> 59</span>     The statechart and states remain completely independent of how the underlying 
+<span class='line'> 60</span>     routing mechanism works thereby providing a looser coupling and more flexibility 
+<span class='line'> 61</span>     in how routing is to work. Given this flexiblity, it is important that a route
+<span class='line'> 62</span>     assigned (using the {@link SC.State#representRoute} property) to a state strictly 
+<span class='line'> 63</span>     conforms to the underlying routing mechanism's criteria in order for the given 
+<span class='line'> 64</span>     handler to be properly invoked.
+<span class='line'> 65</span>     
+<span class='line'> 66</span>     By default the {@link SC.routes} mechanism is used to bind the state's handler with
+<span class='line'> 67</span>     the given route.
+<span class='line'> 68</span>     
+<span class='line'> 69</span>     @param {SC.StatechartManager} statechart the statechart
+<span class='line'> 70</span>     @param {SC.State} state the state to bind the route to
+<span class='line'> 71</span>     @param {String|Hash} route the route that is to be bound to the state
+<span class='line'> 72</span>     @param {Function|String} handler the method on the state to be invoked when the route
+<span class='line'> 73</span>       gets triggered.
+<span class='line'> 74</span>       
+<span class='line'> 75</span>     @see SC.State#representRoute
+<span class='line'> 76</span>   */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="NAME">statechartBindStateToRoute</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">statechart</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">route</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">handler</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">SC.routes.add</span><span class="PUNC">(</span><span class="NAME">route</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">handler</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  
+<span class='line'> 81</span>   </span><span class="COMM">/**
+<span class='line'> 82</span>     Invoked by a state that has been notified to handle a triggered route. The state
+<span class='line'> 83</span>     asks if it should go ahead an actually handle the triggered route. If no then
+<span class='line'> 84</span>     the state's handler will no longer continue and finish by calling this delegate's
+<span class='line'> 85</span>     `statechartStateCancelledHandlingTriggeredRoute` method. If yes then the state will 
+<span class='line'> 86</span>     continue with handling the triggered route.
+<span class='line'> 87</span>     
+<span class='line'> 88</span>     By default `YES` is returned.
+<span class='line'> 89</span>     
+<span class='line'> 90</span>     @param {SC.StatechartManager} statechart the statechart
+<span class='line'> 91</span>     @param {SC.State} state the state making the request
+<span class='line'> 92</span>     @param {SC.StateRouteHandlerContext} routeContext contextual information about the handling 
+<span class='line'> 93</span>       of a route
+<span class='line'> 94</span>     
+<span class='line'> 95</span>     @see #statechartStateCancelledHandlingTriggeredRoute
+<span class='line'> 96</span>   */</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="NAME">statechartShouldStateHandleTriggeredRoute</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">statechart</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  
+<span class='line'>101</span>   </span><span class="COMM">/**
+<span class='line'>102</span>     Invoked by a state that has been informed by the delegate to not handle a triggered route.
+<span class='line'>103</span>     Used this for any additional clean up or processing that you may wish to perform.
+<span class='line'>104</span>     
+<span class='line'>105</span>     @param {SC.StatechartManager} statechart the statechart
+<span class='line'>106</span>     @param {SC.State} state the state making the request
+<span class='line'>107</span>     @param {SC.StateRouteHandlerContext} routeContext contextual information about the handling 
+<span class='line'>108</span>       of a route
+<span class='line'>109</span>     
+<span class='line'>110</span>     @see #statechartShouldStateHandleTriggeredRoute
+<span class='line'>111</span>   */</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">  </span><span class="NAME">statechartStateCancelledHandlingTriggeredRoute</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">statechart</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  
+<span class='line'>114</span> </span><span class="PUNC">}</span><span class="PUNC">;</span></pre></body></html>

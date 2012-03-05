@@ -1,0 +1,109 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2010 Sprout Systems, Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2010 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   @class
+<span class='line'> 10</span>   Extends SC.MenuItemView to support auto resize.
+<span class='line'> 11</span> */</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="NAME">SC.AutoResizingMenuItemView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.MenuItemView.extend</span><span class="PUNC">(</span><span class="NAME">SC.AutoResize</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="COMM">/** @scope SC.AutoResizingMenuItemView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> 
+<span class='line'> 16</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">  </span><span class="COMM">// For automatic resizing, if enabled (to be enabled by parent menu)</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 20</span>     The item view is capable of automatic resizing.
+<span class='line'> 21</span>     
+<span class='line'> 22</span>     @private
+<span class='line'> 23</span>     @property
+<span class='line'> 24</span>     @type {Boolean}
+<span class='line'> 25</span>   */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">supportsAutoResize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 29</span>     The menu item should NOT change its own width and height.
+<span class='line'> 30</span>     
+<span class='line'> 31</span>     @private
+<span class='line'> 32</span>     @property
+<span class='line'> 33</span>     @type {Boolean}
+<span class='line'> 34</span>   */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="NAME">shouldAutoResize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  
+<span class='line'> 37</span>   </span><span class="COMM">/**
+<span class='line'> 38</span>     If YES, the menu item will measure its width and height so that the menu
+<span class='line'> 39</span>     can automatically resize itself. This is usually set by the parent menu.
+<span class='line'> 40</span>     
+<span class='line'> 41</span>     @property
+<span class='line'> 42</span>     @type {Boolean}
+<span class='line'> 43</span>     @default NO
+<span class='line'> 44</span>   */</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="NAME">shouldMeasureSize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 46</span> 
+<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="COMM">// NOTE: this property could come from the theme at some point, but MenuItemView</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">  </span><span class="COMM">// would have to be migrated to render delegates first. MenuPane adds the</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="COMM">// necessary padding for now.</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">  </span><span class="NAME">autoResizePadding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  
+<span class='line'> 52</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">autoResizeText</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">autoResizeLayer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="STRN">'.value'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">  
+<span class='line'> 62</span>   </span><span class="COMM">/** 
+<span class='line'> 63</span>     @private
+<span class='line'> 64</span>     The batch resize id is computed to be "good enough." It is unlikely that
+<span class='line'> 65</span>     multiple menus of different size will need to resize at the same time, but
+<span class='line'> 66</span>     we guard against this a little bit by giving it a name based on the menu's guid.
+<span class='line'> 67</span>     
+<span class='line'> 68</span>     This won't cover cases where the menu has items of multiple sizes, but that's
+<span class='line'> 69</span>     an edge case that can address the issue by overriding batchResizeId to null.
+<span class='line'> 70</span>   */</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">batchResizeId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'menu-'</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="NAME">this.parentMenu</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 74</span> 
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 76</span>    * @private
+<span class='line'> 77</span>    * When we render, we recreate all of the DOM, including the element that gets measured.
+<span class='line'> 78</span>    * This is a problem because our autoResizeLayer changes. So, we must invalidate that
+<span class='line'> 79</span>    * layer whenever we re-render.
+<span class='line'> 80</span>    *
+<span class='line'> 81</span>    * We need to move menu item rendering into a render delegate. When this happens, there
+<span class='line'> 82</span>    * are a few ways we could do it:
+<span class='line'> 83</span>    *
+<span class='line'> 84</span>    * - Give render delegate method to find clientWidth and return it: 
+<span class='line'> 85</span>    *   getMenuItemTitleWidth(dataSource, $)
+<span class='line'> 86</span>    *
+<span class='line'> 87</span>    * - Make render delegate provide the autoResizeLayer:
+<span class='line'> 88</span>    *   In this case, the autoResizeLayer might be a computed property that we invalidate
+<span class='line'> 89</span>    *   on didUpdateLayer, and that calls a method like getAutoResizeLayer. Alternatively,
+<span class='line'> 90</span>    *   if render delegate properties are added, we could make this one of those, but it
+<span class='line'> 91</span>    *   would need some way to access the DOM. Maybe data sources can have $ properties or
+<span class='line'> 92</span>    *   methods? Maybe a jQuery property/method?
+<span class='line'> 93</span>   */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="NAME">didUpdateLayer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="NAME">this.notifyPropertyChange</span><span class="PUNC">(</span><span class="STRN">'autoResizeLayer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">    </span><span class="NAME">this.scheduleMeasurement</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 98</span> 
+<span class='line'> 99</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> 
+<span class='line'>102</span> </span></pre></body></html>

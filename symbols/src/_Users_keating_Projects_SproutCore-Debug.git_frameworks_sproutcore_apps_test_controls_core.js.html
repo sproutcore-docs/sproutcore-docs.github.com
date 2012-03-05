@@ -1,0 +1,37 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="COMM">/*globals TestControls */</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="COMM">/** @namespace
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   My cool new app.  Describe your application.
+<span class='line'> 12</span>   
+<span class='line'> 13</span>   @extends SC.Object
+<span class='line'> 14</span> */</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="NAME">TestControls</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Application.create</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope TestControls.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="NAME">NAMESPACE</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'TestControls'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="NAME">VERSION</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0.1.0'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="COMM">// This is your application store.  You will use this store to access all</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="COMM">// of your model data.  You can also set a data source on this store to</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="COMM">// connect to a backend server.  The default setup below connects the store</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">  </span><span class="COMM">// to any fixtures you define.</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="NAME">store</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Store.create</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">from</span><span class="PUNC">(</span><span class="NAME">SC.Record.fixtures</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  
+<span class='line'> 27</span>   </span><span class="COMM">// TODO: Add global constants or singleton objects needed by your app here.</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 30</span> </span></pre></body></html>

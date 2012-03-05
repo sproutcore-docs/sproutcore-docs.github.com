@@ -1,0 +1,149 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'render_delegates/render_delegate'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/**
+<span class='line'> 11</span>   @class
+<span class='line'> 12</span>   Renders and updates DOM representations of a label.
+<span class='line'> 13</span>   
+<span class='line'> 14</span>   Parameters
+<span class='line'> 15</span>   --------------------------
+<span class='line'> 16</span>   Expects these properties on the data source:
+<span class='line'> 17</span>   
+<span class='line'> 18</span>   - title
+<span class='line'> 19</span>   
+<span class='line'> 20</span>   If any of these are not present in the data source, the render delegate
+<span class='line'> 21</span>   will throw an error.
+<span class='line'> 22</span>   
+<span class='line'> 23</span>   Optional Parameters:
+<span class='line'> 24</span>   ---------------------------
+<span class='line'> 25</span>   If present, these properties will be used.
+<span class='line'> 26</span>   
+<span class='line'> 27</span>   - icon: should be either a class name or a URL
+<span class='line'> 28</span>   - hint: allows the label to display a hint value if its title is empty.
+<span class='line'> 29</span>   - escapeHTML: whether the HTML should be escaped to prevent XSS attacks
+<span class='line'> 30</span>     and the like.
+<span class='line'> 31</span>   - textAlign
+<span class='line'> 32</span>   - fontWeight
+<span class='line'> 33</span>   - needsEllipsis: Whether an ellipsis (...) should be added after the title
+<span class='line'> 34</span>     if the title is too long.
+<span class='line'> 35</span> */</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="NAME">SC.BaseTheme.labelRenderDelegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderDelegate.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="NAME">className</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'label'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  
+<span class='line'> 40</span>   </span><span class="NAME">render</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="NAME">this.addSizeClassName</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">    
+<span class='line'> 43</span>     </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">toolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'toolTip'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">toolTip</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">      </span><span class="NAME">context.attr</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">toolTip</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="WHIT">    </span><span class="COMM">/*
+<span class='line'> 49</span>       TODO [CC @ 1.5] These properties have been deprecated. We should remove them
+<span class='line'> 50</span>             in the next release
+<span class='line'> 51</span>     */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">    </span><span class="NAME">context.addStyle</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">      </span><span class="NAME">fontWeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'fontWeight'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">      </span><span class="NAME">textAlign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'textAlign'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">    
+<span class='line'> 57</span>     </span><span class="NAME">context.setClass</span><span class="PUNC">(</span><span class="STRN">'ellipsis'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'needsEllipsis'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">    </span><span class="NAME">context.setClass</span><span class="PUNC">(</span><span class="STRN">'icon'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'icon'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">html</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.htmlForTitleAndIcon</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="NAME">context.push</span><span class="PUNC">(</span><span class="NAME">html</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    
+<span class='line'> 63</span>     </span><span class="COMM">// we could use didChangeFor, but in this case, checking the generated</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="COMM">// HTML will probably be faster (and definitely be simpler)</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="COMM">// because several properties are used.</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">    </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'renderState'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_lastHTMLForTitleAndIcon</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">html</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  
+<span class='line'> 69</span>   </span><span class="NAME">update</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">jquery</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">    </span><span class="NAME">this.updateSizeClassName</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">jquery</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> 
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="COMM">/*
+<span class='line'> 73</span>       TODO [CC @ 1.5] These properties have been deprecated. We should remove them
+<span class='line'> 74</span>             in the next release
+<span class='line'> 75</span>     */</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="NAME">jquery.css</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">      </span><span class="NAME">fontWeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'fontWeight'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">      </span><span class="NAME">textAlign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'textAlign'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    
+<span class='line'> 81</span>     </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">toolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'toolTip'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">toolTip</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">      </span><span class="NAME">jquery.attr</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">toolTip</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">      </span><span class="NAME">jquery.removeAttr</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">    
+<span class='line'> 89</span>     </span><span class="NAME">jquery.setClass</span><span class="PUNC">(</span><span class="STRN">'ellipsis'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'needsEllipsis'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">html</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.htmlForTitleAndIcon</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'renderState'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_lastHTMLForTitleAndIcon</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">html</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">      </span><span class="NAME">jquery.html</span><span class="PUNC">(</span><span class="NAME">html</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">      </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'renderState'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_lastHTMLForTitleAndIcon</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">html</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  
+<span class='line'> 98</span>   </span><span class="COMM">/**
+<span class='line'> 99</span>     Generates the HTML for the title and icon of the label. Render delegates can
+<span class='line'>100</span>     override this to change how that HTML renders without affecting the rest of the
+<span class='line'>101</span>     rendering of the label.
+<span class='line'>102</span> 
+<span class='line'>103</span>     @param dataSource The data source that provides the title and icon properties.
+<span class='line'>104</span>     @return the html to use
+<span class='line'>105</span>   */</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">  </span><span class="NAME">htmlForTitleAndIcon</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">dataSource</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">title</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">        </span><span class="NAME">hint</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'hint'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">        </span><span class="NAME">hintEnabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'hintEnabled'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">        </span><span class="NAME">escapeHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'escapeHTML'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">        </span><span class="NAME">icon</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">dataSource.get</span><span class="PUNC">(</span><span class="STRN">'icon'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> 
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="COMM">// Escape the title of the button if needed. This prevents potential</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">    </span><span class="COMM">// XSS attacks.</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">title</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">      </span><span class="NAME">title</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">title</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>118</span> 
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">hintEnabled</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">hint</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">title</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">hint</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">hint</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">      </span><span class="NAME">title</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"&lt;span class='sc-hint'>"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">hint</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"&lt;/span>"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>123</span> 
+<span class='line'>124</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">icon</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">      </span><span class="COMM">// If the icon property is the path to an image, create an image tag</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">      </span><span class="COMM">// that points to that URL.</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">icon.indexOf</span><span class="PUNC">(</span><span class="STRN">'/'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">        </span><span class="NAME">icon</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'&lt;img src="'</span><span class="PUNC">+</span><span class="NAME">icon</span><span class="PUNC">+</span><span class="STRN">'" alt="" class="icon" />'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>129</span> 
+<span class='line'>130</span> </span><span class="WHIT">      </span><span class="COMM">// Otherwise, the icon property is a class name that should be added</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">      </span><span class="COMM">// to the image tag. Display a blank image so that the user can add</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">      </span><span class="COMM">// background image using CSS.</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">        </span><span class="NAME">icon</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'&lt;img src="'</span><span class="PUNC">+</span><span class="NAME">SC.BLANK_IMAGE_URL</span><span class="PUNC">+</span><span class="STRN">'" alt="" class="icon '</span><span class="PUNC">+</span><span class="NAME">icon</span><span class="PUNC">+</span><span class="STRN">'" />'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>137</span> 
+<span class='line'>138</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">icon</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">title</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>140</span> 
+<span class='line'>141</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>142</span> </span></pre></body></html>

@@ -1,0 +1,896 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   @static
+<span class='line'> 10</span>   @constant
+<span class='line'> 11</span>   @type String
+<span class='line'> 12</span> <span class='line'> 13</span> */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="NAME">SC.TOGGLE_BEHAVIOR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'toggle'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 15</span> 
+<span class='line'> 16</span> </span><span class="COMM">/**
+<span class='line'> 17</span>   @static
+<span class='line'> 18</span>   @constant
+<span class='line'> 19</span>   @type String
+<span class='line'> 20</span> */</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="NAME">SC.PUSH_BEHAVIOR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">   </span><span class="STRN">'push'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 22</span> 
+<span class='line'> 23</span> </span><span class="COMM">/**
+<span class='line'> 24</span>   @static
+<span class='line'> 25</span>   @constant
+<span class='line'> 26</span>   @type String
+<span class='line'> 27</span> */</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="NAME">SC.TOGGLE_ON_BEHAVIOR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'on'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="COMM">/**
+<span class='line'> 31</span>   @static
+<span class='line'> 32</span>   @constant
+<span class='line'> 33</span>   @type String
+<span class='line'> 34</span> */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="NAME">SC.TOGGLE_OFF_BEHAVIOR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'off'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="COMM">/**
+<span class='line'> 38</span>   @static
+<span class='line'> 39</span>   @constant
+<span class='line'> 40</span>   @type String
+<span class='line'> 41</span> */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'hold'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="COMM">/** @class
+<span class='line'> 45</span> 
+<span class='line'> 46</span>   Implements a push-button-style button.  This class is used to implement
+<span class='line'> 47</span>   both standard push buttons and tab-style controls.  See also SC.CheckboxView
+<span class='line'> 48</span>   and SC.RadioView which are implemented as field views, but can also be
+<span class='line'> 49</span>   treated as buttons.
+<span class='line'> 50</span> 
+<span class='line'> 51</span>   By default, a button uses the SC.Control mixin which will apply CSS
+<span class='line'> 52</span>   classnames when the state of the button changes:
+<span class='line'> 53</span> 
+<span class='line'> 54</span>    - `active` -- when button is active
+<span class='line'> 55</span>    - `sel` -- when button is toggled to a selected state
+<span class='line'> 56</span> 
+<span class='line'> 57</span>   @extends SC.View
+<span class='line'> 58</span>   @extends SC.Control
+<span class='line'> 59</span>   @since SproutCore 1.0
+<span class='line'> 60</span> <span class='line'> 61</span> */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="NAME">SC.ButtonView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="NAME">SC.Control</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="COMM">/** @scope SC.ButtonView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 64</span> 
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 66</span>     Tied to the isEnabled state
+<span class='line'> 67</span> 
+<span class='line'> 68</span>     @type Boolean
+<span class='line'> 69</span>     @default YES
+<span class='line'> 70</span>   */</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">acceptsFirstResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.FOCUS_ALL_CONTROLS</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 75</span> 
+<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 77</span>     @type Array
+<span class='line'> 78</span>     @default ['sc-button-view']
+<span class='line'> 79</span>     @see SC.View#classNames
+<span class='line'> 80</span>   */</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-button-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 82</span> 
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 84</span>     The theme to apply to the button. By default, a subtheme with the name of
+<span class='line'> 85</span>     'square' is created for backwards-compatibility.
+<span class='line'> 86</span> 
+<span class='line'> 87</span>     @type String
+<span class='line'> 88</span>     @default 'square'
+<span class='line'> 89</span>   */</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="NAME">themeName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'square'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 91</span> 
+<span class='line'> 92</span> 
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="COMM">// Value Handling</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 96</span> 
+<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 98</span>     Used to automatically update the state of the button view for toggle style
+<span class='line'> 99</span>     buttons.
+<span class='line'>100</span> 
+<span class='line'>101</span>     For toggle style buttons, you can set the value and it will be used to
+<span class='line'>102</span>     update the isSelected state of the button view.  The value will also
+<span class='line'>103</span>     change as the user selects or deselects.  You can control which values
+<span class='line'>104</span>     the button will treat as `isSelected` by setting the `toggleOnValue` and
+<span class='line'>105</span>     `toggleOffValue`.  Alternatively, if you leave these properties set to
+<span class='line'>106</span>     `YES` or `NO`, the button will do its best to convert a value to an
+<span class='line'>107</span>     appropriate state:
+<span class='line'>108</span> 
+<span class='line'>109</span>      - `null`, `false`, `0` -- `isSelected = false`
+<span class='line'>110</span>      - any other single value -- `isSelected = true`
+<span class='line'>111</span>      - array -- if all values are the same state, that state; otherwise `MIXED`.
+<span class='line'>112</span> 
+<span class='line'>113</span>     @type Object
+<span class='line'>114</span>     @default null
+<span class='line'>115</span>   */</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="NAME">value</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>117</span> 
+<span class='line'>118</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>119</span>     Value of a selected toggle button.
+<span class='line'>120</span> 
+<span class='line'>121</span>     For a toggle button, set this to any object value you want. The button
+<span class='line'>122</span>     will be selected if the value property equals the targetValue. If the
+<span class='line'>123</span>     value is an array of multiple items that contains the targetValue, then
+<span class='line'>124</span>     the button will be set to a mixed state.
+<span class='line'>125</span> 
+<span class='line'>126</span>     default is YES
+<span class='line'>127</span> 
+<span class='line'>128</span>     @type Boolean|Object
+<span class='line'>129</span>     @default YES
+<span class='line'>130</span>   */</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="NAME">toggleOnValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>132</span> 
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>134</span>     Value of an unselected toggle button.
+<span class='line'>135</span> 
+<span class='line'>136</span>     For a toggle button, set this to any object value you want.  When the
+<span class='line'>137</span>     user toggle's the button off, the value of the button will be set to this
+<span class='line'>138</span>     value.
+<span class='line'>139</span> 
+<span class='line'>140</span>     @type Boolean|Object
+<span class='line'>141</span>     @default NO
+<span class='line'>142</span>   */</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">  </span><span class="NAME">toggleOffValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>144</span> 
+<span class='line'>145</span> 
+<span class='line'>146</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="COMM">// Title Handling</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>149</span> 
+<span class='line'>150</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>151</span>     If YES, then the title will be localized.
+<span class='line'>152</span> 
+<span class='line'>153</span>     @type Boolean
+<span class='line'>154</span>     @default NO
+<span class='line'>155</span>   */</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">  </span><span class="NAME">localize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>157</span> 
+<span class='line'>158</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">  </span><span class="NAME">localizeBindingDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.bool</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>160</span> 
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>162</span>     The button title.  If localize is `YES`, then this should be the
+<span class='line'>163</span>     localization key to display.  Otherwise, this will be the actual string
+<span class='line'>164</span>     displayed in the title.  This property is observable and bindable.
+<span class='line'>165</span> 
+<span class='line'>166</span>     @type String
+<span class='line'>167</span>     @default ""
+<span class='line'>168</span>   */</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>170</span> 
+<span class='line'>171</span> </span><span class="WHIT">  </span><span class="NAME">tooltip</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>172</span> 
+<span class='line'>173</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>174</span>     If set, the title property will be updated automatically
+<span class='line'>175</span>     from the content using the key you specify.
+<span class='line'>176</span> 
+<span class='line'>177</span>     @type String
+<span class='line'>178</span>     @default null
+<span class='line'>179</span>   */</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">  </span><span class="NAME">contentTitleKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>181</span> 
+<span class='line'>182</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>183</span>     The button icon. Set this to either a URL or a CSS class name (for
+<span class='line'>184</span>     spriting). Note that if you pass a URL, it must contain at
+<span class='line'>185</span>     least one slash to be detected as such.
+<span class='line'>186</span> 
+<span class='line'>187</span>     @type String
+<span class='line'>188</span>     @default null
+<span class='line'>189</span>   */</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">  </span><span class="NAME">icon</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>191</span> 
+<span class='line'>192</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>193</span>     If you set this property, the icon will be updated automatically from the
+<span class='line'>194</span>     content using the key you specify.
+<span class='line'>195</span> 
+<span class='line'>196</span>     @type String
+<span class='line'>197</span>     @default null
+<span class='line'>198</span>   */</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="NAME">contentIconKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>200</span> 
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>202</span>     If YES, button will attempt to display an ellipsis if the title cannot
+<span class='line'>203</span>     fit inside of the visible area. This feature is not available on all
+<span class='line'>204</span>     browsers.
+<span class='line'>205</span> 
+<span class='line'>206</span>     @type Boolean
+<span class='line'>207</span>     @default YES
+<span class='line'>208</span>   */</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">  </span><span class="NAME">needsEllipsis</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>210</span> 
+<span class='line'>211</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>212</span>     This is generated by localizing the title property if necessary.
+<span class='line'>213</span> 
+<span class='line'>214</span>     @type String
+<span class='line'>215</span>     @observes 'title'
+<span class='line'>216</span>     @observes 'localize'
+<span class='line'>217</span>   */</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">  </span><span class="NAME">displayTitle</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'localize'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">SC.String.loc</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="STRN">'localize'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>222</span> 
+<span class='line'>223</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>224</span>     The key equivalent that should trigger this button on the page.
+<span class='line'>225</span> 
+<span class='line'>226</span>     @type String
+<span class='line'>227</span>     @default null
+<span class='line'>228</span>   */</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">  </span><span class="NAME">keyEquivalent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>230</span> 
+<span class='line'>231</span> 
+<span class='line'>232</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">  </span><span class="COMM">// BEHAVIOR</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>235</span> 
+<span class='line'>236</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>237</span>     The behavioral mode of this button.
+<span class='line'>238</span> 
+<span class='line'>239</span>     Possible values are:
+<span class='line'>240</span> 
+<span class='line'>241</span>      - `SC.PUSH_BEHAVIOR` -- Pressing the button will trigger an action tied to the
+<span class='line'>242</span>        button. Does not change the value of the button.
+<span class='line'>243</span>      - `SC.TOGGLE_BEHAVIOR` -- Pressing the button will invert the current value of
+<span class='line'>244</span>        the button. If the button has a mixed value, it will be set to true.
+<span class='line'>245</span>      - `SC.TOGGLE_ON_BEHAVIOR` -- Pressing the button will set the current state to
+<span class='line'>246</span>        true no matter the previous value.
+<span class='line'>247</span>      - `SC.TOGGLE_OFF_BEHAVIOR` -- Pressing the button will set the current state to
+<span class='line'>248</span>        false no matter the previous value.
+<span class='line'>249</span>      - `SC.HOLD_BEHAVIOR` -- Pressing the button will cause the action to repeat at a
+<span class='line'>250</span>        regular interval specified by 'holdInterval'
+<span class='line'>251</span> 
+<span class='line'>252</span>     @type String
+<span class='line'>253</span>     @default SC.PUSH_BEHAVIOR
+<span class='line'>254</span>   */</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">  </span><span class="NAME">buttonBehavior</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.PUSH_BEHAVIOR</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>256</span> 
+<span class='line'>257</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'>258</span>     If buttonBehavior is `SC.HOLD_BEHAVIOR`, this specifies, in milliseconds,
+<span class='line'>259</span>     how often to trigger the action. Ignored for other behaviors.
+<span class='line'>260</span> 
+<span class='line'>261</span>     @type Number
+<span class='line'>262</span>     @default 100
+<span class='line'>263</span>   */</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="NAME">holdInterval</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">100</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>265</span> 
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>267</span>     If YES, then this button will be triggered when you hit return.
+<span class='line'>268</span> 
+<span class='line'>269</span>     This is the same as setting the `keyEquivalent` to 'return'.  This will also
+<span class='line'>270</span>     apply the "def" classname to the button.
+<span class='line'>271</span> 
+<span class='line'>272</span>     @type Boolean
+<span class='line'>273</span>     @default NO
+<span class='line'>274</span>   */</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">  </span><span class="NAME">isDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">  </span><span class="NAME">isDefaultBindingDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.oneWay</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">bool</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>277</span> 
+<span class='line'>278</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>279</span>     If YES, then this button will be triggered when you hit escape.
+<span class='line'>280</span>     This is the same as setting the keyEquivalent to 'escape'.
+<span class='line'>281</span> 
+<span class='line'>282</span>     @type Boolean
+<span class='line'>283</span>     @default NO
+<span class='line'>284</span>   */</span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">  </span><span class="NAME">isCancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">  </span><span class="NAME">isCancelBindingDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.oneWay</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">bool</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>287</span> 
+<span class='line'>288</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>289</span>     The name of the action you want triggered when the button is pressed.
+<span class='line'>290</span> 
+<span class='line'>291</span>     This property is used in conjunction with the target property to execute
+<span class='line'>292</span>     a method when a regular button is pressed.  These properties are not
+<span class='line'>293</span>     relevant when the button is used in toggle mode.
+<span class='line'>294</span> 
+<span class='line'>295</span>     If you do not set a target, then pressing a button will cause the
+<span class='line'>296</span>     responder chain to search for a view that implements the action you name
+<span class='line'>297</span>     here.  If you set a target, then the button will try to call the method
+<span class='line'>298</span>     on the target itself.
+<span class='line'>299</span> 
+<span class='line'>300</span>     For legacy support, you can also set the action property to a function.
+<span class='line'>301</span>     Doing so will cause the function itself to be called when the button is
+<span class='line'>302</span>     clicked.  It is generally better to use the target/action approach and
+<span class='line'>303</span>     to implement your code in a controller of some type.
+<span class='line'>304</span> 
+<span class='line'>305</span>     @type String
+<span class='line'>306</span>     @default null
+<span class='line'>307</span>   */</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">  </span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>309</span> 
+<span class='line'>310</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>311</span>     The target object to invoke the action on when the button is pressed.
+<span class='line'>312</span> 
+<span class='line'>313</span>     If you set this target, the action will be called on the target object
+<span class='line'>314</span>     directly when the button is clicked.  If you leave this property set to
+<span class='line'>315</span>     null, then the button will search the responder chain for a view that
+<span class='line'>316</span>     implements the action when the button is pressed instead.
+<span class='line'>317</span> 
+<span class='line'>318</span>     @type Object
+<span class='line'>319</span>     @default null
+<span class='line'>320</span>   */</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="WHIT">  </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>322</span> 
+<span class='line'>323</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'>324</span>     TODO When is this property ever changed? Is this redundant with
+<span class='line'>325</span>     render delegates since it can now be turned on on a theme-by-theme
+<span class='line'>326</span>     basis? --TD
+<span class='line'>327</span>   */</span><span class="WHIT">
+<span class='line'>328</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>329</span>     If YES, use a focus ring.
+<span class='line'>330</span> 
+<span class='line'>331</span>     @type Boolean
+<span class='line'>332</span>     @default NO
+<span class='line'>333</span>   */</span><span class="WHIT">
+<span class='line'>334</span> </span><span class="WHIT">  </span><span class="NAME">supportFocusRing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>335</span> 
+<span class='line'>336</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">  </span><span class="COMM">// Auto Resize Support</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">  </span><span class="COMM">// These properties are provided so that SC.AutoResize can be mixed in</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">  </span><span class="COMM">// to enable automatic resizing of the button.</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>343</span> 
+<span class='line'>344</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">  </span><span class="NAME">supportsAutoResize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>346</span> 
+<span class='line'>347</span> </span><span class="WHIT">  </span><span class="COMM">/*
+<span class='line'>348</span>     TODO get this from the render delegate so other elements may be used.
+<span class='line'>349</span>   */</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">  </span><span class="NAME">autoResizeLayer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.invokeRenderDelegateMethod</span><span class="PUNC">(</span><span class="STRN">'getRenderedAutoResizeLayer'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>354</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>355</span> 
+<span class='line'>356</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">  </span><span class="NAME">autoResizeText</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayTitle'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'displayTitle'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>360</span> 
+<span class='line'>361</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>362</span>     The padding to add to the measured size of the text to arrive at the measured
+<span class='line'>363</span>     size for the view.
+<span class='line'>364</span> 
+<span class='line'>365</span>     `SC.ButtonView` gets this from its render delegate, but if not supplied, defaults
+<span class='line'>366</span>     to 10.
+<span class='line'>367</span> 
+<span class='line'>368</span>     @default 10
+<span class='line'>369</span>     @type Number
+<span class='line'>370</span>   */</span><span class="WHIT">
+<span class='line'>371</span> </span><span class="WHIT">  </span><span class="NAME">autoResizePadding</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.propertyFromRenderDelegate</span><span class="PUNC">(</span><span class="STRN">'autoResizePadding'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>372</span> 
+<span class='line'>373</span> 
+<span class='line'>374</span> </span><span class="WHIT">  </span><span class="COMM">// TODO: What the hell is this? --TD</span><span class="WHIT">
+<span class='line'>375</span> </span><span class="WHIT">  </span><span class="NAME">_labelMinWidthIE7</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>376</span> 
+<span class='line'>377</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>378</span>     Called when the user presses a shortcut key, such as return or cancel,
+<span class='line'>379</span>     associated with this button.
+<span class='line'>380</span> 
+<span class='line'>381</span>     Highlights the button to show that it is being triggered, then, after a
+<span class='line'>382</span>     delay, performs the button's action.
+<span class='line'>383</span> 
+<span class='line'>384</span>     Does nothing if the button is disabled.
+<span class='line'>385</span> 
+<span class='line'>386</span>     @param {Event} evt
+<span class='line'>387</span>     @returns {Boolean} YES if successful, NO otherwise
+<span class='line'>388</span>   */</span><span class="WHIT">
+<span class='line'>389</span> </span><span class="WHIT">  </span><span class="NAME">triggerActionAfterDelay</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>390</span> </span><span class="WHIT">    </span><span class="COMM">// If this button is disabled, we have nothing to do</span><span class="WHIT">
+<span class='line'>391</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>392</span> 
+<span class='line'>393</span> </span><span class="WHIT">    </span><span class="COMM">// Set active state of the button so it appears highlighted</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>395</span> 
+<span class='line'>396</span> </span><span class="WHIT">    </span><span class="COMM">// Invoke the actual action method after a small delay to give the user a</span><span class="WHIT">
+<span class='line'>397</span> </span><span class="WHIT">    </span><span class="COMM">// chance to see the highlight. This is especially important if the button</span><span class="WHIT">
+<span class='line'>398</span> </span><span class="WHIT">    </span><span class="COMM">// closes a pane, for example.</span><span class="WHIT">
+<span class='line'>399</span> </span><span class="WHIT">    </span><span class="NAME">this.invokeLater</span><span class="PUNC">(</span><span class="STRN">'triggerAction'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">200</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>400</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>401</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>402</span> 
+<span class='line'>403</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>404</span>     Called by triggerActionAfterDelay; this method actually
+<span class='line'>405</span>     performs the action and restores the button's state.
+<span class='line'>406</span> 
+<span class='line'>407</span>     @param {Event} evt
+<span class='line'>408</span>   */</span><span class="WHIT">
+<span class='line'>409</span> </span><span class="WHIT">  </span><span class="NAME">triggerAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>410</span> </span><span class="WHIT">    </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>411</span> </span><span class="WHIT">    </span><span class="NAME">this.didTriggerAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>412</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>413</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>414</span> 
+<span class='line'>415</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>416</span>     Callback called anytime the button's action is triggered.  You can
+<span class='line'>417</span>     implement this method in your own subclass to perform any cleanup needed
+<span class='line'>418</span>     after an action is performed.
+<span class='line'>419</span>   */</span><span class="WHIT">
+<span class='line'>420</span> </span><span class="WHIT">  </span><span class="NAME">didTriggerAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>421</span> 
+<span class='line'>422</span> 
+<span class='line'>423</span> </span><span class="WHIT">  </span><span class="COMM">// ................................................................</span><span class="WHIT">
+<span class='line'>424</span> </span><span class="WHIT">  </span><span class="COMM">// INTERNAL SUPPORT</span><span class="WHIT">
+<span class='line'>425</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>426</span> 
+<span class='line'>427</span> </span><span class="WHIT">  </span><span class="COMM">/** @private - save keyEquivalent for later use */</span><span class="WHIT">
+<span class='line'>428</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>429</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>430</span> 
+<span class='line'>431</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">keyEquivalent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'keyEquivalent'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>432</span> </span><span class="WHIT">    </span><span class="COMM">// Cache the key equivalent. The key equivalent is saved so that if,</span><span class="WHIT">
+<span class='line'>433</span> </span><span class="WHIT">    </span><span class="COMM">// for example, isDefault is changed from YES to NO, the old key</span><span class="WHIT">
+<span class='line'>434</span> </span><span class="WHIT">    </span><span class="COMM">// equivalent can be restored.</span><span class="WHIT">
+<span class='line'>435</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">keyEquivalent</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>436</span> </span><span class="WHIT">      </span><span class="NAME">this._defaultKeyEquivalent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">keyEquivalent</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>437</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>438</span> 
+<span class='line'>439</span> </span><span class="WHIT">    </span><span class="COMM">// if value is not null, update isSelected to match value.  If value is</span><span class="WHIT">
+<span class='line'>440</span> </span><span class="WHIT">    </span><span class="COMM">// null, we assume you may be using isSelected only.</span><span class="WHIT">
+<span class='line'>441</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._button_valueDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>442</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>443</span> 
+<span class='line'>444</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>445</span>     The WAI-ARIA role of the button.
+<span class='line'>446</span> 
+<span class='line'>447</span>     @type String
+<span class='line'>448</span>     @default 'button'
+<span class='line'>449</span>     @readOnly
+<span class='line'>450</span>   */</span><span class="WHIT">
+<span class='line'>451</span> </span><span class="WHIT">  </span><span class="NAME">ariaRole</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'button'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>452</span> 
+<span class='line'>453</span> </span><span class="WHIT">  </span><span class="COMM">// display properties that should automatically cause a refresh.</span><span class="WHIT">
+<span class='line'>454</span> </span><span class="WHIT">  </span><span class="COMM">// isCancel and isDefault also cause a refresh but this is implemented as</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">  </span><span class="COMM">// a separate observer (see below)</span><span class="WHIT">
+<span class='line'>456</span> 
+<span class='line'>457</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>458</span>     The following properties affect how `SC.ButtonView` is rendered, and will
+<span class='line'>459</span>     cause the view to be rerendered if they change.
+<span class='line'>460</span> 
+<span class='line'>461</span>     @type Array
+<span class='line'>462</span>     @default [
+<span class='line'>463</span>       'icon', 'displayTitle', 'value', 'displayToolTip', 'isDefault', 'isCancel',
+<span class='line'>464</span>       'escapeHTML', 'needsEllipsis', 'tooltip', 'supportFocusRing'
+<span class='line'>465</span>     ]
+<span class='line'>466</span>   */</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'>468</span> </span><span class="WHIT">    </span><span class="STRN">'icon'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'displayTitle'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'displayToolTip'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'isDefault'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'isCancel'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>469</span> </span><span class="WHIT">    </span><span class="STRN">'escapeHTML'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'needsEllipsis'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'tooltip'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'supportFocusRing'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>470</span> </span><span class="WHIT">    </span><span class="STRN">'buttonBehavior'</span><span class="WHIT">
+<span class='line'>471</span> </span><span class="WHIT">  </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>472</span> 
+<span class='line'>473</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>474</span>     The name of the render delegate in the theme that should be used to
+<span class='line'>475</span>     render the button.
+<span class='line'>476</span> 
+<span class='line'>477</span>     In this case, the 'button' property will be retrieved from the theme and
+<span class='line'>478</span>     set to the render delegate of this view.
+<span class='line'>479</span> 
+<span class='line'>480</span>     @type String
+<span class='line'>481</span>     @default 'buttonRenderDelegate'
+<span class='line'>482</span>   */</span><span class="WHIT">
+<span class='line'>483</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'buttonRenderDelegate'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>484</span> 
+<span class='line'>485</span> </span><span class="WHIT">   </span><span class="NAME">contentKeys</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>486</span> </span><span class="WHIT">     </span><span class="STRN">'contentValueKey'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>487</span> </span><span class="WHIT">     </span><span class="STRN">'contentTitleKey'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>488</span> </span><span class="WHIT">     </span><span class="STRN">'contentIconKey'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'icon'</span><span class="WHIT">
+<span class='line'>489</span> </span><span class="WHIT">   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>490</span> 
+<span class='line'>491</span> </span><span class="WHIT">  </span><span class="COMM">/** @private - when title changes, dirty display. */</span><span class="WHIT">
+<span class='line'>492</span> </span><span class="WHIT">  </span><span class="NAME">_button_displayObserver</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>493</span> </span><span class="WHIT">    </span><span class="NAME">this.displayDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>494</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'icon'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>495</span> 
+<span class='line'>496</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>497</span>     Handle a key equivalent if set.  Trigger the default action for the
+<span class='line'>498</span>     button.  Depending on the implementation this may vary.
+<span class='line'>499</span> 
+<span class='line'>500</span>     @param {String} keystring
+<span class='line'>501</span>     @param {SC.Event} evt
+<span class='line'>502</span>     @returns {Boolean}  YES if handled, NO otherwise
+<span class='line'>503</span>   */</span><span class="WHIT">
+<span class='line'>504</span> </span><span class="WHIT">  </span><span class="NAME">performKeyEquivalent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">keystring</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>505</span> </span><span class="WHIT">    </span><span class="COMM">//If this is not visible</span><span class="WHIT">
+<span class='line'>506</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>507</span> 
+<span class='line'>508</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>509</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">equiv</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'keyEquivalent'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>510</span> 
+<span class='line'>511</span> </span><span class="WHIT">    </span><span class="COMM">// button has defined a keyEquivalent and it matches!</span><span class="WHIT">
+<span class='line'>512</span> </span><span class="WHIT">    </span><span class="COMM">// if triggering succeeded, true will be returned and the operation will</span><span class="WHIT">
+<span class='line'>513</span> </span><span class="WHIT">    </span><span class="COMM">// be handled (i.e performKeyEquivalent will cease crawling the view</span><span class="WHIT">
+<span class='line'>514</span> </span><span class="WHIT">    </span><span class="COMM">// tree)</span><span class="WHIT">
+<span class='line'>515</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">equiv</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>516</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">equiv</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">keystring</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.triggerAction</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>517</span> 
+<span class='line'>518</span> </span><span class="WHIT">    </span><span class="COMM">// should fire if isDefault OR isCancel.  This way if isDefault AND</span><span class="WHIT">
+<span class='line'>519</span> </span><span class="WHIT">    </span><span class="COMM">// isCancel, responds to both return and escape</span><span class="WHIT">
+<span class='line'>520</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isDefault'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">keystring</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'return'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT">
+<span class='line'>521</span> </span><span class="WHIT">        </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isCancel'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">keystring</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'escape'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>522</span> </span><span class="WHIT">          </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.triggerAction</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>523</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>524</span> 
+<span class='line'>525</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// did not handle it; keep searching</span><span class="WHIT">
+<span class='line'>526</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>527</span> 
+<span class='line'>528</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>529</span> </span><span class="WHIT">  </span><span class="COMM">// VALUE &lt;-> isSelected STATE MANAGEMENT</span><span class="WHIT">
+<span class='line'>530</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>531</span> 
+<span class='line'>532</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>533</span>     This is the standard logic to compute a proposed isSelected state for a
+<span class='line'>534</span>     new value.  This takes into account the `toggleOnValue`/`toggleOffValue`
+<span class='line'>535</span>     properties, among other things.  It may return `YES`, `NO`, or
+<span class='line'>536</span>     `SC.MIXED_STATE`.
+<span class='line'>537</span> 
+<span class='line'>538</span>     @param {Object} value
+<span class='line'>539</span>     @returns {Boolean} return state
+<span class='line'>540</span>   */</span><span class="WHIT">
+<span class='line'>541</span> </span><span class="WHIT">  </span><span class="NAME">computeIsSelectedForValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>542</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">targetValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'toggleOnValue'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">next</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>543</span> 
+<span class='line'>544</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_ARRAY</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>545</span> 
+<span class='line'>546</span> </span><span class="WHIT">      </span><span class="COMM">// treat a single item array like a single value</span><span class="WHIT">
+<span class='line'>547</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value.length</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>548</span> </span><span class="WHIT">        </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">targetValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>549</span> 
+<span class='line'>550</span> </span><span class="WHIT">      </span><span class="COMM">// for a multiple item array, check the states of all items.</span><span class="WHIT">
+<span class='line'>551</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>552</span> </span><span class="WHIT">        </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>553</span> </span><span class="WHIT">        </span><span class="NAME">value.find</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">x</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>554</span> <span class='line'>555</span> </span><span class="WHIT">          </span><span class="NAME">next</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">x</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="NAME">targetValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>556</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>557</span> </span><span class="WHIT">            </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">next</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>558</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">next</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>559</span> </span><span class="WHIT">          </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// stop when we hit a mixed state.</span><span class="WHIT">
+<span class='line'>560</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>561</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>562</span> 
+<span class='line'>563</span> </span><span class="WHIT">    </span><span class="COMM">// for single values, just compare to the toggleOnValue...use truthiness</span><span class="WHIT">
+<span class='line'>564</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>565</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>566</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">targetValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>567</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>568</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>569</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>570</span> 
+<span class='line'>571</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>572</span>     Whenever the button value changes, update the selected state to match.
+<span class='line'>573</span>   */</span><span class="WHIT">
+<span class='line'>574</span> </span><span class="WHIT">  </span><span class="NAME">_button_valueDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>575</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>576</span> </span><span class="WHIT">        </span><span class="NAME">state</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.computeIsSelectedForValue</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>577</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// set new state...</span><span class="WHIT">
+<span class='line'>578</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>579</span> 
+<span class='line'>580</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>581</span>     Whenever the selected state is changed, make sure the button value is
+<span class='line'>582</span>     also updated.  Note that this may be called because the value has just
+<span class='line'>583</span>     changed.  In that case this should do nothing.
+<span class='line'>584</span>   */</span><span class="WHIT">
+<span class='line'>585</span> </span><span class="WHIT">  </span><span class="NAME">_button_isSelectedDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>586</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">newState</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>587</span> </span><span class="WHIT">        </span><span class="NAME">curState</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.computeIsSelectedForValue</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>588</span> 
+<span class='line'>589</span> </span><span class="WHIT">    </span><span class="COMM">// fix up the value, but only if computed state does not match.</span><span class="WHIT">
+<span class='line'>590</span> </span><span class="WHIT">    </span><span class="COMM">// never fix up value if isSelected is set to MIXED_STATE since this can</span><span class="WHIT">
+<span class='line'>591</span> </span><span class="WHIT">    </span><span class="COMM">// only come from the value.</span><span class="WHIT">
+<span class='line'>592</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">newState</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">curState</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">newState</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>593</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">valueKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">newState</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'toggleOnValue'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'toggleOffValue'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>594</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">valueKey</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>595</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>596</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>597</span> 
+<span class='line'>598</span> 
+<span class='line'>599</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>600</span>     Used to store the keyboard equivalent.
+<span class='line'>601</span> 
+<span class='line'>602</span>     Setting the isDefault property to YES, for example, will cause the
+<span class='line'>603</span>     `keyEquivalent` property to 'return'. This cached value is used to restore
+<span class='line'>604</span>     the `keyEquivalent` property if isDefault is set back to NO.
+<span class='line'>605</span> 
+<span class='line'>606</span>     @type String
+<span class='line'>607</span>   */</span><span class="WHIT">
+<span class='line'>608</span> </span><span class="WHIT">  </span><span class="NAME">_defaultKeyEquivalent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>609</span> 
+<span class='line'>610</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>611</span> 
+<span class='line'>612</span>     Whenever the isDefault or isCancel property changes, re-render and change
+<span class='line'>613</span>     the keyEquivalent property so that we respond to the return or escape key.
+<span class='line'>614</span>   */</span><span class="WHIT">
+<span class='line'>615</span> </span><span class="WHIT">  </span><span class="NAME">_isDefaultOrCancelDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>616</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isDefault</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isDefault'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>617</span> </span><span class="WHIT">        </span><span class="NAME">isCancel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">isDefault</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isCancel'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>618</span> 
+<span class='line'>619</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isDefault</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>620</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'keyEquivalent'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'return'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// change the key equivalent</span><span class="WHIT">
+<span class='line'>621</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isCancel</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>622</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'keyEquivalent'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'escape'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>623</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>624</span> </span><span class="WHIT">      </span><span class="COMM">// Restore the default key equivalent</span><span class="WHIT">
+<span class='line'>625</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'keyEquivalent'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._defaultKeyEquivalent</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>626</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>627</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'isDefault'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'isCancel'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>628</span> 
+<span class='line'>629</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>630</span>     On mouse down, set active only if enabled.
+<span class='line'>631</span>   */</span><span class="WHIT">
+<span class='line'>632</span> </span><span class="WHIT">  </span><span class="NAME">mouseDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>633</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">buttonBehavior</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonBehavior'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>634</span> 
+<span class='line'>635</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled event, but do nothing</span><span class="WHIT">
+<span class='line'>636</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>637</span> </span><span class="WHIT">    </span><span class="NAME">this._isMouseDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>638</span> 
+<span class='line'>639</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">buttonBehavior</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>640</span> </span><span class="WHIT">      </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>641</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">buttonBehavior</span><span class="PUNC">!==</span><span class="NAME">SC.PUSH_BEHAVIOR</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>642</span> </span><span class="WHIT">      </span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>643</span> </span><span class="WHIT">      </span><span class="NAME">this.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>644</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>645</span> 
+<span class='line'>646</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>647</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>648</span> 
+<span class='line'>649</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>650</span>     Remove the active class on mouseExited if mouse is down.
+<span class='line'>651</span>   */</span><span class="WHIT">
+<span class='line'>652</span> </span><span class="WHIT">  </span><span class="NAME">mouseExited</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>653</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._isMouseDown</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>654</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>655</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>656</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>657</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>658</span> 
+<span class='line'>659</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>660</span>     If mouse was down and we renter the button area, set the active state again.
+<span class='line'>661</span>   */</span><span class="WHIT">
+<span class='line'>662</span> </span><span class="WHIT">  </span><span class="NAME">mouseEntered</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>663</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._isMouseDown</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>664</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>665</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>666</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>667</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>668</span> 
+<span class='line'>669</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>670</span>     ON mouse up, trigger the action only if we are enabled and the mouse was released inside of the view.
+<span class='line'>671</span>   */</span><span class="WHIT">
+<span class='line'>672</span> </span><span class="WHIT">  </span><span class="NAME">mouseUp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>673</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._isMouseDown</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// track independently in case isEnabled has changed</span><span class="WHIT">
+<span class='line'>674</span> </span><span class="WHIT">    </span><span class="NAME">this._isMouseDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>675</span> 
+<span class='line'>676</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonBehavior'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>677</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">inside</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">within</span><span class="PUNC">(</span><span class="NAME">evt.target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>678</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">inside</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>679</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>680</span> 
+<span class='line'>681</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>682</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>683</span> 
+<span class='line'>684</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>685</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>686</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">buttonBehavior</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonBehavior'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>687</span> 
+<span class='line'>688</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled event, but do nothing</span><span class="WHIT">
+<span class='line'>689</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>690</span> 
+<span class='line'>691</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">buttonBehavior</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>692</span> </span><span class="WHIT">      </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>693</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">buttonBehavior</span><span class="PUNC">!==</span><span class="NAME">SC.PUSH_BEHAVIOR</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>694</span> </span><span class="WHIT">      </span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>695</span> </span><span class="WHIT">      </span><span class="NAME">this.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>696</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>697</span> 
+<span class='line'>698</span> </span><span class="WHIT">    </span><span class="COMM">// don't want to do whatever default is...</span><span class="WHIT">
+<span class='line'>699</span> </span><span class="WHIT">    </span><span class="NAME">touch.preventDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>700</span> 
+<span class='line'>701</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>702</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>703</span> 
+<span class='line'>704</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>705</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>706</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.touchIsInBoundary</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>707</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._touch_exited</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>708</span> </span><span class="WHIT">      </span><span class="NAME">this._touch_exited</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>709</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>710</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touch_exited</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>711</span> </span><span class="WHIT">      </span><span class="NAME">this._touch_exited</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>712</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>713</span> 
+<span class='line'>714</span> </span><span class="WHIT">    </span><span class="NAME">evt.preventDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>715</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>716</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>717</span> 
+<span class='line'>718</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>719</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>720</span> </span><span class="WHIT">    </span><span class="NAME">this._touch_exited</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>721</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// track independently in case isEnabled has changed</span><span class="WHIT">
+<span class='line'>722</span> 
+<span class='line'>723</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonBehavior'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>724</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.touchIsInBoundary</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>725</span> </span><span class="WHIT">        </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>726</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>727</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>728</span> 
+<span class='line'>729</span> </span><span class="WHIT">    </span><span class="NAME">touch.preventDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>730</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>731</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>732</span> 
+<span class='line'>733</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>734</span> </span><span class="WHIT">  </span><span class="NAME">keyDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>735</span> </span><span class="WHIT">    </span><span class="COMM">// handle tab key</span><span class="WHIT">
+<span class='line'>736</span> </span><span class="WHIT">     </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>737</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt.which</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">evt.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>738</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">evt.shiftKey</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'previousValidKeyView'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'nextValidKeyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>739</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">view.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>740</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>741</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
+<span class='line'>742</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>743</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt.which</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">13</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">evt.which</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">32</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>744</span> </span><span class="WHIT">      </span><span class="NAME">this.triggerActionAfterDelay</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>745</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
+<span class='line'>746</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>747</span> 
+<span class='line'>748</span> </span><span class="WHIT">    </span><span class="COMM">// let other keys through to browser</span><span class="WHIT">
+<span class='line'>749</span> </span><span class="WHIT">    </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>750</span> 
+<span class='line'>751</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>752</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>753</span> 
+<span class='line'>754</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>755</span>     Perform an action based on the behavior of the button.
+<span class='line'>756</span> 
+<span class='line'>757</span>      - toggle behavior: switch to on/off state
+<span class='line'>758</span>      - on behavior: turn on.
+<span class='line'>759</span>      - off behavior: turn off.
+<span class='line'>760</span>      - otherwise: invoke target/action
+<span class='line'>761</span>   */</span><span class="WHIT">
+<span class='line'>762</span> </span><span class="WHIT">  </span><span class="NAME">_action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">skipHoldRepeat</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>763</span> </span><span class="WHIT">    </span><span class="KEYW">switch</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'buttonBehavior'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>764</span> 
+<span class='line'>765</span> </span><span class="WHIT">    </span><span class="COMM">// When toggling, try to invert like values. i.e. 1 => 0, etc.</span><span class="WHIT">
+<span class='line'>766</span> </span><span class="WHIT">    </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.TOGGLE_BEHAVIOR</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>767</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>768</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">sel</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>769</span> </span><span class="WHIT">        </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'toggleOffValue'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>770</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>771</span> </span><span class="WHIT">        </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'toggleOnValue'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>772</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>773</span> </span><span class="WHIT">      </span><span class="KEYW">break</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>774</span> 
+<span class='line'>775</span> </span><span class="WHIT">    </span><span class="COMM">// set value to on.  change 0 => 1.</span><span class="WHIT">
+<span class='line'>776</span> </span><span class="WHIT">    </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.TOGGLE_ON_BEHAVIOR</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>777</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'toggleOnValue'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>778</span> </span><span class="WHIT">      </span><span class="KEYW">break</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>779</span> 
+<span class='line'>780</span> </span><span class="WHIT">    </span><span class="COMM">// set the value to false. change 1 => 0</span><span class="WHIT">
+<span class='line'>781</span> </span><span class="WHIT">    </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.TOGGLE_OFF_BEHAVIOR</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>782</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'toggleOffValue'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>783</span> </span><span class="WHIT">      </span><span class="KEYW">break</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>784</span> 
+<span class='line'>785</span> </span><span class="WHIT">    </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.HOLD_BEHAVIOR</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>786</span> </span><span class="WHIT">      </span><span class="NAME">this._runHoldAction</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">skipHoldRepeat</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>787</span> </span><span class="WHIT">      </span><span class="KEYW">break</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>788</span> 
+<span class='line'>789</span> </span><span class="WHIT">    </span><span class="COMM">// otherwise, just trigger an action if there is one.</span><span class="WHIT">
+<span class='line'>790</span> </span><span class="WHIT">    </span><span class="KEYW">default</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>791</span> </span><span class="WHIT">      </span><span class="COMM">//if (this.action) this.action(evt);</span><span class="WHIT">
+<span class='line'>792</span> </span><span class="WHIT">      </span><span class="NAME">this._runAction</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>793</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>794</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>795</span> 
+<span class='line'>796</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>797</span> </span><span class="WHIT">  </span><span class="NAME">_runAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>798</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'action'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>799</span> </span><span class="WHIT">        </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'target'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>800</span> </span><span class="WHIT">        </span><span class="NAME">rootResponder</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>801</span> 
+<span class='line'>802</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>803</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_FUNCTION</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>804</span> </span><span class="WHIT">        </span><span class="NAME">this.action</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>805</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>806</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>807</span> </span><span class="WHIT">        </span><span class="NAME">rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getPath</span><span class="PUNC">(</span><span class="STRN">'pane.rootResponder'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>808</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">rootResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>809</span> </span><span class="WHIT">          </span><span class="COMM">// newer action method + optional target syntax...</span><span class="WHIT">
+<span class='line'>810</span> </span><span class="WHIT">          </span><span class="NAME">rootResponder.sendAction</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'pane'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>811</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>812</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>813</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>814</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>815</span> 
+<span class='line'>816</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>817</span> </span><span class="WHIT">  </span><span class="NAME">_runHoldAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">skipRepeat</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>818</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>819</span> </span><span class="WHIT">      </span><span class="NAME">this._runAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>820</span> 
+<span class='line'>821</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">skipRepeat</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>822</span> </span><span class="WHIT">        </span><span class="COMM">// This run loop appears to only be necessary for testing</span><span class="WHIT">
+<span class='line'>823</span> </span><span class="WHIT">        </span><span class="NAME">SC.RunLoop.begin</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>824</span> </span><span class="WHIT">        </span><span class="NAME">this.invokeLater</span><span class="PUNC">(</span><span class="STRN">'_runHoldAction'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'holdInterval'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>825</span> </span><span class="WHIT">        </span><span class="NAME">SC.RunLoop.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>826</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>827</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>828</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>829</span> 
+<span class='line'>830</span> 
+<span class='line'>831</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>832</span> </span><span class="WHIT">  </span><span class="NAME">didBecomeKeyResponderFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">keyView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>833</span> </span><span class="WHIT">    </span><span class="COMM">// focus the text field.</span><span class="WHIT">
+<span class='line'>834</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._isFocused</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>835</span> </span><span class="WHIT">      </span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>836</span> </span><span class="WHIT">      </span><span class="NAME">this.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>837</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>838</span> </span><span class="WHIT">        </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">focus</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>839</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>840</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>841</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>842</span> 
+<span class='line'>843</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>844</span> </span><span class="WHIT">  </span><span class="NAME">willLoseKeyResponderTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>845</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._isFocused</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._isFocused</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>846</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>847</span> 
+<span class='line'>848</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>849</span> </span><span class="WHIT">  </span><span class="NAME">didAppendToDocument</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>850</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">SC.browser.isIE</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT">
+<span class='line'>851</span> </span><span class="WHIT">        </span><span class="NAME">SC.browser.compare</span><span class="PUNC">(</span><span class="NAME">SC.browser.engineVersion</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'7'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT">
+<span class='line'>852</span> </span><span class="WHIT">        </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'useStaticLayout'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>853</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">layout</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>854</span> </span><span class="WHIT">          </span><span class="NAME">elem</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">w</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>855</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">elem</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">w</span><span class="PUNC">=</span><span class="NAME">elem</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">clientWidth</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">w</span><span class="PUNC">!==</span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this._labelMinWidthIE7</span><span class="PUNC">===</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>856</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">label</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="STRN">'.sc-button-label'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>857</span> </span><span class="WHIT">            </span><span class="NAME">paddingRight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">label.css</span><span class="PUNC">(</span><span class="STRN">'paddingRight'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>858</span> </span><span class="WHIT">            </span><span class="NAME">paddingLeft</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">label.css</span><span class="PUNC">(</span><span class="STRN">'paddingLeft'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>859</span> </span><span class="WHIT">            </span><span class="NAME">marginRight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">label.css</span><span class="PUNC">(</span><span class="STRN">'marginRight'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>860</span> </span><span class="WHIT">            </span><span class="NAME">marginLeft</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parseInt</span><span class="PUNC">(</span><span class="NAME">label.css</span><span class="PUNC">(</span><span class="STRN">'marginLeft'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>861</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">marginRight</span><span class="PUNC">==</span><span class="STRN">'auto'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.Logger.log</span><span class="PUNC">(</span><span class="NAME">marginRight</span><span class="PUNC">+</span><span class="STRN">","</span><span class="PUNC">+</span><span class="NAME">marginLeft</span><span class="PUNC">+</span><span class="STRN">","</span><span class="PUNC">+</span><span class="NAME">paddingRight</span><span class="PUNC">+</span><span class="STRN">","</span><span class="PUNC">+</span><span class="NAME">paddingLeft</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>862</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">paddingRight</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">paddingRight</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">paddingRight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>863</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">paddingLeft</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">paddingLeft</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">paddingLeft</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>864</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">marginRight</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">marginRight</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">marginRight</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>865</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">marginLeft</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">marginLeft</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">marginLeft</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>866</span> 
+<span class='line'>867</span> </span><span class="WHIT">        </span><span class="NAME">this._labelMinWidthIE7</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">w</span><span class="PUNC">-</span><span class="PUNC">(</span><span class="NAME">paddingRight</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">paddingLeft</span><span class="PUNC">)</span><span class="PUNC">-</span><span class="PUNC">(</span><span class="NAME">marginRight</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">marginLeft</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>868</span> </span><span class="WHIT">        </span><span class="NAME">label.css</span><span class="PUNC">(</span><span class="STRN">'minWidth'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._labelMinWidthIE7</span><span class="PUNC">+</span><span class="STRN">'px'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>869</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="KEYW">else</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>870</span> </span><span class="WHIT">        </span><span class="NAME">this.invokeLater</span><span class="PUNC">(</span><span class="NAME">this.didAppendToDocument</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>871</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>872</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>873</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>874</span> 
+<span class='line'>875</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>876</span> 
+<span class='line'>877</span> 
+<span class='line'>878</span> 
+<span class='line'>879</span> </span><span class="COMM">/**
+<span class='line'>880</span>   The delay after which "click" behavior should transition to "click and hold"
+<span class='line'>881</span>   behavior. This is used by subclasses such as PopupButtonView and
+<span class='line'>882</span>   SelectButtonView.
+<span class='line'>883</span> 
+<span class='line'>884</span>   @constant
+<span class='line'>885</span>   @type Number
+<span class='line'>886</span> */</span><span class="WHIT">
+<span class='line'>887</span> </span><span class="NAME">SC.ButtonView.CLICK_AND_HOLD_DELAY</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.browser.isIE</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NUMB">600</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">300</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>888</span> 
+<span class='line'>889</span> </span><span class="NAME">SC.REGULAR_BUTTON_HEIGHT</span><span class="PUNC">=</span><span class="NUMB">24</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>890</span> 
+<span class='line'>891</span> 
+<span class='line'>892</span> </span></pre></body></html>
