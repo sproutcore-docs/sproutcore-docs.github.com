@@ -56,13 +56,25 @@
 <span class='line'> 49</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">view.getPath</span><span class="PUNC">(</span><span class="STRN">'thumbViewCursor.cursorStyle'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="STRN">"ns-resize"</span><span class="PUNC">,</span><span class="STRN">'The Cursor is'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 50</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 51</span> 
-<span class='line'> 52</span> </span><span class="COMM">// </span><span class="WHIT">
-<span class='line'> 53</span> </span><span class="COMM">// test("performing the mouse up event", function() {</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="COMM">// 	var elem = thumb.get('layer');</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="COMM">// 	SC.Event.trigger(elem, 'mouseUp');</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="COMM">// });</span><span class="WHIT">
-<span class='line'> 57</span> 
-<span class='line'> 58</span> </span><span class="COMM">// 	</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="COMM">// module("TODO: Test SC.SplitDividerView Methods");</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="COMM">// module("TODO: Test SC.ThumbView Methods");</span><span class="WHIT">
-<span class='line'> 61</span> </span></pre></body></html>
+<span class='line'> 52</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"Cursor remains correct after drag"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">view.set</span><span class="PUNC">(</span><span class="STRN">'layoutDirection'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.LAYOUT_HORIZONTAL</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">view.getPath</span><span class="PUNC">(</span><span class="STRN">'thumbViewCursor.cursorStyle'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"ew-resize"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'The Cursor is'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT"> 	
+<span class='line'> 56</span>  	</span><span class="COMM">// Trigger the action</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT"> 	</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">elem</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view.getPath</span><span class="PUNC">(</span><span class="STRN">'dividerView.layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT"> 	</span><span class="NAME">SC.Event.trigger</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'mousedown'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> 	
+<span class='line'> 59</span>  	</span><span class="NAME">SC.Event.trigger</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'mouseup'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  
+<span class='line'> 61</span>   </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">view.getPath</span><span class="PUNC">(</span><span class="STRN">'thumbViewCursor.cursorStyle'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"ew-resize"</span><span class="PUNC">,</span><span class="STRN">'The Cursor is'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="COMM">// </span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="COMM">// test("performing the mouse up event", function() {</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="COMM">// 	var elem = thumb.get('layer');</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="COMM">// 	SC.Event.trigger(elem, 'mouseUp');</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="COMM">// });</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="COMM">// 	</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="COMM">// module("TODO: Test SC.SplitDividerView Methods");</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="COMM">// module("TODO: Test SC.ThumbView Methods");</span><span class="WHIT">
+<span class='line'> 73</span> </span></pre></body></html>
