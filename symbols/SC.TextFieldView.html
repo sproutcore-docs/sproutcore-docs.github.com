@@ -680,11 +680,35 @@ for hinted values, etc.</p>
             </li>
           
             <li>
+              <a href="../symbols/SC.TextFieldView.html#autoCapitalize">autoCapitalize</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#autoCorrect">autoCorrect</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#autoResizePadding">autoResizePadding</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#commitOnBlur">commitOnBlur</a>
+            </li>
+          
+            <li>
               <a href="../symbols/SC.TextFieldView.html#continuouslyUpdatesValue">continuouslyUpdatesValue</a>
             </li>
           
             <li>
               <a href="../symbols/SC.TextFieldView.html#defaultTabbingEnabled">defaultTabbingEnabled</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#focused">focused</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#formattedHint">formattedHint</a>
             </li>
           
             <li>
@@ -720,7 +744,15 @@ for hinted values, etc.</p>
             </li>
           
             <li>
+              <a href="../symbols/SC.TextFieldView.html#isTextField">isTextField</a>
+            </li>
+          
+            <li>
               <a href="../symbols/SC.TextFieldView.html#leftAccessoryView">leftAccessoryView</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#localize">localize</a>
             </li>
           
             <li>
@@ -732,11 +764,19 @@ for hinted values, etc.</p>
             </li>
           
             <li>
+              <a href="../symbols/SC.TextFieldView.html#selection">selection</a>
+            </li>
+          
+            <li>
               <a href="../symbols/SC.TextFieldView.html#shouldRenderBorder">shouldRenderBorder</a>
             </li>
           
             <li>
               <a href="../symbols/SC.TextFieldView.html#spellCheckEnabled">spellCheckEnabled</a>
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.TextFieldView.html#supportsAutoResize">supportsAutoResize</a>
             </li>
           
             <li>
@@ -802,8 +842,6 @@ for hinted values, etc.</p>
           
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#fieldDidFocus">fieldDidFocus</a></li>
           
-            <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#formattedHint">formattedHint</a></li>
-          
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#init">init</a></li>
           
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#keyDown">keyDown</a></li>
@@ -819,8 +857,6 @@ for hinted values, etc.</p>
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#mouseWheel">mouseWheel</a></li>
           
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#render">render</a></li>
-          
-            <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#selection">selection</a></li>
           
             <li class="fixedFont"><a href="../symbols/SC.TextFieldView.html#selectStart">selectStart</a></li>
           
@@ -850,7 +886,7 @@ for hinted values, etc.</p>
 
           <div class="description">
             <p>If no, will not allow transform or validation errors (SC.Error objects)
-to be passed to 'value'.  Upon focus lost, the text field will revert
+to be passed to <code class='syntax js'><span class="variable">value</span></code>.  Upon focus lost, the text field will revert
 to its previous value.</p>
             
             
@@ -862,6 +898,13 @@ to its previous value.</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="applyImmediately"> </a>
@@ -871,6 +914,120 @@ to its previous value.</p>
           <div class="description">
             <p>When <code class='syntax js'><span class="variable">applyImmediately</span></code> is turned on, every keystroke will set the value
 of the underlying object. Turning it off will only set the value on blur.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
+
+        
+          <a name="autoCapitalize"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>autoCapitalize</b></span>
+
+          <div class="description">
+            <p>Whether the browser should automatically capitalize the input.</p>
+
+<p>When <code class='syntax js'><span class="variable">autoCapitalize</span></code> is set to <code class='syntax js'><span class="keyword">null</span></code>, the browser will use
+the system defaults.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
+
+        
+          <a name="autoCorrect"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>autoCorrect</b></span>
+
+          <div class="description">
+            <p>Whether the browser should automatically correct the input. </p>
+
+<p>When <code class='syntax js'><span class="variable">autoCorrect</span></code> is set to <code class='syntax js'><span class="keyword">null</span></code>, the browser will use
+the system defaults.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
+
+        
+          <a name="autoResizePadding"> </a>
+          <span class="light">Number</span>
+          <span class="property"><b>autoResizePadding</b></span>
+
+          <div class="description">
+            How much padding should be used when automatically resizing.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+              <dd>SC.AutoResize#autoResizePadding</dd>
+              
+              </dl>
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                20
+              </dd>
+              </dl>
+            
+
+        
+          <a name="commitOnBlur"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>commitOnBlur</b></span>
+
+          <div class="description">
+            <p>Flag indicating whether the editor should automatically commit if you click
+outside it.</p>
             
             
           </div>
@@ -908,8 +1065,8 @@ of the underlying object. Turning it off will only set the value on blur.</p>
               <dt>
                 <p>Use #applyImmediately instead.</p>
 
-<p>If true, every change to the text in the text field updates 'value'.
-If false, 'value' is only updated when <code class='syntax js'><span class="variable">commitEditing</span></code>() is called (this
+<p>If true, every change to the text in the text field updates <code class='syntax js'><span class="variable">value</span></code>.
+If false, <code class='syntax js'><span class="variable">value</span></code> is only updated when <code class='syntax js'><span class="variable">commitEditing</span></code>() is called (this
 is called automatically when the text field loses focus), or whenever
 the return key is pressed while editing the field.</p>
               </dt>
@@ -944,6 +1101,56 @@ behavior (tabbing to the next field).</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
+
+        
+          <a name="focused"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>focused</b></span>
+
+          <div class="description">
+            Whether the text field is currently focused.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                NO
+              </dd>
+              </dl>
+            
+
+        
+          <a name="formattedHint"> </a>
+          <span class="light"><a href="../symbols/String.html">String</a></span>
+          <span class="property"><b>formattedHint</b></span>
+
+          <div class="description">
+            Localizes the hint if necessary.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
 
         
           <a name="hint"> </a>
@@ -962,6 +1169,13 @@ behavior (tabbing to the next field).</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                ""
+              </dd>
+              </dl>
+            
 
         
           <a name="hintOnFocus"> </a>
@@ -969,8 +1183,8 @@ behavior (tabbing to the next field).</p>
           <span class="property"><b>hintOnFocus</b></span>
 
           <div class="description">
-            <p>Whether to show the hint while the field has focus. If <code class='syntax js'><span class="keyword">YES</span></code>, it will disappear
-as soon as any character is in the field.</p>
+            <p>Whether to show the hint while the field has focus.
+If <code class='syntax js'><span class="keyword">YES</span></code>, it will disappear as soon as any character is in the field.</p>
             
             
           </div>
@@ -981,10 +1195,17 @@ as soon as any character is in the field.</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="isBrowserFocusable"> </a>
-          
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
           <span class="property"><b>isBrowserFocusable</b></span>
 
           <div class="description">
@@ -1006,6 +1227,13 @@ problem when you had an alert on top of a <code class='syntax js'><span class="v
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="isContextMenuEnabled"> </a>
@@ -1023,6 +1251,13 @@ problem when you had an alert on top of a <code class='syntax js'><span class="v
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
             
 
         
@@ -1045,6 +1280,13 @@ If set to <code class='syntax js'><span class="keyword">NO</span></code>, a <cod
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="isEditing"> </a>
@@ -1052,7 +1294,7 @@ If set to <code class='syntax js'><span class="keyword">NO</span></code>, a <cod
           <span class="property"><b>isEditing</b></span>
 
           <div class="description">
-            If YES then the text field is currently editing.
+            If `YES` then the text field is currently editing.
             
             
           </div>
@@ -1062,6 +1304,13 @@ If set to <code class='syntax js'><span class="keyword">NO</span></code>, a <cod
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                NO
+              </dd>
+              </dl>
             
 
         
@@ -1070,7 +1319,7 @@ If set to <code class='syntax js'><span class="keyword">NO</span></code>, a <cod
           <span class="property"><b>isPassword</b></span>
 
           <div class="description">
-            If YES, the field will hide its text from display. The default value is NO.
+            
             
             
           </div>
@@ -1078,8 +1327,23 @@ If set to <code class='syntax js'><span class="keyword">NO</span></code>, a <cod
           
 
             
+              <dl class="detailList">
+              <dt class="heading">Deprecated:</dt>
+              <dt>
+                <p>If <code class='syntax js'><span class="keyword">YES</span></code>, the field will hide its text from display.
+This value is deprecated. Please use <code class='syntax js'><span class="variable">type</span></code> instead to <code class='syntax js'><span class="string">&quot;password&quot;</span></code>.</p>
+              </dt>
+              </dl>
             
             
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                NO
+              </dd>
+              </dl>
             
 
         
@@ -1100,6 +1364,38 @@ trigger the default insertion handler.</p>
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                NO
+              </dd>
+              </dl>
+            
+
+        
+          <a name="isTextField"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>isTextField</b></span>
+
+          <div class="description">
+            Walk like a duck.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
             
 
         
@@ -1136,6 +1432,38 @@ accessory view wider, with empty space on the right.</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                null
+              </dd>
+              </dl>
+            
+
+        
+          <a name="localize"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>localize</b></span>
+
+          <div class="description">
+            Whether the hint should be localized or not.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="maxLength"> </a>
@@ -1153,6 +1481,13 @@ accessory view wider, with empty space on the right.</p>
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                5096
+              </dd>
+              </dl>
             
 
         
@@ -1190,6 +1525,36 @@ accessory view wider, with empty space on the left.</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                null
+              </dd>
+              </dl>
+            
+
+        
+          <a name="selection"> </a>
+          <span class="light"><a href="../symbols/SC.TextSelection.html">SC.TextSelection</a></span>
+          <span class="property"><b>selection</b></span>
+
+          <div class="description">
+            <p>The current selection of the text field, returned as an <code class='syntax js'><span class="class">SC</span>.<span class="class">TextSelection</span></code>
+object.</p>
+
+<p>Note that if the selection changes a new object will be returned -- it is
+not the case that a previously-returned <code class='syntax js'><span class="class">SC</span>.<span class="class">TextSelection</span></code> object will
+simply have its properties mutated.</p>
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+            
 
         
           <a name="shouldRenderBorder"> </a>
@@ -1208,6 +1573,13 @@ accessory view wider, with empty space on the left.</p>
             
             
             
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
 
         
           <a name="spellCheckEnabled"> </a>
@@ -1216,7 +1588,7 @@ accessory view wider, with empty space on the left.</p>
 
           <div class="description">
             <p>This property will enable disable HTML5 spell checking if available on the
-browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
+browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it.</p>
             
             
           </div>
@@ -1226,6 +1598,45 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
+            
+
+        
+          <a name="supportsAutoResize"> </a>
+          <span class="light"><a href="../symbols/Boolean.html">Boolean</a></span>
+          <span class="property"><b>supportsAutoResize</b></span>
+
+          <div class="description">
+            Text fields support auto resizing.
+            
+            
+          </div>
+
+          
+
+            
+            
+            
+              <dl class="detailList">
+              <dt class="heading">See:</dt>
+              
+              <dd>SC.AutoResize#supportsAutoResize</dd>
+              
+              </dl>
+            
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                YES
+              </dd>
+              </dl>
             
 
         
@@ -1244,6 +1655,13 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
             
             
             
+            
+              <dl class="detailList">
+              <dt class="heading">Default Value:</dt>
+              <dd>
+                "text"
+              </dd>
+              </dl>
             
 
         
@@ -1306,7 +1724,7 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
               <span class="methodname">autoResizeLayer</span>
             </div>
             <div class="description">
-              
+              The layer to automatically resize.
               
               
             </div>
@@ -1319,6 +1737,13 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
               
               
               
+              
+                <dl class="detailList">
+                <dt class="heading">See:</dt>
+                
+                  <dd>SC.AutoResize#autoResizeLayer</dd>
+                
+                </dl>
               
 
           
@@ -1327,7 +1752,7 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
               <span class="methodname">autoResizeText</span>
             </div>
             <div class="description">
-              
+              The text to be used when automatically resizing the text field.
               
               
             </div>
@@ -1340,6 +1765,13 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
               
               
               
+              
+                <dl class="detailList">
+                <dt class="heading">See:</dt>
+                
+                  <dd>SC.AutoResize#autoResizeText</dd>
+                
+                </dl>
               
 
           
@@ -1440,27 +1872,6 @@ browser. As of today Safari 4+, Chrome 3+ and Firefox 3+ support it</p>
                   <dd></dd>
                 
                 </dl>
-              
-              
-              
-              
-              
-              
-              
-
-          
-            <a name="formattedHint"> </a>
-            <div class="fixedFont">
-              <span class="methodname">formattedHint</span>
-            </div>
-            <div class="description">
-              
-              
-              
-            </div>
-
-            
-
               
               
               
@@ -1722,55 +2133,13 @@ implementation.</p>
               
 
           
-            <a name="selection"> </a>
-            <div class="fixedFont">
-              <span class="methodname">selection</span>
-            </div>
-            <div class="description">
-              <p>The current selection of the text field, returned as an <code class='syntax js'><span class="class">SC</span>.<span class="class">TextSelection</span></code>
-object.</p>
-
-<p>Note that if the selection changes a new object will be returned -- it is
-not the case that a previously-returned <code class='syntax js'><span class="class">SC</span>.<span class="class">TextSelection</span></code> object will
-simply have its properties mutated.</p>
-              
-              
-            </div>
-
-            
-
-              
-                <dl class="parameters">
-                <dt class="heading">Parameters:</dt>
-                
-                  <dt>
-                    <b>key</b>
-                    
-                  </dt>
-                  <dd></dd>
-                
-                  <dt>
-                    <b>value</b>
-                    
-                  </dt>
-                  <dd></dd>
-                
-                </dl>
-              
-              
-              
-              
-              
-              
-              
-
-          
             <a name="selectStart"> </a>
             <div class="fixedFont">
               <span class="methodname">selectStart</span>
             </div>
             <div class="description">
-              
+              <p>Allows text selection in IE. We block the IE only event <code class='syntax js'><span class="variable">selectStart</span></code> to
+block text selection in all other views.</p>
               
               
             </div>
@@ -1893,7 +2262,7 @@ simply have its properties mutated.</p>
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Tue Mar 06 2012 22:39:33 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Mar 26 2012 12:52:20 GMT-0600 (CST)
         </div>
       </section>
     </div>
