@@ -144,52 +144,53 @@
 <span class='line'>137</span>     @param {SC.Drag} drag The current drag object
 <span class='line'>138</span>     @param {SC.Event} evt The most recent mouse move event.  Use to get 
 <span class='line'>139</span>       location 
-<span class='line'>140</span>     
-<span class='line'>141</span>     @returns {DragOps} A mask of all the drag operations allowed or 
-<span class='line'>142</span>       SC.DRAG_NONE
-<span class='line'>143</span>   */</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">  </span><span class="NAME">computeDragOperations</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.DRAG_NONE</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">  
-<span class='line'>148</span>   </span><span class="COMM">/**
-<span class='line'>149</span>     Called when the user releases the mouse.
-<span class='line'>150</span>     
-<span class='line'>151</span>     This method gives your drop target one last opportunity to choose to 
-<span class='line'>152</span>     accept the proposed drop operation.  You might use this method to
-<span class='line'>153</span>     perform fine-grained checks on the drop location, for example.
-<span class='line'>154</span>     Return true to accept the drop operation.
-<span class='line'>155</span>     
-<span class='line'>156</span>     The default implementation returns `YES`.
-<span class='line'>157</span>     
-<span class='line'>158</span>     @param {SC.Drag} drag The drag instance managing this drag
-<span class='line'>159</span>     @param {DragOp} op The proposed drag operation. A drag constant
-<span class='line'>160</span>     
-<span class='line'>161</span>     @return {Boolean} YES if operation is OK, NO to cancel.
-<span class='line'>162</span>   */</span><span class="WHIT">  
-<span class='line'>163</span>   </span><span class="NAME">acceptDragOperation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">op</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>164</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>165</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>166</span> </span><span class="WHIT">  
-<span class='line'>167</span>   </span><span class="COMM">/**
-<span class='line'>168</span>     Called to actually perform the drag operation.
-<span class='line'>169</span>     
-<span class='line'>170</span>     Override this method to actually perform the drag operation.  This method
-<span class='line'>171</span>     is only called if you returned `YES` in `acceptDragOperation()`. 
-<span class='line'>172</span>     
-<span class='line'>173</span>     Return the operation that was actually performed or `SC.DRAG_NONE` if the 
-<span class='line'>174</span>     operation was aborted.
-<span class='line'>175</span>     
-<span class='line'>176</span>     The default implementation returns `SC.DRAG_NONE`
-<span class='line'>177</span>     
-<span class='line'>178</span>     @param {SC.Drag} drag The drag instance managing this drag
-<span class='line'>179</span>     @param {DragOp} op The proposed drag operation. A drag constant.
-<span class='line'>180</span>     
-<span class='line'>181</span>     @return {DragOp} Drag Operation actually performed
-<span class='line'>182</span>   */</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">  </span><span class="NAME">performDragOperation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">op</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.DRAG_NONE</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>185</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>186</span> </span><span class="WHIT">  
-<span class='line'>187</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>188</span> </span></pre></body></html>
+<span class='line'>140</span>     @param {DragOp} op The proposed drag operation. A drag constant
+<span class='line'>141</span>     
+<span class='line'>142</span>     @returns {DragOps} A mask of all the drag operations allowed or 
+<span class='line'>143</span>       SC.DRAG_NONE
+<span class='line'>144</span>   */</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="NAME">computeDragOperations</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">op</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.DRAG_NONE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  
+<span class='line'>149</span>   </span><span class="COMM">/**
+<span class='line'>150</span>     Called when the user releases the mouse.
+<span class='line'>151</span>     
+<span class='line'>152</span>     This method gives your drop target one last opportunity to choose to 
+<span class='line'>153</span>     accept the proposed drop operation.  You might use this method to
+<span class='line'>154</span>     perform fine-grained checks on the drop location, for example.
+<span class='line'>155</span>     Return true to accept the drop operation.
+<span class='line'>156</span>     
+<span class='line'>157</span>     The default implementation returns `YES`.
+<span class='line'>158</span>     
+<span class='line'>159</span>     @param {SC.Drag} drag The drag instance managing this drag
+<span class='line'>160</span>     @param {DragOp} op The proposed drag operation. A drag constant
+<span class='line'>161</span>     
+<span class='line'>162</span>     @return {Boolean} YES if operation is OK, NO to cancel.
+<span class='line'>163</span>   */</span><span class="WHIT">  
+<span class='line'>164</span>   </span><span class="NAME">acceptDragOperation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">op</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">  
+<span class='line'>168</span>   </span><span class="COMM">/**
+<span class='line'>169</span>     Called to actually perform the drag operation.
+<span class='line'>170</span>     
+<span class='line'>171</span>     Override this method to actually perform the drag operation.  This method
+<span class='line'>172</span>     is only called if you returned `YES` in `acceptDragOperation()`. 
+<span class='line'>173</span>     
+<span class='line'>174</span>     Return the operation that was actually performed or `SC.DRAG_NONE` if the 
+<span class='line'>175</span>     operation was aborted.
+<span class='line'>176</span>     
+<span class='line'>177</span>     The default implementation returns `SC.DRAG_NONE`
+<span class='line'>178</span>     
+<span class='line'>179</span>     @param {SC.Drag} drag The drag instance managing this drag
+<span class='line'>180</span>     @param {DragOp} op The proposed drag operation. A drag constant.
+<span class='line'>181</span>     
+<span class='line'>182</span>     @return {DragOp} Drag Operation actually performed
+<span class='line'>183</span>   */</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">  </span><span class="NAME">performDragOperation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">op</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.DRAG_NONE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">  
+<span class='line'>188</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>189</span> </span></pre></body></html>

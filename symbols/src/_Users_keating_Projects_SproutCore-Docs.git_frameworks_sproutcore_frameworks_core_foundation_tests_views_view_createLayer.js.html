@@ -73,33 +73,33 @@
 <span class='line'> 66</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 67</span> </span><span class="WHIT">    </span><span class="NAME">childViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">layerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"foo"</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT">
 <span class='line'> 68</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 69</span> <span class='line'> 70</span> </span><span class="WHIT">  
-<span class='line'> 71</span>   </span><span class="NAME">v.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">Q$</span><span class="PUNC">(</span><span class="STRN">'#foo'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">v.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'has element with child layerId'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 73</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 74</span> 
-<span class='line'> 75</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"does NOT assign layer to child views immediately"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="NAME">childViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">layerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"foo"</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">v.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">v.childViews</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">_view_layer</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'has no layer yet'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 82</span> 
-<span class='line'> 83</span> </span><span class="COMM">// ..........................................................</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="COMM">// USE CASES</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="COMM">// </span><span class="WHIT">
-<span class='line'> 86</span> 
-<span class='line'> 87</span> </span><span class="COMM">// when view is first created, createLayer is NOT called</span><span class="WHIT">
-<span class='line'> 88</span> 
-<span class='line'> 89</span> </span><span class="COMM">// when view is added to parent view, and parent view is already visible in</span><span class="WHIT">
-<span class='line'> 90</span> </span><span class="COMM">// window, layer is created just before adding it to the DOM</span><span class="WHIT">
-<span class='line'> 91</span> 
-<span class='line'> 92</span> </span><span class="COMM">// when a pane is added to the window, the pane layer is created.</span><span class="WHIT">
-<span class='line'> 93</span> 
-<span class='line'> 94</span> </span><span class="COMM">// when a pane with an exiting layer is removed from the DOM, the layer is removed from the DOM, but it is not destroyed.</span><span class="WHIT">
-<span class='line'> 95</span> 
-<span class='line'> 96</span> </span><span class="COMM">// what if we move a view from a parentView that has a layer to a parentView that does NOT have a layer.   Delete layer.</span><span class="WHIT">
-<span class='line'> 97</span> 
-<span class='line'> 98</span> </span><span class="COMM">// what if a move a view from a parentView that does NOT have a layer to a parentView that DOES have a layer.</span><span class="WHIT">
-<span class='line'> 99</span> </span></pre></body></html>
+<span class='line'> 69</span> </span><span class="WHIT">  
+<span class='line'> 70</span>   </span><span class="NAME">v.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">Q$</span><span class="PUNC">(</span><span class="STRN">'#foo'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">v.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'has element with child layerId'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> 
+<span class='line'> 74</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"does NOT assign layer to child views immediately"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="NAME">childViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">layerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"foo"</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="NAME">v.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">v.childViews</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">_view_layer</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'has no layer yet'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="COMM">// USE CASES</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="COMM">// </span><span class="WHIT">
+<span class='line'> 85</span> 
+<span class='line'> 86</span> </span><span class="COMM">// when view is first created, createLayer is NOT called</span><span class="WHIT">
+<span class='line'> 87</span> 
+<span class='line'> 88</span> </span><span class="COMM">// when view is added to parent view, and parent view is already visible in</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="COMM">// window, layer is created just before adding it to the DOM</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="COMM">// when a pane is added to the window, the pane layer is created.</span><span class="WHIT">
+<span class='line'> 92</span> 
+<span class='line'> 93</span> </span><span class="COMM">// when a pane with an exiting layer is removed from the DOM, the layer is removed from the DOM, but it is not destroyed.</span><span class="WHIT">
+<span class='line'> 94</span> 
+<span class='line'> 95</span> </span><span class="COMM">// what if we move a view from a parentView that has a layer to a parentView that does NOT have a layer.   Delete layer.</span><span class="WHIT">
+<span class='line'> 96</span> 
+<span class='line'> 97</span> </span><span class="COMM">// what if a move a view from a parentView that does NOT have a layer to a parentView that DOES have a layer.</span><span class="WHIT">
+<span class='line'> 98</span> </span></pre></body></html>

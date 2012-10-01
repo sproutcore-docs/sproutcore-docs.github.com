@@ -1,0 +1,36 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   Showcase</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: @2012 Tyler Keating</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">/*globals Showcase */</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/views_item_content.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'views/views_list_view.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/**
+<span class='line'> 11</span>   This pre-configured view demonstrates SC.DisclosureView.
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">Showcase.gridViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ScrollView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">  </span><span class="NAME">contentView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Showcase.ViewsListView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Regular'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.GridView.extend({  columnWidth: 120,  rowHeight: 58,  contentBinding: SC.Binding.oneWay('Showcase.collectionItems'),  layout: { left: 20, right: 20, top: 20, bottom: 20 },  exampleView: SC.View.extend(SC.Control, {  classNames: ['grid-example-view'],  childViews: ['image', 'title'],  image: SC.ImageView.extend({  layout: { centerX: 0, centerY: 0, height: 24, width: 24 },  valueBinding: SC.Binding.oneWay('.parentView.content.icon')  }),  title: SC.LabelView.extend({  layout: { centerX: 0, bottom: 0, height: 18, width: 120 },  valueBinding: SC.Binding.oneWay('.parentView.content.title')  })  })  })"</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Scrollable with Minimum Width'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.ScrollView.extend({ layout: { left: 20, right: 20, top: 20, bottom: 20 },  contentView: SC.GridView.extend({  columnWidth: 200,  rowHeight: 200,  layout: { minWidth: 600 },  contentBinding: SC.Binding.oneWay('Showcase.collectionItems'),  exampleView: SC.View.extend(SC.Control, {  classNames: ['grid-example-view'],  childViews: ['image', 'title'],  image: SC.ImageView.extend({  layout: { centerX: 0, centerY: 0, height: 24, width: 24 },  valueBinding: SC.Binding.oneWay('.parentView.content.icon')  }),  title: SC.LabelView.extend({  layout: { centerX: 0, bottom: 0, height: 18, width: 120 },  valueBinding: SC.Binding.oneWay('.parentView.content.title')  })  })  })  })"</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">    </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">    </span><span class="NAME">exampleHeight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">360</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> </span></pre></body></html>

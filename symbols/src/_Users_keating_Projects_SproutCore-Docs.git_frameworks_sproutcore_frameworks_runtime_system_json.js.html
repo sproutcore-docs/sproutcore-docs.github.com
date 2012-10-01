@@ -339,8 +339,8 @@
 <span class='line'>332</span> </span><span class="WHIT">                </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>333</span> </span><span class="WHIT">                    </span><span class="NAME">partial</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">str</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">'null'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>334</span> </span><span class="WHIT">                </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>335</span> <span class='line'>336</span> 
-</span><span class="COMM">// Join all of the elements together, separated with commas, and wrap them in</span><span class="WHIT">
+<span class='line'>335</span> 
+<span class='line'>336</span> </span><span class="COMM">// Join all of the elements together, separated with commas, and wrap them in</span><span class="WHIT">
 <span class='line'>337</span> </span><span class="COMM">// brackets.</span><span class="WHIT">
 <span class='line'>338</span> 
 <span class='line'>339</span> </span><span class="WHIT">                </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">partial.length</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'[]'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT">
@@ -515,8 +515,8 @@
 <span class='line'>508</span> </span><span class="WHIT">            </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>509</span> 
 <span class='line'>510</span> </span><span class="COMM">// If the text is not JSON parseable, then a SyntaxError is thrown.</span><span class="WHIT">
-<span class='line'>511</span> <span class='line'>512</span> 
-</span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">SyntaxError</span><span class="PUNC">(</span><span class="STRN">'JSON.parse'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>511</span> 
+<span class='line'>512</span> </span><span class="WHIT">            </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">SyntaxError</span><span class="PUNC">(</span><span class="STRN">'JSON.parse'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>513</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>514</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>515</span> </span><span class="PUNC">}</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">

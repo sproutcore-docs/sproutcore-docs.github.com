@@ -36,94 +36,94 @@
 <span class='line'> 29</span>   In some situations, it may be advantageous to use one method that can react to 
 <span class='line'> 30</span>   multiple events instead of having multiple methods that essentially all do the
 <span class='line'> 31</span>   same thing. In order to set a method to handle more than one event you use
-<span class='line'> 32</span> <span class='line'> 33</span>   the handleEvents method which can be supplied a list of string and/or regular
-<span class='line'> 34</span>   expressions. The following example demonstrates the use of handleEvents:
-<span class='line'> 35</span>   
-<span class='line'> 36</span>   {{{
-<span class='line'> 37</span>   
-<span class='line'> 38</span>     state = SC.State.extend({
-<span class='line'> 39</span>     
-<span class='line'> 40</span>       eventHandlerA: function(event, sender, context) {
-<span class='line'> 41</span>       
-<span class='line'> 42</span>       }.handleEvents('foo', 'bar'),
-<span class='line'> 43</span>       
-<span class='line'> 44</span>       eventHandlerB: function(event, sender, context) {
-<span class='line'> 45</span>       
-<span class='line'> 46</span>       }.handleEvents(/num\d/, 'decimal')
-<span class='line'> 47</span>     
-<span class='line'> 48</span>     })
-<span class='line'> 49</span>   
-<span class='line'> 50</span>   }}}
-<span class='line'> 51</span>   
-<span class='line'> 52</span>   Whenever events 'foo' and 'bar' are sent to the state, the method eventHandlerA
-<span class='line'> 53</span>   will be invoked. When there is an event that matches the regular expression
-<span class='line'> 54</span>   /num\d/ or the event is 'decimal' then eventHandlerB is invoked. In both 
-<span class='line'> 55</span>   cases, the name of the event will be supplied to the event handler. 
-<span class='line'> 56</span>   
-<span class='line'> 57</span>   It should be noted that the use of regular expressions may impact performance
-<span class='line'> 58</span>   since that statechart will not be able to fully optimize the event handling logic based
-<span class='line'> 59</span>   on its use. Therefore the use of regular expression should be used sparingly. 
-<span class='line'> 60</span>   
-<span class='line'> 61</span>   @param {(String|RegExp)...} args
-<span class='line'> 62</span> */</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="NAME">Function.prototype.handleEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">this.isEventHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="NAME">this.events</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 68</span> 
-<span class='line'> 69</span> </span><span class="COMM">/**
-<span class='line'> 70</span>   Extends the JS Function object with the stateObserves method that will
-<span class='line'> 71</span>   create a state observe handler on a given state object. 
-<span class='line'> 72</span>   
-<span class='line'> 73</span>   Use a stateObserves() instead of the common observes() method when you want a 
-<span class='line'> 74</span>   state to observer changes to some property on the state itself or some other 
-<span class='line'> 75</span>   object. 
-<span class='line'> 76</span>   
-<span class='line'> 77</span>   Any method on the state that has stateObserves is considered a state observe
-<span class='line'> 78</span>   handler and behaves just like when you use observes() on a method, but with an
-<span class='line'> 79</span>   important difference. When you apply stateObserves to a method on a state, those
-<span class='line'> 80</span>   methods will be active *only* when the state is entered, otherwise those methods
-<span class='line'> 81</span>   will be inactive. This removes the need for you having to explicitly call
-<span class='line'> 82</span>   addObserver and removeObserver. As an example:
-<span class='line'> 83</span>   
-<span class='line'> 84</span>   {{{
-<span class='line'> 85</span>   
-<span class='line'> 86</span>     state = SC.State.extend({
-<span class='line'> 87</span>     
-<span class='line'> 88</span>       foo: null,
-<span class='line'> 89</span>       
-<span class='line'> 90</span>       user: null,
-<span class='line'> 91</span>     
-<span class='line'> 92</span>       observeHandlerA: function(target, key) {
-<span class='line'> 93</span>         
-<span class='line'> 94</span>       }.stateObserves('MyApp.someController.status'),
-<span class='line'> 95</span>       
-<span class='line'> 96</span>       observeHandlerB: function(target, key) {
-<span class='line'> 97</span>       
-<span class='line'> 98</span>       }.stateObserves('foo'),
-<span class='line'> 99</span>       
-<span class='line'>100</span>       observeHandlerC: function(target, key) {
-<span class='line'>101</span>       
-<span class='line'>102</span>       }.stateObserves('.user.name', '.user.salary')
-<span class='line'>103</span>     
-<span class='line'>104</span>     })
-<span class='line'>105</span>   
-<span class='line'>106</span>   }}}
-<span class='line'>107</span>   
-<span class='line'>108</span>   Above, state has three state observe handlers: observeHandlerA, observeHandlerB, and
-<span class='line'>109</span>   observeHandlerC. When state is entered, the state will automatically add itself as
-<span class='line'>110</span>   an observer for all of its registered state observe handlers. Therefore when
-<span class='line'>111</span>   foo changes, observeHandlerB will be invoked, and when MyApp.someController's status
-<span class='line'>112</span>   changes then observeHandlerA will be invoked. The moment that state is exited then
-<span class='line'>113</span>   the state will automatically remove itself as an observer for all of its registered
-<span class='line'>114</span>   state observe handlers. Therefore none of the state observe handlers will be
-<span class='line'>115</span>   invoked until the next time the state is entered. 
-<span class='line'>116</span>   
-<span class='line'>117</span>   @param {String...} args
-<span class='line'>118</span> */</span><span class="WHIT">
-<span class='line'>119</span> </span><span class="NAME">Function.prototype.stateObserves</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>120</span> </span><span class="WHIT">  </span><span class="NAME">this.isStateObserveHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>121</span> </span><span class="WHIT">  </span><span class="NAME">this.args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="PUNC">}</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'> 32</span>   the handleEvents method which can be supplied a list of string and/or regular
+<span class='line'> 33</span>   expressions. The following example demonstrates the use of handleEvents:
+<span class='line'> 34</span>   
+<span class='line'> 35</span>   {{{
+<span class='line'> 36</span>   
+<span class='line'> 37</span>     state = SC.State.extend({
+<span class='line'> 38</span>     
+<span class='line'> 39</span>       eventHandlerA: function(event, sender, context) {
+<span class='line'> 40</span>       
+<span class='line'> 41</span>       }.handleEvents('foo', 'bar'),
+<span class='line'> 42</span>       
+<span class='line'> 43</span>       eventHandlerB: function(event, sender, context) {
+<span class='line'> 44</span>       
+<span class='line'> 45</span>       }.handleEvents(/num\d/, 'decimal')
+<span class='line'> 46</span>     
+<span class='line'> 47</span>     })
+<span class='line'> 48</span>   
+<span class='line'> 49</span>   }}}
+<span class='line'> 50</span>   
+<span class='line'> 51</span>   Whenever events 'foo' and 'bar' are sent to the state, the method eventHandlerA
+<span class='line'> 52</span>   will be invoked. When there is an event that matches the regular expression
+<span class='line'> 53</span>   /num\d/ or the event is 'decimal' then eventHandlerB is invoked. In both 
+<span class='line'> 54</span>   cases, the name of the event will be supplied to the event handler. 
+<span class='line'> 55</span>   
+<span class='line'> 56</span>   It should be noted that the use of regular expressions may impact performance
+<span class='line'> 57</span>   since that statechart will not be able to fully optimize the event handling logic based
+<span class='line'> 58</span>   on its use. Therefore the use of regular expression should be used sparingly. 
+<span class='line'> 59</span>   
+<span class='line'> 60</span>   @param {(String|RegExp)...} args
+<span class='line'> 61</span> */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="NAME">Function.prototype.handleEvents</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="NAME">this.isEventHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">this.events</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="COMM">/**
+<span class='line'> 69</span>   Extends the JS Function object with the stateObserves method that will
+<span class='line'> 70</span>   create a state observe handler on a given state object. 
+<span class='line'> 71</span>   
+<span class='line'> 72</span>   Use a stateObserves() instead of the common observes() method when you want a 
+<span class='line'> 73</span>   state to observer changes to some property on the state itself or some other 
+<span class='line'> 74</span>   object. 
+<span class='line'> 75</span>   
+<span class='line'> 76</span>   Any method on the state that has stateObserves is considered a state observe
+<span class='line'> 77</span>   handler and behaves just like when you use observes() on a method, but with an
+<span class='line'> 78</span>   important difference. When you apply stateObserves to a method on a state, those
+<span class='line'> 79</span>   methods will be active *only* when the state is entered, otherwise those methods
+<span class='line'> 80</span>   will be inactive. This removes the need for you having to explicitly call
+<span class='line'> 81</span>   addObserver and removeObserver. As an example:
+<span class='line'> 82</span>   
+<span class='line'> 83</span>   {{{
+<span class='line'> 84</span>   
+<span class='line'> 85</span>     state = SC.State.extend({
+<span class='line'> 86</span>     
+<span class='line'> 87</span>       foo: null,
+<span class='line'> 88</span>       
+<span class='line'> 89</span>       user: null,
+<span class='line'> 90</span>     
+<span class='line'> 91</span>       observeHandlerA: function(target, key) {
+<span class='line'> 92</span>         
+<span class='line'> 93</span>       }.stateObserves('MyApp.someController.status'),
+<span class='line'> 94</span>       
+<span class='line'> 95</span>       observeHandlerB: function(target, key) {
+<span class='line'> 96</span>       
+<span class='line'> 97</span>       }.stateObserves('foo'),
+<span class='line'> 98</span>       
+<span class='line'> 99</span>       observeHandlerC: function(target, key) {
+<span class='line'>100</span>       
+<span class='line'>101</span>       }.stateObserves('.user.name', '.user.salary')
+<span class='line'>102</span>     
+<span class='line'>103</span>     })
+<span class='line'>104</span>   
+<span class='line'>105</span>   }}}
+<span class='line'>106</span>   
+<span class='line'>107</span>   Above, state has three state observe handlers: observeHandlerA, observeHandlerB, and
+<span class='line'>108</span>   observeHandlerC. When state is entered, the state will automatically add itself as
+<span class='line'>109</span>   an observer for all of its registered state observe handlers. Therefore when
+<span class='line'>110</span>   foo changes, observeHandlerB will be invoked, and when MyApp.someController's status
+<span class='line'>111</span>   changes then observeHandlerA will be invoked. The moment that state is exited then
+<span class='line'>112</span>   the state will automatically remove itself as an observer for all of its registered
+<span class='line'>113</span>   state observe handlers. Therefore none of the state observe handlers will be
+<span class='line'>114</span>   invoked until the next time the state is entered. 
+<span class='line'>115</span>   
+<span class='line'>116</span>   @param {String...} args
+<span class='line'>117</span> */</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="NAME">Function.prototype.stateObserves</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">  </span><span class="NAME">this.isStateObserveHandler</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">  </span><span class="NAME">this.args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="PUNC">}</span><span class="PUNC">;</span></pre></body></html>

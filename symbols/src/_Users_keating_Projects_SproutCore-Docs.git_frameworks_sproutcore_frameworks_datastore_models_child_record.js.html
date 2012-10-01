@@ -22,7 +22,7 @@
 <span class='line'> 15</span> 
 <span class='line'> 16</span> </span><span class="NAME">SC.ChildRecord.extend</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 17</span> </span><span class="WHIT">  </span><span class="COMM">// @if (debug)</span><span class="WHIT">
-<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="NAME">console.log</span><span class="PUNC">(</span><span class="STRN">"SC.ChildRecord is deprecated. Please extend SC.Record instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: SC.ChildRecord is deprecated. Please extend SC.Record instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 19</span> </span><span class="WHIT">  </span><span class="COMM">// @endif</span><span class="WHIT">
 <span class='line'> 20</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.Record.extend.apply</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 21</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">

@@ -151,44 +151,44 @@
 <span class='line'>144</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>145</span> 
 <span class='line'>146</span> </span><span class="COMM">/**
-<span class='line'>147</span> <span class='line'>148</span>   @class
-<span class='line'>149</span>   @extends SC.TemplateView
-<span class='line'>150</span>   @extends SC.TextFieldSupport
-<span class='line'>151</span> */</span><span class="WHIT">
-<span class='line'>152</span> </span><span class="NAME">SC.TextField</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.TemplateView.extend</span><span class="PUNC">(</span><span class="NAME">SC.TextFieldSupport</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>153</span> </span><span class="COMM">/** @scope SC.TextField.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>154</span> 
-<span class='line'>155</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-text-field'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>156</span> 
-<span class='line'>157</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>158</span>     If set to `YES` uses textarea tag instead of input to
-<span class='line'>159</span>     accommodate multi-line strings.
-<span class='line'>160</span> 
-<span class='line'>161</span>     @type Boolean
-<span class='line'>162</span>     @default NO
-<span class='line'>163</span>   */</span><span class="WHIT">
-<span class='line'>164</span> </span><span class="WHIT">  </span><span class="NAME">isMultiline</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>165</span> 
-<span class='line'>166</span> </span><span class="WHIT">  </span><span class="COMM">// we can't use bindAttr because of a race condition:</span><span class="WHIT">
-<span class='line'>167</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">// when `value` is set, the bindAttr observer immediately calls</span><span class="WHIT">
-<span class='line'>169</span> </span><span class="WHIT">  </span><span class="COMM">// `get` in order to persist it to the DOM, but because we made</span><span class="WHIT">
-<span class='line'>170</span> </span><span class="WHIT">  </span><span class="COMM">// the `value` property idempotent, when it gets called by</span><span class="WHIT">
-<span class='line'>171</span> </span><span class="WHIT">  </span><span class="COMM">// bindAttr, it fetches the not-yet-updated value from the DOM</span><span class="WHIT">
-<span class='line'>172</span> </span><span class="WHIT">  </span><span class="COMM">// and returns it.</span><span class="WHIT">
-<span class='line'>173</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>174</span> </span><span class="WHIT">  </span><span class="COMM">// In short, because we need to be able to catch changes to the</span><span class="WHIT">
-<span class='line'>175</span> </span><span class="WHIT">  </span><span class="COMM">// DOM made directly, we cannot also rely on bindAttr to update</span><span class="WHIT">
-<span class='line'>176</span> </span><span class="WHIT">  </span><span class="COMM">// the property: a chicken-and-egg problem.</span><span class="WHIT">
-<span class='line'>177</span> </span><span class="WHIT">  </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>178</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.Handlebars.compile</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'&lt;textarea>&lt;/textarea>'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'&lt;input type="text">'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>179</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>180</span> 
-<span class='line'>181</span> </span><span class="WHIT">  </span><span class="NAME">$input</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>182</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">tagName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'textarea'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'input'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="NAME">tagName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>185</span> 
-<span class='line'>186</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>187</span> 
-<span class='line'>188</span> </span></pre></body></html>
+<span class='line'>147</span>   @class
+<span class='line'>148</span>   @extends SC.TemplateView
+<span class='line'>149</span>   @extends SC.TextFieldSupport
+<span class='line'>150</span> */</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="NAME">SC.TextField</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.TemplateView.extend</span><span class="PUNC">(</span><span class="NAME">SC.TextFieldSupport</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="COMM">/** @scope SC.TextField.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>153</span> 
+<span class='line'>154</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-text-field'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>157</span>     If set to `YES` uses textarea tag instead of input to
+<span class='line'>158</span>     accommodate multi-line strings.
+<span class='line'>159</span> 
+<span class='line'>160</span>     @type Boolean
+<span class='line'>161</span>     @default NO
+<span class='line'>162</span>   */</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="NAME">isMultiline</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>164</span> 
+<span class='line'>165</span> </span><span class="WHIT">  </span><span class="COMM">// we can't use bindAttr because of a race condition:</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">  </span><span class="COMM">// when `value` is set, the bindAttr observer immediately calls</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">// `get` in order to persist it to the DOM, but because we made</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="COMM">// the `value` property idempotent, when it gets called by</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">  </span><span class="COMM">// bindAttr, it fetches the not-yet-updated value from the DOM</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">  </span><span class="COMM">// and returns it.</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">  </span><span class="COMM">// In short, because we need to be able to catch changes to the</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">  </span><span class="COMM">// DOM made directly, we cannot also rely on bindAttr to update</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">  </span><span class="COMM">// the property: a chicken-and-egg problem.</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">  </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.Handlebars.compile</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'&lt;textarea>&lt;/textarea>'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'&lt;input type="text">'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>179</span> 
+<span class='line'>180</span> </span><span class="WHIT">  </span><span class="NAME">$input</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">tagName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMultiline'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'textarea'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'input'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="NAME">tagName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>184</span> 
+<span class='line'>185</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> 
+<span class='line'>187</span> </span></pre></body></html>

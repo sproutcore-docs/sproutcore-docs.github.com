@@ -25,10 +25,10 @@
 <span class='line'> 18</span> 
 <span class='line'> 19</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"adding dialog to screen"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 20</span> 
-<span class='line'> 21</span> </span><span class="WHIT">  
-<span class='line'> 22</span>   </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">delegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="WHIT">    
-<span class='line'> 24</span>     </span><span class="NAME">couldNotSend</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">delegate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> 
+<span class='line'> 24</span> </span><span class="WHIT">    </span><span class="NAME">couldNotSend</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 25</span> </span><span class="WHIT">      </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.AlertPane.warn</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 26</span> </span><span class="WHIT">        </span><span class="NAME">message</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Email could not be sent"</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 27</span> </span><span class="WHIT">        </span><span class="NAME">description</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'There might be a problem with the server or with your internet connection.  Try again in a few minutes.'</span><span class="PUNC">,</span><span class="WHIT">
@@ -40,8 +40,8 @@
 <span class='line'> 33</span> </span><span class="WHIT">        </span><span class="NAME">delegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT">
 <span class='line'> 34</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 35</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 36</span> </span><span class="WHIT">    
-<span class='line'> 37</span>     </span><span class="NAME">showMoreInfo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="WHIT">    </span><span class="NAME">showMoreInfo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 38</span> </span><span class="WHIT">      </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.AlertPane.info</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 39</span> </span><span class="WHIT">        </span><span class="NAME">message</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Sending Email"</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 40</span> </span><span class="WHIT">        </span><span class="NAME">description</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"Sometimes email doesn't make it.  It's a fact of life.  We all love email, but hey that's how it goes.\n"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
@@ -50,23 +50,22 @@
 <span class='line'> 43</span> </span><span class="WHIT">        </span><span class="NAME">delegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">delegate</span><span class="WHIT">
 <span class='line'> 44</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 45</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">    
-<span class='line'> 47</span>     </span><span class="NAME">alertPaneDidDismiss</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">alert</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 48</span> </span><span class="WHIT">      </span><span class="COMM">//console.log("%@.alertDidDismiss - %@".fmt(alert, status));</span><span class="WHIT">
-<span class='line'> 49</span> </span><span class="WHIT">      </span><span class="KEYW">switch</span><span class="PUNC">(</span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 50</span> </span><span class="WHIT">        </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.OK_STATUS</span><span class="PUNC">:</span><span class="WHIT">
-<span class='line'> 51</span> </span><span class="WHIT">          </span><span class="NAME">this.invokeLater</span><span class="PUNC">(</span><span class="NAME">this.couldNotSend</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1000</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 52</span> </span><span class="WHIT">          </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 53</span> </span><span class="WHIT">        </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.EXTRA_STATUS</span><span class="PUNC">:</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="WHIT">          </span><span class="NAME">this.showMoreInfo</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="WHIT">          </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 59</span> 
-<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="NAME">SC.RunLoop.begin</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="NAME">delegate.couldNotSend</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="NAME">SC.RunLoop.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 64</span> 
-<span class='line'> 65</span> </span></pre></body></html>
+<span class='line'> 46</span> 
+<span class='line'> 47</span> </span><span class="WHIT">    </span><span class="NAME">alertPaneDidDismiss</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">alert</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">      </span><span class="KEYW">switch</span><span class="PUNC">(</span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">        </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.OK_STATUS</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">          </span><span class="NAME">this.invokeLater</span><span class="PUNC">(</span><span class="NAME">this.couldNotSend</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1000</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">          </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">        </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.EXTRA_STATUS</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">          </span><span class="NAME">this.showMoreInfo</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">          </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 58</span> 
+<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">SC.RunLoop.begin</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="NAME">delegate.couldNotSend</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="NAME">SC.RunLoop.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span></pre></body></html>

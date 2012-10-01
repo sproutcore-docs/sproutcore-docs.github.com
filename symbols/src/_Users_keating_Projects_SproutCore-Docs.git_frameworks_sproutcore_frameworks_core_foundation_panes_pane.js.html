@@ -348,347 +348,347 @@
 <span class='line'>341</span>     @returns {SC.Pane} receiver
 <span class='line'>342</span>   */</span><span class="WHIT">
 <span class='line'>343</span> </span><span class="WHIT">  </span><span class="NAME">didLoseKeyPaneTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>344</span> <span class='line'>345</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isKeyPane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>346</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>347</span> </span><span class="WHIT">    </span><span class="NAME">this._forwardKeyChange</span><span class="PUNC">(</span><span class="NAME">isKeyPane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'didLoseKeyResponderTo'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>348</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>349</span> <span class='line'>350</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>351</span> 
-<span class='line'>352</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>353</span>     Called just after the keyPane focus has changed to the receiver.  Notifies
-<span class='line'>354</span>     the keyView of its new status.  The keyView should use this method to
-<span class='line'>355</span>     update its display and actually set focus on itself at the browser level
-<span class='line'>356</span>     if needed.
-<span class='line'>357</span> 
-<span class='line'>358</span>     @param {SC.Pane} pane
-<span class='line'>359</span>     @returns {SC.Pane} receiver
-<span class='line'>360</span> 
-<span class='line'>361</span>   */</span><span class="WHIT">
-<span class='line'>362</span> </span><span class="WHIT">  </span><span class="NAME">didBecomeKeyPaneFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>363</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isKeyPane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>364</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>365</span> </span><span class="WHIT">    </span><span class="NAME">this._forwardKeyChange</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isKeyPane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'didBecomeKeyResponderFrom'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>366</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>367</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>368</span> 
-<span class='line'>369</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................</span><span class="WHIT">
-<span class='line'>370</span> </span><span class="WHIT">  </span><span class="COMM">// MAIN PANE SUPPORT</span><span class="WHIT">
-<span class='line'>371</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>372</span> 
-<span class='line'>373</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>374</span>     Returns YES whenever the pane has been set as the main pane for the
-<span class='line'>375</span>     application.
-<span class='line'>376</span> 
-<span class='line'>377</span>     @property {Boolean}
-<span class='line'>378</span>   */</span><span class="WHIT">
-<span class='line'>379</span> </span><span class="WHIT">  </span><span class="NAME">isMainPane</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>380</span> 
-<span class='line'>381</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>382</span>     Invoked when the pane is about to become the focused pane.  Override to
-<span class='line'>383</span>     implement your own custom handling.
-<span class='line'>384</span> 
-<span class='line'>385</span>     @param {SC.Pane} pane the pane that currently have focus
-<span class='line'>386</span>     @returns {void}
-<span class='line'>387</span>   */</span><span class="WHIT">
-<span class='line'>388</span> </span><span class="WHIT">  </span><span class="NAME">focusFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>389</span> 
-<span class='line'>390</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>391</span>     Invoked when the the pane is about to lose its focused pane status.
-<span class='line'>392</span>     Override to implement your own custom handling
-<span class='line'>393</span> 
-<span class='line'>394</span>     @param {SC.Pane} pane the pane that will receive focus next
-<span class='line'>395</span>     @returns {void}
-<span class='line'>396</span>   */</span><span class="WHIT">
-<span class='line'>397</span> </span><span class="WHIT">  </span><span class="NAME">blurTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>398</span> 
-<span class='line'>399</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>400</span>     Invoked when the view is about to lose its mainPane status.  The default
-<span class='line'>401</span>     implementation will also remove the pane from the document since you can't
-<span class='line'>402</span>     have more than one mainPane in the document at a time.
-<span class='line'>403</span> 
-<span class='line'>404</span>     @param {SC.Pane} pane
-<span class='line'>405</span>     @returns {void}
-<span class='line'>406</span>   */</span><span class="WHIT">
-<span class='line'>407</span> </span><span class="WHIT">  </span><span class="NAME">blurMainTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>408</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>409</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>410</span> 
-<span class='line'>411</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>412</span>     Invokes when the view is about to become the new mainPane.  The default
-<span class='line'>413</span>     implementation simply updates the isMainPane property.  In your subclass,
-<span class='line'>414</span>     you should make sure your pane has been added to the document before
-<span class='line'>415</span>     trying to make it the mainPane.  See SC.MainPane for more information.
-<span class='line'>416</span> 
-<span class='line'>417</span>     @param {SC.Pane} pane
-<span class='line'>418</span>     @returns {void}
-<span class='line'>419</span>   */</span><span class="WHIT">
-<span class='line'>420</span> </span><span class="WHIT">  </span><span class="NAME">focusMainFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>421</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>422</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>423</span> 
-<span class='line'>424</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................</span><span class="WHIT">
-<span class='line'>425</span> </span><span class="WHIT">  </span><span class="COMM">// ADDING/REMOVE PANES TO SCREEN</span><span class="WHIT">
-<span class='line'>426</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>427</span> 
-<span class='line'>428</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>429</span>     Inserts the pane at the end of the document.  This will also add the pane
-<span class='line'>430</span>     to the rootResponder.
-<span class='line'>431</span> 
-<span class='line'>432</span>     @param {SC.RootResponder} rootResponder
-<span class='line'>433</span>     @returns {SC.Pane} receiver
-<span class='line'>434</span>   */</span><span class="WHIT">
-<span class='line'>435</span> </span><span class="WHIT">  </span><span class="NAME">append</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>436</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.appendTo</span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>437</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>438</span> 
-<span class='line'>439</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>440</span>     Removes the pane from the document.  This will remove the
-<span class='line'>441</span>     DOM node and deregister you from the document window.
-<span class='line'>442</span> 
-<span class='line'>443</span>     @returns {SC.Pane} receiver
-<span class='line'>444</span>   */</span><span class="WHIT">
-<span class='line'>445</span> </span><span class="WHIT">  </span><span class="NAME">remove</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>446</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// nothing to do</span><span class="WHIT">
-<span class='line'>447</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// nothing to do</span><span class="WHIT">
-<span class='line'>448</span> 
-<span class='line'>449</span> </span><span class="WHIT">    </span><span class="COMM">// remove layer...</span><span class="WHIT">
-<span class='line'>450</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>451</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">dom.parentNode</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">dom.parentNode.removeChild</span><span class="PUNC">(</span><span class="NAME">dom</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>452</span> </span><span class="WHIT">    </span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>453</span> 
-<span class='line'>454</span> </span><span class="WHIT">    </span><span class="COMM">// remove intercept</span><span class="WHIT">
-<span class='line'>455</span> </span><span class="WHIT">    </span><span class="NAME">this._removeIntercept</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>456</span> 
-<span class='line'>457</span> </span><span class="WHIT">    </span><span class="COMM">// resign keyPane status, if we had it</span><span class="WHIT">
-<span class='line'>458</span> </span><span class="WHIT">    </span><span class="NAME">this.resignKeyPane</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>459</span> 
-<span class='line'>460</span> </span><span class="WHIT">    </span><span class="COMM">// remove the pane</span><span class="WHIT">
-<span class='line'>461</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>462</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">rootResponder.makeMainPane</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>463</span> </span><span class="WHIT">    </span><span class="NAME">rootResponder.panes.remove</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>464</span> </span><span class="WHIT">    </span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>465</span> 
-<span class='line'>466</span> </span><span class="WHIT">    </span><span class="COMM">// clean up some of my own properties</span><span class="WHIT">
-<span class='line'>467</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>468</span> </span><span class="WHIT">    </span><span class="NAME">this.parentViewDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>469</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>470</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>471</span> 
-<span class='line'>472</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>473</span>     Inserts the current pane into the page. The actual DOM insertion is done
-<span class='line'>474</span>     by a function passed into `insert`, which receives the layer as a
-<span class='line'>475</span>     parameter. This function is responsible for making sure a layer exists,
-<span class='line'>476</span>     is not already attached, and for calling `paneDidAttach` when done.
-<span class='line'>477</span> 
-<span class='line'>478</span>         pane = SC.Pane.create();
-<span class='line'>479</span>         pane.insert(function(layer) {
-<span class='line'>480</span>           jQuery(layer).insertBefore("#otherElement");
-<span class='line'>481</span>         });
-<span class='line'>482</span> 
-<span class='line'>483</span>     @param {Function} fn function which performs the actual DOM manipulation
-<span class='line'>484</span>       necessary in order to insert the pane's layer into the DOM.
-<span class='line'>485</span>     @returns {SC.Pane} receiver
-<span class='line'>486</span>    */</span><span class="WHIT">
-<span class='line'>487</span> </span><span class="WHIT">  </span><span class="NAME">insert</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>488</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>489</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>490</span> 
-<span class='line'>491</span> </span><span class="WHIT">    </span><span class="NAME">fn</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>492</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">this.paneDidAttach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>493</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>494</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>495</span> 
-<span class='line'>496</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>497</span>     Inserts the pane into the DOM.
-<span class='line'>498</span> 
-<span class='line'>499</span>     @param {DOMElement|jQuery|String} elem the element to append the pane's layer to.
-<span class='line'>500</span>       This is passed to `jQuery()`, so any value supported by `jQuery()` will work.
-<span class='line'>501</span>     @returns {SC.Pane} receiver
-<span class='line'>502</span>   */</span><span class="WHIT">
-<span class='line'>503</span> </span><span class="WHIT">  </span><span class="NAME">appendTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>504</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insert</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>505</span> </span><span class="WHIT">      </span><span class="NAME">jQuery</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>506</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>507</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>508</span> 
-<span class='line'>509</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>510</span>     Called when the pane is attached to a DOM element in a window, this will
-<span class='line'>511</span>     change the view status to be visible in the window and also register
-<span class='line'>512</span>     with the rootResponder.
-<span class='line'>513</span>   */</span><span class="WHIT">
-<span class='line'>514</span> </span><span class="WHIT">  </span><span class="NAME">paneDidAttach</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>515</span> </span><span class="WHIT">    </span><span class="COMM">// hook into root responder</span><span class="WHIT">
-<span class='line'>516</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">responder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RootResponder.responder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>517</span> </span><span class="WHIT">    </span><span class="NAME">responder.panes.add</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isKeyPane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>346</span> </span><span class="WHIT">    </span><span class="NAME">this._forwardKeyChange</span><span class="PUNC">(</span><span class="NAME">isKeyPane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'didLoseKeyResponderTo'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>349</span> 
+<span class='line'>350</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>351</span>     Called just after the keyPane focus has changed to the receiver.  Notifies
+<span class='line'>352</span>     the keyView of its new status.  The keyView should use this method to
+<span class='line'>353</span>     update its display and actually set focus on itself at the browser level
+<span class='line'>354</span>     if needed.
+<span class='line'>355</span> 
+<span class='line'>356</span>     @param {SC.Pane} pane
+<span class='line'>357</span>     @returns {SC.Pane} receiver
+<span class='line'>358</span> 
+<span class='line'>359</span>   */</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">  </span><span class="NAME">didBecomeKeyPaneFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>361</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isKeyPane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">    </span><span class="NAME">this._forwardKeyChange</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isKeyPane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'didBecomeKeyResponderFrom'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>366</span> 
+<span class='line'>367</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">  </span><span class="COMM">// MAIN PANE SUPPORT</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>370</span> 
+<span class='line'>371</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>372</span>     Returns YES whenever the pane has been set as the main pane for the
+<span class='line'>373</span>     application.
+<span class='line'>374</span> 
+<span class='line'>375</span>     @property {Boolean}
+<span class='line'>376</span>   */</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">  </span><span class="NAME">isMainPane</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>378</span> 
+<span class='line'>379</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>380</span>     Invoked when the pane is about to become the focused pane.  Override to
+<span class='line'>381</span>     implement your own custom handling.
+<span class='line'>382</span> 
+<span class='line'>383</span>     @param {SC.Pane} pane the pane that currently have focus
+<span class='line'>384</span>     @returns {void}
+<span class='line'>385</span>   */</span><span class="WHIT">
+<span class='line'>386</span> </span><span class="WHIT">  </span><span class="NAME">focusFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>387</span> 
+<span class='line'>388</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>389</span>     Invoked when the the pane is about to lose its focused pane status.
+<span class='line'>390</span>     Override to implement your own custom handling
+<span class='line'>391</span> 
+<span class='line'>392</span>     @param {SC.Pane} pane the pane that will receive focus next
+<span class='line'>393</span>     @returns {void}
+<span class='line'>394</span>   */</span><span class="WHIT">
+<span class='line'>395</span> </span><span class="WHIT">  </span><span class="NAME">blurTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>396</span> 
+<span class='line'>397</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>398</span>     Invoked when the view is about to lose its mainPane status.  The default
+<span class='line'>399</span>     implementation will also remove the pane from the document since you can't
+<span class='line'>400</span>     have more than one mainPane in the document at a time.
+<span class='line'>401</span> 
+<span class='line'>402</span>     @param {SC.Pane} pane
+<span class='line'>403</span>     @returns {void}
+<span class='line'>404</span>   */</span><span class="WHIT">
+<span class='line'>405</span> </span><span class="WHIT">  </span><span class="NAME">blurMainTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>406</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>407</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>408</span> 
+<span class='line'>409</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>410</span>     Invokes when the view is about to become the new mainPane.  The default
+<span class='line'>411</span>     implementation simply updates the isMainPane property.  In your subclass,
+<span class='line'>412</span>     you should make sure your pane has been added to the document before
+<span class='line'>413</span>     trying to make it the mainPane.  See SC.MainPane for more information.
+<span class='line'>414</span> 
+<span class='line'>415</span>     @param {SC.Pane} pane
+<span class='line'>416</span>     @returns {void}
+<span class='line'>417</span>   */</span><span class="WHIT">
+<span class='line'>418</span> </span><span class="WHIT">  </span><span class="NAME">focusMainFrom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">pane</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>419</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>420</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>421</span> 
+<span class='line'>422</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................</span><span class="WHIT">
+<span class='line'>423</span> </span><span class="WHIT">  </span><span class="COMM">// ADDING/REMOVE PANES TO SCREEN</span><span class="WHIT">
+<span class='line'>424</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>425</span> 
+<span class='line'>426</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>427</span>     Inserts the pane at the end of the document.  This will also add the pane
+<span class='line'>428</span>     to the rootResponder.
+<span class='line'>429</span> 
+<span class='line'>430</span>     @param {SC.RootResponder} rootResponder
+<span class='line'>431</span>     @returns {SC.Pane} receiver
+<span class='line'>432</span>   */</span><span class="WHIT">
+<span class='line'>433</span> </span><span class="WHIT">  </span><span class="NAME">append</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>434</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.appendTo</span><span class="PUNC">(</span><span class="NAME">document.body</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>435</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>436</span> 
+<span class='line'>437</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>438</span>     Removes the pane from the document.  This will remove the
+<span class='line'>439</span>     DOM node and deregister you from the document window.
+<span class='line'>440</span> 
+<span class='line'>441</span>     @returns {SC.Pane} receiver
+<span class='line'>442</span>   */</span><span class="WHIT">
+<span class='line'>443</span> </span><span class="WHIT">  </span><span class="NAME">remove</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>444</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// nothing to do</span><span class="WHIT">
+<span class='line'>445</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// nothing to do</span><span class="WHIT">
+<span class='line'>446</span> 
+<span class='line'>447</span> </span><span class="WHIT">    </span><span class="COMM">// remove layer...</span><span class="WHIT">
+<span class='line'>448</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>449</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">dom.parentNode</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">dom.parentNode.removeChild</span><span class="PUNC">(</span><span class="NAME">dom</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>450</span> </span><span class="WHIT">    </span><span class="NAME">dom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>451</span> 
+<span class='line'>452</span> </span><span class="WHIT">    </span><span class="COMM">// remove intercept</span><span class="WHIT">
+<span class='line'>453</span> </span><span class="WHIT">    </span><span class="NAME">this._removeIntercept</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>454</span> 
+<span class='line'>455</span> </span><span class="WHIT">    </span><span class="COMM">// resign keyPane status, if we had it</span><span class="WHIT">
+<span class='line'>456</span> </span><span class="WHIT">    </span><span class="NAME">this.resignKeyPane</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>457</span> 
+<span class='line'>458</span> </span><span class="WHIT">    </span><span class="COMM">// remove the pane</span><span class="WHIT">
+<span class='line'>459</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>460</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isMainPane'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">rootResponder.makeMainPane</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>461</span> </span><span class="WHIT">    </span><span class="NAME">rootResponder.panes.remove</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>462</span> </span><span class="WHIT">    </span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>463</span> 
+<span class='line'>464</span> </span><span class="WHIT">    </span><span class="COMM">// clean up some of my own properties</span><span class="WHIT">
+<span class='line'>465</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>466</span> </span><span class="WHIT">    </span><span class="NAME">this.parentViewDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>468</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>469</span> 
+<span class='line'>470</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>471</span>     Inserts the current pane into the page. The actual DOM insertion is done
+<span class='line'>472</span>     by a function passed into `insert`, which receives the layer as a
+<span class='line'>473</span>     parameter. This function is responsible for making sure a layer exists,
+<span class='line'>474</span>     is not already attached, and for calling `paneDidAttach` when done.
+<span class='line'>475</span> 
+<span class='line'>476</span>         pane = SC.Pane.create();
+<span class='line'>477</span>         pane.insert(function(layer) {
+<span class='line'>478</span>           jQuery(layer).insertBefore("#otherElement");
+<span class='line'>479</span>         });
+<span class='line'>480</span> 
+<span class='line'>481</span>     @param {Function} fn function which performs the actual DOM manipulation
+<span class='line'>482</span>       necessary in order to insert the pane's layer into the DOM.
+<span class='line'>483</span>     @returns {SC.Pane} receiver
+<span class='line'>484</span>    */</span><span class="WHIT">
+<span class='line'>485</span> </span><span class="WHIT">  </span><span class="NAME">insert</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>486</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>487</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>488</span> 
+<span class='line'>489</span> </span><span class="WHIT">    </span><span class="NAME">fn</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>490</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">this.paneDidAttach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>491</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>492</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>493</span> 
+<span class='line'>494</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>495</span>     Inserts the pane into the DOM.
+<span class='line'>496</span> 
+<span class='line'>497</span>     @param {DOMElement|jQuery|String} elem the element to append the pane's layer to.
+<span class='line'>498</span>       This is passed to `jQuery()`, so any value supported by `jQuery()` will work.
+<span class='line'>499</span>     @returns {SC.Pane} receiver
+<span class='line'>500</span>   */</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="WHIT">  </span><span class="NAME">appendTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>502</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insert</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>503</span> </span><span class="WHIT">      </span><span class="NAME">jQuery</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">append</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>504</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>505</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>506</span> 
+<span class='line'>507</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>508</span>     Called when the pane is attached to a DOM element in a window, this will
+<span class='line'>509</span>     change the view status to be visible in the window and also register
+<span class='line'>510</span>     with the rootResponder.
+<span class='line'>511</span>   */</span><span class="WHIT">
+<span class='line'>512</span> </span><span class="WHIT">  </span><span class="NAME">paneDidAttach</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>513</span> </span><span class="WHIT">    </span><span class="COMM">// hook into root responder</span><span class="WHIT">
+<span class='line'>514</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">responder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RootResponder.responder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>515</span> </span><span class="WHIT">    </span><span class="NAME">responder.panes.add</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>516</span> 
+<span class='line'>517</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>518</span> 
-<span class='line'>519</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>519</span> </span><span class="WHIT">    </span><span class="NAME">this.recomputeDependentProperties</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>520</span> 
-<span class='line'>521</span> </span><span class="WHIT">    </span><span class="NAME">this.recomputeDependentProperties</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>522</span> 
-<span class='line'>523</span> </span><span class="WHIT">    </span><span class="COMM">// notify that the layers have been appended to the document</span><span class="WHIT">
-<span class='line'>524</span> </span><span class="WHIT">    </span><span class="NAME">this._notifyDidAppendToDocument</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>525</span> 
-<span class='line'>526</span> </span><span class="WHIT">    </span><span class="COMM">// handle intercept if needed</span><span class="WHIT">
-<span class='line'>527</span> </span><span class="WHIT">    </span><span class="NAME">this._addIntercept</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>528</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>529</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>530</span> 
-<span class='line'>531</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>532</span>     This method is called after the pane is attached and before child views
-<span class='line'>533</span>     are notified that they were appended to the document. Override this
-<span class='line'>534</span>     method to recompute properties that depend on the pane's existence
-<span class='line'>535</span>     in the DOM but must be run prior to child view notification.
-<span class='line'>536</span>    */</span><span class="WHIT">
-<span class='line'>537</span> </span><span class="WHIT">  </span><span class="NAME">recomputeDependentProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>538</span> 
-<span class='line'>539</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>540</span>     YES when the pane is currently attached to a document DOM.  Read only.
-<span class='line'>541</span> 
-<span class='line'>542</span>     @property {Boolean}
-<span class='line'>543</span>     @readOnly
-<span class='line'>544</span>   */</span><span class="WHIT">
-<span class='line'>545</span> </span><span class="WHIT">  </span><span class="NAME">isPaneAttached</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>546</span> 
-<span class='line'>547</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>548</span>     If YES, a touch intercept pane will be added above this pane when on
-<span class='line'>549</span>     touch platforms.
-<span class='line'>550</span>   */</span><span class="WHIT">
-<span class='line'>551</span> </span><span class="WHIT">  </span><span class="NAME">wantsTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>552</span> 
-<span class='line'>553</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>554</span>     Returns YES if wantsTouchIntercept and this is a touch platform.
-<span class='line'>555</span>   */</span><span class="WHIT">
-<span class='line'>556</span> </span><span class="WHIT">  </span><span class="NAME">hasTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>557</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>558</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>559</span> 
-<span class='line'>560</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>561</span>     The Z-Index of the pane. Currently, you have to match this in CSS.
-<span class='line'>562</span>     TODO: ALLOW THIS TO AUTOMATICALLY SET THE Z-INDEX OF THE PANE (as an option).
-<span class='line'>563</span>   */</span><span class="WHIT">
-<span class='line'>564</span> </span><span class="WHIT">  </span><span class="NAME">zIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>565</span> 
-<span class='line'>566</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>567</span>     The amount over the pane's z-index that the touch intercept should be.
-<span class='line'>568</span>   */</span><span class="WHIT">
-<span class='line'>569</span> </span><span class="WHIT">  </span><span class="NAME">touchZ</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>570</span> 
-<span class='line'>571</span> </span><span class="WHIT">  </span><span class="NAME">_addIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>572</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hasTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>573</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">div</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>574</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">divStyle</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div.style</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>575</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"absolute"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>576</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>577</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>578</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.right</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>579</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.bottom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>580</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.webkitTransform</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translateZ(0px)"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>581</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.zIndex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"zIndex"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"touchZ"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>582</span> </span><span class="WHIT">      </span><span class="NAME">div.className</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>583</span> </span><span class="WHIT">      </span><span class="NAME">div.id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept-"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>584</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>585</span> </span><span class="WHIT">      </span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>586</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>587</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>588</span> 
-<span class='line'>589</span> </span><span class="WHIT">  </span><span class="NAME">_removeIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>590</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>591</span> </span><span class="WHIT">      </span><span class="NAME">document.body.removeChild</span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>592</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>593</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>594</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>595</span> 
-<span class='line'>596</span> </span><span class="WHIT">  </span><span class="NAME">hideTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>597</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"none"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>598</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>599</span> 
-<span class='line'>600</span> </span><span class="WHIT">  </span><span class="NAME">showTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>601</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"block"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>602</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>603</span> 
-<span class='line'>604</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>605</span>     Updates the isVisibleInWindow state on the pane and its childViews if
-<span class='line'>606</span>     necessary.  This works much like SC.View's default implementation, but it
-<span class='line'>607</span>     does not need a parentView to function.
-<span class='line'>608</span> 
-<span class='line'>609</span>     @returns {SC.Pane} receiver
-<span class='line'>610</span>   */</span><span class="WHIT">
-<span class='line'>611</span> </span><span class="WHIT">  </span><span class="NAME">recomputeIsVisibleInWindow</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>612</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.suppressMain</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>613</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">previous</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>614</span> </span><span class="WHIT">        </span><span class="NAME">current</span><span class="WHIT">  </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisible'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>615</span> 
-<span class='line'>616</span> </span><span class="WHIT">    </span><span class="COMM">// If our visibility has changed, then set the new value and notify our</span><span class="WHIT">
-<span class='line'>617</span> </span><span class="WHIT">    </span><span class="COMM">// child views to update their value.</span><span class="WHIT">
-<span class='line'>618</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">previous</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">current</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>619</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">current</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>620</span> 
-<span class='line'>621</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViews'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>622</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>623</span> </span><span class="WHIT">        </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>624</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view.recomputeIsVisibleInWindow</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>625</span> </span><span class="WHIT">          </span><span class="NAME">view.recomputeIsVisibleInWindow</span><span class="PUNC">(</span><span class="NAME">current</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>626</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>627</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>628</span> 
-<span class='line'>629</span> 
-<span class='line'>630</span> </span><span class="WHIT">      </span><span class="COMM">// For historical reasons, we'll also layout the child views if</span><span class="WHIT">
-<span class='line'>631</span> </span><span class="WHIT">      </span><span class="COMM">// necessary.</span><span class="WHIT">
-<span class='line'>632</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">current</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>633</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViewsNeedLayout'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>634</span> </span><span class="WHIT">          </span><span class="NAME">this.invokeOnce</span><span class="PUNC">(</span><span class="NAME">this.layoutChildViewsIfNeeded</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>635</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>636</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>637</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>638</span> </span><span class="WHIT">        </span><span class="COMM">// Also, if we were previously visible and were the key pane, resign</span><span class="WHIT">
-<span class='line'>639</span> </span><span class="WHIT">        </span><span class="COMM">// it.  This more appropriately belongs in a 'isVisibleInWindow'</span><span class="WHIT">
-<span class='line'>640</span> </span><span class="WHIT">        </span><span class="COMM">// observer or some such helper method because this work is not</span><span class="WHIT">
-<span class='line'>641</span> </span><span class="WHIT">        </span><span class="COMM">// strictly related to computing the visibility, but view performance</span><span class="WHIT">
-<span class='line'>642</span> </span><span class="WHIT">        </span><span class="COMM">// is critical, so avoiding the extra observer is worthwhile.</span><span class="WHIT">
-<span class='line'>643</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">this.resignKeyPane</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>644</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>645</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>646</span> 
-<span class='line'>647</span> </span><span class="WHIT">    </span><span class="COMM">// If we're in this function, then that means one of our ancestor views</span><span class="WHIT">
-<span class='line'>648</span> </span><span class="WHIT">    </span><span class="COMM">// changed, or changed its 'isVisibleInWindow' value.  That means that if</span><span class="WHIT">
-<span class='line'>649</span> </span><span class="WHIT">    </span><span class="COMM">// we are out of sync with the layer, then we need to update our state</span><span class="WHIT">
-<span class='line'>650</span> </span><span class="WHIT">    </span><span class="COMM">// now.</span><span class="WHIT">
-<span class='line'>651</span> </span><span class="WHIT">    </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>652</span> </span><span class="WHIT">    </span><span class="COMM">// For example, say we're isVisible=NO, but we have not yet added the</span><span class="WHIT">
-<span class='line'>653</span> </span><span class="WHIT">    </span><span class="COMM">// 'sc-hidden' class to the layer because of the "don't update the layer if</span><span class="WHIT">
-<span class='line'>654</span> </span><span class="WHIT">    </span><span class="COMM">// we're not visible in the window" check.  If any of our parent views</span><span class="WHIT">
-<span class='line'>655</span> </span><span class="WHIT">    </span><span class="COMM">// became visible, our layer would incorrectly be shown!</span><span class="WHIT">
-<span class='line'>656</span> </span><span class="WHIT">    </span><span class="NAME">this.updateLayerIfNeeded</span><span class="PUNC">(</span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>657</span> 
-<span class='line'>658</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>659</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>660</span> 
-<span class='line'>661</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>662</span> </span><span class="WHIT">  </span><span class="NAME">updateLayerLocation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>663</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.suppressMain</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>664</span> </span><span class="WHIT">    </span><span class="COMM">// note: the normal code here to update node location is removed</span><span class="WHIT">
-<span class='line'>665</span> </span><span class="WHIT">    </span><span class="COMM">// because we don't need it for panes.</span><span class="WHIT">
-<span class='line'>666</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>667</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>668</span> 
-<span class='line'>669</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>670</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>671</span> </span><span class="WHIT">    </span><span class="COMM">// Backwards compatibility</span><span class="WHIT">
-<span class='line'>672</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>673</span> </span><span class="WHIT">      </span><span class="NAME">SC.Logger.warn</span><span class="PUNC">(</span><span class="STRN">"Do not set hasTouchIntercept directly. Use wantsTouchIntercept instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>674</span> </span><span class="WHIT">      </span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>675</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>676</span> 
-<span class='line'>677</span> </span><span class="WHIT">    </span><span class="COMM">// if a layer was set manually then we will just attach to existing</span><span class="WHIT">
-<span class='line'>678</span> </span><span class="WHIT">    </span><span class="COMM">// HTML.</span><span class="WHIT">
-<span class='line'>679</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">hasLayer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>680</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>681</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">hasLayer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.paneDidAttach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>682</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>683</span> 
-<span class='line'>684</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>685</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-pane'</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>521</span> </span><span class="WHIT">    </span><span class="COMM">// notify that the layers have been appended to the document</span><span class="WHIT">
+<span class='line'>522</span> </span><span class="WHIT">    </span><span class="NAME">this._notifyDidAppendToDocument</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>523</span> 
+<span class='line'>524</span> </span><span class="WHIT">    </span><span class="COMM">// handle intercept if needed</span><span class="WHIT">
+<span class='line'>525</span> </span><span class="WHIT">    </span><span class="NAME">this._addIntercept</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>526</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>527</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>528</span> 
+<span class='line'>529</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>530</span>     This method is called after the pane is attached and before child views
+<span class='line'>531</span>     are notified that they were appended to the document. Override this
+<span class='line'>532</span>     method to recompute properties that depend on the pane's existence
+<span class='line'>533</span>     in the DOM but must be run prior to child view notification.
+<span class='line'>534</span>    */</span><span class="WHIT">
+<span class='line'>535</span> </span><span class="WHIT">  </span><span class="NAME">recomputeDependentProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>536</span> 
+<span class='line'>537</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>538</span>     YES when the pane is currently attached to a document DOM.  Read only.
+<span class='line'>539</span> 
+<span class='line'>540</span>     @property {Boolean}
+<span class='line'>541</span>     @readOnly
+<span class='line'>542</span>   */</span><span class="WHIT">
+<span class='line'>543</span> </span><span class="WHIT">  </span><span class="NAME">isPaneAttached</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>544</span> 
+<span class='line'>545</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>546</span>     If YES, a touch intercept pane will be added above this pane when on
+<span class='line'>547</span>     touch platforms.
+<span class='line'>548</span>   */</span><span class="WHIT">
+<span class='line'>549</span> </span><span class="WHIT">  </span><span class="NAME">wantsTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>550</span> 
+<span class='line'>551</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>552</span>     Returns YES if wantsTouchIntercept and this is a touch platform.
+<span class='line'>553</span>   */</span><span class="WHIT">
+<span class='line'>554</span> </span><span class="WHIT">  </span><span class="NAME">hasTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>555</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>556</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>557</span> 
+<span class='line'>558</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>559</span>     The Z-Index of the pane. Currently, you have to match this in CSS.
+<span class='line'>560</span>     TODO: ALLOW THIS TO AUTOMATICALLY SET THE Z-INDEX OF THE PANE (as an option).
+<span class='line'>561</span>   */</span><span class="WHIT">
+<span class='line'>562</span> </span><span class="WHIT">  </span><span class="NAME">zIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>563</span> 
+<span class='line'>564</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>565</span>     The amount over the pane's z-index that the touch intercept should be.
+<span class='line'>566</span>   */</span><span class="WHIT">
+<span class='line'>567</span> </span><span class="WHIT">  </span><span class="NAME">touchZ</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>568</span> 
+<span class='line'>569</span> </span><span class="WHIT">  </span><span class="NAME">_addIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>570</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hasTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>571</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">div</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>572</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">divStyle</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div.style</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>573</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"absolute"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>574</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>575</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>576</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.right</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>577</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.bottom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>578</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.webkitTransform</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translateZ(0px)"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>579</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.zIndex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"zIndex"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"touchZ"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>580</span> </span><span class="WHIT">      </span><span class="NAME">div.className</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>581</span> </span><span class="WHIT">      </span><span class="NAME">div.id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept-"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>582</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>583</span> </span><span class="WHIT">      </span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>584</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>585</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>586</span> 
+<span class='line'>587</span> </span><span class="WHIT">  </span><span class="NAME">_removeIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>588</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>589</span> </span><span class="WHIT">      </span><span class="NAME">document.body.removeChild</span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>590</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>591</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>592</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>593</span> 
+<span class='line'>594</span> </span><span class="WHIT">  </span><span class="NAME">hideTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>595</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"none"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>596</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>597</span> 
+<span class='line'>598</span> </span><span class="WHIT">  </span><span class="NAME">showTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>599</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"block"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>600</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>601</span> 
+<span class='line'>602</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>603</span>     Updates the isVisibleInWindow state on the pane and its childViews if
+<span class='line'>604</span>     necessary.  This works much like SC.View's default implementation, but it
+<span class='line'>605</span>     does not need a parentView to function.
+<span class='line'>606</span> 
+<span class='line'>607</span>     @returns {SC.Pane} receiver
+<span class='line'>608</span>   */</span><span class="WHIT">
+<span class='line'>609</span> </span><span class="WHIT">  </span><span class="NAME">recomputeIsVisibleInWindow</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>610</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.suppressMain</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>611</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">previous</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>612</span> </span><span class="WHIT">        </span><span class="NAME">current</span><span class="WHIT">  </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isVisible'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isPaneAttached'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>613</span> 
+<span class='line'>614</span> </span><span class="WHIT">    </span><span class="COMM">// If our visibility has changed, then set the new value and notify our</span><span class="WHIT">
+<span class='line'>615</span> </span><span class="WHIT">    </span><span class="COMM">// child views to update their value.</span><span class="WHIT">
+<span class='line'>616</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">previous</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">current</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>617</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isVisibleInWindow'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">current</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>618</span> 
+<span class='line'>619</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViews'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>620</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>621</span> </span><span class="WHIT">        </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>622</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view.recomputeIsVisibleInWindow</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>623</span> </span><span class="WHIT">          </span><span class="NAME">view.recomputeIsVisibleInWindow</span><span class="PUNC">(</span><span class="NAME">current</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>624</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>625</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>626</span> 
+<span class='line'>627</span> 
+<span class='line'>628</span> </span><span class="WHIT">      </span><span class="COMM">// For historical reasons, we'll also layout the child views if</span><span class="WHIT">
+<span class='line'>629</span> </span><span class="WHIT">      </span><span class="COMM">// necessary.</span><span class="WHIT">
+<span class='line'>630</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">current</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>631</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViewsNeedLayout'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>632</span> </span><span class="WHIT">          </span><span class="NAME">this.invokeOnce</span><span class="PUNC">(</span><span class="NAME">this.layoutChildViewsIfNeeded</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>633</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>634</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>635</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>636</span> </span><span class="WHIT">        </span><span class="COMM">// Also, if we were previously visible and were the key pane, resign</span><span class="WHIT">
+<span class='line'>637</span> </span><span class="WHIT">        </span><span class="COMM">// it.  This more appropriately belongs in a 'isVisibleInWindow'</span><span class="WHIT">
+<span class='line'>638</span> </span><span class="WHIT">        </span><span class="COMM">// observer or some such helper method because this work is not</span><span class="WHIT">
+<span class='line'>639</span> </span><span class="WHIT">        </span><span class="COMM">// strictly related to computing the visibility, but view performance</span><span class="WHIT">
+<span class='line'>640</span> </span><span class="WHIT">        </span><span class="COMM">// is critical, so avoiding the extra observer is worthwhile.</span><span class="WHIT">
+<span class='line'>641</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isKeyPane'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">this.resignKeyPane</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>642</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>643</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>644</span> 
+<span class='line'>645</span> </span><span class="WHIT">    </span><span class="COMM">// If we're in this function, then that means one of our ancestor views</span><span class="WHIT">
+<span class='line'>646</span> </span><span class="WHIT">    </span><span class="COMM">// changed, or changed its 'isVisibleInWindow' value.  That means that if</span><span class="WHIT">
+<span class='line'>647</span> </span><span class="WHIT">    </span><span class="COMM">// we are out of sync with the layer, then we need to update our state</span><span class="WHIT">
+<span class='line'>648</span> </span><span class="WHIT">    </span><span class="COMM">// now.</span><span class="WHIT">
+<span class='line'>649</span> </span><span class="WHIT">    </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>650</span> </span><span class="WHIT">    </span><span class="COMM">// For example, say we're isVisible=NO, but we have not yet added the</span><span class="WHIT">
+<span class='line'>651</span> </span><span class="WHIT">    </span><span class="COMM">// 'sc-hidden' class to the layer because of the "don't update the layer if</span><span class="WHIT">
+<span class='line'>652</span> </span><span class="WHIT">    </span><span class="COMM">// we're not visible in the window" check.  If any of our parent views</span><span class="WHIT">
+<span class='line'>653</span> </span><span class="WHIT">    </span><span class="COMM">// became visible, our layer would incorrectly be shown!</span><span class="WHIT">
+<span class='line'>654</span> </span><span class="WHIT">    </span><span class="NAME">this.updateLayerIfNeeded</span><span class="PUNC">(</span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>655</span> 
+<span class='line'>656</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>657</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>658</span> 
+<span class='line'>659</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>660</span> </span><span class="WHIT">  </span><span class="NAME">updateLayerLocation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>661</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.suppressMain</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>662</span> </span><span class="WHIT">    </span><span class="COMM">// note: the normal code here to update node location is removed</span><span class="WHIT">
+<span class='line'>663</span> </span><span class="WHIT">    </span><span class="COMM">// because we don't need it for panes.</span><span class="WHIT">
+<span class='line'>664</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>665</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>666</span> 
+<span class='line'>667</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>668</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>669</span> </span><span class="WHIT">    </span><span class="COMM">// Backwards compatibility</span><span class="WHIT">
+<span class='line'>670</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>671</span> </span><span class="WHIT">      </span><span class="NAME">SC.Logger.warn</span><span class="PUNC">(</span><span class="STRN">"Do not set hasTouchIntercept directly. Use wantsTouchIntercept instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>672</span> </span><span class="WHIT">      </span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>673</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>674</span> 
+<span class='line'>675</span> </span><span class="WHIT">    </span><span class="COMM">// if a layer was set manually then we will just attach to existing</span><span class="WHIT">
+<span class='line'>676</span> </span><span class="WHIT">    </span><span class="COMM">// HTML.</span><span class="WHIT">
+<span class='line'>677</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">hasLayer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>678</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>679</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">hasLayer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.paneDidAttach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>680</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>681</span> 
+<span class='line'>682</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>683</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-pane'</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>684</span> 
+<span class='line'>685</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>686</span> 
-<span class='line'>687</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>688</span> 
-<span class='line'>689</span> </span></pre></body></html>
+<span class='line'>687</span> </span></pre></body></html>

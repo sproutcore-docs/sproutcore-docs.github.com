@@ -250,22 +250,22 @@
 <span class='line'>243</span>     theme, it will be found in any parent themes.
 <span class='line'>244</span>   */</span><span class="WHIT">
 <span class='line'>245</span> </span><span class="WHIT">  </span><span class="NAME">addTheme</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">theme</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>246</span> <span class='line'>247</span> </span><span class="WHIT">    </span><span class="NAME">this.themes</span><span class="PUNC">[</span><span class="NAME">theme.name</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">theme</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>248</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>249</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>250</span> 
-<span class='line'>251</span> </span><span class="COMM">// SproutCore _always_ has its base theme. This is not quite</span><span class="WHIT">
-<span class='line'>252</span> </span><span class="COMM">// optimal, but the reasoning is because of test running: the</span><span class="WHIT">
-<span class='line'>253</span> </span><span class="COMM">// test runner, when running foundation unit tests, cannot load</span><span class="WHIT">
-<span class='line'>254</span> </span><span class="COMM">// the theme. As such, foundation must include default versions of</span><span class="WHIT">
-<span class='line'>255</span> </span><span class="COMM">// all of its render delegates, and it does so in BaseTheme. All SproutCore</span><span class="WHIT">
-<span class='line'>256</span> </span><span class="COMM">// controls have render delegates in BaseTheme.</span><span class="WHIT">
-<span class='line'>257</span> </span><span class="NAME">SC.BaseTheme</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Theme.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>258</span> </span><span class="WHIT">  </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="WHIT"> </span><span class="COMM">// it is a base class, and doesn't need a class name or such</span><span class="WHIT">
-<span class='line'>259</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>260</span> 
-<span class='line'>261</span> </span><span class="COMM">// however, SproutCore does need a default theme, even if no</span><span class="WHIT">
-<span class='line'>262</span> </span><span class="COMM">// actual theme is loaded.</span><span class="WHIT">
-<span class='line'>263</span> </span><span class="NAME">SC.Theme.themes</span><span class="PUNC">[</span><span class="STRN">'sc-base'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.BaseTheme</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>264</span> </span><span class="NAME">SC.defaultTheme</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-base'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>265</span> </span></pre></body></html>
+<span class='line'>246</span> </span><span class="WHIT">    </span><span class="NAME">this.themes</span><span class="PUNC">[</span><span class="NAME">theme.name</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">theme</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>247</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>249</span> 
+<span class='line'>250</span> </span><span class="COMM">// SproutCore _always_ has its base theme. This is not quite</span><span class="WHIT">
+<span class='line'>251</span> </span><span class="COMM">// optimal, but the reasoning is because of test running: the</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="COMM">// test runner, when running foundation unit tests, cannot load</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="COMM">// the theme. As such, foundation must include default versions of</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="COMM">// all of its render delegates, and it does so in BaseTheme. All SproutCore</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="COMM">// controls have render delegates in BaseTheme.</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="NAME">SC.BaseTheme</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Theme.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">  </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="WHIT"> </span><span class="COMM">// it is a base class, and doesn't need a class name or such</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>259</span> 
+<span class='line'>260</span> </span><span class="COMM">// however, SproutCore does need a default theme, even if no</span><span class="WHIT">
+<span class='line'>261</span> </span><span class="COMM">// actual theme is loaded.</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="NAME">SC.Theme.themes</span><span class="PUNC">[</span><span class="STRN">'sc-base'</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.BaseTheme</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="NAME">SC.defaultTheme</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-base'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>264</span> </span></pre></body></html>

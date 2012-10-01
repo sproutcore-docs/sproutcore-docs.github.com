@@ -59,103 +59,103 @@
 <span class='line'> 52</span>     implement should generally up this property as appropriate when you 
 <span class='line'> 53</span>     begin and end editing.
 <span class='line'> 54</span>     
-<span class='line'> 55</span> <span class='line'> 56</span>     @type Boolean
-<span class='line'> 57</span>     @default NO
-<span class='line'> 58</span>   */</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">isEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">  
-<span class='line'> 61</span>   </span><span class="COMM">/**
-<span class='line'> 62</span>     Begins editing on the view.
-<span class='line'> 63</span>     
-<span class='line'> 64</span>     This method is called by other views when they want you to begin editing.
-<span class='line'> 65</span>     You should write this method to become first responder, perform any 
-<span class='line'> 66</span>     additional setup needed to begin editing and then return YES.
-<span class='line'> 67</span>     
-<span class='line'> 68</span>     If for some reason you do not want to allow editing right now, you can
-<span class='line'> 69</span>     also return NO.  If your view is already editing, then you should not
-<span class='line'> 70</span>     restart editing again but just return YES.
-<span class='line'> 71</span> 
-<span class='line'> 72</span>     The default implementation checks to see if editing is allowed, then
-<span class='line'> 73</span>     becomes first responder and updates the isEditing property if appropriate.
-<span class='line'> 74</span>     Generally you will want to replace this method with your own 
-<span class='line'> 75</span>     implementation and not call the default.
-<span class='line'> 76</span>     
-<span class='line'> 77</span>     @returns {Boolean} YES if editing began or is in progress, NO otherwise
-<span class='line'> 78</span>   */</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">beginEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditable'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 82</span> </span><span class="WHIT">    
-<span class='line'> 83</span>     </span><span class="COMM">// begin editing</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">    </span><span class="NAME">this.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 88</span> </span><span class="WHIT">    
-<span class='line'> 89</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 90</span> <span class='line'> 91</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 92</span> </span><span class="WHIT">  
-<span class='line'> 93</span>   </span><span class="COMM">/**
-<span class='line'> 94</span>     Ends editing on the view, discarding any changes that were made to the
-<span class='line'> 95</span>     view value in the meantime.
-<span class='line'> 96</span>     
-<span class='line'> 97</span>     This method is called by other views when they want to cancel editing
-<span class='line'> 98</span>     that began earlier.  When this method is called you should resign first
-<span class='line'> 99</span>     responder, restore the original value of the view and return YES.
-<span class='line'>100</span>     
-<span class='line'>101</span>     If your view cannot revert back to its original state before editing began
-<span class='line'>102</span>     then you can implement this method to simply return NO.  A properly
-<span class='line'>103</span>     implemented client may try to call commitEditing() instead to force your
-<span class='line'>104</span>     view to end editing anyway.
-<span class='line'>105</span>     
-<span class='line'>106</span>     If this method is called on a view that is not currently editing, you
-<span class='line'>107</span>     should always just return YES.
-<span class='line'>108</span>     
-<span class='line'>109</span>     The default implementation does not support discarding changes and always
-<span class='line'>110</span>     returns NO.
-<span class='line'>111</span>     
-<span class='line'>112</span>     @returns {Boolean} YES if changes were discarded and editing ended.
-<span class='line'>113</span>   */</span><span class="WHIT">
-<span class='line'>114</span> </span><span class="WHIT">  </span><span class="NAME">discardEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>115</span> </span><span class="WHIT">    </span><span class="COMM">// if we are not editing, return YES, otherwise NO.</span><span class="WHIT">
-<span class='line'>116</span> </span><span class="WHIT">    
-<span class='line'>117</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>118</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>119</span> </span><span class="WHIT">  
-<span class='line'>120</span>   </span><span class="COMM">/**
-<span class='line'>121</span>     Ends editing on the view, committing any changes that were made to the 
-<span class='line'>122</span>     view value in the meantime.
-<span class='line'>123</span>     
-<span class='line'>124</span>     This method is called by other views when they want to end editing, 
-<span class='line'>125</span>     saving any changes that were made to the view in the meantime.  When this
-<span class='line'>126</span>     method is called you should resign first responder, save the latest
-<span class='line'>127</span>     value of the view and return YES.
-<span class='line'>128</span>     
-<span class='line'>129</span>     If your view cannot save the current state of the view for some reason 
-<span class='line'>130</span>     (for example if validation fails), then you should return NO.  Properly
-<span class='line'>131</span>     implemented clients may then try to call discardEditing() to force your
-<span class='line'>132</span>     view to resign first responder anyway.
-<span class='line'>133</span>     
-<span class='line'>134</span>     Some views apply changes to their value immediately during an edit instead
-<span class='line'>135</span>     of waiting for the view to end editing.  If this is the case, you should
-<span class='line'>136</span>     still implement commitEditing but you simply may not save any value 
-<span class='line'>137</span>     changes.
-<span class='line'>138</span>   
-<span class='line'>139</span>     If this method is called on a view that is not currently editing, you
-<span class='line'>140</span>     should always just return YES.
-<span class='line'>141</span>     
-<span class='line'>142</span>     The default implementation sets isEditing to NO, resigns first responder
-<span class='line'>143</span>     and returns YES.
-<span class='line'>144</span>     
-<span class='line'>145</span>     @returns {Boolean} YES if changes were discarded and editing ended.
-<span class='line'>146</span>   */</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">  </span><span class="NAME">commitEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>148</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>149</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">    </span><span class="NAME">this.resignFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>151</span> </span><span class="WHIT">    
-<span class='line'>152</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>153</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>154</span> 
-<span class='line'>155</span> </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>156</span> </span></pre></body></html>
+<span class='line'> 55</span>     @type Boolean
+<span class='line'> 56</span>     @default NO
+<span class='line'> 57</span>   */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">isEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">  
+<span class='line'> 60</span>   </span><span class="COMM">/**
+<span class='line'> 61</span>     Begins editing on the view.
+<span class='line'> 62</span>     
+<span class='line'> 63</span>     This method is called by other views when they want you to begin editing.
+<span class='line'> 64</span>     You should write this method to become first responder, perform any 
+<span class='line'> 65</span>     additional setup needed to begin editing and then return YES.
+<span class='line'> 66</span>     
+<span class='line'> 67</span>     If for some reason you do not want to allow editing right now, you can
+<span class='line'> 68</span>     also return NO.  If your view is already editing, then you should not
+<span class='line'> 69</span>     restart editing again but just return YES.
+<span class='line'> 70</span> 
+<span class='line'> 71</span>     The default implementation checks to see if editing is allowed, then
+<span class='line'> 72</span>     becomes first responder and updates the isEditing property if appropriate.
+<span class='line'> 73</span>     Generally you will want to replace this method with your own 
+<span class='line'> 74</span>     implementation and not call the default.
+<span class='line'> 75</span>     
+<span class='line'> 76</span>     @returns {Boolean} YES if editing began or is in progress, NO otherwise
+<span class='line'> 77</span>   */</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="NAME">beginEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditable'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">    
+<span class='line'> 82</span>     </span><span class="COMM">// begin editing</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="NAME">this.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">    
+<span class='line'> 88</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">  
+<span class='line'> 91</span>   </span><span class="COMM">/**
+<span class='line'> 92</span>     Ends editing on the view, discarding any changes that were made to the
+<span class='line'> 93</span>     view value in the meantime.
+<span class='line'> 94</span>     
+<span class='line'> 95</span>     This method is called by other views when they want to cancel editing
+<span class='line'> 96</span>     that began earlier.  When this method is called you should resign first
+<span class='line'> 97</span>     responder, restore the original value of the view and return YES.
+<span class='line'> 98</span>     
+<span class='line'> 99</span>     If your view cannot revert back to its original state before editing began
+<span class='line'>100</span>     then you can implement this method to simply return NO.  A properly
+<span class='line'>101</span>     implemented client may try to call commitEditing() instead to force your
+<span class='line'>102</span>     view to end editing anyway.
+<span class='line'>103</span>     
+<span class='line'>104</span>     If this method is called on a view that is not currently editing, you
+<span class='line'>105</span>     should always just return YES.
+<span class='line'>106</span>     
+<span class='line'>107</span>     The default implementation does not support discarding changes and always
+<span class='line'>108</span>     returns NO.
+<span class='line'>109</span>     
+<span class='line'>110</span>     @returns {Boolean} YES if changes were discarded and editing ended.
+<span class='line'>111</span>   */</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">  </span><span class="NAME">discardEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="COMM">// if we are not editing, return YES, otherwise NO.</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">    
+<span class='line'>115</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">  
+<span class='line'>118</span>   </span><span class="COMM">/**
+<span class='line'>119</span>     Ends editing on the view, committing any changes that were made to the 
+<span class='line'>120</span>     view value in the meantime.
+<span class='line'>121</span>     
+<span class='line'>122</span>     This method is called by other views when they want to end editing, 
+<span class='line'>123</span>     saving any changes that were made to the view in the meantime.  When this
+<span class='line'>124</span>     method is called you should resign first responder, save the latest
+<span class='line'>125</span>     value of the view and return YES.
+<span class='line'>126</span>     
+<span class='line'>127</span>     If your view cannot save the current state of the view for some reason 
+<span class='line'>128</span>     (for example if validation fails), then you should return NO.  Properly
+<span class='line'>129</span>     implemented clients may then try to call discardEditing() to force your
+<span class='line'>130</span>     view to resign first responder anyway.
+<span class='line'>131</span>     
+<span class='line'>132</span>     Some views apply changes to their value immediately during an edit instead
+<span class='line'>133</span>     of waiting for the view to end editing.  If this is the case, you should
+<span class='line'>134</span>     still implement commitEditing but you simply may not save any value 
+<span class='line'>135</span>     changes.
+<span class='line'>136</span>   
+<span class='line'>137</span>     If this method is called on a view that is not currently editing, you
+<span class='line'>138</span>     should always just return YES.
+<span class='line'>139</span>     
+<span class='line'>140</span>     The default implementation sets isEditing to NO, resigns first responder
+<span class='line'>141</span>     and returns YES.
+<span class='line'>142</span>     
+<span class='line'>143</span>     @returns {Boolean} YES if changes were discarded and editing ended.
+<span class='line'>144</span>   */</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="NAME">commitEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">    </span><span class="NAME">this.resignFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">    
+<span class='line'>150</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>152</span> 
+<span class='line'>153</span> </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>154</span> </span></pre></body></html>

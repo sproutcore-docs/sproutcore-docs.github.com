@@ -140,232 +140,232 @@
 <span class='line'>133</span>     
 <span class='line'>134</span>     NOTE: SC.Gesture is just like SC.View in that it has an acceptsMultitouch property.
 <span class='line'>135</span>     If NO (the default), the gesture will only receive touchStart for the first touch
-<span class='line'>136</span> <span class='line'>137</span>     assigned to it, and only receive touchEnd for the last touch that ends.
-<span class='line'>138</span>   */</span><span class="WHIT">
-<span class='line'>139</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>140</span> </span><span class="WHIT">    
-<span class='line'>141</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>142</span> </span><span class="WHIT">  
-<span class='line'>143</span>   </span><span class="COMM">/**
-<span class='line'>144</span>     Called when touches assigned to the gesture have moved.
-<span class='line'>145</span>     
-<span class='line'>146</span>     This is where you update the gesture's state, potentially calling change() to
-<span class='line'>147</span>     notify the view.
-<span class='line'>148</span> <span class='line'>149</span>   */</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>151</span> </span><span class="WHIT">    
-<span class='line'>152</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>153</span> </span><span class="WHIT">  
-<span class='line'>154</span>   </span><span class="COMM">/**
-<span class='line'>155</span>     Called when a touch assigned to the gesture ends.
-<span class='line'>156</span>     
-<span class='line'>157</span>     If there are no remaining touches on the gesture, you may want to call end() to
-<span class='line'>158</span>     notify the view that the gesture has ended (if you haven't ended the gesture
-<span class='line'>159</span>     already).
-<span class='line'>160</span>     
-<span class='line'>161</span>     NOTE: SC.Gesture is just like SC.View in that it has an acceptsMultitouch property.
-<span class='line'>162</span>     If NO (the default), the gesture will only receive touchStart for the first touch
-<span class='line'>163</span>     assigned to it, and only receive touchEnd for the last touch that ends.
-<span class='line'>164</span>   */</span><span class="WHIT">
-<span class='line'>165</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>166</span> </span><span class="WHIT">    
-<span class='line'>167</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>168</span> </span><span class="WHIT">  
-<span class='line'>169</span>   </span><span class="COMM">/**
-<span class='line'>170</span>     Starts the gesture (marking it as "active"), and notifies the view.
-<span class='line'>171</span>     
-<span class='line'>172</span>     You can pass any number of arguments to start. They will, along with
-<span class='line'>173</span>     the gesture instance itself, will be passed to the appropriate gesture 
-<span class='line'>174</span>     event on the SC.View.
-<span class='line'>175</span>   */</span><span class="WHIT">
-<span class='line'>176</span> </span><span class="WHIT">  </span><span class="NAME">start</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>178</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>179</span> </span><span class="WHIT">      
-<span class='line'>180</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>181</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>182</span> </span><span class="WHIT">      
-<span class='line'>183</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Start"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>185</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>186</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>187</span> </span><span class="WHIT">  
-<span class='line'>188</span>   </span><span class="COMM">/**
-<span class='line'>189</span>     Ends the gesture, if it is active (marking it as not active), and notifies
-<span class='line'>190</span>     the view.
-<span class='line'>191</span>     
-<span class='line'>192</span>     You may pass any number of arguments to end(). They, along with your gesture
-<span class='line'>193</span>     instance itself, will be passed to the appropriate gesture event on the SC.View.
-<span class='line'>194</span>   */</span><span class="WHIT">
-<span class='line'>195</span> </span><span class="WHIT">  </span><span class="NAME">end</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>196</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>197</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>198</span> 
-<span class='line'>199</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>200</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>201</span> </span><span class="WHIT">      
-<span class='line'>202</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"End"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>203</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>204</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>205</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>206</span> </span><span class="WHIT">  
-<span class='line'>207</span>   </span><span class="COMM">/**
-<span class='line'>208</span>     If the gesture is active, notifies the view that the gesture has
-<span class='line'>209</span>     changed.
-<span class='line'>210</span>     
-<span class='line'>211</span>     The gesture, along with any arguments to change(), will be passed to
-<span class='line'>212</span>     the appropriate method on the SC.View.
-<span class='line'>213</span>   */</span><span class="WHIT">
-<span class='line'>214</span> </span><span class="WHIT">  </span><span class="NAME">change</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>215</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>216</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>217</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>218</span> 
-<span class='line'>219</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Changed"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>220</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>221</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>222</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>223</span> 
-<span class='line'>224</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>225</span>     Cancels the gesture, if it is active, and notifies the view that the
-<span class='line'>226</span>     gesture has been cancelled.
-<span class='line'>227</span>     
-<span class='line'>228</span>     Gestures are cancelled when they have ended, but any action that would
-<span class='line'>229</span>     normally be appropriate due to their ending should not be performed.
-<span class='line'>230</span>     
-<span class='line'>231</span>     The gesture, along with any arguments to cancel(), will be passed to the
-<span class='line'>232</span>     appropriate method on the SC.View.
-<span class='line'>233</span>   */</span><span class="WHIT">
-<span class='line'>234</span> </span><span class="WHIT">  </span><span class="NAME">cancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>235</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>236</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>237</span> 
-<span class='line'>238</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>239</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>240</span> 
-<span class='line'>241</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Cancelled"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>242</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>243</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>244</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>245</span> </span><span class="WHIT">  
-<span class='line'>246</span>   </span><span class="COMM">/**
-<span class='line'>247</span>     Triggers the gesture, notifying the view that the gesture has happened.
-<span class='line'>248</span>     
-<span class='line'>249</span>     You should trigger a gesture where it would be natural to say it has "happened";
-<span class='line'>250</span>     for instance, if a touch moves a couple of pixels, you probably wouldn't say
-<span class='line'>251</span>     a swipe has occurred—though you might say it has "begun." And you wouldn't necessarily
-<span class='line'>252</span>     wait until the touch has ended either. Once the touch has moved a certain amount,
-<span class='line'>253</span>     there has definitely been a swipe. By calling trigger() at this point, you will
-<span class='line'>254</span>     tell the view that it has occurred.
-<span class='line'>255</span>     
-<span class='line'>256</span>     For SC.SwipeGesture, this allows a view to implement only swipe(), and then be 
-<span class='line'>257</span>     automatically notified whenever any swipe has occurred.
-<span class='line'>258</span>   */</span><span class="WHIT">
-<span class='line'>259</span> </span><span class="WHIT">  </span><span class="NAME">trigger</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>260</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>261</span> </span><span class="WHIT">    </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>262</span> </span><span class="WHIT">    
-<span class='line'>263</span>     </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>264</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>265</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>266</span> 
-<span class='line'>267</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>268</span>     Takes possession of a touch. This does not take effect immediately; it takes effect after
-<span class='line'>269</span>     the run loop finishes to prevent it from being called during another makeTouchResponder.
-<span class='line'>270</span>     
-<span class='line'>271</span>     This is called automatically when you return YES from touchIsInGesture.
-<span class='line'>272</span>   */</span><span class="WHIT">
-<span class='line'>273</span> </span><span class="WHIT">  </span><span class="NAME">take</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>274</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// because even changing responder won't prevent it from being used this cycle.</span><span class="WHIT">
-<span class='line'>275</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">touch.touchResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">touch.touchResponder</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>276</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>277</span> </span><span class="WHIT">  
-<span class='line'>278</span>   </span><span class="COMM">/**
-<span class='line'>279</span>     Releases a touch back to its previous owner, which is usually the view. This allows
-<span class='line'>280</span>     you to give back control of a touch that it turns out is not part of the gesture. 
-<span class='line'>281</span>     
-<span class='line'>282</span>     This takes effect immediately, because you would usually call this from
-<span class='line'>283</span>     touchesDragged or such.
-<span class='line'>284</span>   */</span><span class="WHIT">
-<span class='line'>285</span> </span><span class="WHIT">  </span><span class="NAME">release</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>286</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>287</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.nextTouchResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="NAME">touch.nextTouchResponder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>288</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>289</span> </span><span class="WHIT">  
-<span class='line'>290</span>   </span><span class="COMM">/**
-<span class='line'>291</span>     Discards a touch, making its responder null. This makes the touch go away and never
-<span class='line'>292</span>     come back—not to this gesture, nor to any other, nor to the view, nor to any other
-<span class='line'>293</span>     view.
-<span class='line'>294</span>   */</span><span class="WHIT">
-<span class='line'>295</span> </span><span class="WHIT">  </span><span class="NAME">discardTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>296</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// because even changing responder won't prevent it from being used this cycle.</span><span class="WHIT">
-<span class='line'>297</span> </span><span class="WHIT">    </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>298</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>299</span> </span><span class="WHIT">  
-<span class='line'>300</span>   </span><span class="COMM">/**
-<span class='line'>301</span>     Returns a status hash (which gestures may and should modify) for a given touch, for tracking
-<span class='line'>302</span>     whether it is a potential match, etc.
-<span class='line'>303</span>   */</span><span class="WHIT">
-<span class='line'>304</span> </span><span class="WHIT">  </span><span class="NAME">statusForTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>305</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="NAME">touch.view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>306</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>307</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>308</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">status</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>309</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>310</span> </span><span class="WHIT">  
-<span class='line'>311</span>   </span><span class="COMM">/**
-<span class='line'>312</span>     Called when an unassigned touch has started. By default, this calls touchIsInGesture, and,
-<span class='line'>313</span>     if it returns YES, takes possesion of the touch (causing touchStart to  be called).
-<span class='line'>314</span>   */</span><span class="WHIT">
-<span class='line'>315</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchDidStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>316</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.isTaken</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>317</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.touchIsInGesture</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>318</span> </span><span class="WHIT">      </span><span class="NAME">this.take</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>319</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>320</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>321</span> </span><span class="WHIT">  
-<span class='line'>322</span>   </span><span class="COMM">/**
-<span class='line'>323</span>     This is called when the unassigned touches (touches not in a gesture) change or move
-<span class='line'>324</span>     in some way. By default, this calls touchIsInGesture(touch, status) for each touch.
-<span class='line'>325</span>   */</span><span class="WHIT">
-<span class='line'>326</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchesDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>327</span> </span><span class="WHIT">    </span><span class="NAME">touches.forEach</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>328</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.isTaken</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>329</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.touchIsInGesture</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>330</span> </span><span class="WHIT">        </span><span class="NAME">this.take</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>331</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>332</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>333</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>334</span> </span><span class="WHIT">  
-<span class='line'>335</span>   </span><span class="COMM">/**
-<span class='line'>336</span>     This is called when the unassigned touches (touches not in the gesture) have ended.
-<span class='line'>337</span>     Default does nothing. Some gestures may want to implement this even if they don't implement
-<span class='line'>338</span>     unassignedTouchesDidChange.
-<span class='line'>339</span>   */</span><span class="WHIT">
-<span class='line'>340</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchDidEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>341</span> </span><span class="WHIT">    
-<span class='line'>342</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>343</span> </span><span class="WHIT">  
-<span class='line'>344</span>   </span><span class="COMM">/**
-<span class='line'>345</span>     Marks the touch as "interesting" to this gesture. A view could then check the 'isInteresting'
-<span class='line'>346</span>     property of the touch to see if any gestures are interested in it, potentially delaying any
-<span class='line'>347</span>     action of releasing the touch to another view.
-<span class='line'>348</span>   */</span><span class="WHIT">
-<span class='line'>349</span> </span><span class="WHIT">  </span><span class="NAME">interestedInTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>350</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>351</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">status.isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>352</span> </span><span class="WHIT">    </span><span class="NAME">status.isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>353</span> </span><span class="WHIT">    </span><span class="NAME">touch.isInteresting</span><span class="PUNC">++</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>354</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>355</span> </span><span class="WHIT">  
-<span class='line'>356</span>   </span><span class="COMM">/**
-<span class='line'>357</span>     Marks the touch as "uninteresting" to this gesture.
-<span class='line'>358</span>   */</span><span class="WHIT">
-<span class='line'>359</span> </span><span class="WHIT">  </span><span class="NAME">uninterestedInTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>360</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>361</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">status.isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>362</span> </span><span class="WHIT">    </span><span class="NAME">status.isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>363</span> </span><span class="WHIT">    </span><span class="NAME">touch.isInteresting</span><span class="PUNC">--</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>364</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>365</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>366</span> </span></pre></body></html>
+<span class='line'>136</span>     assigned to it, and only receive touchEnd for the last touch that ends.
+<span class='line'>137</span>   */</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">    
+<span class='line'>140</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">  
+<span class='line'>142</span>   </span><span class="COMM">/**
+<span class='line'>143</span>     Called when touches assigned to the gesture have moved.
+<span class='line'>144</span>     
+<span class='line'>145</span>     This is where you update the gesture's state, potentially calling change() to
+<span class='line'>146</span>     notify the view.
+<span class='line'>147</span>   */</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">    
+<span class='line'>150</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">  
+<span class='line'>152</span>   </span><span class="COMM">/**
+<span class='line'>153</span>     Called when a touch assigned to the gesture ends.
+<span class='line'>154</span>     
+<span class='line'>155</span>     If there are no remaining touches on the gesture, you may want to call end() to
+<span class='line'>156</span>     notify the view that the gesture has ended (if you haven't ended the gesture
+<span class='line'>157</span>     already).
+<span class='line'>158</span>     
+<span class='line'>159</span>     NOTE: SC.Gesture is just like SC.View in that it has an acceptsMultitouch property.
+<span class='line'>160</span>     If NO (the default), the gesture will only receive touchStart for the first touch
+<span class='line'>161</span>     assigned to it, and only receive touchEnd for the last touch that ends.
+<span class='line'>162</span>   */</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">    
+<span class='line'>165</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  
+<span class='line'>167</span>   </span><span class="COMM">/**
+<span class='line'>168</span>     Starts the gesture (marking it as "active"), and notifies the view.
+<span class='line'>169</span>     
+<span class='line'>170</span>     You can pass any number of arguments to start. They will, along with
+<span class='line'>171</span>     the gesture instance itself, will be passed to the appropriate gesture 
+<span class='line'>172</span>     event on the SC.View.
+<span class='line'>173</span>   */</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">  </span><span class="NAME">start</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">      
+<span class='line'>178</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">      
+<span class='line'>181</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Start"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">  
+<span class='line'>186</span>   </span><span class="COMM">/**
+<span class='line'>187</span>     Ends the gesture, if it is active (marking it as not active), and notifies
+<span class='line'>188</span>     the view.
+<span class='line'>189</span>     
+<span class='line'>190</span>     You may pass any number of arguments to end(). They, along with your gesture
+<span class='line'>191</span>     instance itself, will be passed to the appropriate gesture event on the SC.View.
+<span class='line'>192</span>   */</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="NAME">end</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"isActive"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>196</span> 
+<span class='line'>197</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">      
+<span class='line'>200</span>       </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"End"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">  
+<span class='line'>205</span>   </span><span class="COMM">/**
+<span class='line'>206</span>     If the gesture is active, notifies the view that the gesture has
+<span class='line'>207</span>     changed.
+<span class='line'>208</span>     
+<span class='line'>209</span>     The gesture, along with any arguments to change(), will be passed to
+<span class='line'>210</span>     the appropriate method on the SC.View.
+<span class='line'>211</span>   */</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">  </span><span class="NAME">change</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>216</span> 
+<span class='line'>217</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Changed"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>221</span> 
+<span class='line'>222</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>223</span>     Cancels the gesture, if it is active, and notifies the view that the
+<span class='line'>224</span>     gesture has been cancelled.
+<span class='line'>225</span>     
+<span class='line'>226</span>     Gestures are cancelled when they have ended, but any action that would
+<span class='line'>227</span>     normally be appropriate due to their ending should not be performed.
+<span class='line'>228</span>     
+<span class='line'>229</span>     The gesture, along with any arguments to cancel(), will be passed to the
+<span class='line'>230</span>     appropriate method on the SC.View.
+<span class='line'>231</span>   */</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">  </span><span class="NAME">cancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>235</span> 
+<span class='line'>236</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">      </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>238</span> 
+<span class='line'>239</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"Cancelled"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  
+<span class='line'>244</span>   </span><span class="COMM">/**
+<span class='line'>245</span>     Triggers the gesture, notifying the view that the gesture has happened.
+<span class='line'>246</span>     
+<span class='line'>247</span>     You should trigger a gesture where it would be natural to say it has "happened";
+<span class='line'>248</span>     for instance, if a touch moves a couple of pixels, you probably wouldn't say
+<span class='line'>249</span>     a swipe has occurred—though you might say it has "begun." And you wouldn't necessarily
+<span class='line'>250</span>     wait until the touch has ended either. Once the touch has moved a certain amount,
+<span class='line'>251</span>     there has definitely been a swipe. By calling trigger() at this point, you will
+<span class='line'>252</span>     tell the view that it has occurred.
+<span class='line'>253</span>     
+<span class='line'>254</span>     For SC.SwipeGesture, this allows a view to implement only swipe(), and then be 
+<span class='line'>255</span>     automatically notified whenever any swipe has occurred.
+<span class='line'>256</span>   */</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">  </span><span class="NAME">trigger</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">args</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.$A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">    </span><span class="NAME">args.unshift</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">    
+<span class='line'>261</span>     </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">act</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.view</span><span class="PUNC">[</span><span class="NAME">act</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">apply</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">args</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>264</span> 
+<span class='line'>265</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>266</span>     Takes possession of a touch. This does not take effect immediately; it takes effect after
+<span class='line'>267</span>     the run loop finishes to prevent it from being called during another makeTouchResponder.
+<span class='line'>268</span>     
+<span class='line'>269</span>     This is called automatically when you return YES from touchIsInGesture.
+<span class='line'>270</span>   */</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">  </span><span class="NAME">take</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>272</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// because even changing responder won't prevent it from being used this cycle.</span><span class="WHIT">
+<span class='line'>273</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">touch.touchResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">touch.touchResponder</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">  
+<span class='line'>276</span>   </span><span class="COMM">/**
+<span class='line'>277</span>     Releases a touch back to its previous owner, which is usually the view. This allows
+<span class='line'>278</span>     you to give back control of a touch that it turns out is not part of the gesture. 
+<span class='line'>279</span>     
+<span class='line'>280</span>     This takes effect immediately, because you would usually call this from
+<span class='line'>281</span>     touchesDragged or such.
+<span class='line'>282</span>   */</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="WHIT">  </span><span class="NAME">release</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.nextTouchResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="NAME">touch.nextTouchResponder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">  
+<span class='line'>288</span>   </span><span class="COMM">/**
+<span class='line'>289</span>     Discards a touch, making its responder null. This makes the touch go away and never
+<span class='line'>290</span>     come back—not to this gesture, nor to any other, nor to the view, nor to any other
+<span class='line'>291</span>     view.
+<span class='line'>292</span>   */</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">  </span><span class="NAME">discardTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">    </span><span class="NAME">touch.isTaken</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// because even changing responder won't prevent it from being used this cycle.</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">    </span><span class="NAME">touch.makeTouchResponder</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>296</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">  
+<span class='line'>298</span>   </span><span class="COMM">/**
+<span class='line'>299</span>     Returns a status hash (which gestures may and should modify) for a given touch, for tracking
+<span class='line'>300</span>     whether it is a potential match, etc.
+<span class='line'>301</span>   */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">statusForTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="NAME">touch.view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">status</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch</span><span class="PUNC">[</span><span class="NAME">key</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">status</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">  
+<span class='line'>309</span>   </span><span class="COMM">/**
+<span class='line'>310</span>     Called when an unassigned touch has started. By default, this calls touchIsInGesture, and,
+<span class='line'>311</span>     if it returns YES, takes possesion of the touch (causing touchStart to  be called).
+<span class='line'>312</span>   */</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchDidStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.isTaken</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>315</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.touchIsInGesture</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>316</span> </span><span class="WHIT">      </span><span class="NAME">this.take</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>319</span> </span><span class="WHIT">  
+<span class='line'>320</span>   </span><span class="COMM">/**
+<span class='line'>321</span>     This is called when the unassigned touches (touches not in a gesture) change or move
+<span class='line'>322</span>     in some way. By default, this calls touchIsInGesture(touch, status) for each touch.
+<span class='line'>323</span>   */</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchesDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">    </span><span class="NAME">touches.forEach</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch.isTaken</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>327</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.touchIsInGesture</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>328</span> </span><span class="WHIT">        </span><span class="NAME">this.take</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">  
+<span class='line'>333</span>   </span><span class="COMM">/**
+<span class='line'>334</span>     This is called when the unassigned touches (touches not in the gesture) have ended.
+<span class='line'>335</span>     Default does nothing. Some gestures may want to implement this even if they don't implement
+<span class='line'>336</span>     unassignedTouchesDidChange.
+<span class='line'>337</span>   */</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">  </span><span class="NAME">unassignedTouchDidEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">    
+<span class='line'>340</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">  
+<span class='line'>342</span>   </span><span class="COMM">/**
+<span class='line'>343</span>     Marks the touch as "interesting" to this gesture. A view could then check the 'isInteresting'
+<span class='line'>344</span>     property of the touch to see if any gestures are interested in it, potentially delaying any
+<span class='line'>345</span>     action of releasing the touch to another view.
+<span class='line'>346</span>   */</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">  </span><span class="NAME">interestedInTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">status.isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">    </span><span class="NAME">status.isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">    </span><span class="NAME">touch.isInteresting</span><span class="PUNC">++</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">  
+<span class='line'>354</span>   </span><span class="COMM">/**
+<span class='line'>355</span>     Marks the touch as "uninteresting" to this gesture.
+<span class='line'>356</span>   */</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">  </span><span class="NAME">uninterestedInTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">status</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.statusForTouch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">status.isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">    </span><span class="NAME">status.isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>361</span> </span><span class="WHIT">    </span><span class="NAME">touch.isInteresting</span><span class="PUNC">--</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> </span></pre></body></html>

@@ -59,23 +59,23 @@
 <span class='line'> 52</span> </span><span class="WHIT">  </span><span class="COMM">//   257:  258,   // End of range is 258</span><span class="WHIT">
 <span class='line'> 53</span> </span><span class="WHIT">  </span><span class="COMM">//   258:    0    // End of index set</span><span class="WHIT">
 <span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">// }</span><span class="WHIT">
-<span class='line'> 55</span> <span class='line'> 56</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">         </span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 58</span> 
-<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">set.add</span><span class="PUNC">(</span><span class="NUMB">2</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 60</span> 
-<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="COMM">// Assuming SC.IndexSet.HINT_SIZE is 256,</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="COMM">// the internal data structure looks like:</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="COMM">// {</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="COMM">//   0  : -  1,   // Hole until 1</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">//   1  :    3,   // End of range is 3</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="COMM">//   3  : -257,   // Hole until 257</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">//   256:    2,   // Hint points at index 2, which is invalid.</span><span class="WHIT">
-<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">//   257:  258,   // End of range is 258</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">//   258:    0    // End of index set</span><span class="WHIT">
-<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="COMM">// }</span><span class="WHIT">
-<span class='line'> 71</span> 
-<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 73</span> </span><span class="WHIT">         </span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 75</span> </span></pre></body></html>
+<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">         </span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> 
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">set.add</span><span class="PUNC">(</span><span class="NUMB">2</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">// Assuming SC.IndexSet.HINT_SIZE is 256,</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="COMM">// the internal data structure looks like:</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="COMM">// {</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="COMM">//   0  : -  1,   // Hole until 1</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="COMM">//   1  :    3,   // End of range is 3</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">//   3  : -257,   // Hole until 257</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="COMM">//   256:    2,   // Hint points at index 2, which is invalid.</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">//   257:  258,   // End of range is 258</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">//   258:    0    // End of index set</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">// }</span><span class="WHIT">
+<span class='line'> 70</span> 
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">         </span><span class="NAME">set.rangeStartForIndex</span><span class="PUNC">(</span><span class="NAME">hintSize</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span></pre></body></html>

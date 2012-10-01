@@ -25,14 +25,23 @@
 <span class='line'> 18</span>  	   </span><span class="NAME">obj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 19</span> </span><span class="WHIT"> 		   </span><span class="NAME">bck</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'green'</span><span class="WHIT">
 <span class='line'> 20</span> </span><span class="WHIT"> 	    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> 	
-<span class='line'> 21</span>  	</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 22</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 23</span> 
-<span class='line'> 24</span> 
-<span class='line'> 25</span> 
-<span class='line'> 26</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"To check if the user defaults are stored and read from local storage"</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 27</span> </span><span class="WHIT">    </span><span class="NAME">SC.userDefaults.writeDefault</span><span class="PUNC">(</span><span class="STRN">'Back'</span><span class="PUNC">,</span><span class="NAME">obj.bck</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="WHIT">    </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.userDefaults.readDefault</span><span class="PUNC">(</span><span class="STRN">'Back'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">obj.bck</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'should read written property'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 29</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 30</span> 
-<span class='line'> 31</span> </span></pre></body></html>
+<span class='line'> 21</span> 
+<span class='line'> 22</span>  	  </span><span class="NAME">SC.userDefaults.defaults</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">			</span><span class="STRN">'app:testingValue'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">		</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT"> 	</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> 
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"To check if the user defaults are stored and read from local storage"</span><span class="PUNC">,</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="NAME">SC.userDefaults.writeDefault</span><span class="PUNC">(</span><span class="STRN">'Back'</span><span class="PUNC">,</span><span class="NAME">obj.bck</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">    </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.userDefaults.readDefault</span><span class="PUNC">(</span><span class="STRN">'Back'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">obj.bck</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'should read written property'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"Test readDefault function will return a predefined default value when loading in Firefox v13"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">expected</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">result</span><span class="WHIT">   </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.userDefaults.readDefault</span><span class="PUNC">(</span><span class="STRN">'testingValue'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">result</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">expected</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"test should equal 99"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

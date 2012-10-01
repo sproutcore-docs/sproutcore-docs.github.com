@@ -1,0 +1,42 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   Showcase</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: @2012 Tyler Keating</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">/*globals Showcase */</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/views_item_content.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'views/views_list_view.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/**
+<span class='line'> 11</span>   This pre-configured view demonstrates SC.CheckboxView.
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">Showcase.checkboxViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ScrollView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">  </span><span class="NAME">contentView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Showcase.ViewsListView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Regular'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.View.extend({  childViews: ['regularCheckbox', 'iconCheckbox'],  regularCheckbox: SC.CheckboxView.extend({  layout: { width: 120, height: 16, centerX: -70, centerY: 0 },  title: 'Check Me'  }),  iconCheckbox: SC.CheckboxView.extend({  icon: 'sc-icon-bookmark-16',  layout: { width: 120, height: 16, centerX: 70, centerY: 0 },  title: 'Bookmark It'  })  })"</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Small'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.View.extend({  childViews: ['regularCheckbox', 'iconCheckbox'],  regularCheckbox: SC.CheckboxView.extend({  controlSize: SC.SMALL_CONTROL_SIZE,  layout: { width: 120, height: 14, centerX: -70, centerY: 0 },  title: 'Check Me'  }),  iconCheckbox: SC.CheckboxView.extend({  controlSize: SC.SMALL_CONTROL_SIZE,  icon: sc_static('images/alarm-clock.png'),  layout: { width: 120, height: 14, centerX: 70, centerY: 0 },  title: 'Save Alarm'  })  })"</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'States'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.View.extend({  childViews: ['mixedCheckbox', 'disabledCheckbox'],  mixedCheckbox: SC.CheckboxView.extend({  layout: { width: 120, height: 16, centerX: -70, centerY: 0 },  title: 'Mixed State',  toggleOnValue: 'a',  value: ['a', 'b']  }),  disabledCheckbox: SC.CheckboxView.extend({  isEnabled: false,  layout: { width: 120, height: 16, centerX: 70, centerY: 0 },  title: 'Disabled'  })  })"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">        </span><span class="NAME">supportAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">          </span><span class="NAME">this.setPath</span><span class="PUNC">(</span><span class="STRN">'parentView.exampleBox.contentView.mixedCheckbox.value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'a'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'b'</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">        </span><span class="NAME">supportTitle</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Reset Mixed Value'</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">    </span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> </span></pre></body></html>

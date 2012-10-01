@@ -246,25 +246,25 @@
 <span class='line'>239</span> 
 <span class='line'>240</span> </span><span class="WHIT">    </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>241</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">result</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>242</span> <span class='line'>243</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>244</span> 
-<span class='line'>245</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>246</span>     Given a string and an example element or style string, and an optional
-<span class='line'>247</span>     set of class names, calculates the width and height of that block of text.
-<span class='line'>248</span> 
-<span class='line'>249</span>     To constrain the width, set max-width on the exampleElement or in the style string.
-<span class='line'>250</span> 
-<span class='line'>251</span>     @param string {String} The string to measure.
-<span class='line'>252</span>     @param exampleElement The example element to grab styles from, or the style string to use.
-<span class='line'>253</span>     @param classNames {String} (Optional) Class names to add to the test element.
-<span class='line'>254</span>     @param ignoreEscape {Boolean} To NOT html escape the string.
-<span class='line'>255</span>   */</span><span class="WHIT">
-<span class='line'>256</span> </span><span class="WHIT">  </span><span class="NAME">metricsForString</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">string</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">exampleElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">classNames</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ignoreEscape</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>257</span> </span><span class="WHIT">    </span><span class="NAME">SC.prepareStringMeasurement</span><span class="PUNC">(</span><span class="NAME">exampleElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">classNames</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>258</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">result</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.measureString</span><span class="PUNC">(</span><span class="NAME">string</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ignoreEscape</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>259</span> </span><span class="WHIT">    </span><span class="NAME">SC.teardownStringMeasurement</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>260</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">result</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>261</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>262</span> 
-<span class='line'>263</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>264</span> </span></pre></body></html>
+<span class='line'>242</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>243</span> 
+<span class='line'>244</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>245</span>     Given a string and an example element or style string, and an optional
+<span class='line'>246</span>     set of class names, calculates the width and height of that block of text.
+<span class='line'>247</span> 
+<span class='line'>248</span>     To constrain the width, set max-width on the exampleElement or in the style string.
+<span class='line'>249</span> 
+<span class='line'>250</span>     @param string {String} The string to measure.
+<span class='line'>251</span>     @param exampleElement The example element to grab styles from, or the style string to use.
+<span class='line'>252</span>     @param classNames {String} (Optional) Class names to add to the test element.
+<span class='line'>253</span>     @param ignoreEscape {Boolean} To NOT html escape the string.
+<span class='line'>254</span>   */</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">  </span><span class="NAME">metricsForString</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">string</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">exampleElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">classNames</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ignoreEscape</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">    </span><span class="NAME">SC.prepareStringMeasurement</span><span class="PUNC">(</span><span class="NAME">exampleElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">classNames</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">result</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.measureString</span><span class="PUNC">(</span><span class="NAME">string</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ignoreEscape</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">    </span><span class="NAME">SC.teardownStringMeasurement</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">result</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>261</span> 
+<span class='line'>262</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span></pre></body></html>

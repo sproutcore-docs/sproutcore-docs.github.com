@@ -1,0 +1,32 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   Showcase</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: @2012 Tyler Keating</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">/*globals Showcase */</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/views_item_content.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'views/views_list_view.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/**
+<span class='line'> 11</span>   This pre-configured view demonstrates SC.PopupButtonView.
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">Showcase.popupButtonViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ScrollView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">  </span><span class="NAME">contentView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Showcase.ViewsListView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Regular'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.PopupButtonView.extend({  layout: { width: 150, height: 24, centerX: 0, centerY: 0 },  menu: SC.MenuPane.extend({  layout: { width: 250 },  items: [  { title: 'Menu Item', keyEquivalent: 'ctrl_shift_n', shortcut: '⌃⇧N' },  { separator: true },  { title: 'Checked Menu Item', checkbox: true, keyEquivalent: 'ctrl_a', shortcut: '⌃A' },  { separator: true },  { title: 'Menu Item with Icon', icon: 'sc-icon-group-16' }  ]  }),  title: 'View Menu'  })"</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">    </span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 23</span> 
+<span class='line'> 24</span> </span><span class="COMM">//selectedItem: function(key, value) {  if (SC.none(value)) { value = this.get('items').objectAt(3); }  return value;  }.property().cacheable(0)</span><span class="WHIT">
+<span class='line'> 25</span> </span></pre></body></html>

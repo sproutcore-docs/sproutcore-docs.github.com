@@ -243,20 +243,20 @@
 <span class='line'>236</span> </span><span class="WHIT">    </span><span class="NAME">this._endEditing</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>237</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>238</span> 
-<span class='line'>239</span> <span class='line'>240</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>241</span>     @private
-<span class='line'>242</span>     Shared code used to cleanup editing after both discarding and commiting.
-<span class='line'>243</span>   */</span><span class="WHIT">
-<span class='line'>244</span> </span><span class="WHIT">  </span><span class="NAME">_endEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>245</span> </span><span class="WHIT">    </span><span class="COMM">// _editor may be null if we were called using the</span><span class="WHIT">
-<span class='line'>246</span> </span><span class="WHIT">    </span><span class="COMM">// SC.InlineTextFieldView class methods</span><span class="WHIT">
-<span class='line'>247</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this._editor</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>248</span> </span><span class="WHIT">      </span><span class="NAME">this.invokeDelegateMethod</span><span class="PUNC">(</span><span class="NAME">this.inlineEditorDelegate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'releaseEditor'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._editor</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>249</span> </span><span class="WHIT">      </span><span class="NAME">this._editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>250</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>251</span> 
-<span class='line'>252</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>253</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>254</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>255</span> 
-<span class='line'>256</span> </span></pre></body></html>
+<span class='line'>239</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>240</span>     @private
+<span class='line'>241</span>     Shared code used to cleanup editing after both discarding and commiting.
+<span class='line'>242</span>   */</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="NAME">_endEditing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">    </span><span class="COMM">// _editor may be null if we were called using the</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">    </span><span class="COMM">// SC.InlineTextFieldView class methods</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">this._editor</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>247</span> </span><span class="WHIT">      </span><span class="NAME">this.invokeDelegateMethod</span><span class="PUNC">(</span><span class="NAME">this.inlineEditorDelegate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'releaseEditor'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._editor</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="WHIT">      </span><span class="NAME">this._editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>250</span> 
+<span class='line'>251</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isEditing'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>254</span> 
+<span class='line'>255</span> </span></pre></body></html>

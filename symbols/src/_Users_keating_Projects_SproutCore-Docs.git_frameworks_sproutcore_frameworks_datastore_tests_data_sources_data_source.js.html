@@ -90,8 +90,8 @@
 <span class='line'> 83</span> </span><span class="WHIT">         </span><span class="STRN">"updating a record should return YES"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 84</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">wasCalled</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"`updateRecord` should have been called"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">wasCalled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 86</span> <span class='line'> 87</span> 
-</span><span class="WHIT">  </span><span class="NAME">MyApp.store.writeStatus</span><span class="PUNC">(</span><span class="NAME">rec.get</span><span class="PUNC">(</span><span class="STRN">'storeKey'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.Record.READY_CLEAN</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="NAME">MyApp.store.writeStatus</span><span class="PUNC">(</span><span class="NAME">rec.get</span><span class="PUNC">(</span><span class="STRN">'storeKey'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.Record.READY_CLEAN</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 88</span> 
 <span class='line'> 89</span> </span><span class="WHIT">  </span><span class="NAME">rec.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 90</span> </span><span class="WHIT">  </span><span class="COMM">// broken in SC.Store</span><span class="WHIT">

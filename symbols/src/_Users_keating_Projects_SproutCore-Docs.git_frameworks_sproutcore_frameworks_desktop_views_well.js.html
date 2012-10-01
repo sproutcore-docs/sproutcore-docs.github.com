@@ -16,74 +16,74 @@
 <span class='line'>  9</span>   @static
 <span class='line'> 10</span>   @constant
 <span class='line'> 11</span>   @type Number
-<span class='line'> 12</span> <span class='line'> 13</span>   @default 15
-<span class='line'> 14</span> */</span><span class="WHIT">
-<span class='line'> 15</span> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">15</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 16</span> 
-<span class='line'> 17</span> </span><span class="COMM">/** @class
-<span class='line'> 18</span> 
-<span class='line'> 19</span>   A WellView is a ContainerView with a border. It's useful when you want to
-<span class='line'> 20</span>   group a set of views. It allows you to easily switch its contents too.
-<span class='line'> 21</span>   
-<span class='line'> 22</span>   It has a default contentLayout that will replace the layout of the contentView.
-<span class='line'> 23</span>   
-<span class='line'> 24</span>   @extends SC.ContainerView
-<span class='line'> 25</span>   @since SproutCore 1.0
-<span class='line'> 26</span>   @test in progress
-<span class='line'> 27</span> */</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="NAME">SC.WellView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ContainerView.extend</span><span class="PUNC">(</span><span class="WHIT">
-<span class='line'> 29</span> </span><span class="COMM">/** @scope SC.WellView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 30</span> </span><span class="WHIT">  
-<span class='line'> 31</span>   </span><span class="COMM">/**
-<span class='line'> 32</span>     @type Array
-<span class='line'> 33</span>     @default ['sc-well-view']
-<span class='line'> 34</span>     @see SC.View#classNames
-<span class='line'> 35</span>   */</span><span class="WHIT">
-<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'sc-well-view'</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 37</span> </span><span class="WHIT">  
-<span class='line'> 38</span>   </span><span class="COMM">/**
-<span class='line'> 39</span>     Layout for the content of the container view.
-<span class='line'> 40</span>     @type Hash
-<span class='line'> 41</span>   */</span><span class="WHIT">
-<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="NAME">contentLayout</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 43</span> </span><span class="WHIT">    </span><span class="NAME">top</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="NAME">bottom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">    </span><span class="NAME">left</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">    </span><span class="NAME">right</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 48</span> </span><span class="WHIT">  
-<span class='line'> 49</span>   </span><span class="COMM">/**
-<span class='line'> 50</span>     @type String
-<span class='line'> 51</span>     @default 'wellRenderDelegate'
-<span class='line'> 52</span>   */</span><span class="WHIT">
-<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'wellRenderDelegate'</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 54</span> </span><span class="WHIT">  
-<span class='line'> 55</span>   </span><span class="COMM">/** @private
-<span class='line'> 56</span>      Overrides createChildViews and replaces the layout of the contentView
-<span class='line'> 57</span>      with the one in contentLayout.
-<span class='line'> 58</span>    */</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">createChildViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="COMM">// if contentView is defined, then create the content</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">      </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.contentView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createChildView</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">      </span><span class="NAME">view.set</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.contentLayout</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">      </span><span class="NAME">this.childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">view</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> 
-<span class='line'> 67</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 68</span> 
-<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'> 70</span>      Invoked whenever the content property changes.  This method will simply
-<span class='line'> 71</span>      call replaceContent and set the contentLayout in the new contentView.
-<span class='line'> 72</span>      
-<span class='line'> 73</span>      Override replaceContent to change how the view is
-<span class='line'> 74</span>      swapped out.
-<span class='line'> 75</span>    */</span><span class="WHIT">
-<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="NAME">contentViewDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">view.set</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.contentLayout</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="NAME">this.replaceContent</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">  
-<span class='line'> 82</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 83</span> </span></pre></body></html>
+<span class='line'> 12</span>   @default 15
+<span class='line'> 13</span> */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">15</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 15</span> 
+<span class='line'> 16</span> </span><span class="COMM">/** @class
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   A WellView is a ContainerView with a border. It's useful when you want to
+<span class='line'> 19</span>   group a set of views. It allows you to easily switch its contents too.
+<span class='line'> 20</span>   
+<span class='line'> 21</span>   It has a default contentLayout that will replace the layout of the contentView.
+<span class='line'> 22</span>   
+<span class='line'> 23</span>   @extends SC.ContainerView
+<span class='line'> 24</span>   @since SproutCore 1.0
+<span class='line'> 25</span>   @test in progress
+<span class='line'> 26</span> */</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="NAME">SC.WellView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ContainerView.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="COMM">/** @scope SC.WellView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  
+<span class='line'> 30</span>   </span><span class="COMM">/**
+<span class='line'> 31</span>     @type Array
+<span class='line'> 32</span>     @default ['sc-well-view']
+<span class='line'> 33</span>     @see SC.View#classNames
+<span class='line'> 34</span>   */</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'sc-well-view'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  
+<span class='line'> 37</span>   </span><span class="COMM">/**
+<span class='line'> 38</span>     Layout for the content of the container view.
+<span class='line'> 39</span>     @type Hash
+<span class='line'> 40</span>   */</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="NAME">contentLayout</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">    </span><span class="NAME">top</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">    </span><span class="NAME">bottom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="NAME">left</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">    </span><span class="NAME">right</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.WELL_CONTAINER_PADDING</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="WHIT">  
+<span class='line'> 48</span>   </span><span class="COMM">/**
+<span class='line'> 49</span>     @type String
+<span class='line'> 50</span>     @default 'wellRenderDelegate'
+<span class='line'> 51</span>   */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'wellRenderDelegate'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  
+<span class='line'> 54</span>   </span><span class="COMM">/** @private
+<span class='line'> 55</span>      Overrides createChildViews and replaces the layout of the contentView
+<span class='line'> 56</span>      with the one in contentLayout.
+<span class='line'> 57</span>    */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">createChildViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="COMM">// if contentView is defined, then create the content</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">      </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.contentView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createChildView</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">      </span><span class="NAME">view.set</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.contentLayout</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">      </span><span class="NAME">this.childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">view</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> 
+<span class='line'> 66</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'> 69</span>      Invoked whenever the content property changes.  This method will simply
+<span class='line'> 70</span>      call replaceContent and set the contentLayout in the new contentView.
+<span class='line'> 71</span>      
+<span class='line'> 72</span>      Override replaceContent to change how the view is
+<span class='line'> 73</span>      swapped out.
+<span class='line'> 74</span>    */</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="NAME">contentViewDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="NAME">view.set</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.contentLayout</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">this.replaceContent</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'contentView'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  
+<span class='line'> 81</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 82</span> </span></pre></body></html>

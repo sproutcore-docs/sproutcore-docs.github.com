@@ -33,7 +33,7 @@
 <span class='line'> 26</span> </span><span class="WHIT">    </span><span class="COMM">// the offset by viewport will always equal offset by document), we simulate an app that uses a</span><span class="WHIT">
 <span class='line'> 27</span> </span><span class="WHIT">    </span><span class="COMM">// scrollable viewport to test the validity of the functions.</span><span class="WHIT">
 <span class='line'> 28</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">viewportEl</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.browser.mobileSafari</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.browser.isMobileSafari</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 30</span> </span><span class="WHIT">      </span><span class="NAME">viewportEl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">$</span><span class="PUNC">(</span><span class="STRN">"[name='viewport']"</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 31</span> 
 <span class='line'> 32</span> </span><span class="WHIT">      </span><span class="NAME">viewportEl.setAttribute</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">,</span><span class="STRN">'initial-scale=0.8, minimum-scale=0.5, maximum-scale=1.2, user-scalable=yes, width=device-height'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -63,15 +63,15 @@
 <span class='line'> 56</span> </span><span class="WHIT">      </span><span class="COMM">// Useful for debugging in iOS</span><span class="WHIT">
 <span class='line'> 57</span> </span><span class="WHIT">      </span><span class="COMM">// /** Allow default touch events */</span><span class="WHIT">
 <span class='line'> 58</span> </span><span class="WHIT">      </span><span class="COMM">//  touchStart: function(touch) {</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.mobileSafari) touch.allowDefault();</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.isMobileSafari) touch.allowDefault();</span><span class="WHIT">
 <span class='line'> 60</span> </span><span class="WHIT">      </span><span class="COMM">//  },</span><span class="WHIT">
 <span class='line'> 61</span> </span><span class="WHIT">      </span><span class="COMM">//</span><span class="WHIT">
 <span class='line'> 62</span> </span><span class="WHIT">      </span><span class="COMM">//  touchesDragged: function(evt, touches) {</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.mobileSafari) evt.allowDefault();</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.isMobileSafari) evt.allowDefault();</span><span class="WHIT">
 <span class='line'> 64</span> </span><span class="WHIT">      </span><span class="COMM">//  },</span><span class="WHIT">
 <span class='line'> 65</span> </span><span class="WHIT">      </span><span class="COMM">//</span><span class="WHIT">
 <span class='line'> 66</span> </span><span class="WHIT">      </span><span class="COMM">//  touchEnd: function(touch) {</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.mobileSafari) touch.allowDefault();</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">      </span><span class="COMM">//    if (SC.browser.isMobileSafari) touch.allowDefault();</span><span class="WHIT">
 <span class='line'> 68</span> </span><span class="WHIT">      </span><span class="COMM">//  }</span><span class="WHIT">
 <span class='line'> 69</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 70</span> </span><span class="WHIT">    </span><span class="NAME">pane.append</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -85,7 +85,7 @@
 <span class='line'> 78</span> 
 <span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">teardown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 80</span> </span><span class="WHIT">    </span><span class="COMM">// Useful for debugging in iOS</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="COMM">// if (!SC.browser.mobileSafari) {</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">    </span><span class="COMM">// if (!SC.browser.isMobileSafari) {</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">      </span><span class="NAME">pane.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 83</span> </span><span class="WHIT">      </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view1</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view2</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view3</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view4</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 84</span> </span><span class="WHIT">    </span><span class="COMM">// }</span><span class="WHIT">

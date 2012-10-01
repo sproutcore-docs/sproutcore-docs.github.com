@@ -299,8 +299,8 @@
 <span class='line'>292</span>   */</span><span class="WHIT">
 <span class='line'>293</span> </span><span class="WHIT">  </span><span class="NAME">isContextMenuEnabled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>294</span> </span><span class="WHIT">  
-<span class='line'>295</span> <span class='line'>296</span> 
-  </span><span class="COMM">/**@private
+<span class='line'>295</span> 
+<span class='line'>296</span>   </span><span class="COMM">/**@private
 <span class='line'>297</span>     Left Alignment based on the size of the button
 <span class='line'>298</span>   */</span><span class="WHIT">
 <span class='line'>299</span> </span><span class="WHIT">  </span><span class="NAME">leftAlign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -802,231 +802,231 @@
 <span class='line'>795</span> </span><span class="WHIT">        </span><span class="COMM">// Have the menu item perform its action.</span><span class="WHIT">
 <span class='line'>796</span> </span><span class="WHIT">        </span><span class="COMM">// If the menu returns `NO`, it had no action to</span><span class="WHIT">
 <span class='line'>797</span> </span><span class="WHIT">        </span><span class="COMM">// perform, so we should close the menu immediately.</span><span class="WHIT">
-<span class='line'>798</span> <span class='line'>799</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">targetMenuItem.performAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>800</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">touch</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">timestamp</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">previousTimestamp</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NAME">SC.ButtonView.CLICK_AND_HOLD_DELAY</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>801</span> </span><span class="WHIT">        </span><span class="COMM">// If the user waits more than a certain length of time between</span><span class="WHIT">
-<span class='line'>802</span> </span><span class="WHIT">        </span><span class="COMM">// mouseDown and mouseUp, we can assume that they are clicking and</span><span class="WHIT">
-<span class='line'>803</span> </span><span class="WHIT">        </span><span class="COMM">// dragging to the menu item, and we should close the menu if they</span><span class="WHIT">
-<span class='line'>804</span> </span><span class="WHIT">        </span><span class="COMM">// mouseup anywhere not inside the menu.</span><span class="WHIT">
-<span class='line'>805</span> 
-<span class='line'>806</span> </span><span class="WHIT">        </span><span class="COMM">// As a special case, we should trigger an action on the currently</span><span class="WHIT">
-<span class='line'>807</span> </span><span class="WHIT">        </span><span class="COMM">// selected menu item if the menu item is under the mouse and the user</span><span class="WHIT">
-<span class='line'>808</span> </span><span class="WHIT">        </span><span class="COMM">// never moved their mouse before mouseup.</span><span class="WHIT">
-<span class='line'>809</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">menu.get</span><span class="PUNC">(</span><span class="STRN">'mouseHasEntered'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isDefaultPosition'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>810</span> </span><span class="WHIT">          </span><span class="NAME">targetMenuItem</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">menu.get</span><span class="PUNC">(</span><span class="STRN">'currentMenuItem'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>811</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">targetMenuItem</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">targetMenuItem.performAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>812</span> </span><span class="WHIT">            </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>813</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>814</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>815</span> </span><span class="WHIT">          </span><span class="COMM">// Otherwise, just remove the menu because no selection</span><span class="WHIT">
-<span class='line'>816</span> </span><span class="WHIT">          </span><span class="COMM">// has been made.</span><span class="WHIT">
-<span class='line'>817</span> </span><span class="WHIT">          </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>818</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>819</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>820</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>798</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">targetMenuItem.performAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>799</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">touch</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">timestamp</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">previousTimestamp</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NAME">SC.ButtonView.CLICK_AND_HOLD_DELAY</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>800</span> </span><span class="WHIT">        </span><span class="COMM">// If the user waits more than a certain length of time between</span><span class="WHIT">
+<span class='line'>801</span> </span><span class="WHIT">        </span><span class="COMM">// mouseDown and mouseUp, we can assume that they are clicking and</span><span class="WHIT">
+<span class='line'>802</span> </span><span class="WHIT">        </span><span class="COMM">// dragging to the menu item, and we should close the menu if they</span><span class="WHIT">
+<span class='line'>803</span> </span><span class="WHIT">        </span><span class="COMM">// mouseup anywhere not inside the menu.</span><span class="WHIT">
+<span class='line'>804</span> 
+<span class='line'>805</span> </span><span class="WHIT">        </span><span class="COMM">// As a special case, we should trigger an action on the currently</span><span class="WHIT">
+<span class='line'>806</span> </span><span class="WHIT">        </span><span class="COMM">// selected menu item if the menu item is under the mouse and the user</span><span class="WHIT">
+<span class='line'>807</span> </span><span class="WHIT">        </span><span class="COMM">// never moved their mouse before mouseup.</span><span class="WHIT">
+<span class='line'>808</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">menu.get</span><span class="PUNC">(</span><span class="STRN">'mouseHasEntered'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isDefaultPosition'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>809</span> </span><span class="WHIT">          </span><span class="NAME">targetMenuItem</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">menu.get</span><span class="PUNC">(</span><span class="STRN">'currentMenuItem'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>810</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">targetMenuItem</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">targetMenuItem.performAction</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>811</span> </span><span class="WHIT">            </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>812</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>813</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>814</span> </span><span class="WHIT">          </span><span class="COMM">// Otherwise, just remove the menu because no selection</span><span class="WHIT">
+<span class='line'>815</span> </span><span class="WHIT">          </span><span class="COMM">// has been made.</span><span class="WHIT">
+<span class='line'>816</span> </span><span class="WHIT">          </span><span class="NAME">menu.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>817</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>818</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>819</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>820</span> 
 <span class='line'>821</span> 
-<span class='line'>822</span> 
-<span class='line'>823</span> </span><span class="WHIT">    </span><span class="COMM">// Reset state.</span><span class="WHIT">
-<span class='line'>824</span> </span><span class="WHIT">    </span><span class="NAME">this._isMouseDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>825</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>826</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>827</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>828</span> 
-<span class='line'>829</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>830</span>     Override mouseExited to not remove the active state on mouseexit.
-<span class='line'>831</span>   */</span><span class="WHIT">
-<span class='line'>832</span> </span><span class="WHIT">  </span><span class="NAME">mouseExited</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>833</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>834</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>835</span> 
-<span class='line'>836</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>837</span>     Handle Key event - Down arrow key
-<span class='line'>838</span>   */</span><span class="WHIT">
-<span class='line'>839</span> </span><span class="WHIT">  </span><span class="NAME">keyDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>840</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this.interpretKeyEvents</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>841</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>842</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>843</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>844</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>845</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>846</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>847</span> 
-<span class='line'>848</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>849</span>     Pressing the Up or Down arrow key should display the menu pane
-<span class='line'>850</span>   */</span><span class="WHIT">
-<span class='line'>851</span> </span><span class="WHIT">  </span><span class="NAME">interpretKeyEvents</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>852</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>853</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">38</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">40</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>854</span> </span><span class="WHIT">        </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>855</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>856</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">27</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>857</span> </span><span class="WHIT">        </span><span class="NAME">this.resignFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>858</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>859</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>860</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>861</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>862</span> 
-<span class='line'>863</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>864</span>     Function overridden - tied to the isEnabled state
-<span class='line'>865</span>   */</span><span class="WHIT">
-<span class='line'>866</span> </span><span class="WHIT">  </span><span class="NAME">acceptsFirstResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>867</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>868</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>869</span> 
-<span class='line'>870</span> </span><span class="WHIT">  </span><span class="NAME">insertTab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>871</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'nextValidKeyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>872</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">view.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>873</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>874</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
-<span class='line'>875</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>876</span> 
-<span class='line'>877</span> </span><span class="WHIT">  </span><span class="NAME">insertBacktab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>878</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'previousValidKeyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>879</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">view.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>880</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>881</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
-<span class='line'>882</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>822</span> </span><span class="WHIT">    </span><span class="COMM">// Reset state.</span><span class="WHIT">
+<span class='line'>823</span> </span><span class="WHIT">    </span><span class="NAME">this._isMouseDown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>824</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>825</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>826</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>827</span> 
+<span class='line'>828</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>829</span>     Override mouseExited to not remove the active state on mouseexit.
+<span class='line'>830</span>   */</span><span class="WHIT">
+<span class='line'>831</span> </span><span class="WHIT">  </span><span class="NAME">mouseExited</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>832</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>833</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>834</span> 
+<span class='line'>835</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>836</span>     Handle Key event - Down arrow key
+<span class='line'>837</span>   */</span><span class="WHIT">
+<span class='line'>838</span> </span><span class="WHIT">  </span><span class="NAME">keyDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>839</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="WHIT"> </span><span class="NAME">this.interpretKeyEvents</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>840</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>841</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>842</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>843</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>844</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>845</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>846</span> 
+<span class='line'>847</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>848</span>     Pressing the Up or Down arrow key should display the menu pane
+<span class='line'>849</span>   */</span><span class="WHIT">
+<span class='line'>850</span> </span><span class="WHIT">  </span><span class="NAME">interpretKeyEvents</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>851</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>852</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">38</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">40</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>853</span> </span><span class="WHIT">        </span><span class="NAME">this._action</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>854</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>855</span> </span><span class="WHIT">      </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">event.keyCode</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">27</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>856</span> </span><span class="WHIT">        </span><span class="NAME">this.resignFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>857</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>858</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>859</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>860</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>861</span> 
+<span class='line'>862</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>863</span>     Function overridden - tied to the isEnabled state
+<span class='line'>864</span>   */</span><span class="WHIT">
+<span class='line'>865</span> </span><span class="WHIT">  </span><span class="NAME">acceptsFirstResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>866</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>867</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>868</span> 
+<span class='line'>869</span> </span><span class="WHIT">  </span><span class="NAME">insertTab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>870</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'nextValidKeyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>871</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">view.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>872</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>873</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
+<span class='line'>874</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>875</span> 
+<span class='line'>876</span> </span><span class="WHIT">  </span><span class="NAME">insertBacktab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>877</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'previousValidKeyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>878</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">view.becomeFirstResponder</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>879</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>880</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// handled</span><span class="WHIT">
+<span class='line'>881</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>882</span> 
 <span class='line'>883</span> 
-<span class='line'>884</span> 
-<span class='line'>885</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>886</span>     Override the button isSelectedDidChange function in order to not perform any action
-<span class='line'>887</span>     on selecting the select_button
-<span class='line'>888</span>   */</span><span class="WHIT">
-<span class='line'>889</span> </span><span class="WHIT">  </span><span class="NAME">_button_isSelectedDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>890</span> 
-<span class='line'>891</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>892</span> </span><span class="WHIT">  
-<span class='line'>893</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>894</span> </span><span class="WHIT">  </span><span class="NAME">didAppendToDocument</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>895</span> 
-<span class='line'>896</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>897</span> 
-<span class='line'>898</span> </span><span class="COMM">/**
-<span class='line'>899</span>   @static
-<span class='line'>900</span>   @default 0
-<span class='line'>901</span> */</span><span class="WHIT">
-<span class='line'>902</span> </span><span class="NAME">SC.SelectButtonView.TINY_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>903</span> 
-<span class='line'>904</span> </span><span class="COMM">/**
-<span class='line'>905</span>   @static
-<span class='line'>906</span>   @default 0
-<span class='line'>907</span> */</span><span class="WHIT">
-<span class='line'>908</span> </span><span class="NAME">SC.SelectButtonView.TINY_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>909</span> 
-<span class='line'>910</span> </span><span class="COMM">/**
-<span class='line'>911</span>   @static
-<span class='line'>912</span>   @default 0
-<span class='line'>913</span> */</span><span class="WHIT">
-<span class='line'>914</span> </span><span class="NAME">SC.SelectButtonView.TINY_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>884</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>885</span>     Override the button isSelectedDidChange function in order to not perform any action
+<span class='line'>886</span>     on selecting the select_button
+<span class='line'>887</span>   */</span><span class="WHIT">
+<span class='line'>888</span> </span><span class="WHIT">  </span><span class="NAME">_button_isSelectedDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>889</span> 
+<span class='line'>890</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>891</span> </span><span class="WHIT">  
+<span class='line'>892</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>893</span> </span><span class="WHIT">  </span><span class="NAME">didAppendToDocument</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>894</span> 
+<span class='line'>895</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>896</span> 
+<span class='line'>897</span> </span><span class="COMM">/**
+<span class='line'>898</span>   @static
+<span class='line'>899</span>   @default 0
+<span class='line'>900</span> */</span><span class="WHIT">
+<span class='line'>901</span> </span><span class="NAME">SC.SelectButtonView.TINY_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>902</span> 
+<span class='line'>903</span> </span><span class="COMM">/**
+<span class='line'>904</span>   @static
+<span class='line'>905</span>   @default 0
+<span class='line'>906</span> */</span><span class="WHIT">
+<span class='line'>907</span> </span><span class="NAME">SC.SelectButtonView.TINY_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>908</span> 
+<span class='line'>909</span> </span><span class="COMM">/**
+<span class='line'>910</span>   @static
+<span class='line'>911</span>   @default 0
+<span class='line'>912</span> */</span><span class="WHIT">
+<span class='line'>913</span> </span><span class="NAME">SC.SelectButtonView.TINY_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>914</span> 
 <span class='line'>915</span> 
-<span class='line'>916</span> 
-<span class='line'>917</span> </span><span class="COMM">/**
-<span class='line'>918</span>   @static
-<span class='line'>919</span>   @default -18
-<span class='line'>920</span> */</span><span class="WHIT">
-<span class='line'>921</span> </span><span class="NAME">SC.SelectButtonView.SMALL_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">18</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>922</span> 
-<span class='line'>923</span> </span><span class="COMM">/**
-<span class='line'>924</span>   @static
-<span class='line'>925</span>   @default 3
-<span class='line'>926</span> */</span><span class="WHIT">
-<span class='line'>927</span> </span><span class="NAME">SC.SelectButtonView.SMALL_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>928</span> 
-<span class='line'>929</span> </span><span class="COMM">/**
-<span class='line'>930</span>   @static
-<span class='line'>931</span>   @default 7
-<span class='line'>932</span> */</span><span class="WHIT">
-<span class='line'>933</span> </span><span class="NAME">SC.SelectButtonView.SMALL_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">7</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>916</span> </span><span class="COMM">/**
+<span class='line'>917</span>   @static
+<span class='line'>918</span>   @default -18
+<span class='line'>919</span> */</span><span class="WHIT">
+<span class='line'>920</span> </span><span class="NAME">SC.SelectButtonView.SMALL_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">18</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>921</span> 
+<span class='line'>922</span> </span><span class="COMM">/**
+<span class='line'>923</span>   @static
+<span class='line'>924</span>   @default 3
+<span class='line'>925</span> */</span><span class="WHIT">
+<span class='line'>926</span> </span><span class="NAME">SC.SelectButtonView.SMALL_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>927</span> 
+<span class='line'>928</span> </span><span class="COMM">/**
+<span class='line'>929</span>   @static
+<span class='line'>930</span>   @default 7
+<span class='line'>931</span> */</span><span class="WHIT">
+<span class='line'>932</span> </span><span class="NAME">SC.SelectButtonView.SMALL_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">7</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>933</span> 
 <span class='line'>934</span> 
-<span class='line'>935</span> 
-<span class='line'>936</span> </span><span class="COMM">/**
-<span class='line'>937</span>   @static
-<span class='line'>938</span>   @default -17
-<span class='line'>939</span> */</span><span class="WHIT">
-<span class='line'>940</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">17</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>941</span> 
-<span class='line'>942</span> </span><span class="COMM">/**
-<span class='line'>943</span>   @static
-<span class='line'>944</span>   @default 3
-<span class='line'>945</span> */</span><span class="WHIT">
-<span class='line'>946</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>947</span> 
-<span class='line'>948</span> </span><span class="COMM">/**
-<span class='line'>949</span>   @static
-<span class='line'>950</span>   @default 4
-<span class='line'>951</span> */</span><span class="WHIT">
-<span class='line'>952</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>935</span> </span><span class="COMM">/**
+<span class='line'>936</span>   @static
+<span class='line'>937</span>   @default -17
+<span class='line'>938</span> */</span><span class="WHIT">
+<span class='line'>939</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">17</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>940</span> 
+<span class='line'>941</span> </span><span class="COMM">/**
+<span class='line'>942</span>   @static
+<span class='line'>943</span>   @default 3
+<span class='line'>944</span> */</span><span class="WHIT">
+<span class='line'>945</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>946</span> 
+<span class='line'>947</span> </span><span class="COMM">/**
+<span class='line'>948</span>   @static
+<span class='line'>949</span>   @default 4
+<span class='line'>950</span> */</span><span class="WHIT">
+<span class='line'>951</span> </span><span class="NAME">SC.SelectButtonView.REGULAR_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>952</span> 
 <span class='line'>953</span> 
-<span class='line'>954</span> 
-<span class='line'>955</span> </span><span class="COMM">/**
-<span class='line'>956</span>   @static
-<span class='line'>957</span>   @default -17
-<span class='line'>958</span> */</span><span class="WHIT">
-<span class='line'>959</span> </span><span class="NAME">SC.SelectButtonView.LARGE_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">17</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>960</span> 
-<span class='line'>961</span> </span><span class="COMM">/**
-<span class='line'>962</span>   @static
-<span class='line'>963</span>   @default 6
-<span class='line'>964</span> */</span><span class="WHIT">
-<span class='line'>965</span> </span><span class="NAME">SC.SelectButtonView.LARGE_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">6</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>966</span> 
-<span class='line'>967</span> </span><span class="COMM">/**
-<span class='line'>968</span>   @static
-<span class='line'>969</span>   @default 3
-<span class='line'>970</span> */</span><span class="WHIT">
-<span class='line'>971</span> </span><span class="NAME">SC.SelectButtonView.LARGE_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>954</span> </span><span class="COMM">/**
+<span class='line'>955</span>   @static
+<span class='line'>956</span>   @default -17
+<span class='line'>957</span> */</span><span class="WHIT">
+<span class='line'>958</span> </span><span class="NAME">SC.SelectButtonView.LARGE_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">17</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>959</span> 
+<span class='line'>960</span> </span><span class="COMM">/**
+<span class='line'>961</span>   @static
+<span class='line'>962</span>   @default 6
+<span class='line'>963</span> */</span><span class="WHIT">
+<span class='line'>964</span> </span><span class="NAME">SC.SelectButtonView.LARGE_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">6</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>965</span> 
+<span class='line'>966</span> </span><span class="COMM">/**
+<span class='line'>967</span>   @static
+<span class='line'>968</span>   @default 3
+<span class='line'>969</span> */</span><span class="WHIT">
+<span class='line'>970</span> </span><span class="NAME">SC.SelectButtonView.LARGE_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>971</span> 
 <span class='line'>972</span> 
-<span class='line'>973</span> 
-<span class='line'>974</span> </span><span class="COMM">/**
-<span class='line'>975</span>   @static
-<span class='line'>976</span>   @default 0
-<span class='line'>977</span> */</span><span class="WHIT">
-<span class='line'>978</span> </span><span class="NAME">SC.SelectButtonView.HUGE_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>979</span> 
-<span class='line'>980</span> </span><span class="COMM">/**
-<span class='line'>981</span>   @static
-<span class='line'>982</span>   @default 0
-<span class='line'>983</span> */</span><span class="WHIT">
-<span class='line'>984</span> </span><span class="NAME">SC.SelectButtonView.HUGE_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>985</span> 
-<span class='line'>986</span> </span><span class="COMM">/**
-<span class='line'>987</span>   @static
-<span class='line'>988</span>   @default 0
-<span class='line'>989</span> */</span><span class="WHIT">
-<span class='line'>990</span> </span><span class="NAME">SC.SelectButtonView.HUGE_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>973</span> </span><span class="COMM">/**
+<span class='line'>974</span>   @static
+<span class='line'>975</span>   @default 0
+<span class='line'>976</span> */</span><span class="WHIT">
+<span class='line'>977</span> </span><span class="NAME">SC.SelectButtonView.HUGE_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>978</span> 
+<span class='line'>979</span> </span><span class="COMM">/**
+<span class='line'>980</span>   @static
+<span class='line'>981</span>   @default 0
+<span class='line'>982</span> */</span><span class="WHIT">
+<span class='line'>983</span> </span><span class="NAME">SC.SelectButtonView.HUGE_OFFSET_Y</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>984</span> 
+<span class='line'>985</span> </span><span class="COMM">/**
+<span class='line'>986</span>   @static
+<span class='line'>987</span>   @default 0
+<span class='line'>988</span> */</span><span class="WHIT">
+<span class='line'>989</span> </span><span class="NAME">SC.SelectButtonView.HUGE_POPUP_MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>990</span> 
 <span class='line'>991</span> 
-<span class='line'>992</span> 
-<span class='line'>993</span> </span><span class="COMM">/**
-<span class='line'>994</span>   @static
-<span class='line'>995</span>   @default -2
-<span class='line'>996</span> */</span><span class="WHIT">
-<span class='line'>997</span> </span><span class="NAME">SC.SelectButtonView.MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>998</span> 
-<span class='line'>999</span> </span><span class="COMM">/**
-<span class='line'>1000</span>   Default metrics for the different control sizes.
-<span class='line'>1001</span> */</span><span class="WHIT">
-<span class='line'>1002</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1003</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1004</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1005</span> </span><span class="NAME">SC.MenuPane.TINY_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1006</span> 
-<span class='line'>1007</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">16</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1008</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">7</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1009</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1010</span> </span><span class="NAME">SC.MenuPane.SMALL_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1011</span> 
-<span class='line'>1012</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">22</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1013</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1014</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">6</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1015</span> </span><span class="NAME">SC.MenuPane.REGULAR_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1016</span> 
-<span class='line'>1017</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">31</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1018</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1019</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1020</span> </span><span class="NAME">SC.MenuPane.LARGE_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1021</span> 
-<span class='line'>1022</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1023</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1024</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1025</span> </span><span class="NAME">SC.MenuPane.HUGE_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>1026</span> </span></pre></body></html>
+<span class='line'>992</span> </span><span class="COMM">/**
+<span class='line'>993</span>   @static
+<span class='line'>994</span>   @default -2
+<span class='line'>995</span> */</span><span class="WHIT">
+<span class='line'>996</span> </span><span class="NAME">SC.SelectButtonView.MENU_WIDTH_OFFSET</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>997</span> 
+<span class='line'>998</span> </span><span class="COMM">/**
+<span class='line'>999</span>   Default metrics for the different control sizes.
+<span class='line'>1000</span> */</span><span class="WHIT">
+<span class='line'>1001</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1002</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1003</span> </span><span class="NAME">SC.MenuPane.TINY_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1004</span> </span><span class="NAME">SC.MenuPane.TINY_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1005</span> 
+<span class='line'>1006</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">16</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1007</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">7</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1008</span> </span><span class="NAME">SC.MenuPane.SMALL_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1009</span> </span><span class="NAME">SC.MenuPane.SMALL_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1010</span> 
+<span class='line'>1011</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">22</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1012</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1013</span> </span><span class="NAME">SC.MenuPane.REGULAR_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">6</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1014</span> </span><span class="NAME">SC.MenuPane.REGULAR_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1015</span> 
+<span class='line'>1016</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">31</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1017</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1018</span> </span><span class="NAME">SC.MenuPane.LARGE_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1019</span> </span><span class="NAME">SC.MenuPane.LARGE_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">4</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1020</span> 
+<span class='line'>1021</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_ITEM_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">20</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1022</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_ITEM_SEPARATOR_HEIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">9</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1023</span> </span><span class="NAME">SC.MenuPane.HUGE_MENU_HEIGHT_PADDING</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1024</span> </span><span class="NAME">SC.MenuPane.HUGE_SUBMENU_OFFSET_X</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1025</span> </span></pre></body></html>
