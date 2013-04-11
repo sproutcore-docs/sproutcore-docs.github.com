@@ -1,0 +1,545 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   Indicates a value has a mixed state of both on and off.
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   @property {String}
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">SC.MIXED_STATE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'__MIXED__'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/** @class
+<span class='line'> 16</span> 
+<span class='line'> 17</span>   A DataSource connects an in-memory store to one or more server backends.
+<span class='line'> 18</span>   To connect to a data backend on a server, subclass `SC.DataSource`
+<span class='line'> 19</span>   and implement the necessary data source methods to communicate with the
+<span class='line'> 20</span>   particular backend.
+<span class='line'> 21</span> 
+<span class='line'> 22</span>   ## Create a Data Source
+<span class='line'> 23</span> 
+<span class='line'> 24</span>   To implement the data source, subclass `SC.DataSource` in a file located
+<span class='line'> 25</span>   either in the root level of your app or framework, or in a directory
+<span class='line'> 26</span>   called "data_sources":
+<span class='line'> 27</span> 
+<span class='line'> 28</span>       MyApp.DataSource = SC.DataSource.extend({
+<span class='line'> 29</span>         // implement the data source API...
+<span class='line'> 30</span>       });
+<span class='line'> 31</span> 
+<span class='line'> 32</span>   ## Connect to a Data Source
+<span class='line'> 33</span> 
+<span class='line'> 34</span>   New SproutCore applications are wired up to fixtures as their data source.
+<span class='line'> 35</span>   When you are ready to connect to a server, swap the use of fixtures with a
+<span class='line'> 36</span>   call to the desired data source.
+<span class='line'> 37</span> 
+<span class='line'> 38</span>   In core.js:
+<span class='line'> 39</span> 
+<span class='line'> 40</span>       // change...
+<span class='line'> 41</span>       store: SC.Store.create().from(SC.Record.fixtures)
+<span class='line'> 42</span> 
+<span class='line'> 43</span>       // to...
+<span class='line'> 44</span>       store: SC.Store.create().from('MyApp.DataSource')
+<span class='line'> 45</span> 
+<span class='line'> 46</span>   Note that the data source class name is referenced by string since the file
+<span class='line'> 47</span>   in which it is defined may not have been loaded yet. The first time a
+<span class='line'> 48</span>   data store tries to access its data source it will look up the class name
+<span class='line'> 49</span>   and instantiate that data source.
+<span class='line'> 50</span> 
+<span class='line'> 51</span>   ## Implement the Data Source API
+<span class='line'> 52</span> 
+<span class='line'> 53</span>   There are three methods that a data store invokes on its data source:
+<span class='line'> 54</span> 
+<span class='line'> 55</span>    * `fetch()` &mdash; called the first time you try to `find()` a query
+<span class='line'> 56</span>      on a store or any time you refresh the record array after that.
+<span class='line'> 57</span>    * `retrieveRecords()` &mdash; called when you access an individual
+<span class='line'> 58</span>      record that has not been loaded yet
+<span class='line'> 59</span>    * `commitRecords()` &mdash; called if the the store has changes
+<span class='line'> 60</span>      pending and its `commitRecords()` method is invoked.
+<span class='line'> 61</span> 
+<span class='line'> 62</span>   The data store will call the `commitRecords()` method when records
+<span class='line'> 63</span>   need to be created, updated, or deleted. If the server that the data source
+<span class='line'> 64</span>   connects to handles these three actions in a uniform manner, it may be
+<span class='line'> 65</span>   convenient to implement the `commitRecords()` to handle record
+<span class='line'> 66</span>   creation, updating, and deletion.
+<span class='line'> 67</span> 
+<span class='line'> 68</span>   However, if the calls the data source will need to make to the server to
+<span class='line'> 69</span>   create, update, and delete records differ from each other to a significant
+<span class='line'> 70</span>   enough degree, it will be more convenient to rely on the default behavior
+<span class='line'> 71</span>   of `commitRecords()` and instead implement the three methods that
+<span class='line'> 72</span>   it will call by default:
+<span class='line'> 73</span> 
+<span class='line'> 74</span>    * `createRecords()` &mdash; called with a list of records that are new
+<span class='line'> 75</span>      and need to be created on the server.
+<span class='line'> 76</span>    * `updateRecords()` &mdash; called with a list of records that already
+<span class='line'> 77</span>       exist on the server but that need to be updated.
+<span class='line'> 78</span>    * `destroyRecords()` &mdash; called with a list of records that should
+<span class='line'> 79</span>      be deleted on the server.
+<span class='line'> 80</span> 
+<span class='line'> 81</span>   ### Multiple records
+<span class='line'> 82</span> 
+<span class='line'> 83</span>   The `retrieveRecords()`, `createRecords()`, `updateRecords()` and
+<span class='line'> 84</span>   `destroyRecords()` methods all work on multiple records. If your server
+<span class='line'> 85</span>   API accommodates calls where you can  pass a list of records, this might
+<span class='line'> 86</span>   be the best level at which to implement the Data Source API. On the other
+<span class='line'> 87</span>   hand, if the server requires that you send commands for it for individual
+<span class='line'> 88</span>   records, you can rely on the default implementation of these four methods,
+<span class='line'> 89</span>   which will call the following for each individual record, one at a time:
+<span class='line'> 90</span> 
+<span class='line'> 91</span>    - `retrieveRecord()` &mdash; called to retrieve a single record.
+<span class='line'> 92</span>    - `createRecord()` &mdash; called to create a single record.
+<span class='line'> 93</span>    - `updateRecord()` &mdash; called to update a single record.
+<span class='line'> 94</span>    - `destroyRecord()` &mdash; called to destroy a single record.
+<span class='line'> 95</span> 
+<span class='line'> 96</span> 
+<span class='line'> 97</span>   ### Return Values
+<span class='line'> 98</span> 
+<span class='line'> 99</span>   All of the methods you implement must return one of three values:
+<span class='line'>100</span>    - `YES` &mdash; all the records were handled.
+<span class='line'>101</span>    - `NO` &mdash; none of the records were handled.
+<span class='line'>102</span>    - `SC.MIXED_STATE` &mdash; some, but not all of the records were handled.
+<span class='line'>103</span> 
+<span class='line'>104</span> 
+<span class='line'>105</span>   ### Store Keys
+<span class='line'>106</span> 
+<span class='line'>107</span>   Whenever a data store invokes one of the data source methods it does so
+<span class='line'>108</span>   with a storeKeys or storeKey argument. Store keys are transient integers
+<span class='line'>109</span>   assigned to each data hash when it is first loaded into the store. It is
+<span class='line'>110</span>   used to track data hashes as they move up and down nested stores (even if
+<span class='line'>111</span>   no associated record is ever created from it).
+<span class='line'>112</span> 
+<span class='line'>113</span>   When passed a storeKey you can use it to retrieve the status, data hash,
+<span class='line'>114</span>   record type, or record ID, using the following data store methods:
+<span class='line'>115</span> 
+<span class='line'>116</span>    * `readDataHash(storeKey)` &mdash; returns the data hash associated with
+<span class='line'>117</span>      a store key, if any.
+<span class='line'>118</span>    * `readStatus(storeKey)` &mdash; returns the current record status
+<span class='line'>119</span>      associated with the store key. May be `SC.Record.EMPTY`.
+<span class='line'>120</span>    * `SC.Store.recordTypeFor(storeKey)` &mdash; returns the record type for
+<span class='line'>121</span>      the associated store key.
+<span class='line'>122</span>    * `recordType.idFor(storeKey)` &mdash; returns the record ID for
+<span class='line'>123</span>      the associated store key. You must call this method on `SC.Record`
+<span class='line'>124</span>      subclass itself, not on an instance of `SC.Record`.
+<span class='line'>125</span> 
+<span class='line'>126</span>   These methods are safe for reading data from the store. To modify data
+<span class='line'>127</span>   in the data store you must use the store callbacks described below. The
+<span class='line'>128</span>   store callbacks will ensure that the record states remain consistent.
+<span class='line'>129</span> 
+<span class='line'>130</span>   ### Store Callbacks
+<span class='line'>131</span> 
+<span class='line'>132</span>   When a data store calls a data source method, it puts affected records into
+<span class='line'>133</span>   a `BUSY` state. To guarantee data integrity and consistency, these records
+<span class='line'>134</span>   cannot be modified by the rest of the application while they are in the `BUSY`
+<span class='line'>135</span>   state.
+<span class='line'>136</span> 
+<span class='line'>137</span>   Because records are "locked" while in the `BUSY` state, it is the data source's
+<span class='line'>138</span>   responsibility to invoke a callback on the store for each record or query that
+<span class='line'>139</span>   was passed to it and that the data source handled. To reduce the amount of work
+<span class='line'>140</span>   that a data source must do, the data store will automatically unlock the relevant
+<span class='line'>141</span>   records if the the data source method returned `NO`, indicating that the records
+<span class='line'>142</span>   were unhandled.
+<span class='line'>143</span> 
+<span class='line'>144</span>   Although a data source can invoke callback methods at any time, they should
+<span class='line'>145</span>   usually be invoked after receiving a response from the server. For example, when
+<span class='line'>146</span>   the data source commits a change to a record by issuing a command to the server,
+<span class='line'>147</span>   it waits for the server to acknowledge the command before invoking the
+<span class='line'>148</span>   `dataSourceDidComplete()` callback.
+<span class='line'>149</span> 
+<span class='line'>150</span>   In some cases a data source may be able to assume a server's response and invoke
+<span class='line'>151</span>   the callback on the store immediately. This can improve performance because the
+<span class='line'>152</span>   record can be unlocked right away.
+<span class='line'>153</span> 
+<span class='line'>154</span> 
+<span class='line'>155</span>   ### Record-Related Callbacks
+<span class='line'>156</span> 
+<span class='line'>157</span>   When `retrieveRecords()`, `commitRecords()`, or any of the related methods are
+<span class='line'>158</span>   called on a data source, the store puts any records to be handled by the data
+<span class='line'>159</span>   store in a `BUSY` state. To release the records the data source must invoke one
+<span class='line'>160</span>   of the record-related callbacks on the store:
+<span class='line'>161</span> 
+<span class='line'>162</span>    * `dataSourceDidComplete(storeKey, dataHash, id)` &mdash; the most common
+<span class='line'>163</span>      callback. You might use this callback when you have retrieved a record to
+<span class='line'>164</span>      load its contents into the store. The callback tells the store that the data
+<span class='line'>165</span>      source is finished with the storeKey in question. The `dataHash` and `id`
+<span class='line'>166</span>      arguments are optional and will replace the current dataHash and/or id. Also
+<span class='line'>167</span>      see "Loading Records" below.
+<span class='line'>168</span>    * `dataSourceDidError(storeKey, error)` &mdash; a data source should call this
+<span class='line'>169</span>      when a request could not be completed because an error occurred. The error
+<span class='line'>170</span>      argument is optional and can contain more information about the error.
+<span class='line'>171</span>    * `dataSourceDidCancel(storeKey)` &mdash; a data source should call this when
+<span class='line'>172</span>      an operation is cancelled for some reason. This could be used when the user
+<span class='line'>173</span>      is able to cancel an operation that is in progress.
+<span class='line'>174</span> 
+<span class='line'>175</span>   ### Loading Records into the Store
+<span class='line'>176</span> 
+<span class='line'>177</span>   Instead of orchestrating multiple `dataSourceDidComplete()` callbacks when loading
+<span class='line'>178</span>   multiple records, a data source can call the `loadRecords()` method on the store,
+<span class='line'>179</span>   passing in a `recordType`, and array of data hashes, and optionally an array of ids.
+<span class='line'>180</span>   The `loadRecords()` method takes care of looking up storeKeys and calling the
+<span class='line'>181</span>   `dataSourceDidComplete()` callback as needed.
+<span class='line'>182</span> 
+<span class='line'>183</span>   `loadRecords()` is often the most convenient way to get large blocks of data into
+<span class='line'>184</span>   the store, especially in response to a `fetch()` or `retrieveRecords()` call.
+<span class='line'>185</span> 
+<span class='line'>186</span> 
+<span class='line'>187</span>   ### Query-Related Callbacks
+<span class='line'>188</span> 
+<span class='line'>189</span>   Like records, queries that are passed through the `fetch()` method also have an
+<span class='line'>190</span>   associated status property; accessed through the `status`  property on the record
+<span class='line'>191</span>   array returned from `find()`. To properly reset this status, a data source must
+<span class='line'>192</span>   invoke an appropriate query-related callback on the store. The callbacks for
+<span class='line'>193</span>   queries are similar to those for records:
+<span class='line'>194</span> 
+<span class='line'>195</span>    * `dataSourceDidFetchQuery(query)` &mdash; the data source must call this when
+<span class='line'>196</span>      it has completed fetching any related data for the query. This returns the
+<span class='line'>197</span>      query results (i.e. the record array) status into a `READY` state.
+<span class='line'>198</span>    * `dataSourceDidErrorQuery(query, error)` &mdash; the data source should call
+<span class='line'>199</span>      this if it encounters an error in executing the query. This puts the query
+<span class='line'>200</span>      results into an `ERROR` state.
+<span class='line'>201</span>    * `dataSourceDidCancelQuery(query)` &mdash; the data source should call this
+<span class='line'>202</span>      if loading the results is cancelled.
+<span class='line'>203</span> 
+<span class='line'>204</span>   In addition to these callbacks, the method `loadQueryResults(query, storeKey)`
+<span class='line'>205</span>   is used by data sources when handling remote queries. This method is similar to
+<span class='line'>206</span>   `dataSourceDidFetchQuery()`, except that you also provide an array of storeKeys
+<span class='line'>207</span>   (or a promise to provide store keys) that comprises the result set.
+<span class='line'>208</span> 
+<span class='line'>209</span>   @extend SC.Object
+<span class='line'>210</span>   @since SproutCore 1.0
+<span class='line'>211</span> */</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="NAME">SC.DataSource</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="WHIT"> </span><span class="COMM">/** @scope SC.DataSource.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>213</span> 
+<span class='line'>214</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">  </span><span class="COMM">// SC.STORE ENTRY POINTS</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>217</span> 
+<span class='line'>218</span> 
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>220</span> 
+<span class='line'>221</span>     Invoked by the store whenever it needs to retrieve data matching a
+<span class='line'>222</span>     specific query, triggered by find().  This method is called anytime
+<span class='line'>223</span>     you invoke SC.Store#find() with a query or SC.RecordArray#refresh().  You
+<span class='line'>224</span>     should override this method to actually retrieve data from the server
+<span class='line'>225</span>     needed to fulfill the query.  If the query is a remote query, then you
+<span class='line'>226</span>     will also need to provide the contents of the query as well.
+<span class='line'>227</span> 
+<span class='line'>228</span>     ### Handling Local Queries
+<span class='line'>229</span> 
+<span class='line'>230</span>     Most queries you create in your application will be local queries.  Local
+<span class='line'>231</span>     queries are populated automatically from whatever data you have in memory.
+<span class='line'>232</span>     When your fetch() method is called on a local queries, all you need to do
+<span class='line'>233</span>     is load any records that might be matched by the query into memory.
+<span class='line'>234</span> 
+<span class='line'>235</span>     The way you choose which queries to fetch is up to you, though usually it
+<span class='line'>236</span>     can be something fairly straightforward such as loading all records of a
+<span class='line'>237</span>     specified type.
+<span class='line'>238</span> 
+<span class='line'>239</span>     When you finish loading any data that might be required for your query,
+<span class='line'>240</span>     you should always call SC.Store#dataSourceDidFetchQuery() to put the query
+<span class='line'>241</span>     back into the READY state.  You should call this method even if you choose
+<span class='line'>242</span>     not to load any new data into the store in order to notify that the store
+<span class='line'>243</span>     that you think it is ready to return results for the query.
+<span class='line'>244</span> 
+<span class='line'>245</span>     ### Handling Remote Queries
+<span class='line'>246</span> 
+<span class='line'>247</span>     Remote queries are special queries whose results will be populated by the
+<span class='line'>248</span>     server instead of from memory.  Usually you will only need to use this
+<span class='line'>249</span>     type of query when loading large amounts of data from the server.
+<span class='line'>250</span> 
+<span class='line'>251</span>     Like Local queries, to fetch a remote query you will need to load any data
+<span class='line'>252</span>     you need to fetch from the server and add the records to the store.  Once
+<span class='line'>253</span>     you are finished loading this data, however, you must also call
+<span class='line'>254</span>     SC.Store#loadQueryResults() to actually set an array of storeKeys that
+<span class='line'>255</span>     represent the latest results from the server.  This will implicitly also
+<span class='line'>256</span>     call datasSourceDidFetchQuery() so you don't need to call this method
+<span class='line'>257</span>     yourself.
+<span class='line'>258</span> 
+<span class='line'>259</span>     If you want to support incremental loading from the server for remote
+<span class='line'>260</span>     queries, you can do so by passing a SC.SparseArray instance instead of
+<span class='line'>261</span>     a regular array of storeKeys and then populate the sparse array on demand.
+<span class='line'>262</span> 
+<span class='line'>263</span>     ### Handling Errors and Cancellations
+<span class='line'>264</span> 
+<span class='line'>265</span>     If you encounter an error while trying to fetch the results for a query
+<span class='line'>266</span>     you can call SC.Store#dataSourceDidErrorQuery() instead.  This will put
+<span class='line'>267</span>     the query results into an error state.
+<span class='line'>268</span> 
+<span class='line'>269</span>     If you had to cancel fetching a query before the results were returned,
+<span class='line'>270</span>     you can instead call SC.Store#dataSourceDidCancelQuery().  This will set
+<span class='line'>271</span>     the query back into the state it was in previously before it started
+<span class='line'>272</span>     loading the query.
+<span class='line'>273</span> 
+<span class='line'>274</span>     ### Return Values
+<span class='line'>275</span> 
+<span class='line'>276</span>     When you return from this method, be sure to return a Boolean.  YES means
+<span class='line'>277</span>     you handled the query, NO means you can't handle the query.  When using
+<span class='line'>278</span>     a cascading data source, returning NO will mean the next data source will
+<span class='line'>279</span>     be asked to fetch the same results as well.
+<span class='line'>280</span> 
+<span class='line'>281</span>     @param {SC.Store} store the requesting store
+<span class='line'>282</span>     @param {SC.Query} query query describing the request
+<span class='line'>283</span>     @returns {Boolean} YES if you can handle fetching the query, NO otherwise
+<span class='line'>284</span>   */</span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">  </span><span class="NAME">fetch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// do not handle anything!</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>288</span> 
+<span class='line'>289</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>290</span>     Called by the store whenever it needs to load a specific set of store
+<span class='line'>291</span>     keys.  The default implementation will call retrieveRecord() for each
+<span class='line'>292</span>     storeKey.
+<span class='line'>293</span> 
+<span class='line'>294</span>     You should implement either retrieveRecord() or retrieveRecords() to
+<span class='line'>295</span>     actually fetch the records referenced by the storeKeys .
+<span class='line'>296</span> 
+<span class='line'>297</span>     @param {SC.Store} store the requesting store
+<span class='line'>298</span>     @param {Array} storeKeys
+<span class='line'>299</span>     @param {Array} ids - optional
+<span class='line'>300</span>     @returns {Boolean} YES if handled, NO otherwise
+<span class='line'>301</span>   */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">retrieveRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ids</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._handleEach</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.retrieveRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ids</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>305</span> 
+<span class='line'>306</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>307</span>     Invoked by the store whenever it has one or more records with pending
+<span class='line'>308</span>     changes that need to be sent back to the server.  The store keys will be
+<span class='line'>309</span>     separated into three categories:
+<span class='line'>310</span> 
+<span class='line'>311</span>      - `createStoreKeys`: records that need to be created on server
+<span class='line'>312</span>      - `updateStoreKeys`: existing records that have been modified
+<span class='line'>313</span>      - `destroyStoreKeys`: records need to be destroyed on the server
+<span class='line'>314</span> 
+<span class='line'>315</span>     If you do not override this method yourself, this method will actually
+<span class='line'>316</span>     invoke `createRecords()`, `updateRecords()`, and `destroyRecords()` on the
+<span class='line'>317</span>     dataSource, passing each array of storeKeys.  You can usually implement
+<span class='line'>318</span>     those methods instead of overriding this method.
+<span class='line'>319</span> 
+<span class='line'>320</span>     However, if your server API can sync multiple changes at once, you may
+<span class='line'>321</span>     prefer to override this method instead.
+<span class='line'>322</span> 
+<span class='line'>323</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>324</span>     handle any of the keys, `YES` if you can handle all of the keys, or
+<span class='line'>325</span>     `SC.MIXED_STATE` if you can handle some of them.
+<span class='line'>326</span> 
+<span class='line'>327</span>     @param {SC.Store} store the requesting store
+<span class='line'>328</span>     @param {Array} createStoreKeys keys to create
+<span class='line'>329</span>     @param {Array} updateStoreKeys keys to update
+<span class='line'>330</span>     @param {Array} destroyStoreKeys keys to destroy
+<span class='line'>331</span>     @param {Hash} params to be passed down to data source. originated
+<span class='line'>332</span>       from the commitRecords() call on the store
+<span class='line'>333</span>     @returns {Boolean} YES if data source can handle keys
+<span class='line'>334</span>   */</span><span class="WHIT">
+<span class='line'>335</span> </span><span class="WHIT">  </span><span class="NAME">commitRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">createStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">updateStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">destroyStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">uret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">dret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">createStoreKeys.length</span><span class="PUNC">></span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createRecords.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">createStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>340</span> 
+<span class='line'>341</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">updateStoreKeys.length</span><span class="PUNC">></span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">      </span><span class="NAME">uret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.updateRecords.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">updateStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">uret</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">uret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>345</span> 
+<span class='line'>346</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">destroyStoreKeys.length</span><span class="PUNC">></span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">      </span><span class="NAME">dret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.destroyRecords.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">destroyStoreKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">dret</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">dret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>350</span> 
+<span class='line'>351</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>353</span> 
+<span class='line'>354</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>355</span>     Invoked by the store whenever it needs to cancel one or more records that
+<span class='line'>356</span>     are currently in-flight.  If any of the storeKeys match records you are
+<span class='line'>357</span>     currently acting upon, you should cancel the in-progress operation and
+<span class='line'>358</span>     return `YES`.
+<span class='line'>359</span> 
+<span class='line'>360</span>     If you implement an in-memory data source that immediately services the
+<span class='line'>361</span>     other requests, then this method will never be called on your data source.
+<span class='line'>362</span> 
+<span class='line'>363</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>364</span>     retrieve any of the keys, `YES` if you can retrieve all of the, or
+<span class='line'>365</span>     `SC.MIXED_STATE` if you can retrieve some of the.
+<span class='line'>366</span> 
+<span class='line'>367</span>     @param {SC.Store} store the requesting store
+<span class='line'>368</span>     @param {Array} storeKeys array of storeKeys to retrieve
+<span class='line'>369</span>     @returns {Boolean} YES if data source can handle keys
+<span class='line'>370</span>   */</span><span class="WHIT">
+<span class='line'>371</span> </span><span class="WHIT">  </span><span class="NAME">cancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>372</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>373</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>374</span> 
+<span class='line'>375</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>376</span> </span><span class="WHIT">  </span><span class="COMM">// BULK RECORD ACTIONS</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>378</span> 
+<span class='line'>379</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>380</span>     Called from `commitRecords()` to commit modified existing records to the
+<span class='line'>381</span>     store.  You can override this method to actually send the updated
+<span class='line'>382</span>     records to your store.  The default version will simply call
+<span class='line'>383</span>     `updateRecord()` for each storeKey.
+<span class='line'>384</span> 
+<span class='line'>385</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>386</span>     handle any of the keys, `YES` if you can handle all of the keys, or
+<span class='line'>387</span>     `SC.MIXED_STATE` if you can handle some of them.
+<span class='line'>388</span> 
+<span class='line'>389</span>     @param {SC.Store} store the requesting store
+<span class='line'>390</span>     @param {Array} storeKeys keys to update
+<span class='line'>391</span>     @param {Hash} params
+<span class='line'>392</span>       to be passed down to data source. originated from the commitRecords()
+<span class='line'>393</span>       call on the store
+<span class='line'>394</span> 
+<span class='line'>395</span>     @returns {Boolean} YES, NO, or SC.MIXED_STATE
+<span class='line'>396</span> 
+<span class='line'>397</span>   */</span><span class="WHIT">
+<span class='line'>398</span> </span><span class="WHIT">  </span><span class="NAME">updateRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>399</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._handleEach</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.updateRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>400</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>401</span> 
+<span class='line'>402</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>403</span>     Called from `commitRecords()` to commit newly created records to the
+<span class='line'>404</span>     store.  You can override this method to actually send the created
+<span class='line'>405</span>     records to your store.  The default version will simply call
+<span class='line'>406</span>     `createRecord()` for each storeKey.
+<span class='line'>407</span> 
+<span class='line'>408</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>409</span>     handle any of the keys, `YES` if you can handle all of the keys, or
+<span class='line'>410</span>     `SC.MIXED_STATE` if you can handle some of them.
+<span class='line'>411</span> 
+<span class='line'>412</span>     @param {SC.Store} store the requesting store
+<span class='line'>413</span>     @param {Array} storeKeys keys to update
+<span class='line'>414</span> 
+<span class='line'>415</span>     @param {Hash} params
+<span class='line'>416</span>       to be passed down to data source. originated from the commitRecords()
+<span class='line'>417</span>       call on the store
+<span class='line'>418</span> 
+<span class='line'>419</span>     @returns {Boolean} YES, NO, or SC.MIXED_STATE
+<span class='line'>420</span> 
+<span class='line'>421</span>   */</span><span class="WHIT">
+<span class='line'>422</span> </span><span class="WHIT">  </span><span class="NAME">createRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>423</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._handleEach</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.createRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>424</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>425</span> 
+<span class='line'>426</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>427</span>     Called from `commitRecords()` to commit destroyed records to the
+<span class='line'>428</span>     store.  You can override this method to actually send the destroyed
+<span class='line'>429</span>     records to your store.  The default version will simply call
+<span class='line'>430</span>     `destroyRecord()` for each storeKey.
+<span class='line'>431</span> 
+<span class='line'>432</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>433</span>     handle any of the keys, `YES` if you can handle all of the keys, or
+<span class='line'>434</span>     `SC.MIXED_STATE` if you can handle some of them.
+<span class='line'>435</span> 
+<span class='line'>436</span>     @param {SC.Store} store the requesting store
+<span class='line'>437</span>     @param {Array} storeKeys keys to update
+<span class='line'>438</span>     @param {Hash} params to be passed down to data source. originated
+<span class='line'>439</span>       from the commitRecords() call on the store
+<span class='line'>440</span> 
+<span class='line'>441</span>     @returns {Boolean} YES, NO, or SC.MIXED_STATE
+<span class='line'>442</span> 
+<span class='line'>443</span>   */</span><span class="WHIT">
+<span class='line'>444</span> </span><span class="WHIT">  </span><span class="NAME">destroyRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>445</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this._handleEach</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.destroyRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>446</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>447</span> 
+<span class='line'>448</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>449</span>     invokes the named action for each store key.  returns proper value
+<span class='line'>450</span>   */</span><span class="WHIT">
+<span class='line'>451</span> </span><span class="WHIT">  </span><span class="NAME">_handleEach</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ids</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>452</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">storeKeys.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">cur</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idOrParams</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>453</span> 
+<span class='line'>454</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">      </span><span class="NAME">idOrParams</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ids</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">ids</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>456</span> 
+<span class='line'>457</span> </span><span class="WHIT">      </span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">action.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idOrParams</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>458</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>459</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>460</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>461</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>462</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>463</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>464</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>465</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>466</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>468</span> 
+<span class='line'>469</span> 
+<span class='line'>470</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>471</span> </span><span class="WHIT">  </span><span class="COMM">// SINGLE RECORD ACTIONS</span><span class="WHIT">
+<span class='line'>472</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>473</span> 
+<span class='line'>474</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>475</span>     Called from `updatesRecords()` to update a single record.  This is the
+<span class='line'>476</span>     most basic primitive to can implement to support updating a record.
+<span class='line'>477</span> 
+<span class='line'>478</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>479</span>     handle the passed storeKey or `YES` if you can.
+<span class='line'>480</span> 
+<span class='line'>481</span>     @param {SC.Store} store the requesting store
+<span class='line'>482</span>     @param {Array} storeKey key to update
+<span class='line'>483</span>     @param {Hash} params to be passed down to data source. originated
+<span class='line'>484</span>       from the commitRecords() call on the store
+<span class='line'>485</span>     @returns {Boolean} YES if handled
+<span class='line'>486</span>   */</span><span class="WHIT">
+<span class='line'>487</span> </span><span class="WHIT">  </span><span class="NAME">updateRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>488</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>489</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>490</span> 
+<span class='line'>491</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>492</span>     Called from `retrieveRecords()` to retrieve a single record.
+<span class='line'>493</span> 
+<span class='line'>494</span>     @param {SC.Store} store the requesting store
+<span class='line'>495</span>     @param {Array} storeKey key to retrieve
+<span class='line'>496</span>     @param {String} id the id to retrieve
+<span class='line'>497</span>     @returns {Boolean} YES if handled
+<span class='line'>498</span>   */</span><span class="WHIT">
+<span class='line'>499</span> </span><span class="WHIT">  </span><span class="NAME">retrieveRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">id</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>500</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>502</span> 
+<span class='line'>503</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>504</span>     Called from `createdRecords()` to created a single record.  This is the
+<span class='line'>505</span>     most basic primitive to can implement to support creating a record.
+<span class='line'>506</span> 
+<span class='line'>507</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>508</span>     handle the passed storeKey or `YES` if you can.
+<span class='line'>509</span> 
+<span class='line'>510</span>     @param {SC.Store} store the requesting store
+<span class='line'>511</span>     @param {Array} storeKey key to update
+<span class='line'>512</span>     @param {Hash} params to be passed down to data source. originated
+<span class='line'>513</span>       from the commitRecords() call on the store
+<span class='line'>514</span>     @returns {Boolean} YES if handled
+<span class='line'>515</span>   */</span><span class="WHIT">
+<span class='line'>516</span> </span><span class="WHIT">  </span><span class="NAME">createRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>517</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>518</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>519</span> 
+<span class='line'>520</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>521</span>     Called from `destroyRecords()` to destroy a single record.  This is the
+<span class='line'>522</span>     most basic primitive to can implement to support destroying a record.
+<span class='line'>523</span> 
+<span class='line'>524</span>     To support cascading data stores, be sure to return `NO` if you cannot
+<span class='line'>525</span>     handle the passed storeKey or `YES` if you can.
+<span class='line'>526</span> 
+<span class='line'>527</span>     @param {SC.Store} store the requesting store
+<span class='line'>528</span>     @param {Array} storeKey key to update
+<span class='line'>529</span>     @param {Hash} params to be passed down to data source. originated
+<span class='line'>530</span>       from the commitRecords() call on the store
+<span class='line'>531</span>     @returns {Boolean} YES if handled
+<span class='line'>532</span>   */</span><span class="WHIT">
+<span class='line'>533</span> </span><span class="WHIT">  </span><span class="NAME">destroyRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>534</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>535</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>536</span> 
+<span class='line'>537</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>538</span> </span></pre></body></html>
