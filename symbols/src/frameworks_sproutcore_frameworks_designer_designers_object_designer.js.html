@@ -1,0 +1,306 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/*global SC */</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/** @class
+<span class='line'> 11</span>   This is a basic designer used for all `SC.Object`s that are created in
+<span class='line'> 12</span>   design mode.
+<span class='line'> 13</span>   
+<span class='line'> 14</span>   FIXME: have `SC.ViewDesigner` subclass this designer.....
+<span class='line'> 15</span> 
+<span class='line'> 16</span>   @extends SC.Object
+<span class='line'> 17</span>   @since SproutCore 1.0
+<span class='line'> 18</span> */</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="NAME">SC.ObjectDesigner</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="COMM">/** @scope SC.ViewDesigner.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="COMM">/** The object managed by this designer. */</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="NAME">object</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">  
+<span class='line'> 25</span>   </span><span class="COMM">/** The class for the design.  Set when the object is created. */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">objectClass</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  
+<span class='line'> 28</span>   </span><span class="COMM">/** Set to `YES` if the object is currently selected for editing. */</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="NAME">designIsSelected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="COMM">/** Set to `YES` if this particular designer should not be enabled. */</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="NAME">designIsEnabled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  
+<span class='line'> 34</span>   </span><span class="COMM">/**
+<span class='line'> 35</span>     The current page.  Comes from the object.
+<span class='line'> 36</span>     
+<span class='line'> 37</span>     @property {SC.Page}
+<span class='line'> 38</span>   */</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="NAME">page</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">v</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'object'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">v</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">v.get</span><span class="PUNC">(</span><span class="STRN">'page'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'object'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="WHIT">  
+<span class='line'> 44</span>   </span><span class="COMM">/**
+<span class='line'> 45</span>     The design controller from the page.  Comes from page
+<span class='line'> 46</span>     
+<span class='line'> 47</span>     @property {SC.PageDesignController}
+<span class='line'> 48</span>   */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="NAME">designController</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">p</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'page'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">p</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">p.get</span><span class="PUNC">(</span><span class="STRN">'designController'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">  
+<span class='line'> 52</span>   </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'page'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">  
+<span class='line'> 54</span>   
+<span class='line'> 55</span>   </span><span class="NAME">concatenatedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'designProperties'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'localizedProperties'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'excludeProperties'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="COMM">// GENERIC PROPERTIES</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="COMM">// </span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">// Adds support for adding generic properties to a object.  These will</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="COMM">// overwrite whatever you write out using specifically supported props.</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    
+<span class='line'> 63</span>   </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="COMM">// HANDLE ENCODING OF VIEW DESIGN</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">// </span><span class="WHIT">
+<span class='line'> 66</span> 
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 68</span>     Encodes any simple properties that can just be copied from the object onto
+<span class='line'> 69</span>     the coder.  This is used by encodeDesignProperties() and 
+<span class='line'> 70</span>     encodeLocalizedProperties().
+<span class='line'> 71</span>   */</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">encodeSimpleProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">props</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">coder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">object</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'object'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">proto</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'objectClass'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">prototype</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">    </span><span class="NAME">props.forEach</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">prop</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">val</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">object</span><span class="PUNC">[</span><span class="NAME">prop</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// avoid get() since we don't want to exec props</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">val</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">proto</span><span class="PUNC">[</span><span class="NAME">prop</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">        </span><span class="NAME">coder.encode</span><span class="PUNC">(</span><span class="NAME">prop</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">val</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  
+<span class='line'> 82</span> 
+<span class='line'> 83</span>   </span><span class="COMM">/** 
+<span class='line'> 84</span>     Array of properties that can be encoded directly.  This is an easy way to
+<span class='line'> 85</span>     add support for simple properties that need to be written to the design
+<span class='line'> 86</span>     without added code.  These properties will be encoded by 
+<span class='line'> 87</span>     `encodeDesignProperties()`.
+<span class='line'> 88</span>     
+<span class='line'> 89</span>     You can add to this array in your subclasses.
+<span class='line'> 90</span>   */</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">  </span><span class="NAME">designProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">  
+<span class='line'> 93</span>   </span><span class="COMM">/*
+<span class='line'> 94</span>     Array of properties specifically not displayed in the editable properties
+<span class='line'> 95</span>     list
+<span class='line'> 96</span>   */</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  
+<span class='line'> 98</span>   </span><span class="NAME">excludeProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">  
+<span class='line'>100</span>   
+<span class='line'>101</span>   </span><span class="COMM">/*
+<span class='line'>102</span>     Array of properties available to edit in greenhouse
+<span class='line'>103</span>     
+<span class='line'>104</span>   */</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="NAME">editableProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>106</span> 
+<span class='line'>107</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">con</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designAttrs'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'>108</span>         </span><span class="NAME">obj</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'object'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">        </span><span class="NAME">designProperties</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designProperties'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">        </span><span class="NAME">excludeProperties</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'excludeProperties'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">con</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">con</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">con</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="KEYW">in</span><span class="WHIT"> </span><span class="NAME">con</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">con.hasOwnProperty</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">excludeProperties.indexOf</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">obj</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">ret.pushObject</span><span class="PUNC">(</span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="NAME">value</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">obj</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">obj</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">    </span><span class="NAME">designProperties.forEach</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">k</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">excludeProperties.indexOf</span><span class="PUNC">(</span><span class="NAME">k</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">        </span><span class="NAME">ret.pushObject</span><span class="PUNC">(</span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="NAME">value</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">obj</span><span class="PUNC">[</span><span class="NAME">k</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">k</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">obj</span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">    
+<span class='line'>124</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT"> 
+<span class='line'>125</span>   </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'designProperties'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">  
+<span class='line'>127</span>   </span><span class="COMM">/** 
+<span class='line'>128</span>     Invoked by a design coder to encode design properties.  The default 
+<span class='line'>129</span>     implementation invoked `encodeDesignProperties()` and
+<span class='line'>130</span>     `encodeChildViewsDesign()`.  You can override this method with your own
+<span class='line'>131</span>     additional encoding if you like.
+<span class='line'>132</span>   */</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="NAME">encodeDesign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">    </span><span class="NAME">coder.set</span><span class="PUNC">(</span><span class="STRN">'className'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC._object_className</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'objectClass'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">    </span><span class="NAME">this.encodeDesignProperties</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>140</span>     Encodes the design properties for the object.  These properties are simply
+<span class='line'>141</span>     copied from the object onto the coder.  As an optimization, the value of 
+<span class='line'>142</span>     each property will be checked against the default value in the class. If
+<span class='line'>143</span>     they match, the property will not be emitted.
+<span class='line'>144</span>   */</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="NAME">encodeDesignProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.encodeSimpleProperties</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designProperties'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">coder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  
+<span class='line'>149</span>   </span><span class="COMM">/** 
+<span class='line'>150</span>     Array of localized that can be encoded directly.  This is an easy way to
+<span class='line'>151</span>     add support for simple properties that need to be written to the 
+<span class='line'>152</span>     localization without added code.  These properties will be encoded by 
+<span class='line'>153</span>     `encodeLocalizedProperties()`.
+<span class='line'>154</span>     
+<span class='line'>155</span>     You can add to this array in your subclasses.
+<span class='line'>156</span>   */</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">  </span><span class="NAME">localizedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">  
+<span class='line'>159</span>   </span><span class="COMM">/** 
+<span class='line'>160</span>     Invoked by a localization coder to encode design properties.  The default 
+<span class='line'>161</span>     implementation invoked `encodeLocalizedProperties()` and
+<span class='line'>162</span>     `encodeChildViewsLoc()`.  You can override this method with your own
+<span class='line'>163</span>     additional encoding if you like.
+<span class='line'>164</span>   */</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">  </span><span class="NAME">encodeLoc</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">    </span><span class="NAME">coder.set</span><span class="PUNC">(</span><span class="STRN">'className'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC._object_className</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'objectClass'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">    </span><span class="NAME">this.encodeLocalizedProperties</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>170</span> 
+<span class='line'>171</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>172</span>     Encodes the localized properties for the object.  These properties are 
+<span class='line'>173</span>     simply copied from the object onto the coder.  As an optimization, the value 
+<span class='line'>174</span>     of  each property will be checked against the default value in the class. 
+<span class='line'>175</span>     If they match, the property will not be emitted.
+<span class='line'>176</span>   */</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="NAME">encodeLocalizedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.encodeSimpleProperties</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'localizedProperties'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="NAME">coder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>182</span>     This method is invoked when the designer is instantiated.  You can use 
+<span class='line'>183</span>     this method to reload any state saved in the object.  This method is called
+<span class='line'>184</span>     before any observers or bindings are setup to give you a chance to 
+<span class='line'>185</span>     configure the initial state of the designer.
+<span class='line'>186</span>   */</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">  </span><span class="NAME">awakeDesign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">  
+<span class='line'>189</span>   </span><span class="COMM">/**
+<span class='line'>190</span>     The `unknownProperty` handler will pass through to the object by default.
+<span class='line'>191</span>     This will often provide you the support you need without needing to 
+<span class='line'>192</span>     customize the Designer.  Just make sure you don't define a conflicting
+<span class='line'>193</span>     property name on the designer itself!
+<span class='line'>194</span>   */</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">  </span><span class="NAME">unknownProperty</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">      </span><span class="NAME">this.object.set</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.object.get</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">  
+<span class='line'>202</span>   </span><span class="COMM">// ......................................</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">  </span><span class="COMM">// PRIVATE METHODS</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">  
+<span class='line'>206</span>   </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">    
+<span class='line'>208</span>     </span><span class="COMM">// setup design from object state...</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="NAME">this.awakeDesign</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">    
+<span class='line'>211</span>     </span><span class="COMM">// setup bindings, etc</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">        
+<span class='line'>214</span>     </span><span class="COMM">// and register with designController, if defined...</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">c</span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designController'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">c</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">c.registerDesigner</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">    
+<span class='line'>218</span>   </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>219</span> 
+<span class='line'>220</span> </span><span class="WHIT">  </span><span class="NAME">destroy</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'object'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// clears the object observer...  </span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">    
+<span class='line'>225</span>   </span><span class="NAME">tryToPerform</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arg1</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arg2</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">    </span><span class="COMM">// only handle event if we are in design mode</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">page</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.object</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.object.get</span><span class="PUNC">(</span><span class="STRN">'page'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isDesignMode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">page</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">page.get</span><span class="PUNC">(</span><span class="STRN">'needsDesigner'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">page.get</span><span class="PUNC">(</span><span class="STRN">'isDesignMode'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>229</span> 
+<span class='line'>230</span> </span><span class="WHIT">    </span><span class="COMM">// if we are in design mode, route event handling to the designer</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">    </span><span class="COMM">// otherwise, invoke default method.</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isDesignMode</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.Object.prototype.tryToPerform.apply</span><span class="PUNC">(</span><span class="NAME">this.object</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>238</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>239</span> 
+<span class='line'>240</span> </span><span class="COMM">// Set default Designer for object</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.Object.Designer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.Object.Designer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ObjectDesigner</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>242</span> 
+<span class='line'>243</span> </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="COMM">// DESIGN NOTIFICATION METHODS</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="COMM">// These methods are invoked automatically on the designer class whenever it </span><span class="WHIT">
+<span class='line'>247</span> </span><span class="COMM">// is loaded.</span><span class="WHIT">
+<span class='line'>248</span> 
+<span class='line'>249</span> </span><span class="NAME">SC.ObjectDesigner.mixin</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>250</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>251</span>     Invoked whenever a designed object is loaded.  This will save the design
+<span class='line'>252</span>     attributes for later use by a designer.
+<span class='line'>253</span>   */</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="WHIT">  </span><span class="NAME">didLoadDesign</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">designedObject</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">sourceObject</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">    </span><span class="NAME">designedObject.isDesign</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// indicates that we need a designer.</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">    </span><span class="NAME">designedObject.designAttrs</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">    </span><span class="COMM">//designedObject.sourceObject = sourceObject; TODO: don't need this..</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>259</span> 
+<span class='line'>260</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>261</span>     Invoked whenever a location is applied to a designed object.  Saves the 
+<span class='line'>262</span>     attributes separately for use by the design object.
+<span class='line'>263</span>   */</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="NAME">didLoadLocalization</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">designedObject</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">    </span><span class="COMM">// nothing to do for now.</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>267</span> </span><span class="WHIT">  
+<span class='line'>268</span>   </span><span class="COMM">/**
+<span class='line'>269</span>     Invoked whenver a object is created.  This will create a peer designer if 
+<span class='line'>270</span>     needed.
+<span class='line'>271</span>   */</span><span class="WHIT">
+<span class='line'>272</span> </span><span class="WHIT">  </span><span class="NAME">didCreateObject</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">object</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">attrs</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>273</span> </span><span class="WHIT">    </span><span class="COMM">// add designer if page is in design mode</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">page</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">object.get</span><span class="PUNC">(</span><span class="STRN">'page'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">design</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">object.constructor</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">    
+<span class='line'>276</span>     </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">design.isDesign</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">page</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">page.get</span><span class="PUNC">(</span><span class="STRN">'needsDesigner'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">      
+<span class='line'>278</span>       </span><span class="COMM">// find the designer class</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">design</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">origDesign</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">design</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="WHIT">      </span><span class="KEYW">while</span><span class="PUNC">(</span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">cur.Designer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">cur</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">cur.superclass</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>281</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">DesignerClass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">cur</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">cur.Designer</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Object.Designer</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>282</span> </span><span class="WHIT">      
+<span class='line'>283</span>       </span><span class="COMM">// next find the first superclass object that is not a design (and a real</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">      </span><span class="COMM">// class).  This is important to make sure that we can determine the </span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">      </span><span class="COMM">// real name of a object's class.</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">      </span><span class="KEYW">while</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">design</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">design.isDesign</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">design</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">design.superclass</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">design</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">design</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">      
+<span class='line'>289</span>       </span><span class="NAME">object.designer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">DesignerClass.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">        </span><span class="NAME">object</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">object</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">        </span><span class="NAME">objectClass</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">design</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>292</span> </span><span class="WHIT">        </span><span class="NAME">designAttrs</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">origDesign.designAttrs</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">        </span><span class="COMM">//sourceObject: origDesign.sourceObject TODO: don't need this</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>296</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">  
+<span class='line'>298</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>299</span> </span></pre></body></html>

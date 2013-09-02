@@ -1,0 +1,36 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">/*global module, test, htmlbody*/</span><span class="WHIT">
+<span class='line'>  6</span> 
+<span class='line'>  7</span> </span><span class="NAME">module</span><span class="PUNC">(</span><span class="STRN">"SC.Cursor"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="WHIT">  </span><span class="NAME">setup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="WHIT">    </span><span class="NAME">htmlbody</span><span class="PUNC">(</span><span class="STRN">'&lt;style title="wrong-style">&lt;/style>'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 11</span> 
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="NAME">teardown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">    </span><span class="NAME">clearHtmlbody</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 16</span> 
+<span class='line'> 17</span> </span><span class="COMM">/**
+<span class='line'> 18</span>   There was a bug that if any additional style elements exist in the body
+<span class='line'> 19</span>   the cursor would create a stylesheet in the head, but then retrieve the
+<span class='line'> 20</span>   last stylesheet object which would be wrong.
+<span class='line'> 21</span> */</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"The cursor's stylesheet object should be the right object."</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">actual</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Cursor.sharedStyleSheet</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">    </span><span class="NAME">wrong</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 25</span> 
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">wrong</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.styleSheets</span><span class="PUNC">[</span><span class="NAME">document.styleSheets.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">actual</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">wrong</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"The last stylesheet is not correct."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 29</span> </span></pre></body></html>

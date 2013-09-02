@@ -1,0 +1,107 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="COMM">/*globals CoreTools */</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="COMM">/**
+<span class='line'> 10</span>   This DataSource connects to the SproutCore sc-server to retrieve targets
+<span class='line'> 11</span>   and tests.  Currently this DataSource is read only.
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="NAME">CoreTools.DataSource</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.DataSource.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 16</span>     Fetch a group of records from the data source.  Knows how to fetch
+<span class='line'> 17</span>     a list of targets and tests.
+<span class='line'> 18</span>   */</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="NAME">fetch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">    </span><span class="KEYW">switch</span><span class="PUNC">(</span><span class="NAME">query.get</span><span class="PUNC">(</span><span class="STRN">'recordType'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">CoreTools.Target</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.fetchTargets</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">        </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">CoreTools.Test</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.fetchTests</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">        </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 32</span> 
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="COMM">// FETCHING TARGETS</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 36</span> 
+<span class='line'> 37</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 38</span>     Fetch the actual targets.  Only understands how to handle a remote query.
+<span class='line'> 39</span>   */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="NAME">fetchTargets</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 41</span> 
+<span class='line'> 42</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">query.get</span><span class="PUNC">(</span><span class="STRN">'isRemote'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="WHIT">    </span><span class="NAME">SC.Request.getUrl</span><span class="PUNC">(</span><span class="NAME">CoreTools.attachUrlPrefix</span><span class="PUNC">(</span><span class="STRN">'/sc/targets.json'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">set</span><span class="PUNC">(</span><span class="STRN">'isJSON'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">notify</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'fetchTargetsDidComplete'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">store</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">send</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 50</span> 
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">fetchTargetsDidComplete</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opts</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">response</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">request.get</span><span class="PUNC">(</span><span class="STRN">'response'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">        </span><span class="NAME">query</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opts.query</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">        </span><span class="NAME">store</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opts.store</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">        </span><span class="NAME">storeKeys</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.$ok</span><span class="PUNC">(</span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">      </span><span class="NAME">console.error</span><span class="PUNC">(</span><span class="STRN">"TODO: Add handler when fetching targets fails"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">      </span><span class="NAME">storeKeys</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">store.loadRecords</span><span class="PUNC">(</span><span class="NAME">CoreTools.Target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">      </span><span class="NAME">store.dataSourceDidFetchQuery</span><span class="PUNC">(</span><span class="NAME">query</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 64</span> 
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="COMM">// FETCHING TESTS</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 70</span>     Load tests for a particular URL.  Only understands local querys with a
+<span class='line'> 71</span>     URL.
+<span class='line'> 72</span>   */</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="NAME">fetchTests</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">store</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">url</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">query.get</span><span class="PUNC">(</span><span class="STRN">'url'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> 
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">query.get</span><span class="PUNC">(</span><span class="STRN">'isRemote'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// not handled</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">SC.Request.getUrl</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">set</span><span class="PUNC">(</span><span class="STRN">'isJSON'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">notify</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'fetchTestsDidComplete'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">query</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">store</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">store</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">      </span><span class="PUNC">.</span><span class="NAME">send</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 84</span> 
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">fetchTestsDidComplete</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">request</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">opts</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">response</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">request.get</span><span class="PUNC">(</span><span class="STRN">'response'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">        </span><span class="NAME">store</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opts.store</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">        </span><span class="NAME">query</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">opts.query</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">        </span><span class="NAME">storeKeys</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.$ok</span><span class="PUNC">(</span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">      </span><span class="NAME">console.error</span><span class="PUNC">(</span><span class="STRN">"TODO: Add handler when fetching tests fails"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">      </span><span class="NAME">storeKeys</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">store.loadRecords</span><span class="PUNC">(</span><span class="NAME">CoreTools.Test</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">response</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">      </span><span class="NAME">store.dataSourceDidFetchQuery</span><span class="PUNC">(</span><span class="NAME">query</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// notify query loaded</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 98</span> 
+<span class='line'> 99</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> </span></pre></body></html>

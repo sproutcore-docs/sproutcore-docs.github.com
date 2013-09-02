@@ -1,0 +1,39 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   Showcase</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2012 7x7 Software, Inc.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// License:   Licensed under MIT license</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">/*globals Showcase */</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/views_item_content.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'views/views_list_view.js'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>   This pre-configured view demonstrates SC.RadioView.
+<span class='line'> 13</span> */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="NAME">Showcase.radioViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ScrollView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">  </span><span class="NAME">contentView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Showcase.ViewsListView.design</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">    </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Regular'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.RadioView.extend({  layout: { width: 100, height: 60, centerX: 0, centerY: 0 },  items: [{ title: 'Trash', value: 'trash', enabled: true, icon: 'sc-icon-trash-16' }, { title: 'Info', value: 'info', enabled: true, icon: 'sc-icon-info-16'}, { title: 'Disabled', value: 'disabled', enabled: false, icon: 'sc-icon-favorite-16'}],  value: 'trash',  itemTitleKey: 'title',  itemValueKey: 'value',  itemIconKey: 'icon',  itemIsEnabledKey: 'enabled'  })"</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">      </span><span class="NAME">Showcase.ViewsItemContent.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">        </span><span class="NAME">title</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Horizontal'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">        </span><span class="NAME">example</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"SC.RadioView.extend({  layout: { width: 300, height: 20, centerX: 0, centerY: 0 },  items: [{ title: 'Trash', value: 'trash', enabled: true, icon: 'sc-icon-trash-16' }, { title: 'Info', value: 'info', enabled: true, icon: 'sc-icon-info-16'}, { title: 'Disabled', value: 'disabled', enabled: false, icon: 'sc-icon-favorite-16'}],  value: ['info', 'disabled'],  itemTitleKey: 'title',  itemValueKey: 'value',  itemIconKey: 'icon',  itemIsEnabledKey: 'enabled',  layoutDirection: SC.LAYOUT_HORIZONTAL  })"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">        </span><span class="NAME">supportAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">          </span><span class="NAME">this.setPath</span><span class="PUNC">(</span><span class="STRN">'parentView.exampleBox.contentView.value'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'info'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'disabled'</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">        </span><span class="NAME">supportTitle</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'Reset Value'</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> </span></pre></body></html>

@@ -1,0 +1,326 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.browser</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="COMM">/** @scope SC.browser */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 11</span> 
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">  </span><span class="NAME">_testSupportFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">propertyName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">    </span><span class="COMM">/*jshint eqnull:true*/</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">propertyName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">      </span><span class="NAME">originalValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">testValue</span><span class="WHIT"> </span><span class="PUNC">!=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">      </span><span class="NAME">originalValue</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">propertyName</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">      </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">propertyName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">propertyName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">      </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">propertyName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">originalValue</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 29</span>     Version Strings should not be compared against Numbers.  For example,
+<span class='line'> 30</span>     the version "1.20" is greater than "1.2" and less than "1.200", but as
+<span class='line'> 31</span>     Numbers, they are all 1.2.
+<span class='line'> 32</span> 
+<span class='line'> 33</span>     Pass in one of the browser versions: SC.browser.version,
+<span class='line'> 34</span>     SC.browser.engineVersion or SC.browser.osVersion and a String to compare
+<span class='line'> 35</span>     against.  The function will split each version on the decimals and compare
+<span class='line'> 36</span>     the parts numerically.
+<span class='line'> 37</span> 
+<span class='line'> 38</span>     Examples:
+<span class='line'> 39</span> 
+<span class='line'> 40</span>       SC.browser.compare('1.20', '1.2') == 18
+<span class='line'> 41</span>       SC.browser.compare('1.08', '1.8') == 0
+<span class='line'> 42</span>       SC.browser.compare('1.1.1', '1.1.004') == -3
+<span class='line'> 43</span> 
+<span class='line'> 44</span>     @param {String} version One of SC.browser.version, SC.browser.engineVersion or SC.browser.osVersion
+<span class='line'> 45</span>     @param {String} other The version to compare against.
+<span class='line'> 46</span>     @returns {Number} The difference between the versions at the first difference.
+<span class='line'> 47</span>   */</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">  </span><span class="NAME">compare</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">version</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">other</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">coerce</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">        </span><span class="NAME">parts</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">        </span><span class="NAME">tests</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> 
+<span class='line'> 53</span> </span><span class="WHIT">    </span><span class="COMM">// Ensure that the versions are Strings.</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">version</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'number'</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">other</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'number'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">'Developer Warning: SC.browser.compare(): Versions compared against Numbers may not provide accurate results.  Use a String of decimal separated Numbers instead.'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">      </span><span class="NAME">version</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">String</span><span class="PUNC">(</span><span class="NAME">version</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">      </span><span class="NAME">other</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">String</span><span class="PUNC">(</span><span class="NAME">other</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 61</span> 
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="COMM">// This function transforms the String to a Number or NaN</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="NAME">coerce</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">part</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Number</span><span class="PUNC">(</span><span class="NAME">part.match</span><span class="PUNC">(</span><span class="REGX">/^[0-9]+/</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> 
+<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="NAME">parts</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">version.split</span><span class="PUNC">(</span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">map</span><span class="PUNC">(</span><span class="NAME">coerce</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">    </span><span class="NAME">tests</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">other.split</span><span class="PUNC">(</span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">map</span><span class="PUNC">(</span><span class="NAME">coerce</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="WHIT">    </span><span class="COMM">// Test each part stopping when there is a difference.</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">tests.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">check</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">tests</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">check</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">check</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">check</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 76</span> 
+<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 79</span> 
+<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 81</span>     @deprecated Since 1.7. Use SC.browser.compare(version, otherVersion) instead.
+<span class='line'> 82</span> 
+<span class='line'> 83</span>     Pass any number of arguments, and this will check them against the browser
+<span class='line'> 84</span>     version split on ".".  If any of them are not equal, return the inequality.
+<span class='line'> 85</span>     If as many arguments as were passed in are equal, return 0.  If something
+<span class='line'> 86</span>     is NaN, return 0.
+<span class='line'> 87</span>   */</span><span class="WHIT">
+<span class='line'> 88</span> 
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="COMM">// Deprecation Note:</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">  </span><span class="COMM">// This function forces the comparison against the value of</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="COMM">// SC.browser.version, but the old value of SC.browser.version would</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="COMM">// occasionally be the browser's version or the layout engine's version,</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="COMM">// which could cause unexpected results.  As well, there was no way to</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="COMM">// compare the actual browser version or OS version.</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="NAME">compareVersion</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">'Developer Warning: SC.browser.compareVersion() has been deprecated.  Please '</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">        </span><span class="STRN">'use SC.browser.compare() instead.  Example: '</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">        </span><span class="STRN">'SC.browser.compareVersion(16,0,912) &lt; 0 becomes '</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">        </span><span class="STRN">'SC.browser.compare(SC.browser.engineVersion, \'16.0.912\').'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>103</span> 
+<span class='line'>104</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._versionSplit</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">coerce</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">part</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">Number</span><span class="PUNC">(</span><span class="NAME">part.match</span><span class="PUNC">(</span><span class="REGX">/^[0-9]+/</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">      </span><span class="NAME">this._versionSplit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">this.version.split</span><span class="PUNC">(</span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">map</span><span class="PUNC">(</span><span class="NAME">coerce</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>110</span> 
+<span class='line'>111</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">tests</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.A</span><span class="PUNC">(</span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">map</span><span class="PUNC">(</span><span class="NAME">Number</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">tests.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">check</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._versionSplit</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">tests</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isNaN</span><span class="PUNC">(</span><span class="NAME">check</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">check</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">check</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>117</span> 
+<span class='line'>118</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>120</span> 
+<span class='line'>121</span> 
+<span class='line'>122</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>123</span>     This simple method allows you to more safely use experimental properties and
+<span class='line'>124</span>     methods in current and future browsers.
+<span class='line'>125</span> 
+<span class='line'>126</span>     Using browser specific methods and properties is a risky coding practice.
+<span class='line'>127</span>     With sufficient testing, you may be able to match prefixes to today's
+<span class='line'>128</span>     browsers, but this is prone to error and not future proof.  For instance,
+<span class='line'>129</span>     if a property becomes standard and the browser drops the prefix, your code
+<span class='line'>130</span>     could suddenly stop working.
+<span class='line'>131</span> 
+<span class='line'>132</span>     Instead, use SC.browser.experimentalNameFor(target, standardName), which
+<span class='line'>133</span>     will check the existence of the standard name on the target and if not found
+<span class='line'>134</span>     will try different camel-cased versions of the name with the current
+<span class='line'>135</span>     browser's prefix appended.
+<span class='line'>136</span> 
+<span class='line'>137</span>     If it is still not found, SC.UNSUPPORTED will be returned, allowing
+<span class='line'>138</span>     you a chance to recover from the lack of browser support.
+<span class='line'>139</span> 
+<span class='line'>140</span>     Note that `experimentalNameFor` is not really meant for determining browser
+<span class='line'>141</span>     support, only to ensure that using browser prefixed properties and methods
+<span class='line'>142</span>     is safe.  Instead, SC.platform provides several properties that can be used
+<span class='line'>143</span>     to determine support for a certain platform feature, which should be
+<span class='line'>144</span>     used before calling `experimentalNameFor` to safely use the feature.
+<span class='line'>145</span> 
+<span class='line'>146</span>     For example,
+<span class='line'>147</span> 
+<span class='line'>148</span>         // Checks for IndexedDB support first on the current platform.
+<span class='line'>149</span>         if (SC.platform.supportsIndexedDB) {
+<span class='line'>150</span>           var db = window.indexedDB,
+<span class='line'>151</span>             // Example return values: 'getDatabaseNames', 'webkitGetDatabaseNames', 'MozGetDatabaseNames', SC.UNSUPPORTED.
+<span class='line'>152</span>             getNamesMethod = SC.browser.experimentalNameFor(db, 'getDatabaseNames'),
+<span class='line'>153</span>             names;
+<span class='line'>154</span> 
+<span class='line'>155</span>             if (getNamesMethod === SC.UNSUPPORTED) {
+<span class='line'>156</span>               // Work without it.
+<span class='line'>157</span>             } else {
+<span class='line'>158</span>               names = db[getNamesMethod](...);
+<span class='line'>159</span>             }
+<span class='line'>160</span>         } else {
+<span class='line'>161</span>           // Work without it.
+<span class='line'>162</span>         }
+<span class='line'>163</span> 
+<span class='line'>164</span>     ## Improving deduction
+<span class='line'>165</span>     Occasionally a target will appear to support a property, but will fail to
+<span class='line'>166</span>     actually accept a value.  In order to ensure that the property doesn't just
+<span class='line'>167</span>     exist but is also usable, you can provide an optional `testValue` that will
+<span class='line'>168</span>     be temporarily assigned to the target to verify that the detected property
+<span class='line'>169</span>     is usable.
+<span class='line'>170</span> 
+<span class='line'>171</span>     @param {Object} target The target for the method.
+<span class='line'>172</span>     @param {String} standardName The standard name of the property or method we wish to check on the target.
+<span class='line'>173</span>     @param {String} [testValue] A value to temporarily assign to the property.
+<span class='line'>174</span>     @returns {string} The name of the property or method on the target or SC.UNSUPPORTED if no method found.
+<span class='line'>175</span>   */</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">  </span><span class="NAME">experimentalNameFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">standardName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">cachedNames</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._cachedNames</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">      </span><span class="NAME">targetGuid</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> 
+<span class='line'>180</span> </span><span class="WHIT">    </span><span class="COMM">// Fast path & cache initialization.</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">cachedNames</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">      </span><span class="NAME">cachedNames</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._cachedNames</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">      </span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">      </span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="NAME">standardName</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="NAME">standardName</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>189</span> 
+<span class='line'>190</span> </span><span class="WHIT">    </span><span class="COMM">// Test the property name.</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">standardName</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>192</span> 
+<span class='line'>193</span> </span><span class="WHIT">    </span><span class="COMM">// ex. window.indexedDB.getDatabaseNames</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._testSupportFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">      </span><span class="COMM">// ex. window.WebKitCSSMatrix</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.browser.classPrefix</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">standardName.capitalize</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._testSupportFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">        </span><span class="COMM">// No need to check if the prefix is the same for properties and classes</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.browser.domPrefix</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.browser.classPrefix</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">          </span><span class="COMM">// Always show a warning so that production usage information has a</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">          </span><span class="COMM">// better chance of filtering back to the developer(s).</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">          </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"SC.browser.experimentalNameFor(): target, %@, does not have property `%@` or `%@`."</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">standardName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">          </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.UNSUPPORTED</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">          </span><span class="COMM">// ex. window.indexedDB.webkitGetDatabaseNames</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">          </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.browser.domPrefix</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">standardName.capitalize</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">          </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._testSupportFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">            </span><span class="COMM">// Always show a warning so that production usage information has a</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">            </span><span class="COMM">// better chance of filtering back to the developer(s).</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">            </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"SC.browser.experimentalNameFor(): target, %@, does not have property `%@`, '%@' or `%@`."</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">standardName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.browser.classPrefix</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">standardName.capitalize</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">            </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.UNSUPPORTED</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>216</span> 
+<span class='line'>217</span> </span><span class="WHIT">    </span><span class="COMM">// Cache the experimental property name (even SC.UNSUPPORTED) for quick repeat access.</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">    </span><span class="NAME">cachedNames</span><span class="PUNC">[</span><span class="NAME">targetGuid</span><span class="PUNC">]</span><span class="PUNC">[</span><span class="NAME">standardName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> 
+<span class='line'>220</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>222</span> 
+<span class='line'>223</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>224</span>     This method returns safe style names for current and future browsers.
+<span class='line'>225</span> 
+<span class='line'>226</span>     Using browser specific style prefixes is a risky coding practice.  With
+<span class='line'>227</span>     sufficient testing, you may be able to match styles across today's most
+<span class='line'>228</span>     popular browsers, but this is a lot of work and not future proof.  For
+<span class='line'>229</span>     instance, if a browser drops the prefix and supports the standard style
+<span class='line'>230</span>     name, your code will suddenly stop working.  This happens ALL the time!
+<span class='line'>231</span> 
+<span class='line'>232</span>     Instead, use SC.browser.experimentalStyleNameFor(standardStyleName), which
+<span class='line'>233</span>     will test support for the standard style name and if not found will try the
+<span class='line'>234</span>     prefixed version with the current browser's prefix appended.
+<span class='line'>235</span> 
+<span class='line'>236</span>     Note: the proper style name is only determined once per standard style
+<span class='line'>237</span>     name tested and then cached.  Therefore, calling experimentalStyleNameFor
+<span class='line'>238</span>     repeatedly has no performance detriment.
+<span class='line'>239</span> 
+<span class='line'>240</span>     For example,
+<span class='line'>241</span> 
+<span class='line'>242</span>         var boxShadowName = SC.browser.experimentalStyleNameFor('boxShadow'),
+<span class='line'>243</span>           el = document.createElement('div');
+<span class='line'>244</span> 
+<span class='line'>245</span>         // `boxShadowName` may be "boxShadow", "WebkitBoxShadow", "msBoxShadow", etc. depending on the browser support.
+<span class='line'>246</span>         el.style[boxShadowName] = "rgb(0,0,0) 0px 3px 5px";
+<span class='line'>247</span> 
+<span class='line'>248</span>     ## Improving deduction
+<span class='line'>249</span>     Occasionally a browser will appear to support a style, but will fail to
+<span class='line'>250</span>     actually accept a value.  In order to ensure that the style doesn't just
+<span class='line'>251</span>     exist but is also usable, you can provide an optional `testValue` that will
+<span class='line'>252</span>     be used to verify that the detected style is usable.
+<span class='line'>253</span> 
+<span class='line'>254</span>     @param {string} standardStyleName The standard name of the experimental style as it should be un-prefixed.  This is the DOM property name, which is camel-cased (ex. boxShadow)
+<span class='line'>255</span>     @param {String} [testValue] A value to temporarily assign to the style to ensure support.
+<span class='line'>256</span>     @returns {string} Future-proof style name for use in the current browser or SC.UNSUPPORTED if no style support found.
+<span class='line'>257</span>   */</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">  </span><span class="NAME">experimentalStyleNameFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">standardStyleName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">    </span><span class="COMM">// Test the style name.</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">el</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._testEl</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>261</span> 
+<span class='line'>262</span> </span><span class="WHIT">    </span><span class="COMM">// Create a test element and cache it for repeated use.</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">el</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">el</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._testEl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>264</span> 
+<span class='line'>265</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.experimentalNameFor</span><span class="PUNC">(</span><span class="NAME">el.style</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">standardStyleName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>267</span> 
+<span class='line'>268</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>269</span>     This method returns safe CSS attribute names for current and future browsers.
+<span class='line'>270</span> 
+<span class='line'>271</span>     Using browser specific CSS prefixes is a risky coding practice.  With
+<span class='line'>272</span>     sufficient testing, you may be able to match attributes across today's most
+<span class='line'>273</span>     popular browsers, but this is a lot of work and not future proof.  For
+<span class='line'>274</span>     instance, if a browser drops the prefix and supports the standard CSS
+<span class='line'>275</span>     name, your code will suddenly stop working.  This happens ALL the time!
+<span class='line'>276</span> 
+<span class='line'>277</span>     Instead, use SC.browser.experimentalCSSNameFor(standardCSSName), which
+<span class='line'>278</span>     will test support for the standard CSS name and if not found will try the
+<span class='line'>279</span>     prefixed version with the current browser's prefix appended.
+<span class='line'>280</span> 
+<span class='line'>281</span>     Note: the proper CSS name is only determined once per standard CSS
+<span class='line'>282</span>     name tested and then cached.  Therefore, calling experimentalCSSNameFor
+<span class='line'>283</span>     repeatedly has no performance detriment.
+<span class='line'>284</span> 
+<span class='line'>285</span>     For example,
+<span class='line'>286</span> 
+<span class='line'>287</span>         var boxShadowCSS = SC.browser.experimentalCSSNameFor('box-shadow'),
+<span class='line'>288</span>           el = document.createElement('div');
+<span class='line'>289</span> 
+<span class='line'>290</span>         // `boxShadowCSS` may be "box-shadow", "-webkit-box-shadow", "-ms-box-shadow", etc. depending on the current browser.
+<span class='line'>291</span>         el.style.cssText = boxShadowCSS + " rgb(0,0,0) 0px 3px 5px";
+<span class='line'>292</span> 
+<span class='line'>293</span>     ## Improving deduction
+<span class='line'>294</span>     Occasionally a browser will appear to support a style, but will fail to
+<span class='line'>295</span>     actually accept a value.  In order to ensure that the style doesn't just
+<span class='line'>296</span>     exist but is also usable, you can provide an optional `testValue` that will
+<span class='line'>297</span>     be used to verify that the detected style is usable.
+<span class='line'>298</span> 
+<span class='line'>299</span>     @param {string} standardCSSName The standard name of the experimental CSS attribute as it should be un-prefixed (ex. box-shadow).
+<span class='line'>300</span>     @param {String} [testValue] A value to temporarily assign to the style to ensure support.
+<span class='line'>301</span>     @returns {string} Future-proof CSS name for use in the current browser or SC.UNSUPPORTED if no style support found.
+<span class='line'>302</span>   */</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">  </span><span class="NAME">experimentalCSSNameFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">standardCSSName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">standardCSSName</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">      </span><span class="NAME">standardStyleName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">standardCSSName.camelize</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">      </span><span class="NAME">styleName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="NAME">standardStyleName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">testValue</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>307</span> 
+<span class='line'>308</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">styleName</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.UNSUPPORTED</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>309</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.UNSUPPORTED</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>310</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">styleName</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">standardStyleName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>311</span> </span><span class="WHIT">      </span><span class="COMM">// If the DOM property is prefixed, then the CSS name should be prefixed.</span><span class="WHIT">
+<span class='line'>312</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.browser.cssPrefix</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">standardCSSName</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>314</span> 
+<span class='line'>315</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>316</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>317</span> 
+<span class='line'>318</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>319</span> </span></pre></body></html>

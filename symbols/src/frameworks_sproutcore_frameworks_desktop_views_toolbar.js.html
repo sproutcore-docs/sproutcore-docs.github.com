@@ -1,0 +1,170 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   Layout properties needed to anchor a view to the top.
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   @static
+<span class='line'> 12</span>   @constant
+<span class='line'> 13</span>   @type Hash
+<span class='line'> 14</span>   @default `{ top: 0 }`
+<span class='line'> 15</span> */</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="NAME">SC.ANCHOR_TOP</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">top</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="COMM">/**
+<span class='line'> 19</span>   Layout properties needed to anchor a view to the left.
+<span class='line'> 20</span> 
+<span class='line'> 21</span>   @static
+<span class='line'> 22</span>   @constant
+<span class='line'> 23</span>   @type Hash
+<span class='line'> 24</span>   @default `{ left: 0 }`
+<span class='line'> 25</span> */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="NAME">SC.ANCHOR_LEFT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">left</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="COMM">/*
+<span class='line'> 29</span>   Layout properties to anchor a view to the top left
+<span class='line'> 30</span> 
+<span class='line'> 31</span>   @static
+<span class='line'> 32</span>   @constant
+<span class='line'> 33</span>   @type Hash
+<span class='line'> 34</span>   @default `{ top: 0, left: 0 }`
+<span class='line'> 35</span> */</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="NAME">SC.ANCHOR_TOP_LEFT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">top</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">left</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="COMM">/**
+<span class='line'> 39</span>   Layout properties to anchoe view to the bottom.
+<span class='line'> 40</span> 
+<span class='line'> 41</span>   @static
+<span class='line'> 42</span>   @constant
+<span class='line'> 43</span>   @type Hash
+<span class='line'> 44</span>   @default `{ bottom: 0 }`
+<span class='line'> 45</span> */</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="NAME">SC.ANCHOR_BOTTOM</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">bottom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="COMM">/**
+<span class='line'> 49</span>   Layout properties to anchor a view to the right.
+<span class='line'> 50</span> 
+<span class='line'> 51</span>   @static
+<span class='line'> 52</span>   @constant
+<span class='line'> 53</span>   @type Hash
+<span class='line'> 54</span>   @default `{ right: 0 }`
+<span class='line'> 55</span> */</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="NAME">SC.ANCHOR_RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">right</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 57</span> 
+<span class='line'> 58</span> </span><span class="COMM">/**
+<span class='line'> 59</span>   Layout properties to anchor a view to the bottom right.
+<span class='line'> 60</span> 
+<span class='line'> 61</span>   @static
+<span class='line'> 62</span>   @constant
+<span class='line'> 63</span>   @type Hash
+<span class='line'> 64</span>   @default `{ top: 0, right: 0 }`
+<span class='line'> 65</span> */</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="NAME">SC.ANCHOR_BOTTOM_RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">bottom</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">right</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="COMM">/** @class
+<span class='line'> 69</span> 
+<span class='line'> 70</span>   SC.ToolbarView is a simple horizontal view that has been styled like a
+<span class='line'> 71</span>   toolbar and can be easily anchored at the top or bottom of a parent view.
+<span class='line'> 72</span> 
+<span class='line'> 73</span>   To anchor to the top of the parent view, set `anchorLocation` to
+<span class='line'> 74</span>   `SC.ANCHOR_TOP` or to anchor to the bottom, set `anchorLocation` to
+<span class='line'> 75</span>   `SC.ANCHOR_BOTTOM`.  The default layout of SC.Toolbar is
+<span class='line'> 76</span>   `{ left: 0, right: 0, height: 32, zIndex: 10 }` and so by setting the value of
+<span class='line'> 77</span>   `anchorLocation`, the layout will be modified to either:
+<span class='line'> 78</span> 
+<span class='line'> 79</span>   `SC.ANCHOR_TOP:`
+<span class='line'> 80</span>       { borderBottom: 1, top: 0, left: 0, right: 0, height: 32, zIndex: 10 }
+<span class='line'> 81</span> 
+<span class='line'> 82</span>   `SC.ANCHOR_BOTTOM:`
+<span class='line'> 83</span>       { borderTop: 1, bottom: 0, left: 0, right: 0, height: 32, zIndex: 10 }
+<span class='line'> 84</span> 
+<span class='line'> 85</span>   Of course, you can always override the layout property yourself in order to
+<span class='line'> 86</span>   adjust the height, border and zIndex values.
+<span class='line'> 87</span> 
+<span class='line'> 88</span>   @extends SC.View
+<span class='line'> 89</span>   @since SproutCore 1.0
+<span class='line'> 90</span> */</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="NAME">SC.ToolbarView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="COMM">/** @scope SC.ToolbarView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 93</span> 
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 95</span>     @type Array
+<span class='line'> 96</span>     @default ['sc-toolbar-view']
+<span class='line'> 97</span>     @see SC.View#classNames
+<span class='line'> 98</span>   */</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-toolbar-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>102</span>     The WAI-ARIA role for toolbar view.
+<span class='line'>103</span> 
+<span class='line'>104</span>     @type String
+<span class='line'>105</span>     @default 'toolbar'
+<span class='line'>106</span>     @readOnly
+<span class='line'>107</span>   */</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">  </span><span class="NAME">ariaRole</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'toolbar'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>109</span> 
+<span class='line'>110</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>111</span>     @type String
+<span class='line'>112</span>     @default 'toolbarRenderDelegate'
+<span class='line'>113</span>   */</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">  </span><span class="NAME">renderDelegateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'toolbarRenderDelegate'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>115</span> 
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>117</span>     Default anchor location.  This will be applied automatically to the
+<span class='line'>118</span>     toolbar layout if you set it. Possible values:
+<span class='line'>119</span> 
+<span class='line'>120</span>       - SC.ANCHOR_TOP
+<span class='line'>121</span>       - SC.ANCHOR_LEFT
+<span class='line'>122</span>       - SC.ANCHOR_TOP_LEFT
+<span class='line'>123</span>       - SC.ANCHOR_BOTTOM
+<span class='line'>124</span>       - SC.ANCHOR_RIGHT
+<span class='line'>125</span>       - SC.ANCHOR_BOTTOM_RIGHT
+<span class='line'>126</span> 
+<span class='line'>127</span>     @type String
+<span class='line'>128</span>     @default null
+<span class='line'>129</span>   */</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">  </span><span class="NAME">anchorLocation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>131</span> 
+<span class='line'>132</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="COMM">// INTERNAL SUPPORT</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>135</span> 
+<span class='line'>136</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">layout</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">left</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">right</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">height</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">32</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">zIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">10</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">    </span><span class="COMM">// apply anchor location before setting up the rest of the view.</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.anchorLocation</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">      </span><span class="NAME">this.layout</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.merge</span><span class="PUNC">(</span><span class="NAME">this.layout</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.anchorLocation</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>144</span> 
+<span class='line'>145</span> </span><span class="WHIT">      </span><span class="KEYW">switch</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.anchorLocation</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.ANCHOR_TOP</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.ANCHOR_TOP_LEFT</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">        </span><span class="NAME">this.layout.borderBottom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">        </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.ANCHOR_BOTTOM</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="NAME">SC.ANCHOR_BOTTOM_RIGHT</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="WHIT">        </span><span class="NAME">this.layout.borderTop</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">        </span><span class="KEYW">break</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">      </span><span class="KEYW">default</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>157</span> 
+<span class='line'>158</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>160</span> 
+<span class='line'>161</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>162</span> 
+<span class='line'>163</span> </span></pre></body></html>

@@ -1,0 +1,142 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2010 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oldExtend</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Record.extend</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="WHIT">  </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.Record</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.Record */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 13</span> 
+<span class='line'> 14</span> </span><span class="WHIT">    </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="COMM">// Properties</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">    </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 19</span>       If YES, then searches for records of this type will return
+<span class='line'> 20</span>       subclass instances. For example:
+<span class='line'> 21</span> 
+<span class='line'> 22</span>           Person = SC.Record.extend();
+<span class='line'> 23</span>           Person.isPolymorphic = YES;
+<span class='line'> 24</span> 
+<span class='line'> 25</span>           Male = Person.extend();
+<span class='line'> 26</span>           Female = Person.extend();
+<span class='line'> 27</span> 
+<span class='line'> 28</span>       Using SC.Store#find, or a toOne or toMany relationship on
+<span class='line'> 29</span>       Person will then return records of type Male and Female.
+<span class='line'> 30</span>       Polymorphic record types must have unique GUIDs for all
+<span class='line'> 31</span>       subclasses.
+<span class='line'> 32</span> 
+<span class='line'> 33</span>       @type Boolean
+<span class='line'> 34</span>       @default NO
+<span class='line'> 35</span>     */</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="NAME">isPolymorphic</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> 
+<span class='line'> 39</span> </span><span class="WHIT">    </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">    </span><span class="COMM">// Propagation Support</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="WHIT">    </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 42</span> 
+<span class='line'> 43</span> </span><span class="WHIT">    </span><span class="COMM">/**
+<span class='line'> 44</span>       Like the original SC.Record.storeKeyFor,
+<span class='line'> 45</span>       but when a storeKey is generated, it will
+<span class='line'> 46</span>       propagate it to superclasses.
+<span class='line'> 47</span> 
+<span class='line'> 48</span>       @see SC.Record.storeKeyFor
+<span class='line'> 49</span>     */</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">    </span><span class="NAME">storeKeyFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">id</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.storeKeysById</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">          </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">id</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">          </span><span class="NAME">superclass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.superclass</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 54</span> 
+<span class='line'> 55</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">        </span><span class="COMM">// If this is a polymorphic record, send the key generation recursively up to its polymorphic</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">        </span><span class="COMM">// superclasses.  This allows the key, which may exist or may be generated, to then propagate</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">        </span><span class="COMM">// back down so that it exists at each level.</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isPolymorphic</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">superclass.isPolymorphic</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">superclass</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.Record</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">          </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">superclass.storeKeyFor</span><span class="PUNC">(</span><span class="NAME">id</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">          </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Store.generateStoreKey</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">          </span><span class="NAME">SC.Store.idsByStoreKey</span><span class="PUNC">[</span><span class="NAME">ret</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">id</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 65</span> 
+<span class='line'> 66</span> </span><span class="WHIT">        </span><span class="COMM">// Update the RecordType for the key on each recursion return, so that it ends as the lowest class</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">        </span><span class="NAME">SC.Store.recordTypesByStoreKey</span><span class="PUNC">[</span><span class="NAME">ret</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">        </span><span class="COMM">// Each Record must keep track of its own storeKeys so that a find at any level on the same ID</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">        </span><span class="COMM">// doesn't generate new storeKeys.  Plus it will be faster than always running back up to the</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">        </span><span class="COMM">// superclass method to retrieve the key.</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">        </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">id</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 74</span> 
+<span class='line'> 75</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="COMM">// Internal Support</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="NAME">extend</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oldExtend.apply</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">arguments</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> 
+<span class='line'> 85</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret.prototype.hasOwnProperty</span><span class="PUNC">(</span><span class="STRN">'isPolymorphic'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">        </span><span class="NAME">ret.isPolymorphic</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ret.prototype.isPolymorphic</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">        </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">ret.prototype.isPolymorphic</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 89</span> 
+<span class='line'> 90</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 92</span> 
+<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="COMM">/** @private Updates the storeKey cache on the oldId with the newId. */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">    </span><span class="NAME">_propagateNewId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oldId</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">newId</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">superclass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.superclass</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 96</span> 
+<span class='line'> 97</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isPolymorphic</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">superclass.isPolymorphic</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">superclass</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.Record</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">superclass.storeKeysById</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">          </span><span class="NAME">storeKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">oldId</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> </span><span class="WHIT">        </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">oldId</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">        </span><span class="NAME">storeKeys</span><span class="PUNC">[</span><span class="NAME">newId</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>103</span> 
+<span class='line'>104</span> </span><span class="WHIT">        </span><span class="NAME">superclass._propagateNewId</span><span class="PUNC">(</span><span class="NAME">oldId</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">newId</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>107</span> 
+<span class='line'>108</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>110</span> 
+<span class='line'>111</span> 
+<span class='line'>112</span> </span><span class="NAME">SC.Record.reopen</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> 
+<span class='line'>114</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>115</span>     Because the storeKeys per id are stored on each class of the polymorphic
+<span class='line'>116</span>     record, whenever the id changes, we have to update the caches.
+<span class='line'>117</span>     */</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">  </span><span class="NAME">id</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">storeKey</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'storeKey'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">        </span><span class="NAME">oldId</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Store.idsByStoreKey</span><span class="PUNC">[</span><span class="NAME">storeKey</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">        </span><span class="NAME">recordType</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'store'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">recordTypeFor</span><span class="PUNC">(</span><span class="NAME">storeKey</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> 
+<span class='line'>124</span> </span><span class="WHIT">      </span><span class="COMM">// Propagate the new id to all superclasses.</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">      </span><span class="NAME">recordType._propagateNewId</span><span class="PUNC">(</span><span class="NAME">oldId</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>126</span> 
+<span class='line'>127</span> </span><span class="WHIT">      </span><span class="NAME">this.writeAttribute</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'primaryKey'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.Store.idFor</span><span class="PUNC">(</span><span class="NAME">this.storeKey</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'storeKey'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>133</span> 
+<span class='line'>134</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>135</span> </span></pre></body></html>

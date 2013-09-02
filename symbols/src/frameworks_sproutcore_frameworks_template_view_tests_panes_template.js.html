@@ -1,0 +1,45 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="NAME">module</span><span class="PUNC">(</span><span class="STRN">"Template Panes"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> 
+<span class='line'>  9</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"Template panes append a main pane to the document body"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.TemplatePane.append</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">    </span><span class="NAME">layerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'template-panes-are-so-cool'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">    </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Handlebars.compile</span><span class="PUNC">(</span><span class="STRN">'&lt;h1>foo bar baz&lt;/h1>'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">pane.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"creates a layer for the pane"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">pane.$</span><span class="PUNC">(</span><span class="STRN">'#template-panes-are-so-cool'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"creates a view with the passed id"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="NAME">pane.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="NAME">pane.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"Template panes should be awoken"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">didAwake</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">originalAwake</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.MainPane.prototype.awake</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// null for now, but just in case</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">SC.MainPane.prototype.awake</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">didAwake</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.TemplatePane.append</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="NAME">layerId</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'template-panes-are-so-cool'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Handlebars.compile</span><span class="PUNC">(</span><span class="STRN">'&lt;h1>foo bar baz&lt;/h1>'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 32</span> 
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="NAME">SC.MainPane.prototype.awake</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">originalAwake</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="NAME">ok</span><span class="PUNC">(</span><span class="NAME">didAwake</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"should have awoken the pane"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="NAME">pane.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 38</span> </span></pre></body></html>

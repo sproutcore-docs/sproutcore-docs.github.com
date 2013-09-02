@@ -1,0 +1,146 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"handlebars"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"ext/handlebars"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"ext/handlebars/bind"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"ext/handlebars/collection"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"ext/handlebars/localization"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"ext/handlebars/view"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">// Global hash of shared templates. This will automatically be populated</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="COMM">// by the build tools so that you can store your Handlebars templates in</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="COMM">// separate files that get loaded into JavaScript at buildtime.</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="NAME">SC.TEMPLATES</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.create</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="COMM">/** @class
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   SC.TemplateView allows you to create a view that uses the Handlebars templating
+<span class='line'> 16</span>   engine to generate its HTML representation.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   To use it, create a file in your project called +mytemplate.handlebars+. Then,
+<span class='line'> 19</span>   set the +templateName+ property of your SC.TemplateView to +mytemplate+.
+<span class='line'> 20</span> 
+<span class='line'> 21</span>   Alternatively, you can set the +template+ property to any function that
+<span class='line'> 22</span>   returns a string. It is recommended that you use +SC.Handlebars.compile()+ to
+<span class='line'> 23</span>   generate a function from a string containing Handlebars markup.
+<span class='line'> 24</span> 
+<span class='line'> 25</span>   @extends SC.CoreView
+<span class='line'> 26</span>   @since SproutCore 1.5
+<span class='line'> 27</span> */</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="NAME">SC.TemplateView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.CoreView.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="COMM">/** @scope SC.TemplateView.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="COMM">// This makes it easier to build custom views on top of TemplateView without</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="COMM">// gotchas, but may have tab navigation repercussions. The tab navigation</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="COMM">// system should be revisited.</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="NAME">acceptsFirstResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 37</span>     The name of the template to lookup if no template is provided.
+<span class='line'> 38</span> 
+<span class='line'> 39</span>     SC.TemplateView will look for a template with this name in the global
+<span class='line'> 40</span>     +SC.TEMPLATES+ hash. Usually this hash will be populated for you
+<span class='line'> 41</span>     automatically when you include +.handlebars+ files in your project.
+<span class='line'> 42</span> 
+<span class='line'> 43</span>     @type String
+<span class='line'> 44</span>   */</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="NAME">templateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 46</span> 
+<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 48</span>     The hash in which to look for +templateName+. Defaults to SC.TEMPLATES.
+<span class='line'> 49</span> 
+<span class='line'> 50</span>     @type Object
+<span class='line'> 51</span>   */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="WHIT">  </span><span class="NAME">templates</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.TEMPLATES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 53</span> 
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 55</span>     The template used to render the view. This should be a function that
+<span class='line'> 56</span>     accepts an optional context parameter and returns a string of HTML that
+<span class='line'> 57</span>     will be inserted into the DOM relative to its parent view.
+<span class='line'> 58</span> 
+<span class='line'> 59</span>     In general, you should set the +templateName+ property instead of setting
+<span class='line'> 60</span>     the template yourself.
+<span class='line'> 61</span> 
+<span class='line'> 62</span>     @type Function
+<span class='line'> 63</span>   */</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">templateName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'templateName'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">        </span><span class="NAME">template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'templates'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> 
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">template</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">        </span><span class="NAME">SC.Logger.warn</span><span class="PUNC">(</span><span class="STRN">'%@ - Unable to find template "%@".'</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'> 78</span> 
+<span class='line'> 79</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">template</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'templateName'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 84</span> 
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 86</span>     The object from which templates should access properties.
+<span class='line'> 87</span> 
+<span class='line'> 88</span>     This object will be passed to the template function each time the render
+<span class='line'> 89</span>     method is called, but it is up to the individual function to decide what
+<span class='line'> 90</span>     to do with it.
+<span class='line'> 91</span> 
+<span class='line'> 92</span>     By default, this will be the view itself.
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     @type Object
+<span class='line'> 95</span>   */</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="NAME">context</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>103</span> 
+<span class='line'>104</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>105</span>     When the view is asked to render, we look for the appropriate template
+<span class='line'>106</span>     function and invoke it, then push its result onto the passed
+<span class='line'>107</span>     SC.RenderContext instance.
+<span class='line'>108</span> 
+<span class='line'>109</span>     @param {SC.RenderContext} context the render context
+<span class='line'>110</span>   */</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">  </span><span class="NAME">render</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">        </span><span class="NAME">output</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">        </span><span class="NAME">template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'template'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">        </span><span class="NAME">templateContext</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'context'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> 
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="NAME">this._didRenderChildViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> 
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">isRenderData</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">    </span><span class="NAME">output</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">template</span><span class="PUNC">(</span><span class="NAME">templateContext</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">data</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">data</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> 
+<span class='line'>122</span> </span><span class="WHIT">    </span><span class="NAME">context.push</span><span class="PUNC">(</span><span class="NAME">output</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>124</span> 
+<span class='line'>125</span> </span><span class="WHIT">  </span><span class="COMM">// in TemplateView, updating is handled by observers created by helpers in the</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">  </span><span class="COMM">// template. As a result, we create an empty update method so that the old</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">  </span><span class="COMM">// (pre-1.5) behavior which would force a full re-render does not get activated.</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">  </span><span class="NAME">update</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>129</span> 
+<span class='line'>130</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>131</span>     Since mouseUp events will not fire unless we return YES to mouseDown, the
+<span class='line'>132</span>     default mouseDown implementation returns YES if a mouseDown method exists.
+<span class='line'>133</span>   */</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">  </span><span class="NAME">mouseDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.mouseUp</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> </span></pre></body></html>

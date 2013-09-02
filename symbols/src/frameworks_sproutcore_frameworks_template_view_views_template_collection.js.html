@@ -1,0 +1,347 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'views/template'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> 
+<span class='line'>  3</span> </span><span class="COMM">/** @class
+<span class='line'>  4</span> 
+<span class='line'>  5</span>   @author Tom Dale
+<span class='line'>  6</span>   @author Yehuda Katz
+<span class='line'>  7</span>   @extends SC.TemplateView
+<span class='line'>  8</span>   @since SproutCore 1.5
+<span class='line'>  9</span> */</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="NAME">SC.TemplateCollectionView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.TemplateView.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.TemplateCollectionView.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 13</span>     Name of the tag that is used for the collection
+<span class='line'> 14</span> 
+<span class='line'> 15</span>     If the tag is a list ('ul' or 'ol') each item will be wrapped into a 'li' tag.
+<span class='line'> 16</span>     If the tag is a table ('table', 'thead', 'tbody') each item will be wrapped into a 'tr' tag.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>     @type String
+<span class='line'> 19</span>     @default ul
+<span class='line'> 20</span>   */</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="NAME">tagName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'ul'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 22</span> 
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 24</span>     A list of items to be displayed by the TemplateCollectionView.
+<span class='line'> 25</span> 
+<span class='line'> 26</span>     @type SC.Array
+<span class='line'> 27</span>     @default null
+<span class='line'> 28</span>   */</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 30</span> 
+<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Handlebars.compile</span><span class="PUNC">(</span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 32</span> 
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 34</span>     An optional view to display if content is set to an empty array.
+<span class='line'> 35</span> 
+<span class='line'> 36</span>     @type SC.TemplateView
+<span class='line'> 37</span>     @default null
+<span class='line'> 38</span>   */</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="NAME">emptyView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 40</span> 
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 42</span>     @private
+<span class='line'> 43</span>     When the view is initialized, set up array observers on the content array.
+<span class='line'> 44</span> 
+<span class='line'> 45</span>     @returns SC.TemplateCollectionView
+<span class='line'> 46</span>   */</span><span class="WHIT">
+<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">templateCollectionView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 49</span> 
+<span class='line'> 50</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">templateCollectionView</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 52</span> 
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="COMM">// In case a default content was set, trigger the child view creation</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">// as soon as the empty layer was created</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="NAME">didCreateLayer</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 56</span> </span><span class="WHIT">    </span><span class="COMM">// FIXME: didCreateLayer gets called multiple times when template collection</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">    </span><span class="COMM">// views are nested - this is a hack to avoid rendering the content more</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">    </span><span class="COMM">// than once.</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._sctcv_layerCreated</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="NAME">this._sctcv_layerCreated</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 61</span> 
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="COMM">// Have to call this here, because we need to render before adding</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="COMM">// childViews so that itemViewTemplate is set by the template function.</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">      </span><span class="NAME">this.arrayContentDidChange</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">content.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 71</span>     @type SC.TemplateView
+<span class='line'> 72</span>     @default SC.TemplateView
+<span class='line'> 73</span>   */</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">  </span><span class="NAME">itemView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'SC.TemplateView'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 75</span> 
+<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 77</span>     The template used to render each item in the collection.
+<span class='line'> 78</span> 
+<span class='line'> 79</span>     This should be a function that takes a content object and returns
+<span class='line'> 80</span>     a string of HTML that will be inserted into the DOM.
+<span class='line'> 81</span> 
+<span class='line'> 82</span>     In general, you should set the `itemViewTemplateName` property instead of
+<span class='line'> 83</span>     setting the `itemViewTemplate` property yourself. If you created the
+<span class='line'> 84</span>     SC.TemplateCollectionView using the Handlebars {{#collection}} helper, this
+<span class='line'> 85</span>     will be set for you automatically.
+<span class='line'> 86</span> 
+<span class='line'> 87</span>     @type Function
+<span class='line'> 88</span>   */</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="NAME">itemViewTemplate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 90</span> 
+<span class='line'> 91</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 92</span>     The name of the template to lookup if no item view template is provided.
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     The collection will look for a template with this name in the global
+<span class='line'> 95</span>     `SC.TEMPLATES` hash. Usually this hash will be populated for you
+<span class='line'> 96</span>     automatically when you include `.handlebars` files in your project.
+<span class='line'> 97</span> 
+<span class='line'> 98</span>     @type String
+<span class='line'> 99</span>   */</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="NAME">itemViewTemplateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>101</span> 
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>103</span>     A template to render when there is no content or the content length is 0.
+<span class='line'>104</span>   */</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="NAME">inverseTemplate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">value</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>109</span> 
+<span class='line'>110</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">templateName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'inverseTemplateName'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">        </span><span class="NAME">template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'templates'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> 
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">template</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">        </span><span class="NAME">SC.Logger.warn</span><span class="PUNC">(</span><span class="STRN">'%@ - Unable to find template "%@".'</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">templateName</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>119</span> 
+<span class='line'>120</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>122</span> 
+<span class='line'>123</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">template</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'inverseTemplateName'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>125</span> 
+<span class='line'>126</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>127</span>     The name of a template to lookup if no inverse template is provided.
+<span class='line'>128</span> 
+<span class='line'>129</span>     @type String
+<span class='line'>130</span>   */</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="NAME">inverseTemplateName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>132</span> 
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="NAME">itemContext</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>134</span> 
+<span class='line'>135</span> </span><span class="WHIT">  </span><span class="NAME">itemViewClass</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">itemView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">itemViewTemplate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemViewTemplate'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">itemViewTemplateName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemViewTemplateName'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> 
+<span class='line'>140</span> </span><span class="WHIT">    </span><span class="COMM">// hash of properties to override in our</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">    </span><span class="COMM">// item view class</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">extensions</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> 
+<span class='line'>144</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">itemView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">      </span><span class="NAME">itemView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.objectForPropertyPath</span><span class="PUNC">(</span><span class="NAME">itemView</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>147</span> 
+<span class='line'>148</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">itemViewTemplate</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">itemViewTemplateName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">      </span><span class="NAME">itemViewTemplate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'templates'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="NAME">itemViewTemplateName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>151</span> 
+<span class='line'>152</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">itemViewTemplate</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">      </span><span class="NAME">extensions.template</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">itemViewTemplate</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="COMM">// If the itemView has not defined a unique tagName, then check for a unique item tagName</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">    </span><span class="COMM">// to match the given collection tagName.  This is safe, since the unique item tagNames</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">    </span><span class="COMM">// are required by HTML to be children of the special collection tagName.  If the collection</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">    </span><span class="COMM">// doesn't have a special tagName, then the default value of SC.TemplateView is still</span><span class="WHIT">
+<span class='line'>160</span> </span><span class="WHIT">    </span><span class="COMM">// used.</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">itemView.prototype.tagName</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.TemplateView.prototype.tagName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">      </span><span class="NAME">extensions.tagName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemTagName'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>164</span> 
+<span class='line'>165</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">itemView.extend</span><span class="PUNC">(</span><span class="NAME">extensions</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'itemView'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>167</span> 
+<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>169</span>     @private
+<span class='line'>170</span> 
+<span class='line'>171</span>     When the content property of the collection changes, remove any existing
+<span class='line'>172</span>     child views and observers, then set up an observer on the new content, if
+<span class='line'>173</span>     needed.
+<span class='line'>174</span>   */</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">  </span><span class="NAME">_sctcv_contentDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">oldContent</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._content</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oldLen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">newLen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>178</span> 
+<span class='line'>179</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">oldContent</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">      </span><span class="NAME">oldContent.removeArrayObservers</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">        </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">        </span><span class="NAME">willChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'arrayContentWillChange'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">        </span><span class="NAME">didChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'arrayContentDidChange'</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>185</span> 
+<span class='line'>186</span> </span><span class="WHIT">      </span><span class="NAME">oldLen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">oldContent.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>188</span> 
+<span class='line'>189</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">      </span><span class="NAME">content.addArrayObservers</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">        </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">        </span><span class="NAME">willChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'arrayContentWillChange'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">        </span><span class="NAME">didChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'arrayContentDidChange'</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>195</span> 
+<span class='line'>196</span> </span><span class="WHIT">      </span><span class="NAME">newLen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">content.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>198</span> 
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="NAME">this.arrayContentWillChange</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oldLen</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">newLen</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="NAME">this._content</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">    </span><span class="NAME">this.arrayContentDidChange</span><span class="PUNC">(</span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oldLen</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">newLen</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>203</span> 
+<span class='line'>204</span> </span><span class="WHIT">  </span><span class="NAME">arrayContentWillChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">start</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">removedCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">addedCount</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">    </span><span class="COMM">// If the contents were empty before and this template collection has an empty view</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">    </span><span class="COMM">// remove it now.</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">emptyView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'emptyView'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">emptyView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">emptyView.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>209</span> 
+<span class='line'>210</span> </span><span class="WHIT">    </span><span class="COMM">// Loop through child views that correspond with the removed items.</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">    </span><span class="COMM">// Note that we loop from the end of the array to the beginning because</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">    </span><span class="COMM">// we are mutating it as we go.</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViews'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">childView</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>214</span> 
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">start</span><span class="PUNC">+</span><span class="NAME">removedCount</span><span class="PUNC">-</span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NAME">start</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">      </span><span class="NAME">childView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childViews</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">childView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">        </span><span class="NAME">childView.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>223</span> 
+<span class='line'>224</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>225</span>     Called when a mutation to the underlying content array occurs.
+<span class='line'>226</span> 
+<span class='line'>227</span>     This method will replay that mutation against the views that compose the
+<span class='line'>228</span>     SC.TemplateCollectionView, ensuring that the view reflects the model.
+<span class='line'>229</span> 
+<span class='line'>230</span>     This enumerable observer is added in contentDidChange.
+<span class='line'>231</span> 
+<span class='line'>232</span>     @param {Array} addedObjects the objects that were added to the content
+<span class='line'>233</span>     @param {Array} removedObjects the objects that were removed from the content
+<span class='line'>234</span>     @param {Number} changeIndex the index at which the changes occurred
+<span class='line'>235</span>   */</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">  </span><span class="NAME">arrayContentDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">start</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">removedCount</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">addedCount</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>238</span> 
+<span class='line'>239</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">content</span><span class="WHIT">       </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">        </span><span class="NAME">itemViewClass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemViewClass'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">        </span><span class="NAME">childViews</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'childViews'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">        </span><span class="NAME">addedViews</span><span class="WHIT">    </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">        </span><span class="NAME">renderFunc</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">childView</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">itemOptions</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">elem</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">insertAtElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">item</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">itemElem</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> 
+<span class='line'>245</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">addedObjects</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">content.slice</span><span class="PUNC">(</span><span class="NAME">start</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">start</span><span class="PUNC">+</span><span class="NAME">addedCount</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>247</span> 
+<span class='line'>248</span> </span><span class="WHIT">      </span><span class="COMM">// If we have content to display, create a view for</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="WHIT">      </span><span class="COMM">// each item.</span><span class="WHIT">
+<span class='line'>250</span> </span><span class="WHIT">      </span><span class="NAME">itemOptions</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'itemViewOptions'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>251</span> 
+<span class='line'>252</span> </span><span class="WHIT">      </span><span class="COMM">// insertAtElement = elem.find('li')[start-1] || null;</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">      </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">addedObjects.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>254</span> 
+<span class='line'>255</span> </span><span class="WHIT">      </span><span class="COMM">// TODO: This logic is duplicated from the view helper. Refactor</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">      </span><span class="COMM">// it so we can share logic.</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">itemAttrs</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">        </span><span class="STRN">"id"</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">itemOptions.id</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">        </span><span class="STRN">"class"</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">itemOptions</span><span class="PUNC">[</span><span class="STRN">'class'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">        </span><span class="STRN">"classBinding"</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">itemOptions.classBinding</span><span class="WHIT">
+<span class='line'>261</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>262</span> 
+<span class='line'>263</span> </span><span class="WHIT">      </span><span class="NAME">renderFunc</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">        </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">        </span><span class="NAME">SC.Handlebars.ViewHelper.applyAttributes</span><span class="PUNC">(</span><span class="NAME">itemAttrs</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>267</span> 
+<span class='line'>268</span> </span><span class="WHIT">      </span><span class="NAME">itemOptions</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.clone</span><span class="PUNC">(</span><span class="NAME">itemOptions</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">      </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">itemOptions.id</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>270</span> </span><span class="WHIT">      </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">itemOptions</span><span class="PUNC">[</span><span class="STRN">'class'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">      </span><span class="KEYW">delete</span><span class="WHIT"> </span><span class="NAME">itemOptions.classBinding</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>272</span> 
+<span class='line'>273</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">        </span><span class="NAME">item</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">addedObjects.objectAt</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">        </span><span class="NAME">childView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createChildView</span><span class="PUNC">(</span><span class="NAME">itemViewClass.extend</span><span class="PUNC">(</span><span class="NAME">itemOptions</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">          </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">item</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">          </span><span class="NAME">render</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">renderFunc</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">          </span><span class="COMM">// Use the itemTagName property if it is set, over the tagName of the itemViewClass which is 'div' by default</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">          </span><span class="NAME">tagName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">itemOptions.tagName</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">itemViewClass.prototype.tagName</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>281</span> 
+<span class='line'>282</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">contextProperty</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">childView.get</span><span class="PUNC">(</span><span class="STRN">'contextProperty'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">contextProperty</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">          </span><span class="NAME">childView.set</span><span class="PUNC">(</span><span class="STRN">'context'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">childView.get</span><span class="PUNC">(</span><span class="NAME">contextProperty</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>285</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>286</span> 
+<span class='line'>287</span> </span><span class="WHIT">        </span><span class="COMM">// Have to create child views manually.</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">        </span><span class="NAME">childView.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_doAttach</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>289</span> 
+<span class='line'>290</span> </span><span class="WHIT">        </span><span class="NAME">addedViews.push</span><span class="PUNC">(</span><span class="NAME">childView</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>292</span> 
+<span class='line'>293</span> </span><span class="WHIT">      </span><span class="NAME">childViews.replace</span><span class="PUNC">(</span><span class="NAME">start</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">addedViews</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>295</span> 
+<span class='line'>296</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">inverseTemplate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'inverseTemplate'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">childViews.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">inverseTemplate</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">      </span><span class="NAME">childView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.createChildView</span><span class="PUNC">(</span><span class="NAME">SC.TemplateView.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>299</span> </span><span class="WHIT">        </span><span class="NAME">template</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">inverseTemplate</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>300</span> </span><span class="WHIT">        </span><span class="NAME">content</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'emptyView'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">childView</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>303</span> 
+<span class='line'>304</span> </span><span class="WHIT">      </span><span class="COMM">// Have to create child views manually.</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">      </span><span class="NAME">childView.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">_doAttach</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>306</span> 
+<span class='line'>307</span> </span><span class="WHIT">      </span><span class="NAME">this.childViews</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">childView</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>309</span> 
+<span class='line'>310</span> </span><span class="WHIT">    </span><span class="COMM">// Because the layer has been modified, we need to invalidate the frame</span><span class="WHIT">
+<span class='line'>311</span> </span><span class="WHIT">    </span><span class="COMM">// property, if it exists, at the end of the run loop. This allows it to</span><span class="WHIT">
+<span class='line'>312</span> </span><span class="WHIT">    </span><span class="COMM">// be used inside of SC.ScrollView.</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">    </span><span class="NAME">this.invokeLast</span><span class="PUNC">(</span><span class="STRN">'invalidateFrame'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>315</span> 
+<span class='line'>316</span> </span><span class="WHIT">  </span><span class="NAME">itemTagName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">    </span><span class="KEYW">switch</span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'tagName'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'dl'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>319</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'dt'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'ul'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'ol'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'li'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>323</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'table'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'thead'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'tbody'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'tfoot'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>327</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'tr'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>328</span> </span><span class="WHIT">      </span><span class="KEYW">case</span><span class="WHIT"> </span><span class="STRN">'select'</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="STRN">'option'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">      </span><span class="KEYW">default</span><span class="PUNC">:</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">        </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.TemplateView.prototype.tagName</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>333</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'tagName'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>334</span> 
+<span class='line'>335</span> </span><span class="WHIT">  </span><span class="NAME">invalidateFrame</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">    </span><span class="NAME">this.notifyPropertyChange</span><span class="PUNC">(</span><span class="STRN">'frame'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>339</span> 
+<span class='line'>340</span> </span></pre></body></html>

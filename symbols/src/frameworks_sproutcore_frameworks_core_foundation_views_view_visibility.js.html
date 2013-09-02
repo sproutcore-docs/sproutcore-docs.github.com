@@ -1,0 +1,44 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"views/view"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> 
+<span class='line'>  3</span> </span><span class="NAME">SC.View.reopen</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.View.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  5</span> 
+<span class='line'>  6</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>  7</span>     Set to YES to indicate the view has visibility support added.
+<span class='line'>  8</span> 
+<span class='line'>  9</span>     @deprecated Version 1.10
+<span class='line'> 10</span>   */</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="WHIT">  </span><span class="NAME">hasVisibility</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 12</span> 
+<span class='line'> 13</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 14</span>    By default we don't disable the context menu. Overriding this property
+<span class='line'> 15</span>    can enable/disable the context menu per view.
+<span class='line'> 16</span>   */</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">  </span><span class="NAME">isContextMenuEnabled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.CONTEXT_MENU_ENABLED</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 22</span>     The visibility of the view does not need to be computed any longer as it
+<span class='line'> 23</span>     is maintained by the internal SC.View statechart.
+<span class='line'> 24</span> 
+<span class='line'> 25</span>     @deprecated Version 1.10
+<span class='line'> 26</span>     @returns {SC.View} receiver
+<span class='line'> 27</span>   */</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="NAME">recomputeIsVisibleInWindow</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: Calling recomputeIsVisibleInWindow() is no longer necessary and has been deprecated."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'> 32</span> 
+<span class='line'> 33</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 37</span> </span></pre></body></html>

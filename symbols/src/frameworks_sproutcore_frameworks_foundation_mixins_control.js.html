@@ -1,0 +1,290 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'mixins/content_value_support'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/string'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>   Option for controls to automatically calculate their size (should be default
+<span class='line'> 13</span>   on controls that use renderers).
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   @type String
+<span class='line'> 16</span>   @constant
+<span class='line'> 17</span> */</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="NAME">SC.AUTO_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'__AUTO__'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 19</span> 
+<span class='line'> 20</span> </span><span class="COMM">/**
+<span class='line'> 21</span>   Option for HUGE control size.
+<span class='line'> 22</span> 
+<span class='line'> 23</span>   @type String
+<span class='line'> 24</span>   @constant
+<span class='line'> 25</span> */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="NAME">SC.JUMBO_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-jumbo-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="COMM">/**
+<span class='line'> 29</span>   Option for HUGE control size.
+<span class='line'> 30</span> 
+<span class='line'> 31</span>   @type String
+<span class='line'> 32</span>   @constant
+<span class='line'> 33</span> */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="NAME">SC.HUGE_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-huge-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="COMM">/**
+<span class='line'> 37</span>   Option for large control size.
+<span class='line'> 38</span> 
+<span class='line'> 39</span>   @type String
+<span class='line'> 40</span>   @constant
+<span class='line'> 41</span> */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="NAME">SC.LARGE_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-large-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> 
+<span class='line'> 44</span> </span><span class="COMM">/**
+<span class='line'> 45</span>   Option for standard control size.
+<span class='line'> 46</span> 
+<span class='line'> 47</span>   @type String
+<span class='line'> 48</span>   @constant
+<span class='line'> 49</span> */</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="NAME">SC.REGULAR_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-regular-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 51</span> 
+<span class='line'> 52</span> </span><span class="COMM">/**
+<span class='line'> 53</span>   Option for small control size.
+<span class='line'> 54</span> 
+<span class='line'> 55</span>   @type String
+<span class='line'> 56</span>   @constant
+<span class='line'> 57</span> */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="NAME">SC.SMALL_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-small-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="COMM">/**
+<span class='line'> 61</span>   Option for tiny control size
+<span class='line'> 62</span> 
+<span class='line'> 63</span>   @type String
+<span class='line'> 64</span>   @constant
+<span class='line'> 65</span> */</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="NAME">SC.TINY_CONTROL_SIZE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'sc-tiny-size'</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> 
+<span class='line'> 68</span> </span><span class="COMM">/**
+<span class='line'> 69</span>   @namespace
+<span class='line'> 70</span> 
+<span class='line'> 71</span>   A Control is a view that also implements some basic state functionality.
+<span class='line'> 72</span>   Apply this mixin to any view that you want to have standard control
+<span class='line'> 73</span>   functionality including showing a selected state, enabled state, focus
+<span class='line'> 74</span>   state, etc.
+<span class='line'> 75</span> 
+<span class='line'> 76</span>   ## About Values and Content
+<span class='line'> 77</span> 
+<span class='line'> 78</span>   Controls typically are used to represent a single value, such as a number,
+<span class='line'> 79</span>   boolean or string.  The value a control is managing is typically stored in
+<span class='line'> 80</span>   a "value" property.  You will typically use the value property when working
+<span class='line'> 81</span>   with controls such as buttons and text fields in a form.
+<span class='line'> 82</span> 
+<span class='line'> 83</span>   An alternative way of working with a control is to use it to manage some
+<span class='line'> 84</span>   specific aspect of a content object.  For example, you might use a label
+<span class='line'> 85</span>   view control to display the "name" property of a Contact record.  This
+<span class='line'> 86</span>   approach is often necessary when using the control as part of a collection
+<span class='line'> 87</span>   view.
+<span class='line'> 88</span> 
+<span class='line'> 89</span>   You can use the content-approach to work with a control by setting the
+<span class='line'> 90</span>   "content" and "contentValueKey" properties of the control.  The
+<span class='line'> 91</span>   "content" property is the content object you want to manage, while the
+<span class='line'> 92</span>   "contentValueKey" is the name of the property on the content object
+<span class='line'> 93</span>   you want the control to display.
+<span class='line'> 94</span> 
+<span class='line'> 95</span>   The default implementation of the Control mixin will essentially map the
+<span class='line'> 96</span>   contentValueKey of a content object to the value property of the
+<span class='line'> 97</span>   control.  Thus if you are writing a custom control yourself, you can simply
+<span class='line'> 98</span>   work with the value property and the content object support will come for
+<span class='line'> 99</span>   free.  Just write an observer for the value property and update your
+<span class='line'>100</span>   view accordingly.
+<span class='line'>101</span> 
+<span class='line'>102</span>   If you are working with a control that needs to display multiple aspects
+<span class='line'>103</span>   of a single content object (for example showing an icon and label), then
+<span class='line'>104</span>   you can override the contentValueDidChange() method instead of observing
+<span class='line'>105</span>   the value property.  This method will be called anytime _any_ property
+<span class='line'>106</span>   on the content object changes.  You should use this method to check the
+<span class='line'>107</span>   properties you care about on the content object and update your view if
+<span class='line'>108</span>   anything you care about has changed.
+<span class='line'>109</span> 
+<span class='line'>110</span>   ## Delegate Support
+<span class='line'>111</span> 
+<span class='line'>112</span>   Controls can optionally get the contentDisplayProperty from a
+<span class='line'>113</span>   displayDelegate, if it is set.  The displayDelegate is often used to
+<span class='line'>114</span>   delegate common display-related configurations such as which content value
+<span class='line'>115</span>   to show.  Anytime your control is shown as part of a collection view, the
+<span class='line'>116</span>   collection view will be automatically set as its displayDelegate.
+<span class='line'>117</span> 
+<span class='line'>118</span>   @since SproutCore 1.0
+<span class='line'>119</span>   @extends SC.ContentValueSupport
+<span class='line'>120</span> */</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="NAME">SC.Control</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.clone</span><span class="PUNC">(</span><span class="NAME">SC.ContentValueSupport</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="COMM">/** @scope SC.Control.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>123</span> 
+<span class='line'>124</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>125</span>     Walk like a duck
+<span class='line'>126</span> 
+<span class='line'>127</span>     @type Boolean
+<span class='line'>128</span>     @default YES
+<span class='line'>129</span>     @readOnly
+<span class='line'>130</span>   */</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="NAME">isControl</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>132</span> 
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>134</span>     The selected state of this control. Possible values:
+<span class='line'>135</span> 
+<span class='line'>136</span>       - `YES`
+<span class='line'>137</span>       - `NO`
+<span class='line'>138</span>       - SC.MIXED_STATE.
+<span class='line'>139</span> 
+<span class='line'>140</span>     @type Boolean
+<span class='line'>141</span>     @default NO
+<span class='line'>142</span>   */</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">  </span><span class="NAME">isSelected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>144</span> 
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">  </span><span class="NAME">isSelectedBindingDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.oneWay</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">bool</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>147</span> 
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>149</span>     Set to YES when the item is currently active.  Usually this means the
+<span class='line'>150</span>     mouse is current pressed and hovering over the control, however the
+<span class='line'>151</span>     specific implementation my vary depending on the control.
+<span class='line'>152</span> 
+<span class='line'>153</span>     Changing this property value by default will cause the Control mixin to
+<span class='line'>154</span>     add/remove an 'active' class name to the root element.
+<span class='line'>155</span> 
+<span class='line'>156</span>     @type Boolean
+<span class='line'>157</span>     @default NO
+<span class='line'>158</span>   */</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">  </span><span class="NAME">isActive</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>160</span> 
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">  </span><span class="NAME">isActiveBindingDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Binding.oneWay</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">bool</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>163</span> 
+<span class='line'>164</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>165</span>     The name of the property this control should display if it is part of an
+<span class='line'>166</span>     SC.FormView.
+<span class='line'>167</span> 
+<span class='line'>168</span>     If you add a control as part of an SC.FormView, then the form view will
+<span class='line'>169</span>     automatically bind the value to the property key you name here on the
+<span class='line'>170</span>     content object.
+<span class='line'>171</span> 
+<span class='line'>172</span>     @type String
+<span class='line'>173</span>     @default null
+<span class='line'>174</span>   */</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">  </span><span class="NAME">fieldKey</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>176</span> 
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>178</span>     The human readable label you want shown for errors.  May be a loc string.
+<span class='line'>179</span> 
+<span class='line'>180</span>     If your field fails validation, then this is the name that will be shown
+<span class='line'>181</span>     in the error explanation.  If you do not set this property, then the
+<span class='line'>182</span>     fieldKey or the class name will be used to generate a human readable name.
+<span class='line'>183</span> 
+<span class='line'>184</span>     @type String
+<span class='line'>185</span>     @default null
+<span class='line'>186</span>   */</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">  </span><span class="NAME">fieldLabel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>188</span> 
+<span class='line'>189</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>190</span>     The human readable label for this control for use in error strings.  This
+<span class='line'>191</span>     property is computed dynamically using the following rules:
+<span class='line'>192</span> 
+<span class='line'>193</span>     If the fieldLabel is defined, that property is localized and returned.
+<span class='line'>194</span>     Otherwise, if the keyField is defined, try to localize using the string
+<span class='line'>195</span>     "ErrorLabel.{fieldKeyName}".  If a localized name cannot be found, use a
+<span class='line'>196</span>     humanized form of the fieldKey.
+<span class='line'>197</span> 
+<span class='line'>198</span>     Try to localize using the string "ErrorLabel.{ClassName}". Return a
+<span class='line'>199</span>     humanized form of the class name.
+<span class='line'>200</span> 
+<span class='line'>201</span>     @field
+<span class='line'>202</span>     @type String
+<span class='line'>203</span>     @observes 'fieldLabel'
+<span class='line'>204</span>     @observes 'fieldKey'
+<span class='line'>205</span>   */</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">  </span><span class="NAME">errorLabel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fk</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">def</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">locFK</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'fieldLabel'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>209</span> 
+<span class='line'>210</span> </span><span class="WHIT">    </span><span class="COMM">// if field label is not provided, compute something...</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">    </span><span class="NAME">fk</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'fieldKey'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">this.constructor.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">    </span><span class="NAME">def</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">fk</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">SC.String.capitalize</span><span class="PUNC">(</span><span class="NAME">SC.String.humanize</span><span class="PUNC">(</span><span class="NAME">fk</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">    </span><span class="NAME">locFK</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.String.locWithDefault</span><span class="PUNC">(</span><span class="STRN">"FieldKey."</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">fk</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">def</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">SC.String.locWithDefault</span><span class="PUNC">(</span><span class="STRN">"ErrorLabel."</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">fk</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">locFK</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'fieldLabel'</span><span class="PUNC">,</span><span class="STRN">'fieldKey'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>216</span> 
+<span class='line'>217</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>218</span>     The control size.  This will set a CSS style on the element that can be
+<span class='line'>219</span>     used by the current theme to vary the appearance of the control.
+<span class='line'>220</span> 
+<span class='line'>221</span>     Some controls will default to SC.AUTO_CONTROL_SIZE, which will allow you
+<span class='line'>222</span>     to simply size the control, and the most appropriate control size will
+<span class='line'>223</span>     automatically be picked; be warned, though, that if you don't specify
+<span class='line'>224</span>     a height, performance will be impacted as it must be calculated; if you do
+<span class='line'>225</span>     this, a warning will be issued. If you don't care, use SC.CALCULATED_CONTROL_SIZE.
+<span class='line'>226</span> 
+<span class='line'>227</span>     @type String
+<span class='line'>228</span>     @default SC.REGULAR_CONTROL_SIZE
+<span class='line'>229</span>   */</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">  </span><span class="NAME">controlSize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.REGULAR_CONTROL_SIZE</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>231</span> 
+<span class='line'>232</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'isSelected'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'isActive'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'controlSize'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>234</span> 
+<span class='line'>235</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">  </span><span class="NAME">_CONTROL_TMP_CLASSNAMES</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>237</span> 
+<span class='line'>238</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>239</span>     Invoke this method in your updateDisplay() method to update any basic
+<span class='line'>240</span>     control CSS classes.
+<span class='line'>241</span>   */</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">  </span><span class="NAME">renderMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">firstTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">sel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isSelected'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">disabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEnabled'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">    </span><span class="COMM">// update the CSS classes for the control.  note we reuse the same hash</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">    </span><span class="COMM">// to avoid consuming more memory</span><span class="WHIT">
+<span class='line'>246</span> </span><span class="WHIT">    </span><span class="NAME">names</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._CONTROL_TMP_CLASSNAMES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// temporary object</span><span class="WHIT">
+<span class='line'>247</span> </span><span class="WHIT">    </span><span class="NAME">names.mixed</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">sel</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="WHIT">    </span><span class="NAME">names.sel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">sel</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">sel</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">SC.MIXED_STATE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="WHIT">    </span><span class="NAME">names.active</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isActive'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>250</span> 
+<span class='line'>251</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">controlSize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"controlSize"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">controlSize</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">      </span><span class="NAME">controlSize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.REGULAR_CONTROL_SIZE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>254</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>255</span> 
+<span class='line'>256</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">firstTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">      </span><span class="NAME">context.setClass</span><span class="PUNC">(</span><span class="NAME">names</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>258</span> 
+<span class='line'>259</span> </span><span class="WHIT">      </span><span class="COMM">// delegates handle adding 'controlSize' on their own. We only support it</span><span class="WHIT">
+<span class='line'>260</span> </span><span class="WHIT">      </span><span class="COMM">// here for backwards-compatibility.</span><span class="WHIT">
+<span class='line'>261</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'renderDelegate'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">        </span><span class="NAME">context.addClass</span><span class="PUNC">(</span><span class="NAME">controlSize</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">      </span><span class="NAME">context.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">setClass</span><span class="PUNC">(</span><span class="NAME">names</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'renderDelegate'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>267</span> </span><span class="WHIT">        </span><span class="NAME">context.$</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">addClass</span><span class="PUNC">(</span><span class="NAME">controlSize</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>268</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>270</span> 
+<span class='line'>271</span> </span><span class="WHIT">    </span><span class="COMM">// if the control implements the $input() helper, then fixup the input</span><span class="WHIT">
+<span class='line'>272</span> </span><span class="WHIT">    </span><span class="COMM">// tags</span><span class="WHIT">
+<span class='line'>273</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">firstTime</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.$input</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">inps</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.$input</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="NAME">inps.attr</span><span class="PUNC">(</span><span class="STRN">'type'</span><span class="PUNC">)</span><span class="PUNC">!==</span><span class="STRN">"radio"</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">        </span><span class="NAME">this.$input</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">attr</span><span class="PUNC">(</span><span class="STRN">'disabled'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">disabled</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>280</span> 
+<span class='line'>281</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>282</span> 
+<span class='line'>283</span> </span></pre></body></html>
