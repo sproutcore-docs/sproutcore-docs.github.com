@@ -17,33 +17,33 @@
 <span class='line'> 10</span> 
 <span class='line'> 11</span>   The SC.ContentDisplay mixin makes it easy to automatically update your view
 <span class='line'> 12</span>   display whenever relevant properties on a content object change.  To use
-<span class='line'> 13</span>   this mixin, include it in your view and then add the names of the 
-<span class='line'> 14</span>   properties on the content object you want to trigger a displayDidChange() 
-<span class='line'> 15</span>   method on your view. Your updateDisplay() method will then be called at the 
+<span class='line'> 13</span>   this mixin, include it in your view and then add the names of the
+<span class='line'> 14</span>   properties on the content object you want to trigger a displayDidChange()
+<span class='line'> 15</span>   method on your view. Your updateDisplay() method will then be called at the
 <span class='line'> 16</span>   end of the run loop.
-<span class='line'> 17</span>   
+<span class='line'> 17</span> 
 <span class='line'> 18</span>   ## Example
-<span class='line'> 19</span>   
-<span class='line'> 20</span>       MyApp.MyViewClass = SC.View.extend(SC.ContentDisplay, { 
+<span class='line'> 19</span> 
+<span class='line'> 20</span>       MyApp.MyViewClass = SC.View.extend(SC.ContentDisplay, {
 <span class='line'> 21</span>         contentDisplayProperties: 'title isEnabled hasChildren'.w(),
 <span class='line'> 22</span>         ...
 <span class='line'> 23</span>       });
-<span class='line'> 24</span>   
+<span class='line'> 24</span> 
 <span class='line'> 25</span>   @since SproutCore 1.0
 <span class='line'> 26</span> */</span><span class="WHIT">
 <span class='line'> 27</span> </span><span class="NAME">SC.ContentDisplay</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="WHIT">  
-<span class='line'> 29</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 28</span> 
+<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
 <span class='line'> 30</span> </span><span class="WHIT">  </span><span class="NAME">concatenatedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'contentDisplayProperties'</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 31</span> 
 <span class='line'> 32</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
 <span class='line'> 33</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'content'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="WHIT">  
-<span class='line'> 35</span>   </span><span class="COMM">/** 
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="COMM">/**
 <span class='line'> 36</span>     Add an array with the names of any property on the content object that
 <span class='line'> 37</span>     should trigger an update of the display for your view.  Changes to the
 <span class='line'> 38</span>     content object will only invoke your display method once per runloop.
-<span class='line'> 39</span>     
+<span class='line'> 39</span> 
 <span class='line'> 40</span>     @type Array
 <span class='line'> 41</span>     @default []
 <span class='line'> 42</span>   */</span><span class="WHIT">
@@ -104,9 +104,9 @@
 <span class='line'> 97</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._display_beginObservingContent</span><span class="PUNC">(</span><span class="NAME">content</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 98</span> 
 <span class='line'> 99</span> </span><span class="WHIT">    </span><span class="NAME">this.displayDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>100</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'contentDisplayProperties'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>101</span> </span><span class="WHIT">  
-<span class='line'>102</span>   </span><span class="COMM">/** @private Invoked when properties on the content object change. */</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">observes</span><span class="PUNC">(</span><span class="STRN">'content'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>101</span> 
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Invoked when properties on the content object change. */</span><span class="WHIT">
 <span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">_display_contentPropertyDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">propertyRevision</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>104</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">key</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'*'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>105</span> </span><span class="WHIT">      </span><span class="NAME">this.displayDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
@@ -116,6 +116,6 @@
 <span class='line'>109</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ary</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">ary.indexOf</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">>=</span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.displayDidChange</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>110</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>111</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>112</span> </span><span class="WHIT">  
+<span class='line'>112</span> 
 <span class='line'>113</span> </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>114</span> </span></pre></body></html>
