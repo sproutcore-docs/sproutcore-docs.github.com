@@ -136,7 +136,7 @@
 <span class='line'>129</span> </span><span class="WHIT">      </span><span class="NAME">conExp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'(?:[\\/:\\::\\s:;])'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// Match the connecting character</span><span class="WHIT">
 <span class='line'>130</span> </span><span class="WHIT">      </span><span class="NAME">numExp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'(\\S+[^\\s:;:\\)]|)'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// Match the "number"</span><span class="WHIT">
 <span class='line'>131</span> </span><span class="WHIT">      </span><span class="NAME">nameAndVersion</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>132</span> </span><span class="WHIT">      </span><span class="NAME">osAndVersion</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">      </span><span class="NAME">os</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>133</span> </span><span class="WHIT">      </span><span class="NAME">override</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>134</span> 
 <span class='line'>135</span> </span><span class="WHIT">  </span><span class="COMM">// Use the current values if none are provided.</span><span class="WHIT">
@@ -272,267 +272,268 @@
 <span class='line'>265</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.unknown</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>266</span> 
 <span class='line'>267</span> </span><span class="WHIT">  </span><span class="COMM">// Normalize the os name.</span><span class="WHIT">
-<span class='line'>268</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isIOSDevice</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>269</span> </span><span class="WHIT">  </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'mac os x'</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'mac os'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>270</span> </span><span class="WHIT">  </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'windows nt'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.win</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>271</span> 
-<span class='line'>272</span> </span><span class="WHIT">  </span><span class="COMM">// Normalize the os version.</span><span class="WHIT">
-<span class='line'>273</span> </span><span class="WHIT">  </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">replace</span><span class="PUNC">(</span><span class="REGX">/_/g</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>274</span> 
+<span class='line'>268</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isIOSDevice</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">  </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'mac os x'</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'mac os'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>270</span> </span><span class="WHIT">  </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">'windows nt'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.OS.win</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">  </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>272</span> 
+<span class='line'>273</span> </span><span class="WHIT">  </span><span class="COMM">// Normalize the os version.</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">  </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">replace</span><span class="PUNC">(</span><span class="REGX">/_/g</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'.'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>275</span> 
-<span class='line'>276</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>277</span>     @name SC.browser.os
-<span class='line'>278</span>     @type SC.OS|SC.BROWSER.unknown
-<span class='line'>279</span>   */</span><span class="WHIT">
-<span class='line'>280</span> </span><span class="WHIT">  </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>281</span> 
-<span class='line'>282</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>283</span>     @name SC.browser.osVersion
-<span class='line'>284</span>     @type String
-<span class='line'>285</span>   */</span><span class="WHIT">
-<span class='line'>286</span> </span><span class="WHIT">  </span><span class="NAME">browser.osVersion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>287</span> 
+<span class='line'>276</span> 
+<span class='line'>277</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>278</span>     @name SC.browser.os
+<span class='line'>279</span>     @type SC.OS|SC.BROWSER.unknown
+<span class='line'>280</span>   */</span><span class="WHIT">
+<span class='line'>281</span> </span><span class="WHIT">  </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">os</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>282</span> 
+<span class='line'>283</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>284</span>     @name SC.browser.osVersion
+<span class='line'>285</span>     @type String
+<span class='line'>286</span>   */</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">  </span><span class="NAME">browser.osVersion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">osAndVersion</span><span class="PUNC">[</span><span class="NUMB">2</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>288</span> 
-<span class='line'>289</span> </span><span class="WHIT">  </span><span class="COMM">// The following long list of properties have all been deprecated.  While they</span><span class="WHIT">
-<span class='line'>290</span> </span><span class="WHIT">  </span><span class="COMM">// are a bit less verbose then the above constants, they lack standardization</span><span class="WHIT">
-<span class='line'>291</span> </span><span class="WHIT">  </span><span class="COMM">// and can be prone to failure.  Rather than continuing to expand this list</span><span class="WHIT">
-<span class='line'>292</span> </span><span class="WHIT">  </span><span class="COMM">// with more and more one-off comparisons, which often muddle the line between</span><span class="WHIT">
-<span class='line'>293</span> </span><span class="WHIT">  </span><span class="COMM">// the browser, the engine, the os and the device, it seems more practical to</span><span class="WHIT">
-<span class='line'>294</span> </span><span class="WHIT">  </span><span class="COMM">// only maintain the 7 identifiable properties listed above:  device, name,</span><span class="WHIT">
-<span class='line'>295</span> </span><span class="WHIT">  </span><span class="COMM">// version, os, osVersion, engine and engineVersion.</span><span class="WHIT">
-<span class='line'>296</span> 
-<span class='line'>297</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.win.
-<span class='line'>298</span>     @name SC.browser.isWindows
-<span class='line'>299</span>     @type Boolean
-<span class='line'>300</span>   */</span><span class="WHIT">
-<span class='line'>301</span> </span><span class="WHIT">  </span><span class="NAME">browser.windows</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isWindows</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.win</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>302</span> 
-<span class='line'>303</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.mac.
-<span class='line'>304</span>     @name SC.browser.isMac
-<span class='line'>305</span>     @type Boolean
-<span class='line'>306</span>   */</span><span class="WHIT">
-<span class='line'>307</span> </span><span class="WHIT">  </span><span class="NAME">browser.mac</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isMac</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>308</span> 
-<span class='line'>309</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.mac && browser.compare(browser.osVersion, '10.7') == 0
-<span class='line'>310</span>     @name SC.browser.isLion
-<span class='line'>311</span>     @type Boolean
-<span class='line'>312</span>   */</span><span class="WHIT">
-<span class='line'>313</span> </span><span class="WHIT">  </span><span class="NAME">browser.lion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isLion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="REGX">/mac os x 10_7/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="REGX">/like mac os x 10_7/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>314</span> 
-<span class='line'>315</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.iphone.
-<span class='line'>316</span>     @name SC.browser.isiPhone
-<span class='line'>317</span>     @type Boolean
-<span class='line'>318</span>   */</span><span class="WHIT">
-<span class='line'>319</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPhone</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPhone</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>320</span> 
-<span class='line'>321</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipod.
-<span class='line'>322</span>     @name SC.browser.isiPod
-<span class='line'>323</span>     @type Boolean
-<span class='line'>324</span>   */</span><span class="WHIT">
-<span class='line'>325</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>326</span> 
-<span class='line'>327</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipad.
-<span class='line'>328</span>     @name SC.browser.isiPad
-<span class='line'>329</span>     @type Boolean
-<span class='line'>330</span>   */</span><span class="WHIT">
-<span class='line'>331</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPad</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPad</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>332</span> 
-<span class='line'>333</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.ios.
-<span class='line'>334</span>     @name SC.browser.isiOS
-<span class='line'>335</span>     @type Boolean
-<span class='line'>336</span>   */</span><span class="WHIT">
-<span class='line'>337</span> </span><span class="WHIT">  </span><span class="NAME">browser.iOS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiOS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>338</span> 
-<span class='line'>339</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.android or browser.name === SC.BROWSER.android or browser.device === SC.DEVICE.android.
-<span class='line'>340</span>     @name SC.browser.isAndroid
-<span class='line'>341</span>     @type Boolean
-<span class='line'>342</span>   */</span><span class="WHIT">
-<span class='line'>343</span> </span><span class="WHIT">  </span><span class="NAME">browser.android</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isAndroid</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.android</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>344</span> 
-<span class='line'>345</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
-<span class='line'>346</span>     @name SC.browser.opera
-<span class='line'>347</span>     @type String
-<span class='line'>348</span>   */</span><span class="WHIT">
-<span class='line'>349</span> </span><span class="WHIT">  </span><span class="NAME">browser.opera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.opera</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>350</span> 
-<span class='line'>351</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.opera.
-<span class='line'>352</span>     @name SC.browser.isOpera
-<span class='line'>353</span>     @type Boolean
-<span class='line'>354</span>   */</span><span class="WHIT">
-<span class='line'>355</span> </span><span class="WHIT">  </span><span class="NAME">browser.isOpera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.opera</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>356</span> 
-<span class='line'>357</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
-<span class='line'>358</span>     @name SC.browser.msie
-<span class='line'>359</span>     @type String
-<span class='line'>360</span>   */</span><span class="WHIT">
-<span class='line'>361</span> </span><span class="WHIT">  </span><span class="NAME">browser.msie</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.ie</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>362</span> 
-<span class='line'>363</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engine === SC.ENGINE.trident.
-<span class='line'>364</span>     @name SC.browser.isIE
-<span class='line'>365</span>     @type Boolean
-<span class='line'>366</span>   */</span><span class="WHIT">
-<span class='line'>367</span> </span><span class="WHIT">  </span><span class="NAME">browser.isIE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.trident</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>368</span> 
-<span class='line'>369</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.compare(browser.version, '8') &lt;= 0.
-<span class='line'>370</span>     @name SC.browser.isIE8OrLower
-<span class='line'>371</span>     @type Boolean
-<span class='line'>372</span>   */</span><span class="WHIT">
-<span class='line'>373</span> </span><span class="WHIT">  </span><span class="NAME">browser.isIE8OrLower</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.ie</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">&lt;=</span><span class="WHIT"> </span><span class="NUMB">8</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>374</span> 
-<span class='line'>375</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
-<span class='line'>376</span>     @name SC.browser.mozilla
-<span class='line'>377</span>     @type String
-<span class='line'>378</span>   */</span><span class="WHIT">
-<span class='line'>379</span> </span><span class="WHIT">  </span><span class="NAME">browser.mozilla</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.gecko</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>380</span> 
-<span class='line'>381</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.firefox or browser.engine === SC.ENGINE.gecko.
-<span class='line'>382</span>     @name SC.browser.isMozilla
-<span class='line'>383</span>     @type Boolean
-<span class='line'>384</span>   */</span><span class="WHIT">
-<span class='line'>385</span> </span><span class="WHIT">  </span><span class="NAME">browser.isMozilla</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.gecko</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>386</span> 
-<span class='line'>387</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engineVersion.
-<span class='line'>388</span>     @name SC.browser.webkit
-<span class='line'>389</span>     @type String
-<span class='line'>390</span>   */</span><span class="WHIT">
-<span class='line'>391</span> </span><span class="WHIT">  </span><span class="NAME">browser.webkit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.webkit</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.engineVersion</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>392</span> 
-<span class='line'>393</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engine === SC.ENGINE.webkit.
-<span class='line'>394</span>     @name SC.browser.isWebkit
-<span class='line'>395</span>     @type Boolean
-<span class='line'>396</span>   */</span><span class="WHIT">
-<span class='line'>397</span> </span><span class="WHIT">  </span><span class="NAME">browser.isWebkit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.webkit</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>398</span> 
-<span class='line'>399</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>400</span>     @name SC.browser.chrome
-<span class='line'>401</span>     @type String
-<span class='line'>402</span>   */</span><span class="WHIT">
-<span class='line'>403</span> </span><span class="WHIT">  </span><span class="NAME">browser.chrome</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.chrome</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>404</span> 
-<span class='line'>405</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.chrome.
-<span class='line'>406</span>     @name SC.browser.isChrome
-<span class='line'>407</span>     @type Boolean
-<span class='line'>408</span>   */</span><span class="WHIT">
-<span class='line'>409</span> </span><span class="WHIT">  </span><span class="NAME">browser.isChrome</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.chrome</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>410</span> 
-<span class='line'>411</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>412</span>     @name SC.browser.mobileSafari
-<span class='line'>413</span>     @type String
-<span class='line'>414</span>   */</span><span class="WHIT">
-<span class='line'>415</span> </span><span class="WHIT">  </span><span class="NAME">browser.mobileSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>416</span> 
-<span class='line'>417</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.safari && browser.os === SC.OS.ios
-<span class='line'>418</span>     @name SC.browser.isMobileSafari
-<span class='line'>419</span>     @type Boolean
-<span class='line'>420</span>   */</span><span class="WHIT">
-<span class='line'>421</span> </span><span class="WHIT">  </span><span class="NAME">browser.isMobileSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>422</span> 
-<span class='line'>423</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>424</span>     @name SC.browser.iPadSafari
-<span class='line'>425</span>     @type String
-<span class='line'>426</span>   */</span><span class="WHIT">
-<span class='line'>427</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPadSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
-<span class='line'>428</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>429</span> 
-<span class='line'>430</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipad && browser.name === SC.BROWSER.safari
-<span class='line'>431</span>     @name SC.browser.isiPadSafari
-<span class='line'>432</span>     @type Boolean
-<span class='line'>433</span>   */</span><span class="WHIT">
-<span class='line'>434</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPadSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>435</span> 
-<span class='line'>436</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>437</span>     @name SC.browser.iPhoneSafari
-<span class='line'>438</span>     @type String
-<span class='line'>439</span>   */</span><span class="WHIT">
-<span class='line'>440</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPhoneSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
-<span class='line'>441</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>442</span> 
-<span class='line'>443</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.iphone && browser.name === SC.BROWSER.safari
-<span class='line'>444</span>     @name SC.browser.isiPhoneSafari
-<span class='line'>445</span>     @type Boolean
-<span class='line'>446</span>   */</span><span class="WHIT">
-<span class='line'>447</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPhoneSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>448</span> 
-<span class='line'>449</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>450</span>     @name SC.browser.iPodSafari
-<span class='line'>451</span>     @type String
-<span class='line'>452</span>   */</span><span class="WHIT">
-<span class='line'>453</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPodSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
-<span class='line'>454</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>455</span> 
-<span class='line'>456</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipod && browser.name === SC.BROWSER.safari
-<span class='line'>457</span>     @name SC.browser.isiPodSafari
-<span class='line'>458</span>     @type Boolean
-<span class='line'>459</span>   */</span><span class="WHIT">
-<span class='line'>460</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPodSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>461</span> 
-<span class='line'>462</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use SC.platform.standalone.
-<span class='line'>463</span>     @name SC.browser.isiOSHomeScreen
-<span class='line'>464</span>     @type Boolean
-<span class='line'>465</span>   */</span><span class="WHIT">
-<span class='line'>466</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiOSHomeScreen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isMobileSafari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">(</span><span class="REGX">/apple.*mobile.*safari/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>467</span> 
-<span class='line'>468</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
-<span class='line'>469</span>     @name SC.browser.safari
-<span class='line'>470</span>     @type String
-<span class='line'>471</span>   */</span><span class="WHIT">
-<span class='line'>472</span> </span><span class="WHIT">  </span><span class="NAME">browser.safari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
-<span class='line'>473</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>474</span> 
-<span class='line'>475</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.safari && browser.os === SC.OS.mac.
-<span class='line'>476</span>     @name SC.browser.isSafari
-<span class='line'>477</span>     @type Boolean
-<span class='line'>478</span>   */</span><span class="WHIT">
-<span class='line'>479</span> </span><span class="WHIT">  </span><span class="NAME">browser.isSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>480</span> 
-<span class='line'>481</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>482</span>     @name SC.browser.language
-<span class='line'>483</span>     @type String
-<span class='line'>484</span>   */</span><span class="WHIT">
-<span class='line'>485</span> </span><span class="WHIT">  </span><span class="NAME">browser.language</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>486</span> 
-<span class='line'>487</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>488</span>     @name SC.browser.countryCode
-<span class='line'>489</span>     @type String
-<span class='line'>490</span>   */</span><span class="WHIT">
-<span class='line'>491</span> </span><span class="WHIT">  </span><span class="NAME">browser.countryCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">toLowerCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>492</span> 
-<span class='line'>493</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name.  See SC.BROWSER for possible values.
-<span class='line'>494</span>     @name SC.browser.current
-<span class='line'>495</span>     @type String
-<span class='line'>496</span>   */</span><span class="WHIT">
-<span class='line'>497</span> </span><span class="WHIT">  </span><span class="NAME">browser.current</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>498</span> 
-<span class='line'>499</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">browser</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>500</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>501</span> 
+<span class='line'>289</span> 
+<span class='line'>290</span> </span><span class="WHIT">  </span><span class="COMM">// The following long list of properties have all been deprecated.  While they</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">  </span><span class="COMM">// are a bit less verbose then the above constants, they lack standardization</span><span class="WHIT">
+<span class='line'>292</span> </span><span class="WHIT">  </span><span class="COMM">// and can be prone to failure.  Rather than continuing to expand this list</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">  </span><span class="COMM">// with more and more one-off comparisons, which often muddle the line between</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">  </span><span class="COMM">// the browser, the engine, the os and the device, it seems more practical to</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">  </span><span class="COMM">// only maintain the 7 identifiable properties listed above:  device, name,</span><span class="WHIT">
+<span class='line'>296</span> </span><span class="WHIT">  </span><span class="COMM">// version, os, osVersion, engine and engineVersion.</span><span class="WHIT">
+<span class='line'>297</span> 
+<span class='line'>298</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.win.
+<span class='line'>299</span>     @name SC.browser.isWindows
+<span class='line'>300</span>     @type Boolean
+<span class='line'>301</span>   */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">browser.windows</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isWindows</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.win</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>303</span> 
+<span class='line'>304</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.mac.
+<span class='line'>305</span>     @name SC.browser.isMac
+<span class='line'>306</span>     @type Boolean
+<span class='line'>307</span>   */</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">  </span><span class="NAME">browser.mac</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isMac</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>309</span> 
+<span class='line'>310</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.mac && browser.compare(browser.osVersion, '10.7') == 0
+<span class='line'>311</span>     @name SC.browser.isLion
+<span class='line'>312</span>     @type Boolean
+<span class='line'>313</span>   */</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">  </span><span class="NAME">browser.lion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isLion</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="REGX">/mac os x 10_7/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="REGX">/like mac os x 10_7/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>315</span> 
+<span class='line'>316</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.iphone.
+<span class='line'>317</span>     @name SC.browser.isiPhone
+<span class='line'>318</span>     @type Boolean
+<span class='line'>319</span>   */</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPhone</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPhone</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>321</span> 
+<span class='line'>322</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipod.
+<span class='line'>323</span>     @name SC.browser.isiPod
+<span class='line'>324</span>     @type Boolean
+<span class='line'>325</span>   */</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>327</span> 
+<span class='line'>328</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipad.
+<span class='line'>329</span>     @name SC.browser.isiPad
+<span class='line'>330</span>     @type Boolean
+<span class='line'>331</span>   */</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPad</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiPad</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>333</span> 
+<span class='line'>334</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.ios.
+<span class='line'>335</span>     @name SC.browser.isiOS
+<span class='line'>336</span>     @type Boolean
+<span class='line'>337</span>   */</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">  </span><span class="NAME">browser.iOS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isiOS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>339</span> 
+<span class='line'>340</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.os === SC.OS.android or browser.name === SC.BROWSER.android or browser.device === SC.DEVICE.android.
+<span class='line'>341</span>     @name SC.browser.isAndroid
+<span class='line'>342</span>     @type Boolean
+<span class='line'>343</span>   */</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">  </span><span class="NAME">browser.android</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isAndroid</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.android</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>345</span> 
+<span class='line'>346</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
+<span class='line'>347</span>     @name SC.browser.opera
+<span class='line'>348</span>     @type String
+<span class='line'>349</span>   */</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">  </span><span class="NAME">browser.opera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.opera</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>351</span> 
+<span class='line'>352</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.opera.
+<span class='line'>353</span>     @name SC.browser.isOpera
+<span class='line'>354</span>     @type Boolean
+<span class='line'>355</span>   */</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">  </span><span class="NAME">browser.isOpera</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.opera</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>357</span> 
+<span class='line'>358</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
+<span class='line'>359</span>     @name SC.browser.msie
+<span class='line'>360</span>     @type String
+<span class='line'>361</span>   */</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">  </span><span class="NAME">browser.msie</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.ie</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>363</span> 
+<span class='line'>364</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engine === SC.ENGINE.trident.
+<span class='line'>365</span>     @name SC.browser.isIE
+<span class='line'>366</span>     @type Boolean
+<span class='line'>367</span>   */</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">  </span><span class="NAME">browser.isIE</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.trident</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>369</span> 
+<span class='line'>370</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.compare(browser.version, '8') &lt;= 0.
+<span class='line'>371</span>     @name SC.browser.isIE8OrLower
+<span class='line'>372</span>     @type Boolean
+<span class='line'>373</span>   */</span><span class="WHIT">
+<span class='line'>374</span> </span><span class="WHIT">  </span><span class="NAME">browser.isIE8OrLower</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.ie</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">&lt;=</span><span class="WHIT"> </span><span class="NUMB">8</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>375</span> 
+<span class='line'>376</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version or browser.engineVersion.
+<span class='line'>377</span>     @name SC.browser.mozilla
+<span class='line'>378</span>     @type String
+<span class='line'>379</span>   */</span><span class="WHIT">
+<span class='line'>380</span> </span><span class="WHIT">  </span><span class="NAME">browser.mozilla</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.gecko</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>381</span> 
+<span class='line'>382</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.firefox or browser.engine === SC.ENGINE.gecko.
+<span class='line'>383</span>     @name SC.browser.isMozilla
+<span class='line'>384</span>     @type Boolean
+<span class='line'>385</span>   */</span><span class="WHIT">
+<span class='line'>386</span> </span><span class="WHIT">  </span><span class="NAME">browser.isMozilla</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.gecko</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>387</span> 
+<span class='line'>388</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engineVersion.
+<span class='line'>389</span>     @name SC.browser.webkit
+<span class='line'>390</span>     @type String
+<span class='line'>391</span>   */</span><span class="WHIT">
+<span class='line'>392</span> </span><span class="WHIT">  </span><span class="NAME">browser.webkit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.webkit</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.engineVersion</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>393</span> 
+<span class='line'>394</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.engine === SC.ENGINE.webkit.
+<span class='line'>395</span>     @name SC.browser.isWebkit
+<span class='line'>396</span>     @type Boolean
+<span class='line'>397</span>   */</span><span class="WHIT">
+<span class='line'>398</span> </span><span class="WHIT">  </span><span class="NAME">browser.isWebkit</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.engine</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.ENGINE.webkit</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>399</span> 
+<span class='line'>400</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>401</span>     @name SC.browser.chrome
+<span class='line'>402</span>     @type String
+<span class='line'>403</span>   */</span><span class="WHIT">
+<span class='line'>404</span> </span><span class="WHIT">  </span><span class="NAME">browser.chrome</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.chrome</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>405</span> 
+<span class='line'>406</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.chrome.
+<span class='line'>407</span>     @name SC.browser.isChrome
+<span class='line'>408</span>     @type Boolean
+<span class='line'>409</span>   */</span><span class="WHIT">
+<span class='line'>410</span> </span><span class="WHIT">  </span><span class="NAME">browser.isChrome</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.chrome</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>411</span> 
+<span class='line'>412</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>413</span>     @name SC.browser.mobileSafari
+<span class='line'>414</span>     @type String
+<span class='line'>415</span>   */</span><span class="WHIT">
+<span class='line'>416</span> </span><span class="WHIT">  </span><span class="NAME">browser.mobileSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'0'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>417</span> 
+<span class='line'>418</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.safari && browser.os === SC.OS.ios
+<span class='line'>419</span>     @name SC.browser.isMobileSafari
+<span class='line'>420</span>     @type Boolean
+<span class='line'>421</span>   */</span><span class="WHIT">
+<span class='line'>422</span> </span><span class="WHIT">  </span><span class="NAME">browser.isMobileSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.ios</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>423</span> 
+<span class='line'>424</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>425</span>     @name SC.browser.iPadSafari
+<span class='line'>426</span>     @type String
+<span class='line'>427</span>   */</span><span class="WHIT">
+<span class='line'>428</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPadSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'>429</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>430</span> 
+<span class='line'>431</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipad && browser.name === SC.BROWSER.safari
+<span class='line'>432</span>     @name SC.browser.isiPadSafari
+<span class='line'>433</span>     @type Boolean
+<span class='line'>434</span>   */</span><span class="WHIT">
+<span class='line'>435</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPadSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipad</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>436</span> 
+<span class='line'>437</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>438</span>     @name SC.browser.iPhoneSafari
+<span class='line'>439</span>     @type String
+<span class='line'>440</span>   */</span><span class="WHIT">
+<span class='line'>441</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPhoneSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'>442</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>443</span> 
+<span class='line'>444</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.iphone && browser.name === SC.BROWSER.safari
+<span class='line'>445</span>     @name SC.browser.isiPhoneSafari
+<span class='line'>446</span>     @type Boolean
+<span class='line'>447</span>   */</span><span class="WHIT">
+<span class='line'>448</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPhoneSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.iphone</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>449</span> 
+<span class='line'>450</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>451</span>     @name SC.browser.iPodSafari
+<span class='line'>452</span>     @type String
+<span class='line'>453</span>   */</span><span class="WHIT">
+<span class='line'>454</span> </span><span class="WHIT">  </span><span class="NAME">browser.iPodSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>456</span> 
+<span class='line'>457</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.device === SC.DEVICE.ipod && browser.name === SC.BROWSER.safari
+<span class='line'>458</span>     @name SC.browser.isiPodSafari
+<span class='line'>459</span>     @type Boolean
+<span class='line'>460</span>   */</span><span class="WHIT">
+<span class='line'>461</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiPodSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.device</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.DEVICE.ipod</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>462</span> 
+<span class='line'>463</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use SC.platform.standalone.
+<span class='line'>464</span>     @name SC.browser.isiOSHomeScreen
+<span class='line'>465</span>     @type Boolean
+<span class='line'>466</span>   */</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">  </span><span class="NAME">browser.isiOSHomeScreen</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.isMobileSafari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">(</span><span class="REGX">/apple.*mobile.*safari/</span><span class="PUNC">.</span><span class="NAME">test</span><span class="PUNC">(</span><span class="NAME">userAgent</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>468</span> 
+<span class='line'>469</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.version.
+<span class='line'>470</span>     @name SC.browser.safari
+<span class='line'>471</span>     @type String
+<span class='line'>472</span>   */</span><span class="WHIT">
+<span class='line'>473</span> </span><span class="WHIT">  </span><span class="NAME">browser.safari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT">
+<span class='line'>474</span> </span><span class="WHIT">    </span><span class="NAME">browser.version</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>475</span> 
+<span class='line'>476</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name === SC.BROWSER.safari && browser.os === SC.OS.mac.
+<span class='line'>477</span>     @name SC.browser.isSafari
+<span class='line'>478</span>     @type Boolean
+<span class='line'>479</span>   */</span><span class="WHIT">
+<span class='line'>480</span> </span><span class="WHIT">  </span><span class="NAME">browser.isSafari</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.BROWSER.safari</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">browser.os</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.OS.mac</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>481</span> 
+<span class='line'>482</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>483</span>     @name SC.browser.language
+<span class='line'>484</span>     @type String
+<span class='line'>485</span>   */</span><span class="WHIT">
+<span class='line'>486</span> </span><span class="WHIT">  </span><span class="NAME">browser.language</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>487</span> 
+<span class='line'>488</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>489</span>     @name SC.browser.countryCode
+<span class='line'>490</span>     @type String
+<span class='line'>491</span>   */</span><span class="WHIT">
+<span class='line'>492</span> </span><span class="WHIT">  </span><span class="NAME">browser.countryCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">language.split</span><span class="PUNC">(</span><span class="STRN">'-'</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">.</span><span class="NAME">toLowerCase</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>493</span> 
+<span class='line'>494</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.7. Use browser.name.  See SC.BROWSER for possible values.
+<span class='line'>495</span>     @name SC.browser.current
+<span class='line'>496</span>     @type String
+<span class='line'>497</span>   */</span><span class="WHIT">
+<span class='line'>498</span> </span><span class="WHIT">  </span><span class="NAME">browser.current</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">browser.name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>499</span> 
+<span class='line'>500</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">browser</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>502</span> 
-<span class='line'>503</span> </span><span class="COMM">/** @class
-<span class='line'>504</span> 
-<span class='line'>505</span>   This object contains information about the browser environment SproutCore is
-<span class='line'>506</span>   running in. This includes the following properties:
-<span class='line'>507</span> 
-<span class='line'>508</span>     - browser.device                  ex. SC.DEVICE.ipad
-<span class='line'>509</span>     - browser.name                    ex. SC.BROWSER.chrome
-<span class='line'>510</span>     - browser.version                 ex. '16.0.2.34'
-<span class='line'>511</span>     - browser.os                      ex. SC.OS.mac
-<span class='line'>512</span>     - browser.osVersion               ex. '10.6'
-<span class='line'>513</span>     - browser.engine                  ex. SC.ENGINE.webkit
-<span class='line'>514</span>     - browser.engineVersion           ex. '533.29'
-<span class='line'>515</span>     - browser.cssPrefix               ex. '-webkit-'
-<span class='line'>516</span>     - browser.classPrefix            ex. 'WebKit'
-<span class='line'>517</span>     - browser.domPrefix               ex. 'webkit'
-<span class='line'>518</span> 
-<span class='line'>519</span>   Note: User agent sniffing does not provide guaranteed results and spoofing may
-<span class='line'>520</span>   affect the accuracy.  Therefore, as a general rule, it is much better
-<span class='line'>521</span>   to rely on the browser's verified capabilities in SC.platform. But if you must
-<span class='line'>522</span>   write browser specific code, understand that SC.browser does an exceptional
-<span class='line'>523</span>   job at identifying the current browser.
-<span class='line'>524</span> 
-<span class='line'>525</span>   Based on the unit test samples, the most stable browser properties appear to
-<span class='line'>526</span>   be `engine` and `engineVersion`.
-<span class='line'>527</span> 
-<span class='line'>528</span>   @since Version 1.0
-<span class='line'>529</span> */</span><span class="WHIT">
-<span class='line'>530</span> </span><span class="NAME">SC.browser</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.detectBrowser</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>531</span> </span></pre></body></html>
+<span class='line'>503</span> 
+<span class='line'>504</span> </span><span class="COMM">/** @class
+<span class='line'>505</span> 
+<span class='line'>506</span>   This object contains information about the browser environment SproutCore is
+<span class='line'>507</span>   running in. This includes the following properties:
+<span class='line'>508</span> 
+<span class='line'>509</span>     - browser.device                  ex. SC.DEVICE.ipad
+<span class='line'>510</span>     - browser.name                    ex. SC.BROWSER.chrome
+<span class='line'>511</span>     - browser.version                 ex. '16.0.2.34'
+<span class='line'>512</span>     - browser.os                      ex. SC.OS.mac
+<span class='line'>513</span>     - browser.osVersion               ex. '10.6'
+<span class='line'>514</span>     - browser.engine                  ex. SC.ENGINE.webkit
+<span class='line'>515</span>     - browser.engineVersion           ex. '533.29'
+<span class='line'>516</span>     - browser.cssPrefix               ex. '-webkit-'
+<span class='line'>517</span>     - browser.classPrefix            ex. 'WebKit'
+<span class='line'>518</span>     - browser.domPrefix               ex. 'webkit'
+<span class='line'>519</span> 
+<span class='line'>520</span>   Note: User agent sniffing does not provide guaranteed results and spoofing may
+<span class='line'>521</span>   affect the accuracy.  Therefore, as a general rule, it is much better
+<span class='line'>522</span>   to rely on the browser's verified capabilities in SC.platform. But if you must
+<span class='line'>523</span>   write browser specific code, understand that SC.browser does an exceptional
+<span class='line'>524</span>   job at identifying the current browser.
+<span class='line'>525</span> 
+<span class='line'>526</span>   Based on the unit test samples, the most stable browser properties appear to
+<span class='line'>527</span>   be `engine` and `engineVersion`.
+<span class='line'>528</span> 
+<span class='line'>529</span>   @since Version 1.0
+<span class='line'>530</span> */</span><span class="WHIT">
+<span class='line'>531</span> </span><span class="NAME">SC.browser</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.detectBrowser</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>532</span> </span></pre></body></html>

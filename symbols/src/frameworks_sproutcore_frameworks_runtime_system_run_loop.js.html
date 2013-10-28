@@ -15,46 +15,46 @@
 <span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'ext/function'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>  9</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'private/observer_set'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 10</span> 
-<span class='line'> 11</span> </span><span class="COMM">/**
-<span class='line'> 12</span>   @class
-<span class='line'> 13</span> 
-<span class='line'> 14</span>   The run loop provides a universal system for coordinating events within
-<span class='line'> 15</span>   your application.  The run loop processes timers as well as pending
-<span class='line'> 16</span>   observer notifications within your application.
-<span class='line'> 17</span> 
-<span class='line'> 18</span>   To use a RunLoop within your application, you should make sure your event
-<span class='line'> 19</span>   handlers always begin and end with SC.RunLoop.begin() and SC.RunLoop.end()
-<span class='line'> 20</span> 
-<span class='line'> 21</span>   The RunLoop is important because bindings do not fire until the end of
-<span class='line'> 22</span>   your run loop is reached.  This improves the performance of your
-<span class='line'> 23</span>   application.
-<span class='line'> 24</span> 
-<span class='line'> 25</span>   Example:
+<span class='line'> 11</span> 
+<span class='line'> 12</span> </span><span class="COMM">// When in debug mode, users can log deferred calls (such as .invokeOnce()) by</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="COMM">// setting SC.LOG_DEFERRED_CALLS.  We'll declare the variable explicitly to make</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="COMM">// life easier for people who want to enter it inside consoles that auto-</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="COMM">// complete.</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="COMM">//@if (debug)</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.LOG_DEFERRED_CALLS</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.LOG_DEFERRED_CALLS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'> 19</span> 
+<span class='line'> 20</span> </span><span class="COMM">/**
+<span class='line'> 21</span>   @class
+<span class='line'> 22</span> 
+<span class='line'> 23</span>   The run loop provides a universal system for coordinating events within
+<span class='line'> 24</span>   your application.  The run loop processes timers as well as pending
+<span class='line'> 25</span>   observer notifications within your application.
 <span class='line'> 26</span> 
-<span class='line'> 27</span>   This is how you could write your mouseup handler in jQuery:
-<span class='line'> 28</span> 
-<span class='line'> 29</span>         $('#okButton').on('click', function () {
-<span class='line'> 30</span>           SC.RunLoop.begin();
-<span class='line'> 31</span> 
-<span class='line'> 32</span>           // handle click event...
+<span class='line'> 27</span>   To use a RunLoop within your application, you should make sure your event
+<span class='line'> 28</span>   handlers always begin and end with SC.RunLoop.begin() and SC.RunLoop.end()
+<span class='line'> 29</span> 
+<span class='line'> 30</span>   The RunLoop is important because bindings do not fire until the end of
+<span class='line'> 31</span>   your run loop is reached.  This improves the performance of your
+<span class='line'> 32</span>   application.
 <span class='line'> 33</span> 
-<span class='line'> 34</span>           SC.RunLoop.end(); // allows bindings to trigger...
-<span class='line'> 35</span>         });
-<span class='line'> 36</span> 
-<span class='line'> 37</span>   @extends SC.Object
-<span class='line'> 38</span>   @since SproutCore 1.0
-<span class='line'> 39</span> */</span><span class="WHIT">
+<span class='line'> 34</span>   Example:
+<span class='line'> 35</span> 
+<span class='line'> 36</span>   This is how you could write your mouseup handler in jQuery:
+<span class='line'> 37</span> 
+<span class='line'> 38</span>         $('#okButton').on('click', function () {
+<span class='line'> 39</span>           SC.run(function () {
 <span class='line'> 40</span> 
-<span class='line'> 41</span> 
-<span class='line'> 42</span> </span><span class="COMM">// When in debug mode, users can log deferred calls (such as .invokeOnce()) by</span><span class="WHIT">
-<span class='line'> 43</span> </span><span class="COMM">// setting SC.LOG_DEFERRED_CALLS.  We'll declare the variable explicitly to make</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="COMM">// life easier for people who want to enter it inside consoles that auto-</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="COMM">// complete.</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="COMM">//@if (debug)</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.LOG_DEFERRED_CALLS</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.LOG_DEFERRED_CALLS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 48</span> </span><span class="COMM">//@endif</span><span class="WHIT">
-<span class='line'> 49</span> 
-<span class='line'> 50</span> </span><span class="NAME">SC.RunLoop</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="COMM">/** @scope SC.RunLoop.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 41</span>             // handle click event...
+<span class='line'> 42</span> 
+<span class='line'> 43</span>           }); // allows bindings to trigger...
+<span class='line'> 44</span>         });
+<span class='line'> 45</span> 
+<span class='line'> 46</span>   @extends SC.Object
+<span class='line'> 47</span>   @since SproutCore 1.0
+<span class='line'> 48</span> */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="NAME">SC.RunLoop</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 50</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.RunLoop.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 51</span> 
 <span class='line'> 52</span> </span><span class="WHIT">  </span><span class="COMM">/**
 <span class='line'> 53</span>     Call this method whenver you begin executing code.
@@ -161,7 +161,7 @@
 <span class='line'>154</span> </span><span class="WHIT">    </span><span class="COMM">// loop and may fire before the invokeOnce code in this case.</span><span class="WHIT">
 <span class='line'>155</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isRunLoopInProgress</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isRunLoopInProgress'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>156</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isRunLoopInProgress</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>157</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: invokeOnce called outside of the run loop.  This can cause problems in production code if not addressed.  You likely need to wrap some event handling code within SC.run(...)."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: invokeOnce called outside of the run loop, which may cause unexpected problems. Check the stack trace below for what triggered this, and see http://blog.sproutcore.com/1-10-upgrade-invokefoo/ for more."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>158</span> </span><span class="WHIT">      </span><span class="NAME">console.trace</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>159</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>160</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
@@ -233,7 +233,7 @@
 <span class='line'>226</span> </span><span class="WHIT">    </span><span class="COMM">// loop and may fire before the invokeLast code in this case.</span><span class="WHIT">
 <span class='line'>227</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isRunLoopInProgress</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isRunLoopInProgress'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>228</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isRunLoopInProgress</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>229</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: invokeLast called outside of the run loop.  This can cause problems in production code if not addressed.  You likely need to wrap some event handling code within SC.run(...)."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: invokeLast called outside of the run loop, which may cause unexpected problems. Check the stack trace below for what triggered this, and see http://blog.sproutcore.com/1-10-upgrade-invokefoo/ for more."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>230</span> </span><span class="WHIT">      </span><span class="NAME">console.trace</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>231</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>232</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">

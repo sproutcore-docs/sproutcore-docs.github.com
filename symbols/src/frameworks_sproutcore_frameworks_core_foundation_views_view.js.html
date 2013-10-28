@@ -290,7 +290,7 @@
 <span class='line'>283</span> </span><span class="WHIT">  </span><span class="NAME">displayDidChange</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>284</span> </span><span class="WHIT">    </span><span class="COMM">//@if (debug)</span><span class="WHIT">
 <span class='line'>285</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.LOG_VIEW_STATES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>286</span> </span><span class="WHIT">      </span><span class="NAME">SC.Logger.log</span><span class="PUNC">(</span><span class="STRN">'%@:%@ — displayDidChange()'</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'viewState'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">      </span><span class="NAME">SC.Logger.log</span><span class="PUNC">(</span><span class="STRN">'%c%@:%@ — displayDidChange()'</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'viewState'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.LOG_VIEW_STATES_STYLE</span><span class="PUNC">[</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'viewState'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>287</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>288</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
 <span class='line'>289</span> 
@@ -1888,17 +1888,17 @@
 <span class='line'>1881</span>    - `render` -- override this method to generate or update your HTML to reflect
 <span class='line'>1882</span>      the current state of your view.  This method is called both when your view
 <span class='line'>1883</span>      is first created and later anytime it needs to be updated.
-<span class='line'>1884</span>    - `didCreateLayer` -- the render() method is used to generate new HTML.
-<span class='line'>1885</span>      Override this method to perform any additional setup on the DOM you might
-<span class='line'>1886</span>      need to do after creating the view.  For example, if you need to listen
-<span class='line'>1887</span>      for events.
-<span class='line'>1888</span>    - `willDestroyLayer` -- if you implement didCreateLayer() to setup event
-<span class='line'>1889</span>      listeners, you should implement this method as well to remove the same
-<span class='line'>1890</span>      just before the DOM for your view is destroyed.
-<span class='line'>1891</span>    - `updateLayer` -- Normally, when a view needs to update its content, it will
-<span class='line'>1892</span>      re-render the view using the render() method.  If you would like to
-<span class='line'>1893</span>      override this behavior with your own custom updating code, you can
-<span class='line'>1894</span>      replace updateLayer() with your own implementation instead.
+<span class='line'>1884</span>    - `update` -- Normally, when a view needs to update its content, it will
+<span class='line'>1885</span>      re-render the view using the render() method.  If you would like to
+<span class='line'>1886</span>      override this behavior with your own custom updating code, you can
+<span class='line'>1887</span>      replace update() with your own implementation instead.
+<span class='line'>1888</span>    - `didCreateLayer` -- the render() method is used to generate new HTML.
+<span class='line'>1889</span>      Override this method to perform any additional setup on the DOM you might
+<span class='line'>1890</span>      need to do after creating the view.  For example, if you need to listen
+<span class='line'>1891</span>      for events.
+<span class='line'>1892</span>    - `willDestroyLayer` -- if you implement didCreateLayer() to setup event
+<span class='line'>1893</span>      listeners, you should implement this method as well to remove the same
+<span class='line'>1894</span>      just before the DOM for your view is destroyed.
 <span class='line'>1895</span>    - `didAppendToDocument` -- in theory all DOM setup could be done
 <span class='line'>1896</span>      in didCreateLayer() as you already have a DOM element instantiated.
 <span class='line'>1897</span>      However there is cases where the element has to be first appended to the
@@ -1906,20 +1906,23 @@
 <span class='line'>1899</span>      plugins which objects are not instantiated until you actually append the
 <span class='line'>1900</span>      element to the DOM. This will allow you to do things like registering
 <span class='line'>1901</span>      DOM events on flash or quicktime objects.
-<span class='line'>1902</span> 
-<span class='line'>1903</span>   @extends SC.Responder
-<span class='line'>1904</span>   @extends SC.DelegateSupport
-<span class='line'>1905</span>   @since SproutCore 1.0
-<span class='line'>1906</span> 
-<span class='line'>1907</span> */</span><span class="WHIT">
-<span class='line'>1908</span> </span><span class="NAME">SC.View</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.CoreView.extend</span><span class="PUNC">(</span><span class="COMM">/** @scope SC.View.prototype */</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>1909</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>1910</span> 
-<span class='line'>1911</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT">
-<span class='line'>1912</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1902</span>    - `willRemoveFromDocument` -- This method is called on the view immediately
+<span class='line'>1903</span>      before its layer is removed from the DOM. You can use this to reverse any
+<span class='line'>1904</span>      setup that is performed in `didAppendToDocument`.
+<span class='line'>1905</span> 
+<span class='line'>1906</span>   @extends SC.Responder
+<span class='line'>1907</span>   @extends SC.DelegateSupport
+<span class='line'>1908</span>   @since SproutCore 1.0
+<span class='line'>1909</span> 
+<span class='line'>1910</span> */</span><span class="WHIT">
+<span class='line'>1911</span> </span><span class="NAME">SC.View</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.CoreView.extend</span><span class="PUNC">(</span><span class="COMM">/** @scope SC.View.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>1912</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>1913</span> 
-<span class='line'>1914</span> </span><span class="COMM">//unload views for IE, trying to collect memory.</span><span class="WHIT">
-<span class='line'>1915</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.browser.isIE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.Event.add</span><span class="PUNC">(</span><span class="NAME">window</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'unload'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.View</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.View.unload</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1914</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>1915</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>1916</span> 
-<span class='line'>1917</span> 
-<span class='line'>1918</span> </span></pre></body></html>
+<span class='line'>1917</span> </span><span class="COMM">//unload views for IE, trying to collect memory.</span><span class="WHIT">
+<span class='line'>1918</span> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.browser.isIE</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.Event.add</span><span class="PUNC">(</span><span class="NAME">window</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'unload'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.View</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.View.unload</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>1919</span> 
+<span class='line'>1920</span> 
+<span class='line'>1921</span> </span></pre></body></html>
