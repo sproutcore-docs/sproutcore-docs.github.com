@@ -1,0 +1,483 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   @class
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   This is a simple undo manager. It manages groups of actions which return
+<span class='line'> 12</span>   something to an earlier state. It's your responsibility to make sure that
+<span class='line'> 13</span>   these functions successfully undo the action, and register an undo action
+<span class='line'> 14</span>   of their own (allowing redo).
+<span class='line'> 15</span> 
+<span class='line'> 16</span>   ## Using SC.UndoManager
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   You should create one SC.UndoManager instance for each thing you want to
+<span class='line'> 19</span>   allow undo on. For example, if a controller manages a single record, but
+<span class='line'> 20</span>   you have two fields that should each have their own undo stack, you should
+<span class='line'> 21</span>   create two separate managers.
+<span class='line'> 22</span> 
+<span class='line'> 23</span>   Register undo functions via the `registerUndoAction`, which takes a target,
+<span class='line'> 24</span>   action, context and optional human-readable action name. Trigger actions by
+<span class='line'> 25</span>   calling the `undo` and `redo` methods. Actions will be called with `context`
+<span class='line'> 26</span>   as their only argument.
+<span class='line'> 27</span> 
+<span class='line'> 28</span>   Optionally, you can group undo actions; groups of actions are triggered
+<span class='line'> 29</span>   together.
+<span class='line'> 30</span> 
+<span class='line'> 31</span>   ### Simple Example: A single value
+<span class='line'> 32</span> 
+<span class='line'> 33</span>   This example attaches an undo manager to a controller and registers an undo
+<span class='line'> 34</span>   function each time the value of `value` changes. It also exposes methods to
+<span class='line'> 35</span>   trigger undos and redos, triggered via buttons in the included stub view class.
+<span class='line'> 36</span> 
+<span class='line'> 37</span>         // Controller:
+<span class='line'> 38</span>         MyApp.myController = SC.ObjectController.create({
+<span class='line'> 39</span>           // Content, with `value`.
+<span class='line'> 40</span>           content: SC.Object.create({ value: 'Hello, World.' }),
+<span class='line'> 41</span> 
+<span class='line'> 42</span>           // Undo manager.
+<span class='line'> 43</span>           valueUndoManager: SC.UndoManager.create(),
+<span class='line'> 44</span> 
+<span class='line'> 45</span>           // Undo action.
+<span class='line'> 46</span>           _valueUndoAction(val) {
+<span class='line'> 47</span>             // This call will trigger the controller's `value` observer, triggering the registration
+<span class='line'> 48</span>             // of another undo; the UndoManager will automatically and correctly interpret this as
+<span class='line'> 49</span>             // the registration of a redo method.
+<span class='line'> 50</span>             this.set('value', val);
+<span class='line'> 51</span>           },
+<span class='line'> 52</span> 
+<span class='line'> 53</span>           // Value observer; tracks `value` and registers undos.
+<span class='line'> 54</span>           valueDidChange: function() {
+<span class='line'> 55</span>             // Get the values.
+<span class='line'> 56</span>             var value = this.get('value'),
+<span class='line'> 57</span>                 previousValue = this._previousValue,
+<span class='line'> 58</span>                 that = this;
+<span class='line'> 59</span> 
+<span class='line'> 60</span>             // Update previous value.
+<span class='line'> 61</span>             this._previousValue = value;
+<span class='line'> 62</span> 
+<span class='line'> 63</span>             // GATEKEEP: If the current value is the same as the previous value, there's nothing to do.
+<span class='line'> 64</span>             if (previousValue === value) return;
+<span class='line'> 65</span> 
+<span class='line'> 66</span>             // GATEKEEP: If there is no previous value, it's probably our initial spinup. We don't want
+<span class='line'> 67</span>             // to register an undo-back-to-undefined method, so we should return. (Your situation may be
+<span class='line'> 68</span>             // different.)
+<span class='line'> 69</span>             if (SC.none(previousValue)) return;
+<span class='line'> 70</span> 
+<span class='line'> 71</span>             // Otherwise, register an undo function. (previousValue is accessed via the closure.)
+<span class='line'> 72</span>             this.undoManager.registerUndoAction(this, this._valueUndoAction, previousValue);
+<span class='line'> 73</span>           }.observes('value')
+<span class='line'> 74</span>         });
+<span class='line'> 75</span> 
+<span class='line'> 76</span>         // Stub view:
+<span class='line'> 77</span>         MyApp.UndoableValueView = SC.View.extend({
+<span class='line'> 78</span>           childViews: ['labelView', 'undoButtonView', 'redoButtonView'],
+<span class='line'> 79</span>           labelView: SC.LabelView.extend({
+<span class='line'> 80</span>             layout: { height: 24 },
+<span class='line'> 81</span>             isEdiable: YES,
+<span class='line'> 82</span>             valueBinding: 'MyApp.myController.value'
+<span class='line'> 83</span>           }),
+<span class='line'> 84</span>           undoButtonView: SC.ButtonView.extend({
+<span class='line'> 85</span>             layout: { height: 24, width: 60, bottom: 0 },
+<span class='line'> 86</span>             title: 'Undo',
+<span class='line'> 87</span>             isEnabledBinding: SC.Binding.oneWay('MyApp.myController.valueUndoManager.canUndo'),
+<span class='line'> 88</span>             target: 'MyApp.myController.valueUndoManager',
+<span class='line'> 89</span>             action: 'undo'
+<span class='line'> 90</span>           }),
+<span class='line'> 91</span>           redoButtonView: SC.ButtonView.extend({
+<span class='line'> 92</span>             layout: { height: 24, width: 60, bottom: 0, right: 0 },
+<span class='line'> 93</span>             title: 'Redo',
+<span class='line'> 94</span>             isEnabledBinding: SC.Binding.oneWay('MyApp.myController.valueUndoManager.canRedo'),
+<span class='line'> 95</span>             target: 'MyApp.myController.valueUndoManager',
+<span class='line'> 96</span>             action: 'redo'
+<span class='line'> 97</span>           })
+<span class='line'> 98</span>         });
+<span class='line'> 99</span> 
+<span class='line'>100</span>   ### Advanced: Grouping undos
+<span class='line'>101</span> 
+<span class='line'>102</span>   Undo events registered by `registerUndoAction` will undo or redo one at a time. If you wish,
+<span class='line'>103</span>   you can group undo events into groups (for example, if you wish to group all undos which happen
+<span class='line'>104</span>   within a short duration of each other). Groups are fired all at once when `undo` or `redo` is
+<span class='line'>105</span>   called.
+<span class='line'>106</span> 
+<span class='line'>107</span>   To start a new undo group, call `beginUndoGroup`; to register undo functions to the currently-
+<span class='line'>108</span>   open group, call `registerGroupedUndoAction`; finally, to mark the end of a grouped set of undo
+<span class='line'>109</span>   functions, call `endUndoGroup`. In most cases, you will not need to call `beginUndoGroup` and
+<span class='line'>110</span>   `endUndoGroup`: if you call `registerUndoAction`, any open group will be closed, and a new group
+<span class='line'>111</span>   will be created and left open; calling `registerGroupedUndoAction` will simply add to the
+<span class='line'>112</span>   currently-open group, creating a new one if necessary. This means that in practice, you can call
+<span class='line'>113</span>   `registerUndoAction` to close previous groups and begin a new one, and `registerGroupedUndoAction`
+<span class='line'>114</span>   to add to an existing group.
+<span class='line'>115</span> 
+<span class='line'>116</span>   If `undo` is called while an undo group is open, UndoManager will simply close the group for
+<span class='line'>117</span>   you before executing it. This allows you to safely leave groups open pending possible additional
+<span class='line'>118</span>   undo actions.
+<span class='line'>119</span> 
+<span class='line'>120</span>   @extends SC.Object
+<span class='line'>121</span> */</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="NAME">SC.UndoManager</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="COMM">/** @scope SC.UndoManager.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>124</span> 
+<span class='line'>125</span> </span><span class="WHIT">  </span><span class="COMM">/** 
+<span class='line'>126</span>     If name arguments are passed into `registerUndoAction` or related methods, then this property
+<span class='line'>127</span>     will expose the last undo action's name. You can use this to show the user what type of action
+<span class='line'>128</span>     will be undone (for example "typing" or "delete").
+<span class='line'>129</span> 
+<span class='line'>130</span>     @field
+<span class='line'>131</span>     @readonly
+<span class='line'>132</span>     @type String
+<span class='line'>133</span>     @default null
+<span class='line'>134</span>   */</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">  </span><span class="NAME">undoActionName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> 
+<span class='line'>136</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.undoStack</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.undoStack.name</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="COMM">/** 
+<span class='line'>140</span>     Exposes the timestamp of the most recent undo action.
+<span class='line'>141</span> 
+<span class='line'>142</span>     @field
+<span class='line'>143</span>     @readonly
+<span class='line'>144</span>     @type SC.DateTime
+<span class='line'>145</span>     @default null
+<span class='line'>146</span>   */</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="NAME">undoActionTimestamp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.undoStack</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.undoStack.timeStamp</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>150</span> 
+<span class='line'>151</span> </span><span class="WHIT">  </span><span class="COMM">/** 
+<span class='line'>152</span>     If name arguments are passed into `registerUndoAction` or related methods, then this property
+<span class='line'>153</span>     will expose the last redo action's name. You can use this to show the user what type of
+<span class='line'>154</span>     action will be redone (for example "Redo typing" or "Redo delete").
+<span class='line'>155</span> 
+<span class='line'>156</span>     @field
+<span class='line'>157</span>     @readonly
+<span class='line'>158</span>     @type String
+<span class='line'>159</span>     @default null
+<span class='line'>160</span>   */</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="NAME">redoActionName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> 
+<span class='line'>162</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.redoStack</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.redoStack.name</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>164</span> 
+<span class='line'>165</span> </span><span class="WHIT">  </span><span class="COMM">/** 
+<span class='line'>166</span>     Exposes the timestamp of the most recent redo action.
+<span class='line'>167</span> 
+<span class='line'>168</span>     @field
+<span class='line'>169</span>     @readonly
+<span class='line'>170</span>     @type SC.DateTime
+<span class='line'>171</span>     @default null
+<span class='line'>172</span>   */</span><span class="WHIT">
+<span class='line'>173</span> </span><span class="WHIT">  </span><span class="NAME">redoActionTimestamp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.redoStack</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">this.redoStack.timeStamp</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>176</span> 
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="COMM">/** 
+<span class='line'>178</span>     True if there is an undo action on the stack. Use to validate your menu item or enable
+<span class='line'>179</span>     your button.
+<span class='line'>180</span>     
+<span class='line'>181</span>     @field
+<span class='line'>182</span>     @readonly
+<span class='line'>183</span>     @type Boolean
+<span class='line'>184</span>     @default NO
+<span class='line'>185</span>   */</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">  </span><span class="NAME">canUndo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> 
+<span class='line'>187</span>     </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">this.undoStack</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">  
+<span class='line'>190</span>   </span><span class="COMM">/** 
+<span class='line'>191</span>     True if there is an redo action on the stack. Use to validate your menu item or enable
+<span class='line'>192</span>     your button.
+<span class='line'>193</span>     
+<span class='line'>194</span>     @field
+<span class='line'>195</span>     @readonly
+<span class='line'>196</span>     @type Boolean
+<span class='line'>197</span>     @default NO
+<span class='line'>198</span>   */</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="NAME">canRedo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">this.redoStack</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">  
+<span class='line'>203</span>   </span><span class="COMM">/**
+<span class='line'>204</span>     Tries to undo the last action. Fails if an undo group is currently open.
+<span class='line'>205</span> 
+<span class='line'>206</span>     @returns {Boolean} YES if succeeded, NO otherwise.
+<span class='line'>207</span>   */</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">  </span><span class="NAME">undo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="NAME">this._undoOrRedo</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">,</span><span class="STRN">'isUndoing'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>211</span> 
+<span class='line'>212</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>213</span>     Tries to redo the last action. Fails if a redo group is currently open.
+<span class='line'>214</span>     
+<span class='line'>215</span>     @returns {Boolean} YES if succeeded, NO otherwise.
+<span class='line'>216</span>   */</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">  </span><span class="NAME">redo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">    </span><span class="NAME">this._undoOrRedo</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">,</span><span class="STRN">'isRedoing'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>     Resets the undo and redo stacks.
+<span class='line'>223</span>   */</span><span class="WHIT">
+<span class='line'>224</span> </span><span class="WHIT">  </span><span class="NAME">reset</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>225</span> </span><span class="WHIT">    </span><span class="NAME">this._activeGroup</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>229</span> 
+<span class='line'>230</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>231</span>     The maximum number of undo groups the receiver holds.
+<span class='line'>232</span>     The undo stack is unlimited by default.
+<span class='line'>233</span> 
+<span class='line'>234</span>     @type Number
+<span class='line'>235</span>     @default 0
+<span class='line'>236</span>   */</span><span class="WHIT">
+<span class='line'>237</span> </span><span class="WHIT">  </span><span class="NAME">maxStackLength</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>238</span> </span><span class="WHIT">  
+<span class='line'>239</span>   </span><span class="COMM">/**
+<span class='line'>240</span>     @type Boolean
+<span class='line'>241</span>     @default NO
+<span class='line'>242</span>   */</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="NAME">isUndoing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">  
+<span class='line'>245</span>   </span><span class="COMM">/**
+<span class='line'>246</span>     @type Boolean
+<span class='line'>247</span>     @default NO
+<span class='line'>248</span>   */</span><span class="WHIT">
+<span class='line'>249</span> </span><span class="WHIT">  </span><span class="NAME">isRedoing</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'>250</span>   
+<span class='line'>251</span>   </span><span class="COMM">// --------------------------------</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">  </span><span class="COMM">// UNDO ACTION REGISTRATION</span><span class="WHIT">
+<span class='line'>253</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>254</span> 
+<span class='line'>255</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>256</span>     Registers an undo action. If called while an undo is in progress (i.e. from your
+<span class='line'>257</span>     undo method, or from observers which it triggers), registers a redo action instead.
+<span class='line'>258</span>     
+<span class='line'>259</span>     @param {String|Object} target The action's target (`this`).
+<span class='line'>260</span>     @param {String|Function} action The method on `target` to be called.
+<span class='line'>261</span>     @param {Object} context The context passed to the action when called.
+<span class='line'>262</span>     @param {String} name An optional human-readable name for the undo action.
+<span class='line'>263</span>   */</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="NAME">registerUndoAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">    </span><span class="COMM">// Calls to registerUndoAction close any open undo groups, open a new one and register</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">    </span><span class="COMM">// to it. This means that a series of calls to registerUndo will simply open and close</span><span class="WHIT">
+<span class='line'>267</span> </span><span class="WHIT">    </span><span class="COMM">// a series of single-function groups, as intended.</span><span class="WHIT">
+<span class='line'>268</span> 
+<span class='line'>269</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.isUndoing</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.isRedoing</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>270</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>271</span> </span><span class="WHIT">        </span><span class="NAME">this.endUndoGroup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>272</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>273</span> </span><span class="WHIT">      </span><span class="NAME">this.beginUndoGroup</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>274</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">    
+<span class='line'>276</span>     </span><span class="NAME">this.registerGroupedUndoAction</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>278</span> 
+<span class='line'>279</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>280</span>     Registers an undo action to the current group. If no group is open, opens a new
+<span class='line'>281</span>     one.
+<span class='line'>282</span> 
+<span class='line'>283</span>     @param {String|Object} target The action's target (`this`).
+<span class='line'>284</span>     @param {String|Function} action The method on `target` to be called.
+<span class='line'>285</span>     @param {Object} context The context passed to the action when called.
+<span class='line'>286</span>     @param {String} name An optional human-readable name for the undo action. Sets or
+<span class='line'>287</span>       changes the current group's name.
+<span class='line'>288</span>   */</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">  </span><span class="NAME">registerGroupedUndoAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">    </span><span class="COMM">// If we don't have an active group, route the call through registerUndoAction, which will</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">    </span><span class="COMM">// handle creating a new group for us before returning here. (Slight hack.)</span><span class="WHIT">
+<span class='line'>292</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">      </span><span class="NAME">this.registerUndoAction</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>294</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">    </span><span class="COMM">// Otherwise, register the action.</span><span class="WHIT">
+<span class='line'>296</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>297</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._activeGroup.name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">      </span><span class="NAME">this._activeGroup.targets.push</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>299</span> </span><span class="WHIT">      </span><span class="NAME">this._activeGroup.actions.push</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>300</span> </span><span class="WHIT">      </span><span class="NAME">this._activeGroup.contexts.push</span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">      </span><span class="NAME">this._activeGroup.timeStamp</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.DateTime.create</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>302</span> 
+<span class='line'>303</span> </span><span class="WHIT">      </span><span class="COMM">// If we're not mid-undo or -redo, then we're registering a new undo, and should</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">      </span><span class="COMM">// clear out any redoStack.</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.isUndoing</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="NAME">this.isRedoing</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">        </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>309</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>310</span> 
+<span class='line'>311</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>312</span>     Begins a new undo group.
+<span class='line'>313</span> 
+<span class='line'>314</span>     Whenever you start an action that you expect to need to bundle under a single
+<span class='line'>315</span>     undo action in the menu, you should begin an undo group.  This way any
+<span class='line'>316</span>     undo actions registered by other parts of the application will be
+<span class='line'>317</span>     automatically bundled into this one action.
+<span class='line'>318</span> 
+<span class='line'>319</span>     When you are finished performing the action, balance this with a call to
+<span class='line'>320</span>     `endUndoGroup()`. (You can call `undo` or `redo` with an open group; the group
+<span class='line'>321</span>     will simply be closed and processed as normal.)
+<span class='line'>322</span> 
+<span class='line'>323</span>     @param {String} name
+<span class='line'>324</span>   */</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">  </span><span class="NAME">beginUndoGroup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>327</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>328</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"SC.UndoManager#beginUndoGroup() called while inside group."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>332</span> 
+<span class='line'>333</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">stack</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.isUndoing</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'redoStack'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'undoStack'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>334</span> 
+<span class='line'>335</span> </span><span class="WHIT">    </span><span class="NAME">this._activeGroup</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">      </span><span class="COMM">// The action's name (see undoActionName). Optional.</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">      </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">      </span><span class="COMM">// Ordered lists of targets, actions and contexts. (Nth items in each list go together.)</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">      </span><span class="NAME">targets</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">      </span><span class="NAME">actions</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">      </span><span class="NAME">contexts</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">      </span><span class="COMM">// The previous undo action. When this group is triggered, prev will become the new stack.</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">      </span><span class="NAME">prev</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">stack</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">      </span><span class="COMM">// When the action was registered. Useful for grouping undo actions by time.</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">      </span><span class="NAME">timeStamp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.DateTime.create</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>346</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>347</span> 
+<span class='line'>348</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="NAME">stack</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT"> 
+<span class='line'>351</span>   </span><span class="COMM">/**
+<span class='line'>352</span>     Ends a group of undo functions. All functions in an undo group will be undone or redone
+<span class='line'>353</span>     together when `undo` or `redo` is called.
+<span class='line'>354</span> 
+<span class='line'>355</span>     @see beginUndoGroup()
+<span class='line'>356</span>   */</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">  </span><span class="NAME">endUndoGroup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">maxStackLength</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'maxStackLength'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">      </span><span class="NAME">stackName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.isUndoing</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="STRN">'redoStack'</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'undoStack'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>360</span> 
+<span class='line'>361</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"SC.UndoManager#endUndoGroup() called outside group."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>366</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>367</span> 
+<span class='line'>368</span> </span><span class="WHIT">    </span><span class="NAME">this._activeGroup</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">    </span><span class="NAME">this.notifyPropertyChange</span><span class="PUNC">(</span><span class="NAME">stackName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>370</span> 
+<span class='line'>371</span> </span><span class="WHIT">    </span><span class="COMM">// If we have a maxStackLength, trace back through stack.prev that many times and</span><span class="WHIT">
+<span class='line'>372</span> </span><span class="WHIT">    </span><span class="COMM">// null out anything older.</span><span class="WHIT">
+<span class='line'>373</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">maxStackLength</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>374</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">stack</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">[</span><span class="NAME">stackName</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>375</span> </span><span class="WHIT">        </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>376</span> </span><span class="WHIT">      </span><span class="KEYW">while</span><span class="PUNC">(</span><span class="NAME">stack</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">stack.prev</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">        </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>378</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NAME">maxStackLength</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>379</span> </span><span class="WHIT">          </span><span class="NAME">stack.prev</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>380</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>381</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>382</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>383</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>384</span> 
+<span class='line'>385</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>386</span>     Change the name of the current undo group.
+<span class='line'>387</span>     
+<span class='line'>388</span>     @param {String} name
+<span class='line'>389</span>   */</span><span class="WHIT">
+<span class='line'>390</span> </span><span class="WHIT">  </span><span class="NAME">setActionName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>391</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>392</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>393</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"SC.UndoManager#setActionName() called without an active undo group."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>395</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>396</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>397</span> </span><span class="WHIT">    </span><span class="NAME">this._activeGroup.name</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>398</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>399</span> </span><span class="WHIT">  
+<span class='line'>400</span>   </span><span class="COMM">// --------------------------------</span><span class="WHIT">
+<span class='line'>401</span> </span><span class="WHIT">  </span><span class="COMM">// PRIVATE</span><span class="WHIT">
+<span class='line'>402</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>403</span> </span><span class="WHIT">  
+<span class='line'>404</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>405</span> </span><span class="WHIT">  </span><span class="NAME">_activeGroup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>406</span> </span><span class="WHIT">  
+<span class='line'>407</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>408</span> </span><span class="WHIT">  </span><span class="NAME">undoStack</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>409</span> </span><span class="WHIT">  
+<span class='line'>410</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>411</span> </span><span class="WHIT">  </span><span class="NAME">redoStack</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> 
+<span class='line'>412</span>   
+<span class='line'>413</span>   </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>414</span> </span><span class="WHIT">  </span><span class="NAME">_undoOrRedo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">stack</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">state</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>415</span> </span><span class="WHIT">    </span><span class="COMM">// Close out any open undo groups.</span><span class="WHIT">
+<span class='line'>416</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._activeGroup</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.endUndoGroup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>417</span> 
+<span class='line'>418</span> </span><span class="WHIT">    </span><span class="COMM">// Flag the state.</span><span class="WHIT">
+<span class='line'>419</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>420</span> 
+<span class='line'>421</span> </span><span class="WHIT">    </span><span class="COMM">// Run the group of actions!</span><span class="WHIT">
+<span class='line'>422</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">group</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">stack</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>423</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">group</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>424</span> </span><span class="WHIT">      </span><span class="COMM">// Roll back the stack to the previous item.</span><span class="WHIT">
+<span class='line'>425</span> </span><span class="WHIT">      </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="NAME">stack</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">group.prev</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>426</span> </span><span class="WHIT">      </span><span class="COMM">// Open a new group of the opposite persuasion with the same name. This makes sure a redo</span><span class="WHIT">
+<span class='line'>427</span> </span><span class="WHIT">      </span><span class="COMM">// action will have the same name as its corresponding undo action.</span><span class="WHIT">
+<span class='line'>428</span> </span><span class="WHIT">      </span><span class="NAME">this.beginUndoGroup</span><span class="PUNC">(</span><span class="NAME">group.name</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>429</span> 
+<span class='line'>430</span> </span><span class="WHIT">      </span><span class="COMM">// Run the actions backwards.</span><span class="WHIT">
+<span class='line'>431</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">group.actions.length</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>432</span> </span><span class="WHIT">          </span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>433</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>434</span> </span><span class="WHIT">        </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">group.targets</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>435</span> </span><span class="WHIT">        </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">group.actions</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>436</span> </span><span class="WHIT">        </span><span class="NAME">context</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">group.contexts</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>437</span> 
+<span class='line'>438</span> </span><span class="WHIT">        </span><span class="COMM">// Normalize (for convenience and backward-compatibility).</span><span class="WHIT">
+<span class='line'>439</span> </span><span class="WHIT">        </span><span class="COMM">// If target is a function, it's the action.</span><span class="WHIT">
+<span class='line'>440</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_FUNCTION</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>441</span> </span><span class="WHIT">          </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>442</span> </span><span class="WHIT">          </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>443</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>444</span> </span><span class="WHIT">        </span><span class="COMM">// If target is a string, see if it points to an object.</span><span class="WHIT">
+<span class='line'>445</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.objectForPropertyPath</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>446</span> </span><span class="WHIT">        </span><span class="COMM">// If action is a string, see if it's the name of a method on target.</span><span class="WHIT">
+<span class='line'>447</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">action</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_FUNCTION</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">[</span><span class="NAME">action</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>448</span> 
+<span class='line'>449</span> </span><span class="WHIT">        </span><span class="COMM">// Call!</span><span class="WHIT">
+<span class='line'>450</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_FUNCTION</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">action.call</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>451</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>452</span> 
+<span class='line'>453</span> </span><span class="WHIT">      </span><span class="COMM">// Close the opposite-persuasion group opened above.</span><span class="WHIT">
+<span class='line'>454</span> </span><span class="WHIT">      </span><span class="NAME">this.endUndoGroup</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>455</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>456</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="NAME">state</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>457</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>458</span> 
+<span class='line'>459</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>460</span> </span><span class="WHIT">  </span><span class="NAME">destroy</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>461</span> </span><span class="WHIT">    </span><span class="NAME">this._activeGroup</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>462</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'undoStack'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>463</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">'redoStack'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>464</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>465</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>466</span> 
+<span class='line'>467</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Deprecated as of 1.11. Use registerUndoAction instead. */</span><span class="WHIT">
+<span class='line'>468</span> </span><span class="WHIT">  </span><span class="NAME">registerUndo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">func</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>469</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>470</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">'SC.UndoManager#registerUndo is deprecated and will be removed in a future version. Use registerUndoAction.'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>471</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>472</span> </span><span class="WHIT">    </span><span class="NAME">this.registerUndoAction</span><span class="PUNC">(</span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">func</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">name</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>473</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>474</span> 
+<span class='line'>475</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>476</span> </span></pre></body></html>

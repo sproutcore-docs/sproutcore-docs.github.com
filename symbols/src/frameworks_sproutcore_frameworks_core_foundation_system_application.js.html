@@ -11,26 +11,218 @@
 <span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
 <span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
 <span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
-<span class='line'>  7</span> 
-<span class='line'>  8</span> </span><span class="COMM">/** @class
+<span class='line'>  7</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/root_responder'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  8</span> 
 <span class='line'>  9</span> 
-<span class='line'> 10</span>   The root object for a SproutCore application. Usually you will create a
-<span class='line'> 11</span>   single SC.Application instance as your root namespace. SC.Application is
-<span class='line'> 12</span>   required if you intend to use SC.Responder to route events.
-<span class='line'> 13</span> 
-<span class='line'> 14</span>   ## Example
+<span class='line'> 10</span> </span><span class="COMM">/** @class
+<span class='line'> 11</span> 
+<span class='line'> 12</span>   The root object for a SproutCore application. Usually you will create a
+<span class='line'> 13</span>   single SC.Application instance as your root namespace. SC.Application is
+<span class='line'> 14</span>   required if you intend to use SC.Responder to route events.
 <span class='line'> 15</span> 
-<span class='line'> 16</span>       Contacts = SC.Application.create({
-<span class='line'> 17</span>         store: SC.Store.create(SC.Record.fixtures),
-<span class='line'> 18</span> 
-<span class='line'> 19</span>         // add other useful properties here
-<span class='line'> 20</span>       });
-<span class='line'> 21</span> 
-<span class='line'> 22</span>   @extends SC.ResponderContext
-<span class='line'> 23</span>   @since SproutCore 1.0
-<span class='line'> 24</span> */</span><span class="WHIT">
-<span class='line'> 25</span> </span><span class="NAME">SC.Application</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Responder.extend</span><span class="PUNC">(</span><span class="NAME">SC.ResponderContext</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 26</span> </span><span class="COMM">/** SC.Application.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 27</span> 
-<span class='line'> 28</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 29</span> </span></pre></body></html>
+<span class='line'> 16</span>   ## Example
+<span class='line'> 17</span> 
+<span class='line'> 18</span>       Contacts = SC.Application.create({
+<span class='line'> 19</span>         store: SC.Store.create(SC.Record.fixtures),
+<span class='line'> 20</span> 
+<span class='line'> 21</span>         // add other useful properties here
+<span class='line'> 22</span>       });
+<span class='line'> 23</span> 
+<span class='line'> 24</span>   @extends SC.ResponderContext
+<span class='line'> 25</span>   @since SproutCore 1.0
+<span class='line'> 26</span> */</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="NAME">SC.Application</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Responder.extend</span><span class="PUNC">(</span><span class="NAME">SC.ResponderContext</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="COMM">/** SC.Application.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 29</span> 
+<span class='line'> 30</span> </span><span class="WHIT">  </span><span class="COMM">/** @private UNUSED
+<span class='line'> 31</span>     The current design mode of the application and its views.
+<span class='line'> 32</span> 
+<span class='line'> 33</span>     If the application has designModes specified, this property will be set
+<span class='line'> 34</span>     automatically as the window size changes across the design mode boundaries.
+<span class='line'> 35</span> 
+<span class='line'> 36</span>     @property {String}
+<span class='line'> 37</span>     @default null
+<span class='line'> 38</span>   */</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="COMM">// designMode: null,</span><span class="WHIT">
+<span class='line'> 40</span> 
+<span class='line'> 41</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 42</span>     A hash of the design mode thresholds for this application.
+<span class='line'> 43</span> 
+<span class='line'> 44</span>     While a "design" (the manner views are positioned, shaped and styled) may be
+<span class='line'> 45</span>     flexible enough to stretch up for a large display and to compress down
+<span class='line'> 46</span>     for a medium sized display, at a certain point it often makes more sense
+<span class='line'> 47</span>     to stop stretching and compressing and just implement an additional new design
+<span class='line'> 48</span>     specific to the much different display size. In order to make this possible
+<span class='line'> 49</span>     and with as much ease as possible, SproutCore includes support for "design
+<span class='line'> 50</span>     modes". Design modes are based on the current display size and orientation.
+<span class='line'> 51</span> 
+<span class='line'> 52</span>     SproutCore supports three size-based design modes by default: 's' for small,
+<span class='line'> 53</span>     'm' for medium and 'l' for large. Smartphones and handheld devices like the
+<span class='line'> 54</span>     iPod Touch fall within the small category, tablets and normal desktop displays
+<span class='line'> 55</span>     fall within the medium category and retina desktops or 4K displays fall
+<span class='line'> 56</span>     into the large category.
+<span class='line'> 57</span> 
+<span class='line'> 58</span>     When the display size crosses a threshold between one size category to
+<span class='line'> 59</span>     another, SproutCore will update the design mode of each view in the
+<span class='line'> 60</span>     application, giving you a chance to provide overrides for that specific
+<span class='line'> 61</span>     size via the special `modeAdjust` property.
+<span class='line'> 62</span> 
+<span class='line'> 63</span>     For example, if you wanted to hide a view completely when in the small (s)
+<span class='line'> 64</span>     mode you could add:
+<span class='line'> 65</span> 
+<span class='line'> 66</span>         //...
+<span class='line'> 67</span> 
+<span class='line'> 68</span>         mediumPlusView: SC.View.extend({
+<span class='line'> 69</span> 
+<span class='line'> 70</span>           // Design mode overrides.
+<span class='line'> 71</span>           modeAdjust: { s: { isVisible: false } } // Hide the view in 's' or 'small' mode.
+<span class='line'> 72</span> 
+<span class='line'> 73</span>         }),
+<span class='line'> 74</span> 
+<span class='line'> 75</span>         //...
+<span class='line'> 76</span> 
+<span class='line'> 77</span>     As you can see, we simply indicate the property overrides that we want
+<span class='line'> 78</span>     for the specific mode. To adjust the height for medium mode, you could add:
+<span class='line'> 79</span> 
+<span class='line'> 80</span>         //...
+<span class='line'> 81</span> 
+<span class='line'> 82</span>         myView: SC.View.extend({
+<span class='line'> 83</span> 
+<span class='line'> 84</span>           // The normal layout always applies.
+<span class='line'> 85</span>           layout: { height: 24 },
+<span class='line'> 86</span> 
+<span class='line'> 87</span>           // Design mode overrides.
+<span class='line'> 88</span>           modeAdjust: { m: { layout: { height: 30 } } // Adjust the height in 'm' or 'medium' mode.
+<span class='line'> 89</span> 
+<span class='line'> 90</span>         }),
+<span class='line'> 91</span> 
+<span class='line'> 92</span>         //...
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     Note that the values in `modeAdjust` are overrides for that mode and the
+<span class='line'> 95</span>     values will be *reset* to their original values when leaving that mode.
+<span class='line'> 96</span> 
+<span class='line'> 97</span>     The second component to design modes is orientation. Each of the size
+<span class='line'> 98</span>     categories can have two different orientations: 'l' for landscape or 'p' for
+<span class='line'> 99</span>     portrait. Therefore, you may want to alter the design to account for the
+<span class='line'>100</span>     device orientation as well using `modeAdjust`. To do this, you simply
+<span class='line'>101</span>     specify orientation specific designs with the `_l` or `_p` suffix
+<span class='line'>102</span>     accordingly.
+<span class='line'>103</span> 
+<span class='line'>104</span>     For example, you can provide a configuration for a size category with
+<span class='line'>105</span>     slight deviations for orientations of that size all in just a few lines
+<span class='line'>106</span>     of code,
+<span class='line'>107</span> 
+<span class='line'>108</span>         //...
+<span class='line'>109</span> 
+<span class='line'>110</span>         customView: SC.View.extend({
+<span class='line'>111</span> 
+<span class='line'>112</span>           // The default alignment for this custom view's contents.
+<span class='line'>113</span>           alignment: SC.ALIGN_LEFT,
+<span class='line'>114</span> 
+<span class='line'>115</span>           // The default line height for this custom view's contents.
+<span class='line'>116</span>           lineHeight: 40,
+<span class='line'>117</span> 
+<span class='line'>118</span>           // Design mode overrides.
+<span class='line'>119</span>           modeAdjust: {
+<span class='line'>120</span>             m: { lineHeight: 50 }, // Overrides for medium mode regardless of orientation.
+<span class='line'>121</span>             m_p: { alignment: SC.ALIGN_CENTER }, // Overrides for medium - portrait mode.
+<span class='line'>122</span>             m_l: { layout: { top: 20 } } // Overrides for medium - landscape mode.
+<span class='line'>123</span>           }
+<span class='line'>124</span> 
+<span class='line'>125</span>         }),
+<span class='line'>126</span> 
+<span class='line'>127</span>         //...
+<span class='line'>128</span> 
+<span class='line'>129</span>     ### A note on styling for design modes
+<span class='line'>130</span> 
+<span class='line'>131</span>     Class names are automatically applied to each view depending on the mode
+<span class='line'>132</span>     as found in the SC.DESIGN_MODE_CLASS_NAMES hash. By default, your
+<span class='line'>133</span>     views will have one of three class names added:
+<span class='line'>134</span> 
+<span class='line'>135</span>         > 'sc-small' in small mode
+<span class='line'>136</span>         > 'sc-medium' in medium mode
+<span class='line'>137</span>         > 'sc-large' in large mode
+<span class='line'>138</span> 
+<span class='line'>139</span>     As well, the `body` element is given an orientation class name that you
+<span class='line'>140</span>     can use as well:
+<span class='line'>141</span> 
+<span class='line'>142</span>         > 'sc-landscape' in landscape orientation
+<span class='line'>143</span>         > 'sc-portrait' in portrait orientation
+<span class='line'>144</span> 
+<span class='line'>145</span>     ### A note on overriding layouts
+<span class='line'>146</span> 
+<span class='line'>147</span>     Layout overrides work slightly differently than regular property overrides,
+<span class='line'>148</span>     because they are set via `adjust`. This means they apply on *top* of the
+<span class='line'>149</span>     default layout, they don't replace the default layout. For example,
+<span class='line'>150</span>     the default layout is `{ left: 0, right: 0, top: 0, bottom: 0 }` and if
+<span class='line'>151</span>     we provide a design mode like,
+<span class='line'>152</span> 
+<span class='line'>153</span>         modeAdjust: { l: { layout: { top: 50 } } }
+<span class='line'>154</span> 
+<span class='line'>155</span>     The layout becomes `{ left: 0, right: 0, top: 50, bottom: 0 }`. If we had
+<span class='line'>156</span>     a default layout like `{ centerX: 0, centerY: 0, height: 100, width: 100 }`
+<span class='line'>157</span>     and we wanted to change it to a left positioned layout, we would need to
+<span class='line'>158</span>     null out the centerX value like so,
+<span class='line'>159</span> 
+<span class='line'>160</span>         modeAdjust: { l: { layout: { centerX: null, left: 0 } } } // Convert to left positioned layout.
+<span class='line'>161</span> 
+<span class='line'>162</span>     ### A note on the medium category
+<span class='line'>163</span> 
+<span class='line'>164</span>     The medium category covers tablets *and* non-retina desktops and laptops.
+<span class='line'>165</span>     While we could try to further differentiate between these two categories,
+<span class='line'>166</span>     there is no safe way to do this and to do so would cause more harm than good.
+<span class='line'>167</span>     Tablets can be connected to mice and keyboards, desktops can have touch
+<span class='line'>168</span>     screens and there is no way to know whether a mouse, touch or pointer is
+<span class='line'>169</span>     going to be used from one event to the next. Therefore the message should
+<span class='line'>170</span>     be clear, *you should always design for touch*. This means that a medium
+<span class='line'>171</span>     sized design should be expected to work well on a laptop and a tablet.
+<span class='line'>172</span> 
+<span class='line'>173</span>     ### A note on customizing the design mode categories
+<span class='line'>174</span> 
+<span class='line'>175</span>     Design mode thresholds are determined by the area of the display divided by
+<span class='line'>176</span>     the device pixel ratio. In this manner a 1024 x 768 display on a
+<span class='line'>177</span>     handheld device can be differentiated from a 1024 x 768 display on a
+<span class='line'>178</span>     desktop. Through testing and research, the three categories of 'small',
+<span class='line'>179</span>     'medium' and 'large' were chosen with thresholds between them of
+<span class='line'>180</span>     500,000 sq.px and 2,000,000 sq.px.
+<span class='line'>181</span> 
+<span class='line'>182</span>     Therefore, any display area divided by device pixel ratio that is less
+<span class='line'>183</span>     than 500,000 will be considered 'small' and likewise a calculated area
+<span class='line'>184</span>     of over 2,000,000 will be considered 'large'. This should be sufficient
+<span class='line'>185</span>     for almost all device specific designs and as is mentioned earlier,
+<span class='line'>186</span>     trying to get even more fine-grained is a dangerous endeavor. However,
+<span class='line'>187</span>     you can set your own thresholds easily enough by overriding this property.
+<span class='line'>188</span> 
+<span class='line'>189</span>     @readonly
+<span class='line'>190</span>     @property {Object}
+<span class='line'>191</span>     @default { s: 500000, m: 2000000, l: Infinity }
+<span class='line'>192</span>   */</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="NAME">designModes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>194</span> </span><span class="WHIT">    </span><span class="STRN">'s'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">500000</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// ex. smart phone display</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">    </span><span class="STRN">'m'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">2000000</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// ex. tablet & non-retina desktop display</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">    </span><span class="STRN">'l'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">Infinity</span><span class="WHIT"> </span><span class="COMM">// ex. retina desktop display and TV</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>198</span> 
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>202</span> 
+<span class='line'>203</span> </span><span class="WHIT">    </span><span class="COMM">// Initialize the value on the RootResponder when it is ready.</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="NAME">SC.ready</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'_setDesignModes'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>206</span> 
+<span class='line'>207</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">  </span><span class="NAME">_setDesignModes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">designModes</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'designModes'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">      </span><span class="NAME">responder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RootResponder.responder</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>211</span> 
+<span class='line'>212</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">designModes</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">      </span><span class="COMM">// All we do is pass the value to the root responder for convenience.</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">      </span><span class="NAME">responder.set</span><span class="PUNC">(</span><span class="STRN">'designModes'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">designModes</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">      </span><span class="COMM">// UNUSED.</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">      </span><span class="COMM">// this.bind('designMode', SC.Binding.from('SC.RootResponder.responder.currentDesignMode'));</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>219</span> 
+<span class='line'>220</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span></pre></body></html>

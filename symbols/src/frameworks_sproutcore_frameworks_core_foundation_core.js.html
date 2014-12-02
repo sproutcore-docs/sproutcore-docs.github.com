@@ -95,63 +95,143 @@
 <span class='line'> 88</span> */</span><span class="WHIT">
 <span class='line'> 89</span> </span><span class="NAME">SC.ALIGN_BOTTOM_RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'bottom-right'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 90</span> 
-<span class='line'> 91</span> 
-<span class='line'> 92</span> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="COMM">/** @lends SC */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 93</span> 
-<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 95</span>     Reads or writes data from a global cache.  You can use this facility to
-<span class='line'> 96</span>     store information about an object without actually adding properties to
-<span class='line'> 97</span>     the object itself.  This is needed especially when working with DOM,
-<span class='line'> 98</span>     which can leak easily in IE.
-<span class='line'> 99</span> 
-<span class='line'>100</span>     To read data, simply pass in the reference element (used as a key) and
-<span class='line'>101</span>     the name of the value to read.  To write, also include the data.
-<span class='line'>102</span> 
-<span class='line'>103</span>     You can also just pass an object to retrieve the entire cache.
-<span class='line'>104</span> 
-<span class='line'>105</span>     @param elem {Object} An object or Element to use as scope
-<span class='line'>106</span>     @param name {String} Optional name of the value to read/write
-<span class='line'>107</span>     @param data {Object} Optional data.  If passed, write.
-<span class='line'>108</span>     @returns {Object} the value of the named data
-<span class='line'>109</span>   */</span><span class="WHIT">
-<span class='line'>110</span> </span><span class="WHIT">  </span><span class="NAME">data</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">$.data</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>111</span> 
-<span class='line'>112</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>113</span>     Removes data from the global cache.  This is used throughout the
-<span class='line'>114</span>     framework to hold data without creating memory leaks.
+<span class='line'> 91</span> </span><span class="COMM">/**
+<span class='line'> 92</span>   Indicates that the content does not specify its own alignment.
+<span class='line'> 93</span> */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="NAME">SC.ALIGN_DEFAULT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'default'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> 
+<span class='line'> 96</span> </span><span class="COMM">/**
+<span class='line'> 97</span>   Indicates that the content should be positioned to the right.
+<span class='line'> 98</span> */</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="NAME">SC.POSITION_RIGHT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> 
+<span class='line'>101</span> </span><span class="COMM">/**
+<span class='line'>102</span>   Indicates that the content should be positioned to the left.
+<span class='line'>103</span> */</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="NAME">SC.POSITION_LEFT</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> 
+<span class='line'>106</span> </span><span class="COMM">/**
+<span class='line'>107</span>   Indicates that the content should be positioned above.
+<span class='line'>108</span> */</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="NAME">SC.POSITION_TOP</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">2</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>110</span> 
+<span class='line'>111</span> </span><span class="COMM">/**
+<span class='line'>112</span>   Indicates that the content should be positioned below.
+<span class='line'>113</span> */</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="NAME">SC.POSITION_BOTTOM</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">3</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>115</span> 
-<span class='line'>116</span>     You can remove either a single item on the cache or all of the cached
-<span class='line'>117</span>     data for an object.
+<span class='line'>116</span> 
+<span class='line'>117</span> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="COMM">/** @lends SC */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>118</span> 
-<span class='line'>119</span>     @param elem {Object} An object or Element to use as scope
-<span class='line'>120</span>     @param name {String} optional name to remove.
-<span class='line'>121</span>     @returns {Object} the value or cache that was removed
-<span class='line'>122</span>   */</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="WHIT">  </span><span class="NAME">removeData</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">$.removeData</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>120</span>     Reads or writes data from a global cache.  You can use this facility to
+<span class='line'>121</span>     store information about an object without actually adding properties to
+<span class='line'>122</span>     the object itself.  This is needed especially when working with DOM,
+<span class='line'>123</span>     which can leak easily in IE.
 <span class='line'>124</span> 
-<span class='line'>125</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">  </span><span class="COMM">// LOCALIZATION SUPPORT</span><span class="WHIT">
-<span class='line'>127</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>128</span> 
-<span class='line'>129</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>130</span>     Known loc strings
-<span class='line'>131</span> 
-<span class='line'>132</span>     @type Hash
-<span class='line'>133</span>   */</span><span class="WHIT">
-<span class='line'>134</span> </span><span class="WHIT">  </span><span class="NAME">STRINGS</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>135</span> 
-<span class='line'>136</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>137</span>     This is a simplified handler for installing a bunch of strings.  This
-<span class='line'>138</span>     ignores the language name and simply applies the passed strings hash.
-<span class='line'>139</span> 
-<span class='line'>140</span>     @param {String} lang the language the strings are for
-<span class='line'>141</span>     @param {Hash} strings hash of strings
-<span class='line'>142</span>     @returns {SC} The receiver, useful for chaining calls to the same object.
-<span class='line'>143</span>   */</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">  </span><span class="NAME">stringsFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">lang</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">strings</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">    </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.STRINGS</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">strings</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>148</span> 
-<span class='line'>149</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>150</span> </span></pre></body></html>
+<span class='line'>125</span>     To read data, simply pass in the reference element (used as a key) and
+<span class='line'>126</span>     the name of the value to read.  To write, also include the data.
+<span class='line'>127</span> 
+<span class='line'>128</span>     You can also just pass an object to retrieve the entire cache.
+<span class='line'>129</span> 
+<span class='line'>130</span>     @param elem {Object} An object or Element to use as scope
+<span class='line'>131</span>     @param name {String} Optional name of the value to read/write
+<span class='line'>132</span>     @param data {Object} Optional data.  If passed, write.
+<span class='line'>133</span>     @returns {Object} the value of the named data
+<span class='line'>134</span>   */</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">  </span><span class="NAME">data</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">$.data</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>136</span> 
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>138</span>     Removes data from the global cache.  This is used throughout the
+<span class='line'>139</span>     framework to hold data without creating memory leaks.
+<span class='line'>140</span> 
+<span class='line'>141</span>     You can remove either a single item on the cache or all of the cached
+<span class='line'>142</span>     data for an object.
+<span class='line'>143</span> 
+<span class='line'>144</span>     @param elem {Object} An object or Element to use as scope
+<span class='line'>145</span>     @param name {String} optional name to remove.
+<span class='line'>146</span>     @returns {Object} the value or cache that was removed
+<span class='line'>147</span>   */</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="NAME">removeData</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">$.removeData</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>149</span> 
+<span class='line'>150</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">  </span><span class="COMM">// LOCALIZATION SUPPORT</span><span class="WHIT">
+<span class='line'>152</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>153</span> 
+<span class='line'>154</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>155</span>     Known loc strings
+<span class='line'>156</span> 
+<span class='line'>157</span>     @type Hash
+<span class='line'>158</span>   */</span><span class="WHIT">
+<span class='line'>159</span> </span><span class="WHIT">  </span><span class="NAME">STRINGS</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>160</span> 
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>162</span>     This is a simplified handler for installing a bunch of strings.  This
+<span class='line'>163</span>     ignores the language name and simply applies the passed strings hash.
+<span class='line'>164</span> 
+<span class='line'>165</span>     @param {String} lang the language the strings are for
+<span class='line'>166</span>     @param {Hash} strings hash of strings
+<span class='line'>167</span>     @returns {SC} The receiver, useful for chaining calls to the same object.
+<span class='line'>168</span>   */</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="NAME">stringsFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">lang</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">strings</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">    </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.STRINGS</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">strings</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>172</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>173</span> 
+<span class='line'>174</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>175</span>     Returns the SC.View instance managing the given element.
+<span class='line'>176</span> 
+<span class='line'>177</span>     If no instance is found, returns `null`.
+<span class='line'>178</span> 
+<span class='line'>179</span>     @param {DOMElement} element The element to check.
+<span class='line'>180</span>     @returns {SC.View} The view managing the element or null if none found.
+<span class='line'>181</span>   */</span><span class="WHIT">
+<span class='line'>182</span> </span><span class="WHIT">  </span><span class="NAME">viewFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">    </span><span class="COMM">// Debug mode only arrgument validation.</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">    </span><span class="COMM">// Ensure that every argument is correct and that the proper number of arguments is given.</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="PUNC">(</span><span class="NAME">element</span><span class="WHIT"> </span><span class="KEYW">instanceof</span><span class="WHIT"> </span><span class="NAME">Element</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">      </span><span class="NAME">SC.error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: Attempt to retrieve the SC.View instance for a non-element in SC.viewFor(): %@"</span><span class="PUNC">.</span><span class="NAME">fmt</span><span class="PUNC">(</span><span class="NAME">element</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>188</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>189</span> 
+<span class='line'>190</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">arguments.length</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: SC.viewFor() is meant to be used with only one argument: element"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>194</span> 
+<span class='line'>195</span> </span><span class="WHIT">    </span><span class="COMM">// Search for the view for the given element.</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">viewCache</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.views</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">      </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">viewCache</span><span class="PUNC">[</span><span class="NAME">element.getAttribute</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>198</span> 
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="COMM">// If the element itself is not managed by an SC.View, walk up its element chain searching for an</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="COMM">// element that is.</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">parentNode</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>203</span> 
+<span class='line'>204</span> </span><span class="WHIT">      </span><span class="KEYW">while</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">parentNode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">element.parentNode</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">parentNode</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">document</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">id</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>206</span> 
+<span class='line'>207</span> </span><span class="WHIT">        </span><span class="COMM">// Ensure that the parent node is an Element and not some other type of Node.</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">        </span><span class="COMM">// Note: while `instanceOf Element` is the most accurate determiner, performance tests show</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">        </span><span class="COMM">// that it's much quicker to check for the existence of either the `nodeType` property or</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">        </span><span class="COMM">// the `querySelector` method.</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">        </span><span class="COMM">// See http://jsperf.com/nodetype-1-vs-instanceof-htmlelement/4</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">        </span><span class="COMM">// if (parentNode.querySelector && (id = parentNode.getAttribute('id'))) {</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">(</span><span class="NAME">id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parentNode.getAttribute</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">          </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">viewCache</span><span class="PUNC">[</span><span class="NAME">id</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>216</span> 
+<span class='line'>217</span> </span><span class="WHIT">        </span><span class="COMM">// Check the parent node.</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">        </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parentNode</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">      </span><span class="COMM">// Avoid memory leaks (i.e. IE).</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">      </span><span class="NAME">element</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">parentNode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>224</span> 
+<span class='line'>225</span> </span><span class="WHIT">    </span><span class="COMM">// If view isn't found, return null rather than undefined.</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">view</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>228</span> 
+<span class='line'>229</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>230</span> </span></pre></body></html>

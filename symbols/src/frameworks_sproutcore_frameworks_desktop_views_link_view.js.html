@@ -1,0 +1,414 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2014 7x7 Software, Inc.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// License:   Licensed under MIT license</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  6</span> 
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/**
+<span class='line'>  9</span>   @class
+<span class='line'> 10</span> 
+<span class='line'> 11</span>   This view creates a link (i.e. HTML anchor) to a remote resource.  You should
+<span class='line'> 12</span>   use this view to create programmatic HTML links, such as links to a PDF or to
+<span class='line'> 13</span>   an external site.
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   For example,
+<span class='line'> 16</span> 
+<span class='line'> 17</span>       //...
+<span class='line'> 18</span> 
+<span class='line'> 19</span>       // A link to download the selected employee's resume.
+<span class='line'> 20</span>       link: SC.LinkView.extend({
+<span class='line'> 21</span> 
+<span class='line'> 22</span>         body: "Current Resume",
+<span class='line'> 23</span> 
+<span class='line'> 24</span>         // Compute the fileName on the fly.
+<span class='line'> 25</span>         fileNameBinding: SC.Binding.oneWay('MyApp.employeeController.fullName')
+<span class='line'> 26</span>           .transform(function (fullName) {
+<span class='line'> 27</span>             // ex. "Resume - Tyler Keating.pdf"
+<span class='line'> 28</span>             return "Resume - " + fullName + ".pdf";
+<span class='line'> 29</span>           }),
+<span class='line'> 30</span> 
+<span class='line'> 31</span>         // Compute the href on the fly.
+<span class='line'> 32</span>         hrefBinding: SC.Binding.oneWay('MyApp.employeeController.resumePath'),
+<span class='line'> 33</span> 
+<span class='line'> 34</span>         toolTip: "Link to current resume"
+<span class='line'> 35</span>       }),
+<span class='line'> 36</span> 
+<span class='line'> 37</span>       //...
+<span class='line'> 38</span> 
+<span class='line'> 39</span>   The example above generates something like the following,
+<span class='line'> 40</span> 
+<span class='line'> 41</span>       &lt;a href="/users/22/cur-resume.pdf" class="sc-view sc-link-view" download="Resume - Tyler Keating.pdf" title="Link to current resume">Current Resume&lt;/a>
+<span class='line'> 42</span> 
+<span class='line'> 43</span>   Note that you can localize the `body` and the `toolTip` by setting the `localize`
+<span class='line'> 44</span>   property to true.
+<span class='line'> 45</span> 
+<span class='line'> 46</span>   @since SproutCore 1.11
+<span class='line'> 47</span> */</span><span class="WHIT">
+<span class='line'> 48</span> </span><span class="NAME">SC.LinkView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.View.extend</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 49</span> 
+<span class='line'> 50</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 51</span>     The WAI-ARIA role for link views.
+<span class='line'> 52</span> 
+<span class='line'> 53</span>     @type String
+<span class='line'> 54</span>     @default 'link'
+<span class='line'> 55</span>     @readOnly
+<span class='line'> 56</span>   */</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="NAME">ariaRole</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'link'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 58</span> 
+<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 60</span>     The content of the anchor, such as text or an image.
+<span class='line'> 61</span> 
+<span class='line'> 62</span>     Note that this will be escaped by default, so any HTML tags will appear
+<span class='line'> 63</span>     as text.  To render the body as HTML, set `escapeHTML` to `false` and
+<span class='line'> 64</span>     remember to *NEVER* allow user generated content unescaped in your app.
+<span class='line'> 65</span> 
+<span class='line'> 66</span>     If you are using text, you may also want to provide localized versions and
+<span class='line'> 67</span>     should set the `localize` property to true.
+<span class='line'> 68</span> 
+<span class='line'> 69</span>     @type String
+<span class='line'> 70</span>     @default ""
+<span class='line'> 71</span>    */</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">body</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 73</span> 
+<span class='line'> 74</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 75</span>     The class names for the view.
+<span class='line'> 76</span> 
+<span class='line'> 77</span>     Note: this is not an observed display property and as such must be predefined on the
+<span class='line'> 78</span>     view (You can update class names using `classNameBindings`).
+<span class='line'> 79</span> 
+<span class='line'> 80</span>     Note: this is a concatenated property and as such all subclasses will inherit
+<span class='line'> 81</span>     the current class names.
+<span class='line'> 82</span> 
+<span class='line'> 83</span>     @type Array
+<span class='line'> 84</span>     @default ['sc-view', 'sc-link-view']
+<span class='line'> 85</span>    */</span><span class="WHIT">
+<span class='line'> 86</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-link-view'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 87</span> 
+<span class='line'> 88</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 89</span>     This is generated by localizing the body property if necessary.
+<span class='line'> 90</span> 
+<span class='line'> 91</span>     @readonly
+<span class='line'> 92</span>     @type String
+<span class='line'> 93</span>     @observes 'body'
+<span class='line'> 94</span>     @observes 'localize'
+<span class='line'> 95</span>   */</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="NAME">displayBody</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'body'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 98</span> 
+<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'localize'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">SC.String.loc</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="STRN">''</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'body'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'localize'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>101</span> 
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>103</span>     The observed properties that will cause the view to be rerendered if they
+<span class='line'>104</span>     change.
+<span class='line'>105</span> 
+<span class='line'>106</span>     Note: this is a concatenated property and as such all subclasses will inherit
+<span class='line'>107</span>     the current display properties.
+<span class='line'>108</span> 
+<span class='line'>109</span>     @type Array
+<span class='line'>110</span>     @default ['displayBody', 'displayToolTip', 'fileName', 'href', 'hreflang']
+<span class='line'>111</span>    */</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'displayBody'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'displayToolTip'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'fileName'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'href'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'hreflang'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>113</span> 
+<span class='line'>114</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>115</span>     The default file name to use for the linked resource if it will be
+<span class='line'>116</span>     downloaded.
+<span class='line'>117</span> 
+<span class='line'>118</span>     For example,
+<span class='line'>119</span> 
+<span class='line'>120</span>         //...
+<span class='line'>121</span> 
+<span class='line'>122</span>         // The linked resource (/students/2013/list-copy.xml) will be downloaded
+<span class='line'>123</span>         // with the name 'Student List.xml' by default.
+<span class='line'>124</span>         fileName: 'Student List.xml',
+<span class='line'>125</span> 
+<span class='line'>126</span>         href: '/students/2013/list-copy.xml'
+<span class='line'>127</span> 
+<span class='line'>128</span>         //...
+<span class='line'>129</span> 
+<span class='line'>130</span>     This property is observed, allowing you to programmatically set the download
+<span class='line'>131</span>     file name.
+<span class='line'>132</span> 
+<span class='line'>133</span>     For example as a computed property,
+<span class='line'>134</span> 
+<span class='line'>135</span>         //...
+<span class='line'>136</span> 
+<span class='line'>137</span>         // The download file name is computed from the linked resource URL.
+<span class='line'>138</span>         fileName: function () {
+<span class='line'>139</span>           var href = this.get('href'),
+<span class='line'>140</span>             linkedYear,
+<span class='line'>141</span>             ret;
+<span class='line'>142</span> 
+<span class='line'>143</span>           if (href) {
+<span class='line'>144</span>             // ex. href == "/reports/2012/annual-report.pdf"
+<span class='line'>145</span>             linkedYear = href.match(/\/(\d*)\//)[1];
+<span class='line'>146</span>             ret = "Annual Report " + linkedYear + '.pdf';
+<span class='line'>147</span>           }
+<span class='line'>148</span> 
+<span class='line'>149</span>           return ret;
+<span class='line'>150</span>         }.property('href').cacheable(),
+<span class='line'>151</span> 
+<span class='line'>152</span>         hrefBinding: SC.Binding.oneWay('MyApp.reportController.hardlink'),
+<span class='line'>153</span> 
+<span class='line'>154</span>         //...
+<span class='line'>155</span> 
+<span class='line'>156</span>     Note: There are no restrictions on allowed values, but authors are cautioned
+<span class='line'>157</span>     that most file systems have limitations with regard to what punctuation is
+<span class='line'>158</span>     supported in file names, and user agents are likely to adjust file names
+<span class='line'>159</span>     accordingly. Also, support for this attribute varies widely between browsers.
+<span class='line'>160</span> 
+<span class='line'>161</span>     @see http://caniuse.com/#feat=download
+<span class='line'>162</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-download
+<span class='line'>163</span>    */</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">  </span><span class="NAME">fileName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>165</span> 
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>167</span>     Whether the body and toolTip will be escaped to avoid HTML injection attacks
+<span class='line'>168</span>     or not.
+<span class='line'>169</span> 
+<span class='line'>170</span>     You should only disable this option if you are sure you are displaying
+<span class='line'>171</span>     non-user generated text.
+<span class='line'>172</span> 
+<span class='line'>173</span>     Note: this is not an observed display property.  If you change it after
+<span class='line'>174</span>     rendering, you should call `displayDidChange` on the view to update the layer.
+<span class='line'>175</span> 
+<span class='line'>176</span>     @type Boolean
+<span class='line'>177</span>     @default true
+<span class='line'>178</span>    */</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">  </span><span class="NAME">escapeHTML</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>182</span>     The linked resource URL.
+<span class='line'>183</span> 
+<span class='line'>184</span>     @type String
+<span class='line'>185</span>     @default '#'
+<span class='line'>186</span>    */</span><span class="WHIT">
+<span class='line'>187</span> </span><span class="WHIT">  </span><span class="NAME">href</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'#'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>188</span> 
+<span class='line'>189</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>190</span>     The alternate language for the linked resource.
+<span class='line'>191</span> 
+<span class='line'>192</span>     Set this value to modify the 'hreflang' attribute for the linked resource,
+<span class='line'>193</span>     which would otherwise be the current locale's language.
+<span class='line'>194</span> 
+<span class='line'>195</span>     @type String
+<span class='line'>196</span>     @default null
+<span class='line'>197</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-hreflang
+<span class='line'>198</span>    */</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="NAME">language</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>200</span> 
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>202</span>     The language attribute of the linked resource.
+<span class='line'>203</span> 
+<span class='line'>204</span>     This is the current locale's language by default, but may be overridden to
+<span class='line'>205</span>     a specific other language by setting the `language` property.
+<span class='line'>206</span> 
+<span class='line'>207</span>     @readonly
+<span class='line'>208</span>     @type String
+<span class='line'>209</span>     @observes 'language'
+<span class='line'>210</span>     @observes 'localize'
+<span class='line'>211</span>     @default SC.Locale.currentLocale.language
+<span class='line'>212</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-hreflang
+<span class='line'>213</span>   */</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">  </span><span class="NAME">hreflang</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">language</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'language'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> 
+<span class='line'>218</span> </span><span class="WHIT">    </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">language</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">SC.Locale.currentLocale.language</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> 
+<span class='line'>220</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'language'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'localize'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>222</span> 
+<span class='line'>223</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>224</span>     An array of URLs to ping when the link is clicked.
+<span class='line'>225</span> 
+<span class='line'>226</span>     For example, this can be used for tracking the use of off-site links without
+<span class='line'>227</span>     JavaScript or page redirects,
+<span class='line'>228</span> 
+<span class='line'>229</span>         //...
+<span class='line'>230</span> 
+<span class='line'>231</span>         // Whenever anyone downloads this resource, we ping our analytics site.
+<span class='line'>232</span>         ping: ['http://tracker.my-app.com/?action="Downloaded PDF Version"'],
+<span class='line'>233</span> 
+<span class='line'>234</span>         //...
+<span class='line'>235</span> 
+<span class='line'>236</span>     Note: this is not an updateable display property.  It must be defined before
+<span class='line'>237</span>     creating the layer.
+<span class='line'>238</span> 
+<span class='line'>239</span>     @type Array
+<span class='line'>240</span>     @default null
+<span class='line'>241</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#ping
+<span class='line'>242</span>    */</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="NAME">ping</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>244</span> 
+<span class='line'>245</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>246</span>     A list of space separated non-case sensitive link type tokens.
+<span class='line'>247</span> 
+<span class='line'>248</span>     For example,
+<span class='line'>249</span> 
+<span class='line'>250</span>         //...
+<span class='line'>251</span> 
+<span class='line'>252</span>         // This link is to the author of the article and the result should be loaded in the browser's sidebar if it has one.
+<span class='line'>253</span>         rel: ['author', 'sidebar'],
+<span class='line'>254</span> 
+<span class='line'>255</span>         //...
+<span class='line'>256</span> 
+<span class='line'>257</span>     Note: this is not an updateable display property.  It must be defined before
+<span class='line'>258</span>     creating the layer.
+<span class='line'>259</span> 
+<span class='line'>260</span>     @type Array
+<span class='line'>261</span>     @default null
+<span class='line'>262</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-rel
+<span class='line'>263</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#linkTypes
+<span class='line'>264</span>    */</span><span class="WHIT">
+<span class='line'>265</span> </span><span class="WHIT">  </span><span class="NAME">rel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>266</span> 
+<span class='line'>267</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>268</span>     The tag type to use.
+<span class='line'>269</span> 
+<span class='line'>270</span>     Note: this is not an updateable display property.  It must be defined before
+<span class='line'>271</span>     creating the layer.
+<span class='line'>272</span> 
+<span class='line'>273</span>     @type String
+<span class='line'>274</span>     @default 'a'
+<span class='line'>275</span>    */</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">  </span><span class="NAME">tagName</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'a'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>277</span> 
+<span class='line'>278</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>279</span>     The target for loading the resource.
+<span class='line'>280</span> 
+<span class='line'>281</span>     The following keywords have special meanings:
+<span class='line'>282</span> 
+<span class='line'>283</span>     * _self: Load the response into the same HTML4 frame (or HTML5 browsing context) as the current one.
+<span class='line'>284</span>     * _blank: Load the response into a new unnamed HTML4 window or HTML5 browsing context.
+<span class='line'>285</span>     * _parent: Load the response into the HTML4 frameset parent of the current frame or HTML5 parent browsing context of the current one. If there is no parent, this option behaves the same way as _self.
+<span class='line'>286</span>     * _top: In HTML4: Load the response into the full, original window, canceling all other frames. In HTML5: Load the response into the top-level browsing context (that is, the browsing context that is an ancestor of the current one, and has no parent). If there is no parent, this option behaves the same way as _self.
+<span class='line'>287</span> 
+<span class='line'>288</span>     Note: this is not an updateable display property.  It must be defined before
+<span class='line'>289</span>     creating the layer.
+<span class='line'>290</span> 
+<span class='line'>291</span>     @type String
+<span class='line'>292</span>     @default '_blank'
+<span class='line'>293</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-target
+<span class='line'>294</span>    */</span><span class="WHIT">
+<span class='line'>295</span> </span><span class="WHIT">  </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">'_blank'</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>296</span> 
+<span class='line'>297</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>298</span>     The mime type of the link.
+<span class='line'>299</span> 
+<span class='line'>300</span>     This has little effect, but certain browsers may add display information
+<span class='line'>301</span>     pertaining to the type, such as a small icon for the linked resource type.
+<span class='line'>302</span> 
+<span class='line'>303</span>     Note: this is not an updateable display property.  It must be defined before
+<span class='line'>304</span>     creating the layer.
+<span class='line'>305</span> 
+<span class='line'>306</span>     @type String
+<span class='line'>307</span>     @default null
+<span class='line'>308</span>     @see http://www.whatwg.org/specs/web-apps/current-work/multipage/links.html#attr-hyperlink-type
+<span class='line'>309</span>    */</span><span class="WHIT">
+<span class='line'>310</span> </span><span class="WHIT">  </span><span class="NAME">type</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>311</span> 
+<span class='line'>312</span> </span><span class="WHIT">  </span><span class="COMM">// ------------------------------------------------------------------------</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">  </span><span class="COMM">// Methods</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>315</span> 
+<span class='line'>316</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">  </span><span class="NAME">render</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">context</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayBody'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>319</span> </span><span class="WHIT">      </span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayToolTip'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">      </span><span class="NAME">fileName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'fileName'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="WHIT">      </span><span class="NAME">escapeHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'escapeHTML'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">      </span><span class="NAME">href</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'href'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>323</span> </span><span class="WHIT">      </span><span class="NAME">hreflang</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hreflang'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">      </span><span class="NAME">ping</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'ping'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">      </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'rel'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">      </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'target'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>327</span> </span><span class="WHIT">      </span><span class="NAME">type</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'type'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>328</span> 
+<span class='line'>329</span> </span><span class="WHIT">    </span><span class="COMM">// Escape the title of the anchor if needed. This prevents potential XSS attacks.</span><span class="WHIT">
+<span class='line'>330</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">      </span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">displayToolTip</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>333</span> 
+<span class='line'>334</span> </span><span class="WHIT">    </span><span class="COMM">// Set attributes</span><span class="WHIT">
+<span class='line'>335</span> </span><span class="WHIT">    </span><span class="NAME">context.setAttr</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">      </span><span class="STRN">'download'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">fileName</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">      </span><span class="STRN">'href'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">href</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">      </span><span class="STRN">'hreflang'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">hreflang</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">      </span><span class="STRN">'ping'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">ping</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">ping.join</span><span class="PUNC">(</span><span class="STRN">' '</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">      </span><span class="STRN">'rel'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">rel.join</span><span class="PUNC">(</span><span class="STRN">' '</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">      </span><span class="STRN">'target'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">      </span><span class="STRN">'title'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">displayToolTip</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">      </span><span class="STRN">'type'</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">type</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>345</span> 
+<span class='line'>346</span> </span><span class="WHIT">    </span><span class="COMM">// Escape the body of the anchor if needed. This prevents potential XSS attacks.</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>348</span> </span><span class="WHIT">      </span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>350</span> 
+<span class='line'>351</span> </span><span class="WHIT">    </span><span class="COMM">// Insert the body</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">    </span><span class="NAME">context.push</span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>354</span> 
+<span class='line'>355</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">  </span><span class="NAME">mouseDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>357</span> </span><span class="WHIT">    </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>360</span> 
+<span class='line'>361</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">  </span><span class="NAME">mouseUp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">    </span><span class="NAME">evt.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>364</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>366</span> 
+<span class='line'>367</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">    </span><span class="NAME">touch.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>370</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>371</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>372</span> 
+<span class='line'>373</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>374</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>375</span> </span><span class="WHIT">    </span><span class="NAME">touch.allowDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>376</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>378</span> 
+<span class='line'>379</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>380</span> </span><span class="WHIT">  </span><span class="NAME">update</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">jqEl</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>381</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayBody'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>382</span> </span><span class="WHIT">      </span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'displayToolTip'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>383</span> </span><span class="WHIT">      </span><span class="NAME">fileName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'fileName'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>384</span> </span><span class="WHIT">      </span><span class="NAME">escapeHTML</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'escapeHTML'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>385</span> </span><span class="WHIT">      </span><span class="NAME">href</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'href'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>386</span> </span><span class="WHIT">      </span><span class="NAME">hreflang</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hreflang'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>387</span> 
+<span class='line'>388</span> </span><span class="WHIT">    </span><span class="NAME">jqEl.attr</span><span class="PUNC">(</span><span class="STRN">'download'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fileName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>389</span> </span><span class="WHIT">    </span><span class="NAME">jqEl.attr</span><span class="PUNC">(</span><span class="STRN">'href'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">href</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>390</span> </span><span class="WHIT">    </span><span class="NAME">jqEl.attr</span><span class="PUNC">(</span><span class="STRN">'hreflang'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">hreflang</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>391</span> 
+<span class='line'>392</span> </span><span class="WHIT">    </span><span class="COMM">// Escape the title of the anchor if needed. This prevents potential XSS attacks.</span><span class="WHIT">
+<span class='line'>393</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">      </span><span class="NAME">displayToolTip</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">displayToolTip</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>395</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>396</span> 
+<span class='line'>397</span> </span><span class="WHIT">    </span><span class="NAME">jqEl.attr</span><span class="PUNC">(</span><span class="STRN">'title'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">displayToolTip</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>398</span> 
+<span class='line'>399</span> </span><span class="WHIT">    </span><span class="COMM">// Escape the body of the anchor if needed. This prevents potential XSS attacks.</span><span class="WHIT">
+<span class='line'>400</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">escapeHTML</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>401</span> </span><span class="WHIT">      </span><span class="NAME">displayBody</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RenderContext.escapeHTML</span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>402</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>403</span> </span><span class="WHIT">    </span><span class="NAME">jqEl.html</span><span class="PUNC">(</span><span class="NAME">displayBody</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>404</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>405</span> 
+<span class='line'>406</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>407</span> </span></pre></body></html>

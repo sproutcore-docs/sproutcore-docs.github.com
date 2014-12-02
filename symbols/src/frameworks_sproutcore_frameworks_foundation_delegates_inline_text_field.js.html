@@ -79,15 +79,15 @@
 <span class='line'> 72</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 73</span> 
 <span class='line'> 74</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 75</span>     Cleans up the given editor by simply removing it from the view hierarchy. The
-<span class='line'> 76</span>     client view should null any references to the editor so it may be garbage
-<span class='line'> 77</span>     collected.
+<span class='line'> 75</span>     Cleans up the given editor by simply destroying it, which removes it from
+<span class='line'> 76</span>     the view hierarchy. The client view should null any references to the editor
+<span class='line'> 77</span>     so it may be garbage collected.
 <span class='line'> 78</span> 
 <span class='line'> 79</span>     @params {SC.InlineEditor} editor the editor that should be cleaned up
 <span class='line'> 80</span>     @returns {Boolean} whether the cleanup succeeded
 <span class='line'> 81</span>   */</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">  </span><span class="NAME">releaseEditor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">editor</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">editor.removeFromParent</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">editor.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 84</span> 
 <span class='line'> 85</span> </span><span class="WHIT">    </span><span class="NAME">this.editor</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 86</span> 

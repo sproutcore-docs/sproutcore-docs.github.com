@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @private
+<span class='line'>  9</span>   Active Support style inflection constants
+<span class='line'> 10</span> */</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="NAME">SC.hashesForLocale</span><span class="PUNC">(</span><span class="STRN">'fr'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'inflectionConstants'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="WHIT">  </span><span class="NAME">PLURAL</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(bijou|caillou|chou|genou|hibou|joujou|pou|au|eu|eau)$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1x'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(bleu|émeu|landau|lieu|pneu|sarrau)$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1s'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/al$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'aux'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 17</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/ail$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'ails'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(b|cor|ém|gemm|soupir|trav|vant|vitr)ail$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1aux'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(s|x|z)$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/$/</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"s"</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 22</span> 
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 24</span> </span><span class="WHIT">  </span><span class="NAME">SINGULAR</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 25</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(bijou|caillou|chou|genou|hibou|joujou|pou|au|eu|eau)x$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(journ|chev)aux$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1al'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/ails$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'ail'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/(b|cor|ém|gemm|soupir|trav|vant|vitr)aux$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'$1ail'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 29</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="REGX">/s$/i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">""</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="WHIT">  </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 31</span> 
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="NAME">IRREGULAR</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="STRN">'monsieur'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'messieurs'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="STRN">'madame'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'mesdames'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">    </span><span class="PUNC">[</span><span class="STRN">'mademoiselle'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'mesdemoiselles'</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 37</span> </span><span class="WHIT">  </span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 38</span> 
+<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="NAME">UNCOUNTABLE</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 41</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span></pre></body></html>

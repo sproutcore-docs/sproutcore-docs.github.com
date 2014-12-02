@@ -7,25 +7,12 @@
 	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
 	</style></head><body><pre><span class='line'>  1</span> <span class="WHIT">
 <span class='line'>  2</span> </span><span class="COMM">/**
-<span class='line'>  3</span>   If true, then all SC.Controls can be focused when the
-<span class='line'>  4</span>   user presses the tab key. Otherwise, only TextFieldViews
-<span class='line'>  5</span>   will be focused.
-<span class='line'>  6</span> 
-<span class='line'>  7</span>   @type String
+<span class='line'>  3</span>   If true, then all SproutCore controls can be focused when the user presses the
+<span class='line'>  4</span>   tab key. Otherwise, only `SC.TextFieldView`'s will be focused.
+<span class='line'>  5</span> 
+<span class='line'>  6</span>   @type Boolean
+<span class='line'>  7</span>   @default false
 <span class='line'>  8</span>   @constant
 <span class='line'>  9</span> */</span><span class="WHIT">
-<span class='line'> 10</span> </span><span class="NAME">SC.FOCUS_ALL_CONTROLS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 11</span> 
-<span class='line'> 12</span> </span><span class="COMM">/*
-<span class='line'> 13</span>   TODO [CC @ 1.5] Remove this deprecation warning eventually
-<span class='line'> 14</span> */</span><span class="WHIT">
-<span class='line'> 15</span> </span><span class="NAME">SC.ready</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 16</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">focus</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.SAFARI_FOCUS_BEHAVIOR</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 17</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">focus</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">focus</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 18</span> </span><span class="WHIT">    </span><span class="COMM">// @if (debug)</span><span class="WHIT">
-<span class='line'> 19</span> </span><span class="WHIT">    </span><span class="NAME">SC.Logger.warn</span><span class="PUNC">(</span><span class="STRN">"SC.SAFARI_FOCUS_BEHAVIOR is deprecated. Please use SC.FOCUS_ALL_CONTROLS instead"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 20</span> </span><span class="WHIT">    </span><span class="COMM">// @endif</span><span class="WHIT">
-<span class='line'> 21</span> </span><span class="WHIT">    </span><span class="NAME">SC.FOCUS_ALL_CONTROLS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.SAFARI_FOCUS_BEHAVIOR</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 23</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 24</span> </span></pre></body></html>
+<span class='line'> 10</span> </span><span class="NAME">SC.FOCUS_ALL_CONTROLS</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 11</span> </span></pre></body></html>

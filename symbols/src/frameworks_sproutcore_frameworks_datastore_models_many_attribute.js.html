@@ -21,140 +21,191 @@
 <span class='line'> 14</span>   ManyAttribute is a subclass of `RecordAttribute` and handles to-many
 <span class='line'> 15</span>   relationships.
 <span class='line'> 16</span> 
-<span class='line'> 17</span>   When setting ( `.set()` ) the value of a `toMany` attribute, make sure
-<span class='line'> 18</span>   to pass in an array of `SC.Record` objects.
-<span class='line'> 19</span> 
-<span class='line'> 20</span>   There are many ways you can configure a `ManyAttribute`:
-<span class='line'> 21</span> 
-<span class='line'> 22</span>       contacts: SC.Record.toMany('MyApp.Contact', {
-<span class='line'> 23</span>         inverse: 'group', // set the key used to represent the inverse
-<span class='line'> 24</span>         isMaster: YES|NO, // indicate whether changing this should dirty
-<span class='line'> 25</span>         transform: function(), // transforms value &lt;=> storeKey,
-<span class='line'> 26</span>         isEditable: YES|NO, make editable or not,
-<span class='line'> 27</span>         through: 'taggings' // set a relationship this goes through
-<span class='line'> 28</span>       });
-<span class='line'> 29</span> 
-<span class='line'> 30</span>   @extends SC.RecordAttribute
-<span class='line'> 31</span>   @since SproutCore 1.0
-<span class='line'> 32</span> */</span><span class="WHIT">
-<span class='line'> 33</span> </span><span class="NAME">SC.ManyAttribute</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RecordAttribute.extend</span><span class="PUNC">(</span><span class="WHIT">
-<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.ManyAttribute.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 35</span> 
-<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 37</span>     Set the foreign key on content objects that represent the inversion of
-<span class='line'> 38</span>     this relationship. The inverse property should be a `toOne()` or
-<span class='line'> 39</span>     `toMany()` relationship as well. Modifying this many array will modify
-<span class='line'> 40</span>     the `inverse` property as well.
-<span class='line'> 41</span> 
-<span class='line'> 42</span>     @type String
-<span class='line'> 43</span>   */</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="WHIT">  </span><span class="NAME">inverse</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 45</span> 
-<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 47</span>     If `YES` then modifying this relationships will mark the owner record
-<span class='line'> 48</span>     dirty. If set to `NO`, then modifying this relationship will not alter
-<span class='line'> 49</span>     this record.  You should use this property only if you have an inverse
-<span class='line'> 50</span>     property also set. Only one of the inverse relationships should be marked
-<span class='line'> 51</span>     as master so you can control which record should be committed.
-<span class='line'> 52</span> 
-<span class='line'> 53</span>     @type Boolean
-<span class='line'> 54</span>   */</span><span class="WHIT">
-<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="NAME">isMaster</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 56</span> 
-<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 58</span>     If set and you have an inverse relationship, will be used to determine the
-<span class='line'> 59</span>     order of an object when it is added to an array. You can pass a function
-<span class='line'> 60</span>     or an array of property keys.
-<span class='line'> 61</span> 
-<span class='line'> 62</span>     @property {Function|Array}
-<span class='line'> 63</span>   */</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">orderBy</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 17</span>   Relationships in the client are meant to mirror the relationships that
+<span class='line'> 18</span>   the real data has in the remote data store on the server. For example,
+<span class='line'> 19</span>   if a `Parent` record on the server has an array of `Child` ids, then it is
+<span class='line'> 20</span>   appropriate for the `MyApp.Parent` model in the SproutCore app to have a `toMany`
+<span class='line'> 21</span>   relationship to the `MyApp.Child` in the app. In this way, changes to the
+<span class='line'> 22</span>   relationship in the client will best match how the data should be committed
+<span class='line'> 23</span>   to the server.
+<span class='line'> 24</span> 
+<span class='line'> 25</span>   There are many ways you can configure a `ManyAttribute`:
+<span class='line'> 26</span> 
+<span class='line'> 27</span>       contacts: SC.Record.toMany('MyApp.Contact', {
+<span class='line'> 28</span>         inverse: 'group', // set the key used to represent the inverse
+<span class='line'> 29</span>         isMaster: YES|NO, // indicate whether changing this should dirty
+<span class='line'> 30</span>         transform: function(), // transforms value &lt;=> storeKey,
+<span class='line'> 31</span>         isEditable: YES|NO, make editable or not,
+<span class='line'> 32</span>         through: 'taggings' // set a relationship this goes through
+<span class='line'> 33</span>       });
+<span class='line'> 34</span> 
+<span class='line'> 35</span>   Note: When setting ( `.set()` ) the value of a `toMany` attribute, make sure
+<span class='line'> 36</span>   to pass in an array of `SC.Record` objects.
+<span class='line'> 37</span> 
+<span class='line'> 38</span>   ## Using new Records in Relationships
+<span class='line'> 39</span> 
+<span class='line'> 40</span>   Because relationships are based on `id`, new records created in the client
+<span class='line'> 41</span>   (that don't have an `id`) are typically not able to be assigned to a
+<span class='line'> 42</span>   relationship until after they have been committed to the server. However,
+<span class='line'> 43</span>   because it's unwieldy to manually update relationships after the real `id` is
+<span class='line'> 44</span>   known, `SC.ManyAttribute` through `SC.ManyArray`, allows new records to be added
+<span class='line'> 45</span>   that don't yet have an `id`.
+<span class='line'> 46</span> 
+<span class='line'> 47</span>   As long as the `supportNewRecords` property is true, adding records without an
+<span class='line'> 48</span>   `id `to the relationship will assign unique temporary ids to the new records.
+<span class='line'> 49</span> 
+<span class='line'> 50</span>   *Note:* You must update the relationship after the new records are successfully
+<span class='line'> 51</span>   committed and have real ids. This is done by calling `updateNewRecordId()`
+<span class='line'> 52</span>   on the many array. In the future this should be automatic.
+<span class='line'> 53</span> 
+<span class='line'> 54</span>   @extends SC.RecordAttribute
+<span class='line'> 55</span>   @since SproutCore 1.0
+<span class='line'> 56</span> */</span><span class="WHIT">
+<span class='line'> 57</span> </span><span class="NAME">SC.ManyAttribute</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.RecordAttribute.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.ManyAttribute.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 61</span>     Set the foreign key on content objects that represent the inversion of
+<span class='line'> 62</span>     this relationship. The inverse property should be a `toOne()` or
+<span class='line'> 63</span>     `toMany()` relationship as well. Modifying this many array will modify
+<span class='line'> 64</span>     the `inverse` property as well.
 <span class='line'> 65</span> 
-<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">// LOW-LEVEL METHODS</span><span class="WHIT">
-<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 66</span>     @type String
+<span class='line'> 67</span>   */</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="NAME">inverse</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 69</span> 
-<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="COMM">/**  @private - adapted for to many relationship */</span><span class="WHIT">
-<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">toType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">type</span><span class="WHIT">      </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'typeClass'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 73</span> </span><span class="WHIT">        </span><span class="NAME">attrKey</span><span class="WHIT">   </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'key'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="WHIT">        </span><span class="NAME">arrayKey</span><span class="WHIT">  </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.keyFor</span><span class="PUNC">(</span><span class="STRN">'__manyArray__'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT">       </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record</span><span class="PUNC">[</span><span class="NAME">arrayKey</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 76</span> </span><span class="WHIT">        </span><span class="NAME">rel</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 77</span> 
-<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="COMM">// lazily create a ManyArray one time.  after that always return the</span><span class="WHIT">
-<span class='line'> 79</span> </span><span class="WHIT">    </span><span class="COMM">// same object.</span><span class="WHIT">
-<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ManyArray.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 82</span> </span><span class="WHIT">        </span><span class="NAME">recordType</span><span class="PUNC">:</span><span class="WHIT">    </span><span class="NAME">type</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">        </span><span class="NAME">record</span><span class="PUNC">:</span><span class="WHIT">        </span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">        </span><span class="NAME">propertyName</span><span class="PUNC">:</span><span class="WHIT">  </span><span class="NAME">attrKey</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">        </span><span class="NAME">manyAttribute</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 87</span> 
-<span class='line'> 88</span> </span><span class="WHIT">      </span><span class="NAME">record</span><span class="PUNC">[</span><span class="NAME">arrayKey</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// save on record</span><span class="WHIT">
-<span class='line'> 89</span> </span><span class="WHIT">      </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="STRN">'relationships'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 90</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">rel</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">record.set</span><span class="PUNC">(</span><span class="STRN">'relationships'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 91</span> </span><span class="WHIT">      </span><span class="NAME">rel.push</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// make sure we get notified of changes...</span><span class="WHIT">
-<span class='line'> 92</span> 
-<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 94</span> 
-<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 97</span> 
-<span class='line'> 98</span> </span><span class="WHIT">  </span><span class="COMM">/** @private - adapted for to many relationship */</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="WHIT">  </span><span class="NAME">fromType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>100</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>101</span> 
-<span class='line'>102</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.isArray</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Expects toMany attribute to be an array"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>103</span> 
-<span class='line'>104</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>105</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="NAME">i</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>106</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value.objectAt</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>107</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 71</span>     If `YES` then modifying this relationships will mark the owner record
+<span class='line'> 72</span>     dirty. If set to `NO`, then modifying this relationship will not alter
+<span class='line'> 73</span>     this record.  You should use this property only if you have an inverse
+<span class='line'> 74</span>     property also set. Only one of the inverse relationships should be marked
+<span class='line'> 75</span>     as master so you can control which record should be committed.
+<span class='line'> 76</span> 
+<span class='line'> 77</span>     @type Boolean
+<span class='line'> 78</span>   */</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="NAME">isMaster</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 80</span> 
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 82</span>     If set and you have an inverse relationship, will be used to determine the
+<span class='line'> 83</span>     order of an object when it is added to an array. You can pass a function
+<span class='line'> 84</span>     or an array of property keys.
+<span class='line'> 85</span> 
+<span class='line'> 86</span>     @property {Function|Array}
+<span class='line'> 87</span>   */</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">  </span><span class="NAME">orderBy</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 89</span> 
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 91</span>     Determines whether the new record support of `SC.ManyArray` should be
+<span class='line'> 92</span>     enabled or not.
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     Normally, all records in the relationship should already have been previously
+<span class='line'> 95</span>     committed to a remote data store and have an actual `id`. However, with
+<span class='line'> 96</span>     `supportNewRecords` set to true, adding records without an `id `to the
+<span class='line'> 97</span>     relationship will assign unique temporary ids to the new records.
+<span class='line'> 98</span> 
+<span class='line'> 99</span>     *Note:* You must update the relationship after the new records are successfully
+<span class='line'>100</span>     committed and have real ids. This is done by calling `updateNewRecordId()`
+<span class='line'>101</span>     on the many array. In the future this should be automatic.
+<span class='line'>102</span> 
+<span class='line'>103</span>     If you wish to turn this off, SC.ManyArray will throw an exception if you
+<span class='line'>104</span>     add a record without an id to the relationship. If you use temporary `id`s
+<span class='line'>105</span>     for new record, you will need to manually update the relationship, but
+<span class='line'>106</span>     run the risk of committing inverse records with temporary `id`s in their
+<span class='line'>107</span>     datahashes.
 <span class='line'>108</span> 
-<span class='line'>109</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>110</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>111</span> 
-<span class='line'>112</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>113</span>     Called by an inverse relationship whenever the receiver is no longer part
-<span class='line'>114</span>     of the relationship.  If this matches the inverse setting of the attribute
-<span class='line'>115</span>     then it will update itself accordingly.
-<span class='line'>116</span> 
-<span class='line'>117</span>     You should never call this directly.
+<span class='line'>109</span>     @type Boolean
+<span class='line'>110</span>     @default true
+<span class='line'>111</span>     @since SproutCore 1.11.0
+<span class='line'>112</span>   */</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="NAME">supportNewRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> 
+<span class='line'>115</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="COMM">// LOW-LEVEL METHODS</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
 <span class='line'>118</span> 
-<span class='line'>119</span>     @param {SC.Record} the record owning this attribute
-<span class='line'>120</span>     @param {String} key the key for this attribute
-<span class='line'>121</span>     @param {SC.Record} inverseRecord record that was removed from inverse
-<span class='line'>122</span>     @param {String} key key on inverse that was modified
-<span class='line'>123</span>     @returns {void}
-<span class='line'>124</span>   */</span><span class="WHIT">
-<span class='line'>125</span> </span><span class="WHIT">  </span><span class="NAME">inverseDidRemoveRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">manyArray</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>127</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">manyArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>128</span> </span><span class="WHIT">      </span><span class="NAME">manyArray.removeInverseRecord</span><span class="PUNC">(</span><span class="NAME">inverseRecord</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>129</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>130</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>131</span> 
-<span class='line'>132</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>133</span>     Called by an inverse relationship whenever the receiver is added to the
-<span class='line'>134</span>     inverse relationship.  This will set the value of this inverse record to
-<span class='line'>135</span>     the new record.
-<span class='line'>136</span> 
-<span class='line'>137</span>     You should never call this directly.
+<span class='line'>119</span> </span><span class="WHIT">  </span><span class="COMM">/**  @private - adapted for to many relationship */</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="WHIT">  </span><span class="NAME">toType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">type</span><span class="WHIT">      </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'typeClass'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">        </span><span class="NAME">supportNewRecords</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'supportNewRecords'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">        </span><span class="NAME">attrKey</span><span class="WHIT">   </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'key'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">        </span><span class="NAME">arrayKey</span><span class="WHIT">  </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.keyFor</span><span class="PUNC">(</span><span class="STRN">'__manyArray__'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">        </span><span class="NAME">ret</span><span class="WHIT">       </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record</span><span class="PUNC">[</span><span class="NAME">arrayKey</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">        </span><span class="NAME">rel</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>127</span> 
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="COMM">// lazily create a ManyArray one time.  after that always return the</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">    </span><span class="COMM">// same object.</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.ManyArray.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">        </span><span class="NAME">recordType</span><span class="PUNC">:</span><span class="WHIT">    </span><span class="NAME">type</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">        </span><span class="NAME">record</span><span class="PUNC">:</span><span class="WHIT">        </span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">        </span><span class="NAME">propertyName</span><span class="PUNC">:</span><span class="WHIT">  </span><span class="NAME">attrKey</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">        </span><span class="NAME">manyAttribute</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">        </span><span class="NAME">supportNewRecords</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">supportNewRecords</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>138</span> 
-<span class='line'>139</span>     @param {SC.Record} the record owning this attribute
-<span class='line'>140</span>     @param {String} key the key for this attribute
-<span class='line'>141</span>     @param {SC.Record} inverseRecord record that was added to inverse
-<span class='line'>142</span>     @param {String} key key on inverse that was modified
-<span class='line'>143</span>     @returns {void}
-<span class='line'>144</span>   */</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">  </span><span class="NAME">inverseDidAddRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">manyArray</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">manyArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>148</span> </span><span class="WHIT">      </span><span class="NAME">manyArray.addInverseRecord</span><span class="PUNC">(</span><span class="NAME">inverseRecord</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>149</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>151</span> 
-<span class='line'>152</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>153</span> </span></pre></body></html>
+<span class='line'>139</span> </span><span class="WHIT">      </span><span class="NAME">record</span><span class="PUNC">[</span><span class="NAME">arrayKey</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// save on record</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">      </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="STRN">'relationships'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">rel</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">record.set</span><span class="PUNC">(</span><span class="STRN">'relationships'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">rel</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">      </span><span class="NAME">rel.push</span><span class="PUNC">(</span><span class="NAME">ret</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// make sure we get notified of changes...</span><span class="WHIT">
+<span class='line'>143</span> 
+<span class='line'>144</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>145</span> 
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>148</span> 
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="COMM">/** @private - adapted for to many relationship */</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">  </span><span class="NAME">fromType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>151</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>152</span> 
+<span class='line'>153</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">SC.isArray</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Expects toMany attribute to be an array"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>154</span> 
+<span class='line'>155</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">=</span><span class="NUMB">0</span><span class="PUNC">;</span><span class="NAME">i</span><span class="PUNC">&lt;</span><span class="NAME">len</span><span class="PUNC">;</span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">      </span><span class="NAME">ret</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">value.objectAt</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">get</span><span class="PUNC">(</span><span class="STRN">'id'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>159</span> 
+<span class='line'>160</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>162</span> 
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>164</span>     Called by an inverse relationship whenever the receiver is no longer part
+<span class='line'>165</span>     of the relationship.  If this matches the inverse setting of the attribute
+<span class='line'>166</span>     then it will update itself accordingly.
+<span class='line'>167</span> 
+<span class='line'>168</span>     You should never call this directly.
+<span class='line'>169</span> 
+<span class='line'>170</span>     @param {SC.Record} the record owning this attribute
+<span class='line'>171</span>     @param {String} key the key for this attribute
+<span class='line'>172</span>     @param {SC.Record} inverseRecord record that was removed from inverse
+<span class='line'>173</span>     @param {String} key key on inverse that was modified
+<span class='line'>174</span>     @returns {void}
+<span class='line'>175</span>   */</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">  </span><span class="NAME">inverseDidRemoveRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">manyArray</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">manyArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">      </span><span class="NAME">manyArray.removeInverseRecord</span><span class="PUNC">(</span><span class="NAME">inverseRecord</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>182</span> 
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>184</span>     Called by an inverse relationship whenever the receiver is added to the
+<span class='line'>185</span>     inverse relationship.  This will set the value of this inverse record to
+<span class='line'>186</span>     the new record.
+<span class='line'>187</span> 
+<span class='line'>188</span>     You should never call this directly.
+<span class='line'>189</span> 
+<span class='line'>190</span>     @param {SC.Record} the record owning this attribute
+<span class='line'>191</span>     @param {String} key the key for this attribute
+<span class='line'>192</span>     @param {SC.Record} inverseRecord record that was added to inverse
+<span class='line'>193</span>     @param {String} key key on inverse that was modified
+<span class='line'>194</span>     @returns {void}
+<span class='line'>195</span>   */</span><span class="WHIT">
+<span class='line'>196</span> </span><span class="WHIT">  </span><span class="NAME">inverseDidAddRecord</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">record</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">key</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseRecord</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inverseKey</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>197</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">manyArray</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">record.get</span><span class="PUNC">(</span><span class="NAME">key</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">manyArray</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">      </span><span class="NAME">manyArray.addInverseRecord</span><span class="PUNC">(</span><span class="NAME">inverseRecord</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>202</span> 
+<span class='line'>203</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>204</span> </span></pre></body></html>

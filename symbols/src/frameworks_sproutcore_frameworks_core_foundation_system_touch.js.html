@@ -1,0 +1,546 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @class SC.Touch
+<span class='line'>  9</span>   Represents a touch. Single touch objects are passed to `touchStart`, `touchEnd` and `touchCancelled` event handlers;
+<span class='line'> 10</span>   a specialized multitouch event object is sent to `touchesDragged`, which include access to all in-flight touches
+<span class='line'> 11</span>   (see "The touchesDragged Multitouch Event Object" below).
+<span class='line'> 12</span> 
+<span class='line'> 13</span>   SC.Touch exposes a number of properties, including pageX/Y, clientX/Y, screenX/Y, and startX/Y (the values that
+<span class='line'> 14</span>   pageX/Y had when the touch began, useful for calculating how far the touch has moved). It also exposes the touch's
+<span class='line'> 15</span>   target element at `target`, its target SC.View at `targetView`, and the touch's unique identifier at `identifier`,
+<span class='line'> 16</span>   which may be relied upon to identify a particular touch for the duration of its lifecycle.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   A touch object exists for the duration of the touch – literally for as long as your finger is on the screen – and
+<span class='line'> 19</span>   is sent to a number of touch events on your views. Touch events are sent to the touch's current responder, set initially
+<span class='line'> 20</span>   by checking the responder chain for views which implement `touchStart` (or `captureTouch`, see "Touch Events" below),
+<span class='line'> 21</span>   and can be passed to other views as needed (see "Touch Responders" below).
+<span class='line'> 22</span> 
+<span class='line'> 23</span>   Touch Events
+<span class='line'> 24</span>   -----
+<span class='line'> 25</span>   You can use the following methods on your views to capture and handle touch events:
+<span class='line'> 26</span> 
+<span class='line'> 27</span>   - `captureTouch` -- Sometimes, a touch responder part way up the chain may need to capture the touch and prevent it
+<span class='line'> 28</span>     from being made available to its childViews. The canonical use case for this behavior is SC.ScrollView, which by
+<span class='line'> 29</span>     default captures touches and holds onto them for 150ms to see if the user is scrolling, only passing them on to
+<span class='line'> 30</span>     children if not. (See SC.ScrollView#delaysContentTouches for more.) In order to support this use case, `captureTouch`
+<span class='line'> 31</span>     bubbles the opposite way as usual: beginning with the target's pane and bubbling *down* towards the target itself.
+<span class='line'> 32</span>     `captureTouch` is passed a single instance of `SC.Touch`, and must return YES if it wishes to capture the touch and
+<span class='line'> 33</span>     become its responder. (If your view doesn't want to immediately capture the touch, but instead wants to suggest itself
+<span class='line'> 34</span>     as a fallback handler in case the child view resigns respondership, it can do so by passing itself to the touch's
+<span class='line'> 35</span>     `stackCandidateTouchResponder` method.)
+<span class='line'> 36</span>   - `touchStart` -- When a touch begins, or when a new view responder is first given access to it (see "Touch Responders"
+<span class='line'> 37</span>     below), the touch is passed to this method.
+<span class='line'> 38</span>   - `touchesDragged` -- Whenever any touches move, the `touchesDragged` method is called on the current view responder
+<span class='line'> 39</span>     for any touches that have changed. The method is provided two arguments: a special multitouch event object (see "The
+<span class='line'> 40</span>     touchesDragged Multitouch Event Object" below), and an array containing all of the touches on that view. (This is
+<span class='line'> 41</span>     the same as calling `touch.touchesForView(this)`.)
+<span class='line'> 42</span>   - `touchEnd` -- When a touch is complete, its current responder's `touchEnd` handler is invoked, if present, and passed
+<span class='line'> 43</span>     the touch object which is ending.
+<span class='line'> 44</span>   - `touchCancelled` -- This method is generally only called if you have changed the touch's responder. See "Touch
+<span class='line'> 45</span>     Responders" below; in brief, if you pass the touch to another responder via `makeTouchResponder`, fully resigning
+<span class='line'> 46</span>     your touch respondership, you will receive a `touchCancelled` call for the next event; if you pass the touch to another
+<span class='line'> 47</span>     responder via `stackNextTouchResponder`, and never receive it back, you will receive a `touchCancelled` call when the
+<span class='line'> 48</span>     touch finishes. (Note that because RootResponder must call touchStart to determine if a view will accept respondership,
+<span class='line'> 49</span>     touchStart is called on a new responder before touchCancelled is called on the outgoing one.)
+<span class='line'> 50</span> 
+<span class='line'> 51</span>   The touchesDragged Multitouch Event Object
+<span class='line'> 52</span>   -----
+<span class='line'> 53</span>   The specialized event object sent to `touchesDragged` includes access to all touches currently in flight. You can
+<span class='line'> 54</span>   access the touches for a specific view from the `touchesForView` method, or get an average position of the touches
+<span class='line'> 55</span>   on a view from the convenient `averagedTouchesForView` method. For your convenience when dealing with the common
+<span class='line'> 56</span>   single-touch view, the `touchesDragged` event object also exposes the positional page, client, screen and start X/Y
+<span class='line'> 57</span>   values from the *first touch*. If you are interested in handling more than one touch, or in handling an average of
+<span class='line'> 58</span>   in-flight touches, you should ignore these values. (Note that this event object exposes an array of touch events at
+<span class='line'> 59</span>   `touches`. These are the browser's raw touch events, and should be avoided or used with care.)
+<span class='line'> 60</span> 
+<span class='line'> 61</span>   Touch Responders: Passing Touches Around
+<span class='line'> 62</span>   -----
+<span class='line'> 63</span>   The touch responder is the view which is currently handling events for that touch. A touch may only have one responder
+<span class='line'> 64</span>   at a time, though a view with `acceptsMultitouch: YES` may respond to more than one touch at a time.
+<span class='line'> 65</span> 
+<span class='line'> 66</span>   A view becomes a touch responder by implementing touchStart (and not returning NO). (Out-of-order views can capture
+<span class='line'> 67</span>   touch responder status by implementing captureTouch and returning YES.) Once a view is a touch responder, only that
+<span class='line'> 68</span>   view will receive subsequent `touchesDragged` and `touchEnd` events; these events do not bubble like mouse events, and
+<span class='line'> 69</span>   they do *not* automatically switch to other views if the touch moves outside of its initial responder.
+<span class='line'> 70</span> 
+<span class='line'> 71</span>   In some situations, you will want to pass control on to another view during the course of a touch, for example if
+<span class='line'> 72</span>   it goes over another view. To permanently pass respondership to another view:
+<span class='line'> 73</span> 
+<span class='line'> 74</span>       if (shouldPassTouch) {
+<span class='line'> 75</span>         touch.makeTouchResponder(nextView);
+<span class='line'> 76</span>       }
+<span class='line'> 77</span> 
+<span class='line'> 78</span>   This will trigger `touchStart` on the new responder, and `touchCancel` on the outgoing one. The new responder will begin
+<span class='line'> 79</span>   receiving `touchesDragged` events in place of the outgoing one.
+<span class='line'> 80</span> 
+<span class='line'> 81</span>   If you want to pass respondership to another view, but are likely to want it back – for example, when a ScrollView
+<span class='line'> 82</span>   passes respondership to a child view but expects that the child view will pass it back if it moves more than a certain
+<span class='line'> 83</span>   amount:
+<span class='line'> 84</span> 
+<span class='line'> 85</span>     if (shouldTemporarlyPassTouch) {
+<span class='line'> 86</span>       touch.stackNextTouchResponder(nextView);
+<span class='line'> 87</span>     }
+<span class='line'> 88</span> 
+<span class='line'> 89</span>   This will trigger `touchStart` on the new responder, and it will start receiving `touchesDragged` and `touchEnd` events.
+<span class='line'> 90</span>   Note that the previous responder will not receive `touchCancelled` immediately, since the touch may return to it before
+<span class='line'> 91</span>   the end; instead, it will only receive `touchCancelled` when the touch is ended.
+<span class='line'> 92</span> 
+<span class='line'> 93</span>   (If you would like to add a view as a fallback responder without triggering unnecessary calls to its `touchStart` and
+<span class='line'> 94</span>   `touchCancelled` events, for example as an alternative to returning YES from `captureTouch`, you can call
+<span class='line'> 95</span>   `stackCandidateTouchResponder` instead.)
+<span class='line'> 96</span> 
+<span class='line'> 97</span>   When the child view decides that the touch has moved enough to be a scroll, it should pass touch respondership back
+<span class='line'> 98</span>   to the scroll view with:
+<span class='line'> 99</span> 
+<span class='line'>100</span>     if (Math.abs(touch.pageX - touch.startX) > 4) {
+<span class='line'>101</span>       touch.restoreLastTouchResponder();
+<span class='line'>102</span>     }
+<span class='line'>103</span> 
+<span class='line'>104</span>   This will trigger `touchCancelled` on the second responder, and the first one will begin receiving `touchDragged` events
+<span class='line'>105</span>   again.
+<span class='line'>106</span> */</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="NAME">SC.Touch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchContext</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">  </span><span class="COMM">// get the raw target view (we'll refine later)</span><span class="WHIT">
+<span class='line'>109</span> </span><span class="WHIT">  </span><span class="NAME">this.touchContext</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touchContext</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">  </span><span class="COMM">// Get the touch's unique ID.</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">  </span><span class="NAME">this.identifier</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.identifier</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> 
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">targetView</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>114</span> 
+<span class='line'>115</span> </span><span class="WHIT">  </span><span class="COMM">// Special-case handling for TextFieldView's touch intercept overlays.</span><span class="WHIT">
+<span class='line'>116</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.$</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">hasClass</span><span class="PUNC">(</span><span class="STRN">"touch-intercept"</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="NAME">touch.target.style</span><span class="PUNC">[</span><span class="NAME">SC.browser.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="STRN">'transform'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translate3d(0px,-5000px,0px)"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">    </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.elementFromPoint</span><span class="PUNC">(</span><span class="NAME">touch.pageX</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touch.pageY</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">targetView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.viewFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> 
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="NAME">this.hidesTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target.tagName</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="STRN">"INPUT"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">      </span><span class="NAME">this.hidesTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.target</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">      </span><span class="NAME">touch.target.style</span><span class="PUNC">[</span><span class="NAME">SC.browser.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="STRN">'transform'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translate3d(0px,0px,0px)"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="NAME">targetView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.target</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">SC.viewFor</span><span class="PUNC">(</span><span class="NAME">touch.target</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>130</span> 
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="NAME">this.targetView</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">targetView</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">  </span><span class="NAME">this.target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="NAME">this.type</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.type</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>134</span> 
+<span class='line'>135</span> </span><span class="WHIT">  </span><span class="NAME">this.touchResponders</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>136</span> 
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">this.startX</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.pageX</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.pageX</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">  </span><span class="NAME">this.startY</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.pageY</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.pageY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="NAME">this.clientX</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.clientX</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">  </span><span class="NAME">this.clientY</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.clientY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">  </span><span class="NAME">this.screenX</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.screenX</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">  </span><span class="NAME">this.screenY</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.screenY</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>144</span> 
+<span class='line'>145</span> </span><span class="NAME">SC.Touch.prototype</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">  </span><span class="COMM">/**@scope SC.Touch.prototype*/</span><span class="WHIT">
+<span class='line'>147</span> 
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>149</span>     The responder that's responsible for the creation and management of this touch. Usually this will be
+<span class='line'>150</span>     your app's root responder. You must pass this on create, and should not change it afterwards.
+<span class='line'>151</span> 
+<span class='line'>152</span>     @type {SC.RootResponder}
+<span class='line'>153</span>   */</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">  </span><span class="NAME">touchContext</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>157</span>     This touch's unique identifier. Provided by the browser and used to track touches through their lifetime.
+<span class='line'>158</span>     You will not usually need to use this, as SproutCore's touch objects themselves persist throughout the
+<span class='line'>159</span>     lifetime of a touch.
+<span class='line'>160</span> 
+<span class='line'>161</span>     @type {Number}
+<span class='line'>162</span>   */</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="NAME">identifier</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>164</span> 
+<span class='line'>165</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>166</span>     The touch's initial target element.
+<span class='line'>167</span> 
+<span class='line'>168</span>     @type: {Element}
+<span class='line'>169</span>   */</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">  </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>171</span> 
+<span class='line'>172</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>173</span>     The view for the touch's initial target element.
+<span class='line'>174</span> 
+<span class='line'>175</span>     @type {SC.View}
+<span class='line'>176</span>   */</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="NAME">targetView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>178</span> 
+<span class='line'>179</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>180</span>     The touch's current view. (Usually this is the same as the current touchResponder.)
+<span class='line'>181</span> 
+<span class='line'>182</span>     @type {SC.View}
+<span class='line'>183</span>   */</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">  </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>185</span> 
+<span class='line'>186</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>187</span>     The touch's current responder, i.e. the view that is currently receiving events for this touch.
+<span class='line'>188</span> 
+<span class='line'>189</span>     You can use the following methods to pass respondership for this touch between views as needed:
+<span class='line'>190</span>     `makeTouchResponder`, `stackNextTouchResponder`, `restoreLastTouchResponder`, and `stackCandidateTouchResponder`.
+<span class='line'>191</span>     See each method's documentation, and "Touch Responders: Passing Touches Around" above, for more.
+<span class='line'>192</span> 
+<span class='line'>193</span>     @type {SC.Responder}
+<span class='line'>194</span>   */</span><span class="WHIT">
+<span class='line'>195</span> </span><span class="WHIT">  </span><span class="NAME">touchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>196</span> 
+<span class='line'>197</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>198</span>     Whether the touch has ended yet. If you are caching touches outside of the RootResponder, it is your
+<span class='line'>199</span>     responsibility to check this property and handle ended touches appropriately.
+<span class='line'>200</span> 
+<span class='line'>201</span>     @type {Boolean}
+<span class='line'>202</span>   */</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">  </span><span class="NAME">hasEnded</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>204</span> 
+<span class='line'>205</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>206</span>     The touch's latest browser event's type, for example 'touchstart', 'touchmove', or 'touchend'.
+<span class='line'>207</span> 
+<span class='line'>208</span>     Note that SproutCore's event model differs from that of the browser, so it is not recommended that
+<span class='line'>209</span>     you use this property unless you know what you're doing.
+<span class='line'>210</span> 
+<span class='line'>211</span>     @type {String}
+<span class='line'>212</span>   */</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">  </span><span class="NAME">type</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>214</span> 
+<span class='line'>215</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>216</span>     A faked mouse event property used to prevent unexpected behavior when proxying touch events to mouse
+<span class='line'>217</span>     event handlers.
+<span class='line'>218</span>   */</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="NAME">clickCount</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>     The timestamp of the touch's most recent event. This is the time as of when all of the touch's
+<span class='line'>223</span>     positional values are accurate.
+<span class='line'>224</span> 
+<span class='line'>225</span>     @type {Number}
+<span class='line'>226</span>   */</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">  </span><span class="NAME">timeStamp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>228</span> 
+<span class='line'>229</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>230</span>     The touch's latest clientX position (relative to the viewport).
+<span class='line'>231</span> 
+<span class='line'>232</span>     @type {Number}
+<span class='line'>233</span>   */</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">  </span><span class="NAME">clientX</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>235</span> 
+<span class='line'>236</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>237</span>     The touch's latest clientY position (relative to the viewport).
+<span class='line'>238</span> 
+<span class='line'>239</span>     @type {Number}
+<span class='line'>240</span>   */</span><span class="WHIT">
+<span class='line'>241</span> </span><span class="WHIT">  </span><span class="NAME">clientY</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>242</span> 
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>244</span>     The touch's latest screenX position (relative to the screen).
+<span class='line'>245</span> 
+<span class='line'>246</span>     @type {Number}
+<span class='line'>247</span>   */</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="WHIT">  </span><span class="NAME">screenX</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>249</span> 
+<span class='line'>250</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>251</span>     The touch's latest screenY position (relative to the screen).
+<span class='line'>252</span> 
+<span class='line'>253</span>     @type {Number}
+<span class='line'>254</span>   */</span><span class="WHIT">
+<span class='line'>255</span> </span><span class="WHIT">  </span><span class="NAME">screenY</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>256</span> 
+<span class='line'>257</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>258</span>     The touch's latest pageX position (relative to the document).
+<span class='line'>259</span> 
+<span class='line'>260</span>     @type {Number}
+<span class='line'>261</span>   */</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">  </span><span class="NAME">pageX</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>263</span> 
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>265</span>     The touch's latest pageY position (relative to the document).
+<span class='line'>266</span> 
+<span class='line'>267</span>     @type {Number}
+<span class='line'>268</span>   */</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">  </span><span class="NAME">pageY</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>270</span> 
+<span class='line'>271</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>272</span>     The touch's initial pageX value. Useful for tracking a touch's total relative movement.
+<span class='line'>273</span> 
+<span class='line'>274</span>     @type {Number}
+<span class='line'>275</span>   */</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">  </span><span class="NAME">startX</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>277</span> 
+<span class='line'>278</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>279</span>     The touch's initial pageY value.
+<span class='line'>280</span> 
+<span class='line'>281</span>     @type {Number}
+<span class='line'>282</span>   */</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="WHIT">  </span><span class="NAME">startY</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>284</span> 
+<span class='line'>285</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>286</span>     The touch's horizontal velocity, in pixels per millisecond, at the time of its last event. (Positive
+<span class='line'>287</span>     velocities indicate movement leftward, negative velocities indicate movement rightward.)
+<span class='line'>288</span> 
+<span class='line'>289</span>     @type {Number}
+<span class='line'>290</span>   */</span><span class="WHIT">
+<span class='line'>291</span> </span><span class="WHIT">  </span><span class="NAME">velocityX</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>292</span> 
+<span class='line'>293</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>294</span>     The touch's vertical velocity, in pixels per millisecond, at the time of its last event. (Positive
+<span class='line'>295</span>     velocities indicate movement downward, negative velocities indicate movement upward.)
+<span class='line'>296</span> 
+<span class='line'>297</span>     @type {Number}
+<span class='line'>298</span>   */</span><span class="WHIT">
+<span class='line'>299</span> </span><span class="WHIT">  </span><span class="NAME">velocityY</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>300</span> 
+<span class='line'>301</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">unhideTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">intercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.hidesTouchIntercept</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">intercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">      </span><span class="NAME">setTimeout</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">intercept.style</span><span class="PUNC">[</span><span class="NAME">SC.browser.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="STRN">'transform'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translate3d(0px,0px,0px)"</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">500</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>306</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>307</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>308</span> 
+<span class='line'>309</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>310</span>     Indicates that you want to allow the normal default behavior.  Sets
+<span class='line'>311</span>     the hasCustomEventHandling property to YES but does not cancel the event.
+<span class='line'>312</span>   */</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">  </span><span class="NAME">allowDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.event.hasCustomEventHandling</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>315</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>316</span> 
+<span class='line'>317</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>318</span>     If the touch is associated with an event, prevents default action on the event. This is the
+<span class='line'>319</span>     default behavior in SproutCore, which handles events through the RootResponder instead of
+<span class='line'>320</span>     allowing native handling.
+<span class='line'>321</span>   */</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">  </span><span class="NAME">preventDefault</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>323</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.event.preventDefault</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>325</span> 
+<span class='line'>326</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>327</span>     Calls the native event's stopPropagation method, which prevents the method from continuing to
+<span class='line'>328</span>     bubble. Usually, SproutCore will be handling the event via delegation at the `document` level,
+<span class='line'>329</span>     so this method will have no effect.
+<span class='line'>330</span>   */</span><span class="WHIT">
+<span class='line'>331</span> </span><span class="WHIT">  </span><span class="NAME">stopPropagation</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>332</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.event.stopPropagation</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>333</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>334</span> 
+<span class='line'>335</span> </span><span class="WHIT">  </span><span class="NAME">stop</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>336</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.event</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this.event.stop</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>338</span> 
+<span class='line'>339</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>340</span>     Removes from and calls touchEnd on the touch responder.
+<span class='line'>341</span>   */</span><span class="WHIT">
+<span class='line'>342</span> </span><span class="WHIT">  </span><span class="NAME">end</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>343</span> </span><span class="WHIT">    </span><span class="NAME">this.touchContext.endTouch</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>345</span> 
+<span class='line'>346</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>347</span>     This property, contrary to its name, stores the last touch responder for possible use later in the touch's
+<span class='line'>348</span>     lifecycle. You will usually not use this property directly, instead calling `stackNextTouchResponder` to pass
+<span class='line'>349</span>     the touch to a different view, and `restoreLastTouchResponder` to pass it back to the previous one.
+<span class='line'>350</span> 
+<span class='line'>351</span>     @type {SC.Responder}
+<span class='line'>352</span>   */</span><span class="WHIT">
+<span class='line'>353</span> </span><span class="WHIT">  </span><span class="NAME">nextTouchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>354</span> 
+<span class='line'>355</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>356</span>     An array of previous touch responders.
+<span class='line'>357</span> 
+<span class='line'>358</span>     @type {Array}
+<span class='line'>359</span>   */</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">  </span><span class="NAME">touchResponders</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>361</span> 
+<span class='line'>362</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
+<span class='line'>363</span>     A lazily-created array of candidate touch responders. Use `stackCandidateTouchResponder` to add candidates;
+<span class='line'>364</span>     candidates are used as a fallback if the touch is out of previous touch responders.
+<span class='line'>365</span> 
+<span class='line'>366</span>     @type {Array}
+<span class='line'>367</span>   */</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">  </span><span class="NAME">candidateTouchResponders</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>369</span> 
+<span class='line'>370</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>371</span>     A convenience method for making the passed view the touch's new responder, retaining the
+<span class='line'>372</span>     current responder for possible use later in the touch's lifecycle.
+<span class='line'>373</span> 
+<span class='line'>374</span>     For example, if the touch moves over a childView which implements its own touch handling,
+<span class='line'>375</span>     you may pass the touch to it with:
+<span class='line'>376</span> 
+<span class='line'>377</span>       touchesDragged: function(evt, viewTouches) {
+<span class='line'>378</span>         if ([touches should be passed to childView]) {
+<span class='line'>379</span>           this.viewTouches.forEach(function(touch) {
+<span class='line'>380</span>             touch.stackNextTouchResponder(this.someChildView);
+<span class='line'>381</span>           }, this);
+<span class='line'>382</span>         }
+<span class='line'>383</span>       }
+<span class='line'>384</span> 
+<span class='line'>385</span>     The child view may easily pass the touch back to this view with `touch.restoreLastTouchResponder`. In the
+<span class='line'>386</span>     mean time, this view will no longer receive `touchesDragged` events; if the touch is not returned to this
+<span class='line'>387</span>     view before ending, it will receive a `touchCancelled` event rather than `touchEnd`.
+<span class='line'>388</span> 
+<span class='line'>389</span>     @param {SC.Responder} view The view which should become this touch's new responder.
+<span class='line'>390</span>     @param {Boolean} upChain Whether or not a fallback responder should be sought up the responder chain if responder doesn't capture or handle the touch.
+<span class='line'>391</span>   */</span><span class="WHIT">
+<span class='line'>392</span> </span><span class="WHIT">  </span><span class="NAME">stackNextTouchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">upStack</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>393</span> </span><span class="WHIT">    </span><span class="NAME">this.makeTouchResponder</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">upStack</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>394</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>395</span> 
+<span class='line'>396</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>397</span>     A convenience method for returning touch respondership to the previous touch responder.
+<span class='line'>398</span> 
+<span class='line'>399</span>     For example, if your view is in a ScrollView and has captured the touch from it, your view
+<span class='line'>400</span>     will prevent scrolling until you return control of the touch to the ScrollView with:
+<span class='line'>401</span> 
+<span class='line'>402</span>         touchesDragged: function(evt, viewTouches) {
+<span class='line'>403</span>           if (Math.abs(evt.pageY - evt.startY) > this.MAX_SWIPE) {
+<span class='line'>404</span>             viewTouches.invoke('restoreLastTouchResponder');
+<span class='line'>405</span>           }
+<span class='line'>406</span>         }
+<span class='line'>407</span>   */</span><span class="WHIT">
+<span class='line'>408</span> </span><span class="WHIT">  </span><span class="NAME">restoreLastTouchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>409</span> </span><span class="WHIT">    </span><span class="COMM">// If we have a previous touch responder, go back to it.</span><span class="WHIT">
+<span class='line'>410</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.nextTouchResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>411</span> </span><span class="WHIT">      </span><span class="NAME">this.makeTouchResponder</span><span class="PUNC">(</span><span class="NAME">this.nextTouchResponder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>412</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>413</span> </span><span class="WHIT">    </span><span class="COMM">// Otherwise, check if we have a candidate responder queued up.</span><span class="WHIT">
+<span class='line'>414</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>415</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">candidates</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.candidateTouchResponders</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>416</span> </span><span class="WHIT">          </span><span class="NAME">candidate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">candidates</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">candidates.pop</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>417</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">candidate</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>418</span> </span><span class="WHIT">        </span><span class="NAME">this.makeTouchResponder</span><span class="PUNC">(</span><span class="NAME">candidate</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>419</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>420</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>421</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>422</span> 
+<span class='line'>423</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>424</span>     Changes the touch responder for the touch. If shouldStack is YES,
+<span class='line'>425</span>     the current responder will be saved so that the next responder may
+<span class='line'>426</span>     return to it.
+<span class='line'>427</span> 
+<span class='line'>428</span>     You will generally not call this method yourself, instead exposing on
+<span class='line'>429</span>     your view either a `touchStart` event handler method, or a `captureTouch`
+<span class='line'>430</span>     method which is passed a touch object and returns YES. This method
+<span class='line'>431</span>     is used in situations where touches need to be juggled between views,
+<span class='line'>432</span>     such as when being handled by a descendent of a ScrollView.
+<span class='line'>433</span> 
+<span class='line'>434</span>     When returning control of a touch to a previous handler, you should call
+<span class='line'>435</span>     `restoreLastTouchResponder` instead.
+<span class='line'>436</span> 
+<span class='line'>437</span>     @param {SC.Responder} responder The view to assign to the touch. (It, or if bubbling then an ancestor,
+<span class='line'>438</span>       must implement touchStart.)
+<span class='line'>439</span>     @param {Boolean} shouldStack Whether the new responder should replace the old one, or stack with it.
+<span class='line'>440</span>       Stacked responders are easy to revert via `SC.Touch#restoreLastTouchResponder`.
+<span class='line'>441</span>     @param {Boolean|SC.Responder} bubblesTo If YES, will attempt to find a `touchStart` responder up the
+<span class='line'>442</span>       responder chain. If NO or undefined, will only check the passed responder. If you pass a responder
+<span class='line'>443</span>       for this argument, the attempt will bubble until it reaches the passed responder, allowing you to
+<span class='line'>444</span>       restrict the bubbling to a portion of the responder chain. (Note that this responder will not be
+<span class='line'>445</span>       given an opportunity to respond to the event.)
+<span class='line'>446</span>     @returns {Boolean} Whether a valid touch responder was found and assigned.
+<span class='line'>447</span>   */</span><span class="WHIT">
+<span class='line'>448</span> </span><span class="WHIT">  </span><span class="NAME">makeTouchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">shouldStack</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bubblesTo</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>449</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.touchContext.makeTouchResponder</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">responder</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">shouldStack</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">bubblesTo</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>450</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>451</span> 
+<span class='line'>452</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>453</span>     You may want your view to insert itself into the responder chain as a fallback, but without
+<span class='line'>454</span>     having touchStart etc. called if it doesn't end up coming into play. For example, SC.ScrollView
+<span class='line'>455</span>     adds itself as a candidate responder (when delaysTouchResponder is NO) so that views can easily
+<span class='line'>456</span>     give it control, but without receiving unnecessary events if not.
+<span class='line'>457</span>   */</span><span class="WHIT">
+<span class='line'>458</span> </span><span class="WHIT">  </span><span class="NAME">stackCandidateTouchResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>459</span> </span><span class="WHIT">    </span><span class="COMM">// Fast path: if we're the first one it's easy.</span><span class="WHIT">
+<span class='line'>460</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.candidateTouchResponders</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>461</span> </span><span class="WHIT">      </span><span class="NAME">this.candidateTouchResponders</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">responder</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>462</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>463</span> </span><span class="WHIT">    </span><span class="COMM">// Just make sure it's not at the top of the stack. There may be a weird case where a</span><span class="WHIT">
+<span class='line'>464</span> </span><span class="WHIT">    </span><span class="COMM">// view wants to be in a couple of spots in the stack, but it shouldn't want to be twice</span><span class="WHIT">
+<span class='line'>465</span> </span><span class="WHIT">    </span><span class="COMM">// in a row.</span><span class="WHIT">
+<span class='line'>466</span> </span><span class="WHIT">    </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">responder</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="NAME">this.candidateTouchResponders</span><span class="PUNC">[</span><span class="NAME">this.candidateTouchResponders.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>467</span> </span><span class="WHIT">      </span><span class="NAME">this.candidateTouchResponders.push</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>468</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>469</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>470</span> 
+<span class='line'>471</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>472</span>     Captures, or recaptures, this touch. This works from the startingPoint's first child up to the
+<span class='line'>473</span>     touch's target view to find a view which implements `captureTouch` and returns YES. If the touch
+<span class='line'>474</span>     is captured, then this method will perform a standard `touchStart` event bubbling beginning with
+<span class='line'>475</span>     the view which captured the touch. If no view captures the touch, then this method returns NO,
+<span class='line'>476</span>     and you should call the `makeTouchResponder` method to trigger a standard `touchStart` bubbling
+<span class='line'>477</span>     from the initial target on down.
+<span class='line'>478</span> 
+<span class='line'>479</span>     You will generally not call this method yourself, instead exposing on
+<span class='line'>480</span>     your view either a `touchStart` event handler method, or a `captureTouch`
+<span class='line'>481</span>     method which is passed a touch object and returns YES. This method
+<span class='line'>482</span>     is used in situations where touches need to be juggled between views,
+<span class='line'>483</span>     such as when being handled by a descendent of a ScrollView.
+<span class='line'>484</span> 
+<span class='line'>485</span>     @param {?SC.Responder} startingPoint The view whose children should be given an opportunity
+<span class='line'>486</span>       to capture the event. (The starting point itself is not asked.)
+<span class='line'>487</span>     @param {Boolean} shouldStack Whether any capturing responder should stack with existing responders.
+<span class='line'>488</span>       Stacked responders are easy to revert via `SC.Touch#restoreLastTouchResponder`.
+<span class='line'>489</span> 
+<span class='line'>490</span>     @returns {Boolean} Whether the touch was captured. If it was not, you should pass it to
+<span class='line'>491</span>       `makeTouchResponder` for standard event bubbling.
+<span class='line'>492</span>   */</span><span class="WHIT">
+<span class='line'>493</span> </span><span class="WHIT">  </span><span class="NAME">captureTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">startingPoint</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">shouldStack</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>494</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.touchContext.captureTouch</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">startingPoint</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">shouldStack</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>495</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>496</span> 
+<span class='line'>497</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>498</span>     Returns all touches for a specified view. Put as a convenience on the touch itself;
+<span class='line'>499</span>     this method is also available on the event.
+<span class='line'>500</span> 
+<span class='line'>501</span>     For example, to retrieve the list of touches impacting the current event handler:
+<span class='line'>502</span> 
+<span class='line'>503</span>         touchesDragged: function(evt) {
+<span class='line'>504</span>           var myTouches = evt.touchesForView(this);
+<span class='line'>505</span>         }
+<span class='line'>506</span> 
+<span class='line'>507</span>     @param {SC.Responder} view
+<span class='line'>508</span>   */</span><span class="WHIT">
+<span class='line'>509</span> </span><span class="WHIT">  </span><span class="NAME">touchesForView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>510</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.touchContext.touchesForView</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>511</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>512</span> 
+<span class='line'>513</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>514</span>     A synonym for SC.Touch#touchesForView.
+<span class='line'>515</span>   */</span><span class="WHIT">
+<span class='line'>516</span> </span><span class="WHIT">  </span><span class="NAME">touchesForResponder</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>517</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.touchContext.touchesForView</span><span class="PUNC">(</span><span class="NAME">responder</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>518</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>519</span> 
+<span class='line'>520</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>521</span>     Returns average data--x, y, and d (distance)--for the touches owned by the supplied view.
+<span class='line'>522</span> 
+<span class='line'>523</span>     See notes on the addSelf argument for an important consideration when calling from `touchStart`.
+<span class='line'>524</span> 
+<span class='line'>525</span>     @param {SC.Responder} view
+<span class='line'>526</span>     @param {Boolean} addSelf Includes the receiver in calculations. Pass YES for this if calling
+<span class='line'>527</span>         from touchStart, as the touch will not yet be included by default.
+<span class='line'>528</span>   */</span><span class="WHIT">
+<span class='line'>529</span> </span><span class="WHIT">  </span><span class="NAME">averagedTouchesForView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">addSelf</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>530</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.touchContext.averagedTouchesForView</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">addSelf</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>531</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>532</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>533</span> 
+<span class='line'>534</span> </span><span class="NAME">SC.mixin</span><span class="PUNC">(</span><span class="NAME">SC.Touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>535</span> </span><span class="WHIT">  </span><span class="NAME">create</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchContext</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>536</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">SC.Touch</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchContext</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>537</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>538</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>539</span> </span></pre></body></html>
