@@ -15,73 +15,231 @@
 <span class='line'>  8</span> </span><span class="COMM">/**
 <span class='line'>  9</span>   @class
 <span class='line'> 10</span> 
-<span class='line'> 11</span>   Implements basic target and action support for views.
-<span class='line'> 12</span> 
-<span class='line'> 13</span>   @author Erich Ocean
-<span class='line'> 14</span>   @author Colin Campbell (colin@sproutcore.com)
-<span class='line'> 15</span>   @since SproutCore 1.7
-<span class='line'> 16</span> */</span><span class="WHIT">
-<span class='line'> 17</span> </span><span class="NAME">SC.ActionSupport</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
-<span class='line'> 18</span> </span><span class="COMM">/** @scope SC.ActionSupport.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 11</span>   Implements basic target + action support for views. To use, simply set the `action` property on
+<span class='line'> 12</span>   the view to the name of a method handled by an object in the current responder chain and call
+<span class='line'> 13</span>   `fireAction`. If the `target` property is also set, the `action` will only be attempted on that
+<span class='line'> 14</span>   target object. If not set, then the responder chain will be searched for an object that implements
+<span class='line'> 15</span>   the named action.
+<span class='line'> 16</span> 
+<span class='line'> 17</span>   *Note* Because searching the responder chain is slower, it is recommended to specify an actual
+<span class='line'> 18</span>   target whenever possible.
 <span class='line'> 19</span> 
-<span class='line'> 20</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 21</span>     The target object to invoke the action on when fireAction() is called.
-<span class='line'> 22</span> 
-<span class='line'> 23</span>     If you set this target, the action will be called on the target object
-<span class='line'> 24</span>     directly when fireAction() is called. If you leave this property set to
-<span class='line'> 25</span>     null, then the responder chain will be searched for a view that implements
-<span class='line'> 26</span>     the action.
+<span class='line'> 20</span>   ### Implementing Actions in a Target
+<span class='line'> 21</span> 
+<span class='line'> 22</span>   The method signature for target + action implementors is,
+<span class='line'> 23</span> 
+<span class='line'> 24</span>       methodName: function (sender, context) {
+<span class='line'> 25</span>         return; // Optional: return a value to the sender.
+<span class='line'> 26</span>       }
 <span class='line'> 27</span> 
-<span class='line'> 28</span>     @type Object
-<span class='line'> 29</span>     @default null
-<span class='line'> 30</span>   */</span><span class="WHIT">
-<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 32</span> 
-<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 34</span>     The name of the action you want triggered when fireAction() is called.
-<span class='line'> 35</span> 
-<span class='line'> 36</span>     This property is used in conjunction with the target property to execute
-<span class='line'> 37</span>     a method when fireAction() is called.
-<span class='line'> 38</span> 
-<span class='line'> 39</span>     If you do not set a target, then calling fireAction() will cause the
-<span class='line'> 40</span>     responder chain to search for a view that implements the action you name
-<span class='line'> 41</span>     here.  If you set a target, then fireAction() will try to call the
-<span class='line'> 42</span>     method on the target itself.
-<span class='line'> 43</span> 
-<span class='line'> 44</span>     @type String
-<span class='line'> 45</span>     @default null
-<span class='line'> 46</span>   */</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 28</span>   For views implementing `SC.ActionSupport`, the `sender` will always be `this`, which can be useful
+<span class='line'> 29</span>   when an action may be called by multiple views and the target needs to know from which view it was
+<span class='line'> 30</span>   triggered. For example, here is an action that will hide the sender's (any sender's) pane,
+<span class='line'> 31</span> 
+<span class='line'> 32</span>       // Hides the pane of the current sender.
+<span class='line'> 33</span>       hidePane: function (sender) {
+<span class='line'> 34</span>         var pane = sender.get('pane');
+<span class='line'> 35</span>         pane.set('isVisible', false);
+<span class='line'> 36</span>       }
+<span class='line'> 37</span> 
+<span class='line'> 38</span>   In order to pass additional information to the target, the target's action method may accept a
+<span class='line'> 39</span>   second argument, `context`. This argument will be the value of the same-named `context` argument
+<span class='line'> 40</span>   passed to `fireAction()` of the view. Here is a simple example to help illustrate this,
+<span class='line'> 41</span> 
+<span class='line'> 42</span>       // Target
+<span class='line'> 43</span>       var theTargetObject = SC.Object.create({
+<span class='line'> 44</span> 
+<span class='line'> 45</span>         theActionMethod: function (sender, context) {
+<span class='line'> 46</span>           console.log("theActionMethod was called at: %@".fmt(context.calledAt))
+<span class='line'> 47</span>         }
 <span class='line'> 48</span> 
-<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 50</span>     Will be sent along with the action to provide the context of the action.
-<span class='line'> 51</span>     This is an easy way to include information along with the action.
-<span class='line'> 52</span> 
-<span class='line'> 53</span>     @type Object
-<span class='line'> 54</span>     @default null
-<span class='line'> 55</span>   */</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="NAME">actionContext</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 57</span> 
-<span class='line'> 58</span> </span><span class="WHIT">   </span><span class="COMM">/**
-<span class='line'> 59</span>      Perform the action. If an action parameter is not provided, then
-<span class='line'> 60</span>      the action defaults to the `action` property.
-<span class='line'> 61</span> 
-<span class='line'> 62</span>      @param {String} [action] The action to fire.
+<span class='line'> 49</span>       });
+<span class='line'> 50</span> 
+<span class='line'> 51</span>       // View with SC.ActionSupport
+<span class='line'> 52</span>       var view = SC.View.create(SC.ActionSupport, {
+<span class='line'> 53</span>         action: 'theActionMethod',
+<span class='line'> 54</span>         target: theTargetObject,
+<span class='line'> 55</span> 
+<span class='line'> 56</span>         someEvent: function () {
+<span class='line'> 57</span>           var addedContext = {
+<span class='line'> 58</span>             calledAt: new Date() // Calling specific information to pass to the target.
+<span class='line'> 59</span>           };
+<span class='line'> 60</span> 
+<span class='line'> 61</span>           this.fireAction(addedContext);
+<span class='line'> 62</span>         }
 <span class='line'> 63</span> 
-<span class='line'> 64</span>      @returns {Boolean} true if successful
-<span class='line'> 65</span>      @returns {Boolean} false otherwise
-<span class='line'> 66</span>   */</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">fireAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 68</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">target</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'target'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">||</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 69</span> </span><span class="WHIT">        </span><span class="NAME">rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.getPath</span><span class="PUNC">(</span><span class="STRN">'pane.rootResponder'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span>       });
+<span class='line'> 65</span> 
+<span class='line'> 66</span>   @since SproutCore 1.7
+<span class='line'> 67</span> */</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="NAME">SC.ActionSupport</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
+<span class='line'> 69</span> </span><span class="COMM">/** @scope SC.ActionSupport.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 70</span> 
-<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'action'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 72</span> 
-<span class='line'> 73</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">rootResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">rootResponder.sendAction</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'pane'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'actionContext'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 76</span> 
-<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="COMM">// Provide some debug-only developer warning support.</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="NAME">initMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.actionContext</span><span class="WHIT"> </span><span class="PUNC">!==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: The `actionContext` property of `SC.ActionSupport` has been deprecated. Please pass the `context` argument to `fireAction()` directly."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="COMM">//@endif</span><span class="WHIT">
 <span class='line'> 79</span> 
-<span class='line'> 80</span> </span><span class="PUNC">}</span><span class="PUNC">;</span></pre></body></html>
+<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 81</span>     The name of the method to call when `fireAction` is called.
+<span class='line'> 82</span> 
+<span class='line'> 83</span>     This property is used in conjunction with the `target` property to execute a method when
+<span class='line'> 84</span>     `fireAction` is called. If you do not specify a target, then the responder chain will be
+<span class='line'> 85</span>     searched for a view that implements the named action. If you do set a target, then the button
+<span class='line'> 86</span>     will only try to call the method on that target.
+<span class='line'> 87</span> 
+<span class='line'> 88</span>     The action method of the target should implement the following signature:
+<span class='line'> 89</span> 
+<span class='line'> 90</span>         methodName: function (sender, context) {
+<span class='line'> 91</span>           return; // Optional: return a value to the sender.
+<span class='line'> 92</span>         }
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     ### Supporting multiple actions
+<span class='line'> 95</span> 
+<span class='line'> 96</span>     The most correct way to handle variable properties in SproutCore is to use a computed property.
+<span class='line'> 97</span>     For example, imagine if the action depended on a property, `isReady`. While we could set
+<span class='line'> 98</span>     `action` accordingly each time prior to calling `fireAction()` like so,
+<span class='line'> 99</span> 
+<span class='line'>100</span>         mouseUp: function () {
+<span class='line'>101</span>           var isReady = this.get('isReady');
+<span class='line'>102</span> 
+<span class='line'>103</span>           if (isReady) {
+<span class='line'>104</span>             this.set('action', 'doReadyAction');
+<span class='line'>105</span>           } else {
+<span class='line'>106</span>             this.set('action', 'doNotReadyAction');
+<span class='line'>107</span>           }
+<span class='line'>108</span> 
+<span class='line'>109</span>           this.fireAction();
+<span class='line'>110</span>         }
+<span class='line'>111</span> 
+<span class='line'>112</span>     This is a bit wasteful (imagine `isReady` doesn't change very often) and leaves `action` in
+<span class='line'>113</span>     an improper state (i.e. what if `isReady` changes without a call to mouseUp, then `action` is
+<span class='line'>114</span>     incorrect for any code that may reference it).
+<span class='line'>115</span> 
+<span class='line'>116</span>     The better approach is to make `action` a computed property dependent on `isReady`.
+<span class='line'>117</span> 
+<span class='line'>118</span>     For example, the previous example would be better as,
+<span class='line'>119</span> 
+<span class='line'>120</span>         action: function () {
+<span class='line'>121</span>           return this.get('isReady') ? 'doReadyAction' : 'doNotReadyAction';
+<span class='line'>122</span>         }.property('isReady'), // .cacheable() - optional to cache the result (consider memory used to cache result vs. computation time to compute result)
+<span class='line'>123</span> 
+<span class='line'>124</span>         mouseUp: function () {
+<span class='line'>125</span>           this.fireAction(); // Fires with current value of `action`.
+<span class='line'>126</span>         }
+<span class='line'>127</span> 
+<span class='line'>128</span>     @type String
+<span class='line'>129</span>     @default null
+<span class='line'>130</span>   */</span><span class="WHIT">
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>132</span> 
+<span class='line'>133</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.11.0. Please specify `context` argument when calling fireAction method.
+<span class='line'>134</span>     @type Object
+<span class='line'>135</span>     @default null
+<span class='line'>136</span>   */</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">actionContext</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>140</span>     The target to invoke the action on when `fireAction` is called.
+<span class='line'>141</span> 
+<span class='line'>142</span>     If you set this target, the action will be called on the target object directly when the button
+<span class='line'>143</span>     is clicked.  If you leave this property set to `null`, then the responder chain will be
+<span class='line'>144</span>     searched for a view that implements the action when the button is pressed.
+<span class='line'>145</span> 
+<span class='line'>146</span>     The action method of the target should implement the following signature:
+<span class='line'>147</span> 
+<span class='line'>148</span>         methodName: function (sender, context) {
+<span class='line'>149</span>           return; // Optional: return a value to the sender.
+<span class='line'>150</span>         }
+<span class='line'>151</span> 
+<span class='line'>152</span>     ### Supporting multiple targets
+<span class='line'>153</span> 
+<span class='line'>154</span>     The most correct way to handle variable properties in SproutCore is to use a computed property.
+<span class='line'>155</span>     For example, imagine if the target depended on a property, `isReady`. While we could set
+<span class='line'>156</span>     `target` accordingly each time prior to calling `fireAction()` like so,
+<span class='line'>157</span> 
+<span class='line'>158</span>         mouseUp: function () {
+<span class='line'>159</span>           var isReady = this.get('isReady');
+<span class='line'>160</span> 
+<span class='line'>161</span>           if (isReady) {
+<span class='line'>162</span>             this.set('target', MyApp.readyTarget);
+<span class='line'>163</span>           } else {
+<span class='line'>164</span>             this.set('target', MyApp.notReadyTarget);
+<span class='line'>165</span>           }
+<span class='line'>166</span> 
+<span class='line'>167</span>           this.fireAction();
+<span class='line'>168</span>         }
+<span class='line'>169</span> 
+<span class='line'>170</span>     This is a bit wasteful (imagine `isReady` doesn't change very often) and leaves `target` in
+<span class='line'>171</span>     an improper state (i.e. what if `isReady` changes without a call to mouseUp, then `target` is
+<span class='line'>172</span>     incorrect for any code that may reference it).
+<span class='line'>173</span> 
+<span class='line'>174</span>     The better approach is to make `target` a computed property dependent on `isReady`.
+<span class='line'>175</span> 
+<span class='line'>176</span>     For example, the previous example would be better as,
+<span class='line'>177</span> 
+<span class='line'>178</span>         target: function () {
+<span class='line'>179</span>           return this.get('isReady') ? MyApp.readyTarget : MyApp.notReadyTarget;
+<span class='line'>180</span>         }.property('isReady'), // .cacheable() - optional to cache the result (consider memory used to cache result vs. computation time to compute result)
+<span class='line'>181</span> 
+<span class='line'>182</span>         mouseUp: function () {
+<span class='line'>183</span>           this.fireAction(); // Fires with current value of `target`.
+<span class='line'>184</span>         }
+<span class='line'>185</span> 
+<span class='line'>186</span>     @type Object
+<span class='line'>187</span>     @default null
+<span class='line'>188</span>   */</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">  </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>190</span> 
+<span class='line'>191</span> </span><span class="WHIT">   </span><span class="COMM">/**
+<span class='line'>192</span>      Perform the current action on the current target with the given context. If no target is set,
+<span class='line'>193</span>      then the responder chain will be searched for an object that implements the action.
+<span class='line'>194</span> 
+<span class='line'>195</span>      You can pass the `context` parameter, which is useful in order to provide additional
+<span class='line'>196</span>      information to the target, such as the current state of the sender when the action was
+<span class='line'>197</span>      triggered.
+<span class='line'>198</span> 
+<span class='line'>199</span>      @param {Object} [context] additional context information to pass to the target
+<span class='line'>200</span>      @returns {Boolean} true if successful; false otherwise
+<span class='line'>201</span>   */</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">  </span><span class="COMM">// TODO: remove backwards compatibility for `action` argument</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">  </span><span class="NAME">fireAction</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">actionOrContext</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'pane'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">      </span><span class="NAME">rootResponder</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">pane.get</span><span class="PUNC">(</span><span class="STRN">'rootResponder'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">      </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'action'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">      </span><span class="NAME">context</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>208</span> 
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="COMM">// Normalize arguments.</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">    </span><span class="COMM">// TODO: Fully deprecate action argument and actionContext property.</span><span class="WHIT">
+<span class='line'>211</span> 
+<span class='line'>212</span> </span><span class="WHIT">    </span><span class="COMM">// No argument, use action (above) and actionContext properties.</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">actionOrContext</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">undefined</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">      </span><span class="NAME">context</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'actionContext'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>215</span> 
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="COMM">// String argument and no action (above) property, assume action method name. Use argument with actionContext property.</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">typeof</span><span class="WHIT"> </span><span class="NAME">actionOrContext</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">      </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">      </span><span class="COMM">// Provide some debug-only developer warning support.</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">      </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: The signature of `SC.ActionSupport.prototype.fireAction` has changed. Please set the `action` property on your view and only pass an optional context argument to `fireAction`."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">      </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">      </span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">actionOrContext</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">      </span><span class="NAME">context</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'actionContext'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>224</span> 
+<span class='line'>225</span> </span><span class="WHIT">    </span><span class="COMM">// Something else, use action property (above) and context argument.</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">      </span><span class="NAME">context</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">actionOrContext</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>229</span> 
+<span class='line'>230</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">action</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">rootResponder</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">      </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">rootResponder.sendAction</span><span class="PUNC">(</span><span class="NAME">action</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'target'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">pane</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">context</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>233</span> 
+<span class='line'>234</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>236</span> 
+<span class='line'>237</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>238</span> </span></pre></body></html>

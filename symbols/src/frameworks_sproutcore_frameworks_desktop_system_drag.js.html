@@ -115,7 +115,7 @@
 <span class='line'>108</span>     - `dataSource` --  Optional object that will provide the data for the drag to
 <span class='line'>109</span>       be consumed by the drop target.  If you do not pass this parameter or the
 <span class='line'>110</span>       data hash, then the source object will be used if it implements the
-<span class='line'>111</span>       SC.DragDataSource protocol.
+<span class='line'>111</span>       SC.DragDataSourceProtocol protocol.
 <span class='line'>112</span> 
 <span class='line'>113</span>     - `anchorView` -- if you pass this optional view, then the drag will only be
 <span class='line'>114</span>       allowed to happen within this view.  The ghostView will actually be added
@@ -301,7 +301,7 @@
 <span class='line'>294</span>     a drag dynamically.  The data source can and often is the drag source
 <span class='line'>295</span>     object itself.
 <span class='line'>296</span> 
-<span class='line'>297</span>     Data Source objects must comply with the `SC.DragDataSource` interface.  If
+<span class='line'>297</span>     Data Source objects must comply with the `SC.DragDataSourceProtocol` interface.  If
 <span class='line'>298</span>     you do not want to implement this interface, you can provide the data
 <span class='line'>299</span>     directly with the data property.
 <span class='line'>300</span> 
@@ -310,7 +310,7 @@
 <span class='line'>303</span>     these properties.
 <span class='line'>304</span> 
 <span class='line'>305</span>     @readOnly
-<span class='line'>306</span>     @type SC.DragDataSource
+<span class='line'>306</span>     @type SC.DragDataSourceProtocol
 <span class='line'>307</span>   */</span><span class="WHIT">
 <span class='line'>308</span> </span><span class="WHIT">  </span><span class="NAME">dataSource</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>309</span> 
@@ -1061,7 +1061,7 @@
 <span class='line'>1054</span>     isDropTarget property set to `YES`.  You generally will not need to call it
 <span class='line'>1055</span>     yourself.
 <span class='line'>1056</span> 
-<span class='line'>1057</span>     @param {SC.View} target a view implementing the SC.DropTarget protocol
+<span class='line'>1057</span>     @param {SC.View} target a view implementing the SC.DropTargetProtocol protocol
 <span class='line'>1058</span>   */</span><span class="WHIT">
 <span class='line'>1059</span> </span><span class="WHIT">  </span><span class="NAME">addDropTarget</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>1060</span> </span><span class="WHIT">    </span><span class="NAME">this._dropTargets</span><span class="PUNC">[</span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="NAME">target</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">target</span><span class="PUNC">;</span><span class="WHIT">

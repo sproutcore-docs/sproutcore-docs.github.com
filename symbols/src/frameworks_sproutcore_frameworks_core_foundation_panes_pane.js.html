@@ -483,176 +483,180 @@
 <span class='line'>476</span>     @returns {SC.Pane} receiver
 <span class='line'>477</span>   */</span><span class="WHIT">
 <span class='line'>478</span> </span><span class="WHIT">  </span><span class="NAME">remove</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>479</span> </span><span class="WHIT">    </span><span class="NAME">this._doDetach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>480</span> 
-<span class='line'>481</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>482</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>483</span> 
-<span class='line'>484</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>485</span>     Inserts the current pane into the page. The actual DOM insertion is done
-<span class='line'>486</span>     by a function passed into `insert`, which receives the layer as a
-<span class='line'>487</span>     parameter. This function is responsible for making sure a layer exists,
-<span class='line'>488</span>     is not already attached, and for calling `paneDidAttach` when done.
-<span class='line'>489</span> 
-<span class='line'>490</span>         pane = SC.Pane.create();
-<span class='line'>491</span>         pane.insert(function(layer) {
-<span class='line'>492</span>           jQuery(layer).insertBefore("#otherElement");
-<span class='line'>493</span>         });
-<span class='line'>494</span> 
-<span class='line'>495</span>     @param {Function} fn function which performs the actual DOM manipulation
-<span class='line'>496</span>       necessary in order to insert the pane's layer into the DOM.
-<span class='line'>497</span>     @returns {SC.Pane} receiver
-<span class='line'>498</span>    */</span><span class="WHIT">
-<span class='line'>499</span> </span><span class="WHIT">  </span><span class="NAME">insert</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>500</span> </span><span class="WHIT">    </span><span class="COMM">// Render the layer.</span><span class="WHIT">
-<span class='line'>501</span> </span><span class="WHIT">    </span><span class="NAME">this.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>502</span> 
-<span class='line'>503</span> </span><span class="WHIT">    </span><span class="COMM">// Pass the layer to the callback (TODO: why?)</span><span class="WHIT">
-<span class='line'>504</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>505</span> </span><span class="WHIT">    </span><span class="NAME">fn</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>506</span> 
-<span class='line'>507</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>508</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>509</span> 
-<span class='line'>510</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>511</span>     Inserts the pane into the DOM.
-<span class='line'>512</span> 
-<span class='line'>513</span>     @param {DOMElement|jQuery|String} elem the element to append the pane's layer to.
-<span class='line'>514</span>       This is passed to `jQuery()`, so any value supported by `jQuery()` will work.
-<span class='line'>515</span>     @returns {SC.Pane} receiver
-<span class='line'>516</span>   */</span><span class="WHIT">
-<span class='line'>517</span> </span><span class="WHIT">  </span><span class="NAME">appendTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>518</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>519</span> 
-<span class='line'>520</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insert</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>521</span> </span><span class="WHIT">      </span><span class="NAME">self._doAttach</span><span class="PUNC">(</span><span class="NAME">jQuery</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>522</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>523</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>524</span> 
-<span class='line'>525</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>526</span>     This has been deprecated and may cause issues when used.  Please use
-<span class='line'>527</span>     didAppendToDocument instead, which is not defined by SC.Pane (i.e. you
-<span class='line'>528</span>     don't need to call sc_super when implementing didAppendToDocument in direct
-<span class='line'>529</span>     subclasses of SC.Pane).
-<span class='line'>530</span> 
-<span class='line'>531</span>     @deprecated Version 1.10
-<span class='line'>532</span>   */</span><span class="WHIT">
-<span class='line'>533</span> </span><span class="WHIT">  </span><span class="NAME">paneDidAttach</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>534</span> </span><span class="WHIT">    </span><span class="COMM">// Does nothing.  Left here so that subclasses that implement the method</span><span class="WHIT">
-<span class='line'>535</span> </span><span class="WHIT">    </span><span class="COMM">// and call sc_super() won't fail.</span><span class="WHIT">
-<span class='line'>536</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>537</span> 
-<span class='line'>538</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>539</span>     This method is called after the pane is attached and before child views
-<span class='line'>540</span>     are notified that they were appended to the document. Override this
-<span class='line'>541</span>     method to recompute properties that depend on the pane's existence
-<span class='line'>542</span>     in the document but must be run prior to child view notification.
-<span class='line'>543</span>    */</span><span class="WHIT">
-<span class='line'>544</span> </span><span class="WHIT">  </span><span class="NAME">recomputeDependentProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>545</span> </span><span class="WHIT">    </span><span class="COMM">// Does nothing.  Left here so that subclasses that implement the method</span><span class="WHIT">
-<span class='line'>546</span> </span><span class="WHIT">    </span><span class="COMM">// and call sc_super() won't fail.</span><span class="WHIT">
-<span class='line'>547</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>548</span> 
-<span class='line'>549</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>550</span>     YES when the pane is currently attached to a document DOM.  Read only.
-<span class='line'>551</span> 
-<span class='line'>552</span>     @type Boolean
-<span class='line'>553</span>     @readOnly
-<span class='line'>554</span>   */</span><span class="WHIT">
-<span class='line'>555</span> </span><span class="WHIT">  </span><span class="NAME">isPaneAttached</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>556</span> 
-<span class='line'>557</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>558</span>     If YES, a touch intercept pane will be added above this pane when on
-<span class='line'>559</span>     touch platforms.
-<span class='line'>560</span>   */</span><span class="WHIT">
-<span class='line'>561</span> </span><span class="WHIT">  </span><span class="NAME">wantsTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>562</span> 
-<span class='line'>563</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>564</span>     Returns YES if wantsTouchIntercept and this is a touch platform.
-<span class='line'>565</span>   */</span><span class="WHIT">
-<span class='line'>566</span> </span><span class="WHIT">  </span><span class="NAME">hasTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>567</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>568</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>569</span> 
-<span class='line'>570</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>571</span>     The Z-Index of the pane. Currently, you have to match this in CSS.
-<span class='line'>572</span>     TODO: ALLOW THIS TO AUTOMATICALLY SET THE Z-INDEX OF THE PANE (as an option).
-<span class='line'>573</span>     ACTUAL TODO: Remove this because z-index is evil.
-<span class='line'>574</span>   */</span><span class="WHIT">
-<span class='line'>575</span> </span><span class="WHIT">  </span><span class="NAME">zIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>576</span> 
-<span class='line'>577</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>578</span>     The amount over the pane's z-index that the touch intercept should be.
-<span class='line'>579</span>   */</span><span class="WHIT">
-<span class='line'>580</span> </span><span class="WHIT">  </span><span class="NAME">touchZ</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>581</span> 
-<span class='line'>582</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>583</span> </span><span class="WHIT">  </span><span class="NAME">_addIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>584</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hasTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>585</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">div</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>586</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">divStyle</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div.style</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>587</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"absolute"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>588</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>589</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>590</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.right</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>591</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.bottom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>592</span> </span><span class="WHIT">      </span><span class="NAME">divStyle</span><span class="PUNC">[</span><span class="NAME">SC.browser.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="STRN">'transform'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translateZ(0px)"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>593</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.zIndex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"zIndex"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"touchZ"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>594</span> </span><span class="WHIT">      </span><span class="NAME">div.className</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>595</span> </span><span class="WHIT">      </span><span class="NAME">div.id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept-"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>596</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>597</span> </span><span class="WHIT">      </span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>598</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>599</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>600</span> 
-<span class='line'>601</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>602</span> </span><span class="WHIT">  </span><span class="NAME">_removeIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>603</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>604</span> </span><span class="WHIT">      </span><span class="NAME">document.body.removeChild</span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>605</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>606</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>607</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>608</span> 
-<span class='line'>609</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>610</span> </span><span class="WHIT">  </span><span class="NAME">hideTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>611</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"none"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>612</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>613</span> 
-<span class='line'>614</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>615</span> </span><span class="WHIT">  </span><span class="NAME">showTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>616</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"block"</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>617</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>618</span> 
-<span class='line'>619</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>620</span> </span><span class="WHIT">  </span><span class="COMM">// updateLayerLocation: function () {</span><span class="WHIT">
-<span class='line'>621</span> </span><span class="WHIT">  </span><span class="COMM">//   if(this.get('designer') && SC.suppressMain) return sc_super();</span><span class="WHIT">
-<span class='line'>622</span> </span><span class="WHIT">  </span><span class="COMM">//   // note: the normal code here to update node location is removed</span><span class="WHIT">
-<span class='line'>623</span> </span><span class="WHIT">  </span><span class="COMM">//   // because we don't need it for panes.</span><span class="WHIT">
-<span class='line'>624</span> </span><span class="WHIT">  </span><span class="COMM">//   return this;</span><span class="WHIT">
-<span class='line'>625</span> </span><span class="WHIT">  </span><span class="COMM">// },</span><span class="WHIT">
-<span class='line'>626</span> 
-<span class='line'>627</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>628</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>629</span> </span><span class="WHIT">    </span><span class="COMM">// Backwards compatibility</span><span class="WHIT">
-<span class='line'>630</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
-<span class='line'>631</span> </span><span class="WHIT">    </span><span class="COMM">// TODO: REMOVE THIS</span><span class="WHIT">
-<span class='line'>632</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>633</span> </span><span class="WHIT">      </span><span class="NAME">SC.error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: Do not set `hasTouchIntercept` on a pane directly. Please use `wantsTouchIntercept` instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>634</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>635</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
-<span class='line'>636</span> 
-<span class='line'>637</span> </span><span class="WHIT">    </span><span class="COMM">// if a layer was set manually then we will just attach to existing HTML.</span><span class="WHIT">
-<span class='line'>638</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">hasLayer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>639</span> 
-<span class='line'>640</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>641</span> 
-<span class='line'>642</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">hasLayer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>643</span> </span><span class="WHIT">      </span><span class="NAME">this._attached</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>644</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>645</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>646</span> 
-<span class='line'>647</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
-<span class='line'>648</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-pane'</span><span class="PUNC">]</span><span class="WHIT">
-<span class='line'>649</span> 
-<span class='line'>650</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>651</span> </span></pre></body></html>
+<span class='line'>479</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isAttached'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>480</span> </span><span class="WHIT">      </span><span class="NAME">this._doDetach</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>481</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>482</span> 
+<span class='line'>483</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>484</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>485</span> 
+<span class='line'>486</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>487</span>     Inserts the current pane into the page. The actual DOM insertion is done
+<span class='line'>488</span>     by a function passed into `insert`, which receives the layer as a
+<span class='line'>489</span>     parameter. This function is responsible for making sure a layer exists,
+<span class='line'>490</span>     is not already attached, and for calling `paneDidAttach` when done.
+<span class='line'>491</span> 
+<span class='line'>492</span>         pane = SC.Pane.create();
+<span class='line'>493</span>         pane.insert(function(layer) {
+<span class='line'>494</span>           jQuery(layer).insertBefore("#otherElement");
+<span class='line'>495</span>         });
+<span class='line'>496</span> 
+<span class='line'>497</span>     @param {Function} fn function which performs the actual DOM manipulation
+<span class='line'>498</span>       necessary in order to insert the pane's layer into the DOM.
+<span class='line'>499</span>     @returns {SC.Pane} receiver
+<span class='line'>500</span>    */</span><span class="WHIT">
+<span class='line'>501</span> </span><span class="WHIT">  </span><span class="NAME">insert</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>502</span> </span><span class="WHIT">    </span><span class="COMM">// Render the layer.</span><span class="WHIT">
+<span class='line'>503</span> </span><span class="WHIT">    </span><span class="NAME">this.createLayer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>504</span> 
+<span class='line'>505</span> </span><span class="WHIT">    </span><span class="COMM">// Pass the layer to the callback (TODO: why?)</span><span class="WHIT">
+<span class='line'>506</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">layer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>507</span> </span><span class="WHIT">    </span><span class="NAME">fn</span><span class="PUNC">(</span><span class="NAME">layer</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>508</span> 
+<span class='line'>509</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>510</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>511</span> 
+<span class='line'>512</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>513</span>     Inserts the pane into the DOM.
+<span class='line'>514</span> 
+<span class='line'>515</span>     @param {DOMElement|jQuery|String} elem the element to append the pane's layer to.
+<span class='line'>516</span>       This is passed to `jQuery()`, so any value supported by `jQuery()` will work.
+<span class='line'>517</span>     @returns {SC.Pane} receiver
+<span class='line'>518</span>   */</span><span class="WHIT">
+<span class='line'>519</span> </span><span class="WHIT">  </span><span class="NAME">appendTo</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>520</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">self</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>521</span> 
+<span class='line'>522</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insert</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>523</span> </span><span class="WHIT">      </span><span class="NAME">self._doAttach</span><span class="PUNC">(</span><span class="NAME">jQuery</span><span class="PUNC">(</span><span class="NAME">elem</span><span class="PUNC">)</span><span class="PUNC">[</span><span class="NUMB">0</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>524</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>525</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>526</span> 
+<span class='line'>527</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>528</span>     This has been deprecated and may cause issues when used.  Please use
+<span class='line'>529</span>     didAppendToDocument instead, which is not defined by SC.Pane (i.e. you
+<span class='line'>530</span>     don't need to call sc_super when implementing didAppendToDocument in direct
+<span class='line'>531</span>     subclasses of SC.Pane).
+<span class='line'>532</span> 
+<span class='line'>533</span>     @deprecated Version 1.10
+<span class='line'>534</span>   */</span><span class="WHIT">
+<span class='line'>535</span> </span><span class="WHIT">  </span><span class="NAME">paneDidAttach</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>536</span> </span><span class="WHIT">    </span><span class="COMM">// Does nothing.  Left here so that subclasses that implement the method</span><span class="WHIT">
+<span class='line'>537</span> </span><span class="WHIT">    </span><span class="COMM">// and call sc_super() won't fail.</span><span class="WHIT">
+<span class='line'>538</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>539</span> 
+<span class='line'>540</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>541</span>     This method is called after the pane is attached and before child views
+<span class='line'>542</span>     are notified that they were appended to the document. Override this
+<span class='line'>543</span>     method to recompute properties that depend on the pane's existence
+<span class='line'>544</span>     in the document but must be run prior to child view notification.
+<span class='line'>545</span>    */</span><span class="WHIT">
+<span class='line'>546</span> </span><span class="WHIT">  </span><span class="NAME">recomputeDependentProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>547</span> </span><span class="WHIT">    </span><span class="COMM">// Does nothing.  Left here so that subclasses that implement the method</span><span class="WHIT">
+<span class='line'>548</span> </span><span class="WHIT">    </span><span class="COMM">// and call sc_super() won't fail.</span><span class="WHIT">
+<span class='line'>549</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>550</span> 
+<span class='line'>551</span> </span><span class="WHIT">  </span><span class="COMM">/** @deprecated Version 1.11. Use `isAttached` instead. */</span><span class="WHIT">
+<span class='line'>552</span> </span><span class="WHIT">  </span><span class="NAME">isPaneAttached</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>553</span> 
+<span class='line'>554</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>555</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"Developer Warning: The `isPaneAttached` property of `SC.Pane` has been deprecated. Please use the `isAttached` property instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>556</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>557</span> 
+<span class='line'>558</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isAttached'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>559</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'isAttached'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>560</span> 
+<span class='line'>561</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>562</span>     If YES, a touch intercept pane will be added above this pane when on
+<span class='line'>563</span>     touch platforms.
+<span class='line'>564</span>   */</span><span class="WHIT">
+<span class='line'>565</span> </span><span class="WHIT">  </span><span class="NAME">wantsTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>566</span> 
+<span class='line'>567</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>568</span>     Returns YES if wantsTouchIntercept and this is a touch platform.
+<span class='line'>569</span>   */</span><span class="WHIT">
+<span class='line'>570</span> </span><span class="WHIT">  </span><span class="NAME">hasTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>571</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">&&</span><span class="WHIT"> </span><span class="NAME">SC.platform.touch</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>572</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'wantsTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>573</span> 
+<span class='line'>574</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>575</span>     The Z-Index of the pane. Currently, you have to match this in CSS.
+<span class='line'>576</span>     TODO: ALLOW THIS TO AUTOMATICALLY SET THE Z-INDEX OF THE PANE (as an option).
+<span class='line'>577</span>     ACTUAL TODO: Remove this because z-index is evil.
+<span class='line'>578</span>   */</span><span class="WHIT">
+<span class='line'>579</span> </span><span class="WHIT">  </span><span class="NAME">zIndex</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>580</span> 
+<span class='line'>581</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>582</span>     The amount over the pane's z-index that the touch intercept should be.
+<span class='line'>583</span>   */</span><span class="WHIT">
+<span class='line'>584</span> </span><span class="WHIT">  </span><span class="NAME">touchZ</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">99</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>585</span> 
+<span class='line'>586</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>587</span> </span><span class="WHIT">  </span><span class="NAME">_addIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>588</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'hasTouchIntercept'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>589</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">div</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">document.createElement</span><span class="PUNC">(</span><span class="STRN">"div"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>590</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">divStyle</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div.style</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>591</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.position</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"absolute"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>592</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.left</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>593</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.top</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>594</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.right</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>595</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.bottom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"0px"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>596</span> </span><span class="WHIT">      </span><span class="NAME">divStyle</span><span class="PUNC">[</span><span class="NAME">SC.browser.experimentalStyleNameFor</span><span class="PUNC">(</span><span class="STRN">'transform'</span><span class="PUNC">)</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"translateZ(0px)"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>597</span> </span><span class="WHIT">      </span><span class="NAME">divStyle.zIndex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"zIndex"</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"touchZ"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>598</span> </span><span class="WHIT">      </span><span class="NAME">div.className</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>599</span> </span><span class="WHIT">      </span><span class="NAME">div.id</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"touch-intercept-"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">SC.guidFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>600</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">div</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>601</span> </span><span class="WHIT">      </span><span class="NAME">document.body.appendChild</span><span class="PUNC">(</span><span class="NAME">div</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>602</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>603</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>604</span> 
+<span class='line'>605</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>606</span> </span><span class="WHIT">  </span><span class="NAME">_removeIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>607</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>608</span> </span><span class="WHIT">      </span><span class="NAME">document.body.removeChild</span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>609</span> </span><span class="WHIT">      </span><span class="NAME">this._touchIntercept</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>610</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>611</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>612</span> 
+<span class='line'>613</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>614</span> </span><span class="WHIT">  </span><span class="NAME">hideTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>615</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"none"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>616</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>617</span> 
+<span class='line'>618</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>619</span> </span><span class="WHIT">  </span><span class="NAME">showTouchIntercept</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>620</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._touchIntercept</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">this._touchIntercept.style.display</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"block"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>621</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>622</span> 
+<span class='line'>623</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>624</span> </span><span class="WHIT">  </span><span class="COMM">// updateLayerLocation: function () {</span><span class="WHIT">
+<span class='line'>625</span> </span><span class="WHIT">  </span><span class="COMM">//   if(this.get('designer') && SC.suppressMain) return sc_super();</span><span class="WHIT">
+<span class='line'>626</span> </span><span class="WHIT">  </span><span class="COMM">//   // note: the normal code here to update node location is removed</span><span class="WHIT">
+<span class='line'>627</span> </span><span class="WHIT">  </span><span class="COMM">//   // because we don't need it for panes.</span><span class="WHIT">
+<span class='line'>628</span> </span><span class="WHIT">  </span><span class="COMM">//   return this;</span><span class="WHIT">
+<span class='line'>629</span> </span><span class="WHIT">  </span><span class="COMM">// },</span><span class="WHIT">
+<span class='line'>630</span> 
+<span class='line'>631</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>632</span> </span><span class="WHIT">  </span><span class="NAME">init</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>633</span> </span><span class="WHIT">    </span><span class="COMM">// Backwards compatibility</span><span class="WHIT">
+<span class='line'>634</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>635</span> </span><span class="WHIT">    </span><span class="COMM">// TODO: REMOVE THIS</span><span class="WHIT">
+<span class='line'>636</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.hasTouchIntercept</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>637</span> </span><span class="WHIT">      </span><span class="NAME">SC.error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: Do not set `hasTouchIntercept` on a pane directly. Please use `wantsTouchIntercept` instead."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>638</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>639</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>640</span> 
+<span class='line'>641</span> </span><span class="WHIT">    </span><span class="COMM">// if a layer was set manually then we will just attach to existing HTML.</span><span class="WHIT">
+<span class='line'>642</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">hasLayer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">!</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'layer'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>643</span> 
+<span class='line'>644</span> </span><span class="WHIT">    </span><span class="NAME">sc_super</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>645</span> 
+<span class='line'>646</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">hasLayer</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>647</span> </span><span class="WHIT">      </span><span class="NAME">this._attached</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>648</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>649</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>650</span> 
+<span class='line'>651</span> </span><span class="WHIT">  </span><span class="COMM">/** @private */</span><span class="WHIT">
+<span class='line'>652</span> </span><span class="WHIT">  </span><span class="NAME">classNames</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'sc-pane'</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'>653</span> 
+<span class='line'>654</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>655</span> </span></pre></body></html>

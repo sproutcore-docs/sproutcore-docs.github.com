@@ -11,57 +11,62 @@
 <span class='line'>  4</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
 <span class='line'>  5</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
 <span class='line'>  6</span> 
-<span class='line'>  7</span> </span><span class="COMM">/**
-<span class='line'>  8</span>   The SC.ChildViewLayoutProtocol defines the expected and optional properties
-<span class='line'>  9</span>   and methods to implement in your own child view layout plugin.
-<span class='line'> 10</span> */</span><span class="WHIT">
-<span class='line'> 11</span> </span><span class="NAME">SC.ChildViewLayoutProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 12</span> 
-<span class='line'> 13</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 14</span>     An *optional* array of properties that should be observed on the child views in order
-<span class='line'> 15</span>     to re-lay out the child views when changes occur. For example, most child
-<span class='line'> 16</span>     view layout plugins will want to adjust the layout of the views whenever
-<span class='line'> 17</span>     any view is hidden or becomes visible. Therefore, the parent view should
-<span class='line'> 18</span>     re-run the child view layout whenever any child view's `isVisible` property
-<span class='line'> 19</span>     changes and thus, `childLayoutProperties` should include at least the
-<span class='line'> 20</span>     `isVisible` property name.
-<span class='line'> 21</span> 
-<span class='line'> 22</span>     For another example, the included stack child layout plugins both have the
-<span class='line'> 23</span>     same `childLayoutProperties` defined:
-<span class='line'> 24</span> 
-<span class='line'> 25</span>         childLayoutProperties: ['marginBefore', 'marginAfter', 'isVisible']
+<span class='line'>  7</span> </span><span class="COMM">/** @namespace
+<span class='line'>  8</span>   The `SC.ChildViewLayoutProtocol` protocol defines the properties and methods that you may
+<span class='line'>  9</span>   implement in your custom child view layout plugins. The only required method for a plugin to
+<span class='line'> 10</span>   implement is `layoutChildViews`.
+<span class='line'> 11</span> 
+<span class='line'> 12</span>   *Note: Do not mix `SC.ChildViewLayoutProtocol` into your classes. As a protocol, it exists only
+<span class='line'> 13</span>   for reference sake. You only need define any of the properties or methods listed below in order to
+<span class='line'> 14</span>   use this protocol.*
+<span class='line'> 15</span> */</span><span class="WHIT">
+<span class='line'> 16</span> </span><span class="NAME">SC.ChildViewLayoutProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 17</span> 
+<span class='line'> 18</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 19</span>     An *optional* array of properties that should be observed on the child views in order
+<span class='line'> 20</span>     to re-lay out the child views when changes occur. For example, most child
+<span class='line'> 21</span>     view layout plugins will want to adjust the layout of the views whenever
+<span class='line'> 22</span>     any view is hidden or becomes visible. Therefore, the parent view should
+<span class='line'> 23</span>     re-run the child view layout whenever any child view's `isVisible` property
+<span class='line'> 24</span>     changes and thus, `childLayoutProperties` should include at least the
+<span class='line'> 25</span>     `isVisible` property name.
 <span class='line'> 26</span> 
-<span class='line'> 27</span>     @type Array
-<span class='line'> 28</span>   */</span><span class="WHIT">
-<span class='line'> 29</span> </span><span class="WHIT">  </span><span class="NAME">childLayoutProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 30</span> 
-<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 32</span>     This *optional* method will be called when the view initializes itself. By
-<span class='line'> 33</span>     returning `true` from this call, we would be indicating that whenever the
-<span class='line'> 34</span>     view's size changes, it should re-lay out the child views.
+<span class='line'> 27</span>     For another example, the included stack child layout plugins both have the
+<span class='line'> 28</span>     same `childLayoutProperties` defined:
+<span class='line'> 29</span> 
+<span class='line'> 30</span>         childLayoutProperties: ['marginBefore', 'marginAfter', 'isVisible']
+<span class='line'> 31</span> 
+<span class='line'> 32</span>     @type Array
+<span class='line'> 33</span>   */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="NAME">childLayoutProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 35</span> 
-<span class='line'> 36</span>     For instance, if the layout of the child views depends on the parent view's
-<span class='line'> 37</span>     size, we should return `true`. If the layout of the child views is
-<span class='line'> 38</span>     independent of the parent view's size, we can return false to improve
-<span class='line'> 39</span>     performance.
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 37</span>     This *optional* method will be called when the view initializes itself. By
+<span class='line'> 38</span>     returning `true` from this call, we would be indicating that whenever the
+<span class='line'> 39</span>     view's size changes, it should re-lay out the child views.
 <span class='line'> 40</span> 
-<span class='line'> 41</span>     @param {SC.View} view The view that is using this plugin.
-<span class='line'> 42</span>     @returns {Boolean} `true` if the view's size should be observed in order to re-lay out the child views.
-<span class='line'> 43</span>   */</span><span class="WHIT">
-<span class='line'> 44</span> </span><span class="WHIT">  </span><span class="NAME">layoutDependsOnSize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 41</span>     For instance, if the layout of the child views depends on the parent view's
+<span class='line'> 42</span>     size, we should return `true`. If the layout of the child views is
+<span class='line'> 43</span>     independent of the parent view's size, we can return false to improve
+<span class='line'> 44</span>     performance.
 <span class='line'> 45</span> 
-<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 47</span>     This *required* method will be called by the view each time that it needs
-<span class='line'> 48</span>     to re-lay out its child views. The plugin should then as efficiently as
-<span class='line'> 49</span>     possible, calculate each child views' new layout and call adjust on the
-<span class='line'> 50</span>     child views.
-<span class='line'> 51</span> 
-<span class='line'> 52</span>     For code examples, see SC.View.VERTICAL_STACK and SC.View.HORIZONTAL_STACK
-<span class='line'> 53</span>     in the core foundation framework.
-<span class='line'> 54</span> 
-<span class='line'> 55</span>     @param {SC.View} view The view that is using this plugin.
-<span class='line'> 56</span>   */</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="NAME">layoutChildViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 58</span> 
-<span class='line'> 59</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 60</span> </span></pre></body></html>
+<span class='line'> 46</span>     @param {SC.View} view The view that is using this plugin.
+<span class='line'> 47</span>     @returns {Boolean} `true` if the view's size should be observed in order to re-lay out the child views.
+<span class='line'> 48</span>   */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="NAME">layoutDependsOnSize</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 50</span> 
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 52</span>     This *required* method will be called by the view each time that it needs
+<span class='line'> 53</span>     to re-lay out its child views. The plugin should then as efficiently as
+<span class='line'> 54</span>     possible, calculate each child views' new layout and call adjust on the
+<span class='line'> 55</span>     child views.
+<span class='line'> 56</span> 
+<span class='line'> 57</span>     For code examples, see SC.View.VERTICAL_STACK and SC.View.HORIZONTAL_STACK
+<span class='line'> 58</span>     in the core foundation framework.
+<span class='line'> 59</span> 
+<span class='line'> 60</span>     @param {SC.View} view The view that is using this plugin.
+<span class='line'> 61</span>   */</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="NAME">layoutChildViews</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 63</span> 
+<span class='line'> 64</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 65</span> </span></pre></body></html>

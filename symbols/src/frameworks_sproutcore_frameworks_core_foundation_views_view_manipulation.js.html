@@ -63,321 +63,310 @@
 <span class='line'> 56</span> 
 <span class='line'> 57</span> </span><span class="WHIT">    </span><span class="NAME">view.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 58</span> 
-<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="COMM">// Make sure all notifications are delayed since the appending</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">    </span><span class="COMM">// doesn't complete until the end of the RunLoop</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="COMM">// There may be better ways to do this than with invokeLast,</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="COMM">// but it's the best I can do for now - PDW</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="COMM">// this.invokeLast(function () {</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="COMM">//   var pane = view.get('pane');</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="COMM">//   if (pane && pane.get('isPaneAttached')) {</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">    </span><span class="COMM">//     view._notifyDidAppendToDocument();</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">    </span><span class="COMM">//   }</span><span class="WHIT">
-<span class='line'> 68</span> </span><span class="WHIT">    </span><span class="COMM">// });</span><span class="WHIT">
+<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 61</span> 
+<span class='line'> 62</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 63</span>     Replace the oldView with the specified view in the receivers childNodes
+<span class='line'> 64</span>     array. This will also replace the DOM node of the oldView with the DOM
+<span class='line'> 65</span>     node of the new view in the receivers DOM.
+<span class='line'> 66</span> 
+<span class='line'> 67</span>     If the specified view already belongs to another parent, it will be
+<span class='line'> 68</span>     removed from that view first.
 <span class='line'> 69</span> 
-<span class='line'> 70</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 71</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 72</span> 
-<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 74</span>     Replace the oldView with the specified view in the receivers childNodes
-<span class='line'> 75</span>     array. This will also replace the DOM node of the oldView with the DOM
-<span class='line'> 76</span>     node of the new view in the receivers DOM.
-<span class='line'> 77</span> 
-<span class='line'> 78</span>     If the specified view already belongs to another parent, it will be
-<span class='line'> 79</span>     removed from that view first.
-<span class='line'> 80</span> 
-<span class='line'> 81</span>     @param view {SC.View} the view to insert in the DOM
-<span class='line'> 82</span>     @param view {SC.View} the view to remove from the DOM.
-<span class='line'> 83</span>     @returns {SC.View} the receiver
-<span class='line'> 84</span>   */</span><span class="WHIT">
-<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">replaceChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 86</span> </span><span class="WHIT">    </span><span class="COMM">// suspend notifications</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">    </span><span class="NAME">view.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 88</span> </span><span class="WHIT">    </span><span class="NAME">oldView.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 89</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 90</span> 
-<span class='line'> 91</span> </span><span class="WHIT">    </span><span class="NAME">this.insertBefore</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">removeChild</span><span class="PUNC">(</span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 92</span> 
-<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="COMM">// resume notifications</span><span class="WHIT">
-<span class='line'> 94</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="NAME">oldView.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 96</span> </span><span class="WHIT">    </span><span class="NAME">view.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 97</span> 
-<span class='line'> 98</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>100</span> 
-<span class='line'>101</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>102</span>     Replaces the current array of child views with the new array of child
-<span class='line'>103</span>     views.
-<span class='line'>104</span> 
-<span class='line'>105</span>     This will remove *and* destroy all of the existing child views and their
-<span class='line'>106</span>     layers.
-<span class='line'>107</span> 
-<span class='line'>108</span>     Warning: The new array must be made of *child* views (i.e. created using
-<span class='line'>109</span>     this.createChildView() on the parent).
-<span class='line'>110</span> 
-<span class='line'>111</span>     @param {Array} newChildViews Child views you want to add
-<span class='line'>112</span>     @returns {SC.View} receiver
-<span class='line'>113</span>   */</span><span class="WHIT">
-<span class='line'>114</span> </span><span class="WHIT">  </span><span class="NAME">replaceAllChildren</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">newChildViews</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>115</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 70</span>     @param view {SC.View} the view to insert in the DOM
+<span class='line'> 71</span>     @param view {SC.View} the view to remove from the DOM.
+<span class='line'> 72</span>     @returns {SC.View} the receiver
+<span class='line'> 73</span>   */</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">  </span><span class="NAME">replaceChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">    </span><span class="COMM">// suspend notifications</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">    </span><span class="NAME">view.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="WHIT">    </span><span class="NAME">oldView.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> 
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="NAME">this.insertBefore</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">removeChild</span><span class="PUNC">(</span><span class="NAME">oldView</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="COMM">// resume notifications</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">    </span><span class="NAME">oldView.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">    </span><span class="NAME">view.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 89</span> 
+<span class='line'> 90</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 91</span>     Replaces the current array of child views with the new array of child
+<span class='line'> 92</span>     views.
+<span class='line'> 93</span> 
+<span class='line'> 94</span>     This will remove *and* destroy all of the existing child views and their
+<span class='line'> 95</span>     layers.
+<span class='line'> 96</span> 
+<span class='line'> 97</span>     Warning: The new array must be made of *child* views (i.e. created using
+<span class='line'> 98</span>     this.createChildView() on the parent).
+<span class='line'> 99</span> 
+<span class='line'>100</span>     @param {Array} newChildViews Child views you want to add
+<span class='line'>101</span>     @returns {SC.View} receiver
+<span class='line'>102</span>   */</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">replaceAllChildren</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">newChildViews</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">    </span><span class="NAME">this.beginPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> 
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="COMM">// If rendered, destroy our layer so we can re-render.</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">    </span><span class="COMM">// if (this.get('_isRendered')) {</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">    </span><span class="COMM">//   var layer = this.get('layer');</span><span class="WHIT">
+<span class='line'>109</span> 
+<span class='line'>110</span> </span><span class="WHIT">    </span><span class="COMM">//   // If attached, detach and track our parent node so we can re-attach.</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">    </span><span class="COMM">//   if (this.get('isAttached')) {</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">    </span><span class="COMM">//     // We don't allow for transitioning out at this time.</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">    </span><span class="COMM">//     // TODO: support transition out of child views.</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">    </span><span class="COMM">//     this._doDetach(true);</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">    </span><span class="COMM">//   }</span><span class="WHIT">
 <span class='line'>116</span> 
-<span class='line'>117</span> </span><span class="WHIT">    </span><span class="COMM">// If rendered, destroy our layer so we can re-render.</span><span class="WHIT">
-<span class='line'>118</span> </span><span class="WHIT">    </span><span class="COMM">// if (this.get('_isRendered')) {</span><span class="WHIT">
-<span class='line'>119</span> </span><span class="WHIT">    </span><span class="COMM">//   var layer = this.get('layer');</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="WHIT">    </span><span class="COMM">//   // Destroy our layer in one move.</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">    </span><span class="COMM">//   this.destroyLayer();</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">    </span><span class="COMM">// }</span><span class="WHIT">
 <span class='line'>120</span> 
-<span class='line'>121</span> </span><span class="WHIT">    </span><span class="COMM">//   // If attached, detach and track our parent node so we can re-attach.</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">    </span><span class="COMM">//   if (this.get('isAttached')) {</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="WHIT">    </span><span class="COMM">//     // We don't allow for transitioning out at this time.</span><span class="WHIT">
-<span class='line'>124</span> </span><span class="WHIT">    </span><span class="COMM">//     // TODO: support transition out of child views.</span><span class="WHIT">
-<span class='line'>125</span> </span><span class="WHIT">    </span><span class="COMM">//     this._doDetach(true);</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">    </span><span class="COMM">//   }</span><span class="WHIT">
-<span class='line'>127</span> 
-<span class='line'>128</span> </span><span class="WHIT">    </span><span class="COMM">//   // Destroy our layer in one move.</span><span class="WHIT">
-<span class='line'>129</span> </span><span class="WHIT">    </span><span class="COMM">//   this.destroyLayer();</span><span class="WHIT">
-<span class='line'>130</span> </span><span class="WHIT">    </span><span class="COMM">// }</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="COMM">// Remove the current child views.</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">    </span><span class="COMM">// We aren't rendered at this point so it bypasses the optimization in</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">    </span><span class="COMM">// removeAllChildren that would recreate the layer.  We would rather add the</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="WHIT">    </span><span class="COMM">// new childViews before recreating the layer.</span><span class="WHIT">
+<span class='line'>125</span> </span><span class="WHIT">    </span><span class="NAME">this.removeAllChildren</span><span class="PUNC">(</span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>126</span> 
+<span class='line'>127</span> </span><span class="WHIT">    </span><span class="COMM">// Add the new children.</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">newChildViews.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">      </span><span class="NAME">this.appendChild</span><span class="PUNC">(</span><span class="NAME">newChildViews.objectAt</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>130</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>131</span> 
-<span class='line'>132</span> </span><span class="WHIT">    </span><span class="COMM">// Remove the current child views.</span><span class="WHIT">
-<span class='line'>133</span> </span><span class="WHIT">    </span><span class="COMM">// We aren't rendered at this point so it bypasses the optimization in</span><span class="WHIT">
-<span class='line'>134</span> </span><span class="WHIT">    </span><span class="COMM">// removeAllChildren that would recreate the layer.  We would rather add the</span><span class="WHIT">
-<span class='line'>135</span> </span><span class="WHIT">    </span><span class="COMM">// new childViews before recreating the layer.</span><span class="WHIT">
-<span class='line'>136</span> </span><span class="WHIT">    </span><span class="NAME">this.removeAllChildren</span><span class="PUNC">(</span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>137</span> 
-<span class='line'>138</span> </span><span class="WHIT">    </span><span class="COMM">// Add the new children.</span><span class="WHIT">
-<span class='line'>139</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">newChildViews.get</span><span class="PUNC">(</span><span class="STRN">'length'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>140</span> </span><span class="WHIT">      </span><span class="NAME">this.appendChild</span><span class="PUNC">(</span><span class="NAME">newChildViews.objectAt</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>141</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>142</span> 
-<span class='line'>143</span> </span><span class="WHIT">    </span><span class="COMM">// We were rendered previously.</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">    </span><span class="COMM">// if (layer) {</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">    </span><span class="COMM">//   // Recreate our layer (now empty).</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">    </span><span class="COMM">//   this.createLayer();</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">    </span><span class="COMM">// }</span><span class="WHIT">
-<span class='line'>148</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>149</span> 
-<span class='line'>150</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="WHIT">    </span><span class="COMM">// We were rendered previously.</span><span class="WHIT">
+<span class='line'>133</span> </span><span class="WHIT">    </span><span class="COMM">// if (layer) {</span><span class="WHIT">
+<span class='line'>134</span> </span><span class="WHIT">    </span><span class="COMM">//   // Recreate our layer (now empty).</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="WHIT">    </span><span class="COMM">//   this.createLayer();</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="WHIT">    </span><span class="COMM">// }</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">    </span><span class="NAME">this.endPropertyChanges</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>141</span> 
+<span class='line'>142</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>143</span>     Appends the specified view to the end of the receivers childViews array.
+<span class='line'>144</span>     This is equivalent to calling insertBefore(view, null);
+<span class='line'>145</span> 
+<span class='line'>146</span>     @param view {SC.View} the view to insert
+<span class='line'>147</span>     @returns {SC.View} the receiver
+<span class='line'>148</span>   */</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="NAME">appendChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insertBefore</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>151</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>152</span> 
-<span class='line'>153</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>154</span>     Appends the specified view to the end of the receivers childViews array.
-<span class='line'>155</span>     This is equivalent to calling insertBefore(view, null);
+<span class='line'>153</span> </span><span class="WHIT">  </span><span class="COMM">// ------------------------------------------------------------------------</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">  </span><span class="COMM">// BUILDING IN/OUT</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
 <span class='line'>156</span> 
-<span class='line'>157</span>     @param view {SC.View} the view to insert
-<span class='line'>158</span>     @returns {SC.View} the receiver
-<span class='line'>159</span>   */</span><span class="WHIT">
-<span class='line'>160</span> </span><span class="WHIT">  </span><span class="NAME">appendChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>161</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.insertBefore</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>162</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>163</span> 
-<span class='line'>164</span> </span><span class="WHIT">  </span><span class="COMM">// ------------------------------------------------------------------------</span><span class="WHIT">
-<span class='line'>165</span> </span><span class="WHIT">  </span><span class="COMM">// BUILDING IN/OUT</span><span class="WHIT">
-<span class='line'>166</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
-<span class='line'>167</span> 
-<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>169</span>     Call this to append a child while building it in. If the child is not
-<span class='line'>170</span>     buildable, this is the same as calling appendChild.
-<span class='line'>171</span> 
-<span class='line'>172</span>     @deprecated Version 1.10
-<span class='line'>173</span>   */</span><span class="WHIT">
-<span class='line'>174</span> </span><span class="WHIT">  </span><span class="NAME">buildInChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>175</span> </span><span class="WHIT">    </span><span class="NAME">view.willBuildInToView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>176</span> </span><span class="WHIT">    </span><span class="NAME">this.appendChild</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>177</span> </span><span class="WHIT">    </span><span class="NAME">view.buildInToView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>178</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>179</span> 
-<span class='line'>180</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>181</span>     Call to remove a child after building it out. If the child is not buildable,
-<span class='line'>182</span>     this will simply call removeChild.
-<span class='line'>183</span> 
-<span class='line'>184</span>     @deprecated Version 1.10
-<span class='line'>185</span>   */</span><span class="WHIT">
-<span class='line'>186</span> </span><span class="WHIT">  </span><span class="NAME">buildOutChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>187</span> </span><span class="WHIT">    </span><span class="NAME">view.buildOutFromView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>188</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>189</span> 
-<span class='line'>190</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>191</span>     Called by child view when build in finishes. By default, does nothing.
-<span class='line'>192</span> 
-<span class='line'>193</span>     @deprecated Version 1.10
-<span class='line'>194</span>   */</span><span class="WHIT">
-<span class='line'>195</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidFinishFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>196</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>158</span>     Call this to append a child while building it in. If the child is not
+<span class='line'>159</span>     buildable, this is the same as calling appendChild.
+<span class='line'>160</span> 
+<span class='line'>161</span>     @deprecated Version 1.10
+<span class='line'>162</span>   */</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">  </span><span class="NAME">buildInChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">    </span><span class="NAME">view.willBuildInToView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">    </span><span class="NAME">this.appendChild</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">    </span><span class="NAME">view.buildInToView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>168</span> 
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>170</span>     Call to remove a child after building it out. If the child is not buildable,
+<span class='line'>171</span>     this will simply call removeChild.
+<span class='line'>172</span> 
+<span class='line'>173</span>     @deprecated Version 1.10
+<span class='line'>174</span>   */</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">  </span><span class="NAME">buildOutChild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>176</span> </span><span class="WHIT">    </span><span class="NAME">view.buildOutFromView</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>178</span> 
+<span class='line'>179</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>180</span>     Called by child view when build in finishes. By default, does nothing.
+<span class='line'>181</span> 
+<span class='line'>182</span>     @deprecated Version 1.10
+<span class='line'>183</span>   */</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidFinishFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>185</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>186</span> 
+<span class='line'>187</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>188</span>     @private
+<span class='line'>189</span>     Called by child view when build out finishes. By default removes the child view.
+<span class='line'>190</span>   */</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidFinishFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>192</span> </span><span class="WHIT">    </span><span class="NAME">this.removeChild</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>194</span> 
+<span class='line'>195</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>196</span>     Whether the view is currently building in.
 <span class='line'>197</span> 
-<span class='line'>198</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>199</span>     @private
-<span class='line'>200</span>     Called by child view when build out finishes. By default removes the child view.
-<span class='line'>201</span>   */</span><span class="WHIT">
-<span class='line'>202</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidFinishFor</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>203</span> </span><span class="WHIT">    </span><span class="NAME">this.removeChild</span><span class="PUNC">(</span><span class="NAME">child</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>204</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>205</span> 
-<span class='line'>206</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>207</span>     Whether the view is currently building in.
+<span class='line'>198</span>     @deprecated Version 1.10
+<span class='line'>199</span>   */</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">  </span><span class="NAME">isBuildingIn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>201</span> 
+<span class='line'>202</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>203</span>     Whether the view is currently building out.
+<span class='line'>204</span> 
+<span class='line'>205</span>     @deprecated Version 1.10
+<span class='line'>206</span>   */</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">  </span><span class="NAME">isBuildingOut</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>208</span> 
-<span class='line'>209</span>     @deprecated Version 1.10
-<span class='line'>210</span>   */</span><span class="WHIT">
-<span class='line'>211</span> </span><span class="WHIT">  </span><span class="NAME">isBuildingIn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>212</span> 
-<span class='line'>213</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>214</span>     Whether the view is currently building out.
-<span class='line'>215</span> 
-<span class='line'>216</span>     @deprecated Version 1.10
-<span class='line'>217</span>   */</span><span class="WHIT">
-<span class='line'>218</span> </span><span class="WHIT">  </span><span class="NAME">isBuildingOut</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>219</span> 
-<span class='line'>220</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>221</span>     Implement this, and call didFinishBuildIn when you are done.
-<span class='line'>222</span> 
-<span class='line'>223</span>     @deprecated Version 1.10
-<span class='line'>224</span>   */</span><span class="WHIT">
-<span class='line'>225</span> </span><span class="WHIT">  </span><span class="NAME">buildIn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>226</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
-<span class='line'>227</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"The SC.View build methods have been deprecated in favor of the transition plugins.  To build in a view, please provide a transitionIn plugin (many are pre-built in SproutCore) and to build out a view, please provide a transitionOut plugin."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>228</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
-<span class='line'>229</span> </span><span class="WHIT">    </span><span class="NAME">this.buildInDidFinish</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>230</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>231</span> 
-<span class='line'>232</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>233</span>     Implement this, and call didFinishBuildOut when you are done.
-<span class='line'>234</span> 
-<span class='line'>235</span>     @deprecated Version 1.10
-<span class='line'>236</span>   */</span><span class="WHIT">
-<span class='line'>237</span> </span><span class="WHIT">  </span><span class="NAME">buildOut</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>238</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
-<span class='line'>239</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"The SC.View build methods have been deprecated in favor of the transition plugins.  To build in a view, please provide a transitionIn plugin (many are pre-built in SproutCore) and to build out a view, please provide a transitionOut plugin."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>240</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
-<span class='line'>241</span> </span><span class="WHIT">    </span><span class="NAME">this.buildOutDidFinish</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>242</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>243</span> 
-<span class='line'>244</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>245</span>     This should reset (without animation) any internal states; sometimes called before.
-<span class='line'>246</span> 
-<span class='line'>247</span>     It is usually called before a build in, by the parent view.
-<span class='line'>248</span>     @deprecated Version 1.10
-<span class='line'>249</span>   */</span><span class="WHIT">
-<span class='line'>250</span> </span><span class="WHIT">  </span><span class="NAME">resetBuild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>251</span> 
-<span class='line'>252</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>210</span>     Implement this, and call didFinishBuildIn when you are done.
+<span class='line'>211</span> 
+<span class='line'>212</span>     @deprecated Version 1.10
+<span class='line'>213</span>   */</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">  </span><span class="NAME">buildIn</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"The SC.View build methods have been deprecated in favor of the transition plugins.  To build in a view, please provide a transitionIn plugin (many are pre-built in SproutCore) and to build out a view, please provide a transitionOut plugin."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>218</span> </span><span class="WHIT">    </span><span class="NAME">this.buildInDidFinish</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>220</span> 
+<span class='line'>221</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>222</span>     Implement this, and call didFinishBuildOut when you are done.
+<span class='line'>223</span> 
+<span class='line'>224</span>     @deprecated Version 1.10
+<span class='line'>225</span>   */</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">  </span><span class="NAME">buildOut</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">    </span><span class="NAME">SC.warn</span><span class="PUNC">(</span><span class="STRN">"The SC.View build methods have been deprecated in favor of the transition plugins.  To build in a view, please provide a transitionIn plugin (many are pre-built in SproutCore) and to build out a view, please provide a transitionOut plugin."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">    </span><span class="NAME">this.buildOutDidFinish</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>232</span> 
+<span class='line'>233</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>234</span>     This should reset (without animation) any internal states; sometimes called before.
+<span class='line'>235</span> 
+<span class='line'>236</span>     It is usually called before a build in, by the parent view.
+<span class='line'>237</span>     @deprecated Version 1.10
+<span class='line'>238</span>   */</span><span class="WHIT">
+<span class='line'>239</span> </span><span class="WHIT">  </span><span class="NAME">resetBuild</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>240</span> 
+<span class='line'>241</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>242</span> 
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>244</span>     Implement this if you need to do anything special when cancelling build out;
+<span class='line'>245</span>     note that buildIn will subsequently be called, so you usually won't need to do
+<span class='line'>246</span>     anything.
+<span class='line'>247</span> 
+<span class='line'>248</span>     This is basically called whenever build in happens.
+<span class='line'>249</span> 
+<span class='line'>250</span>     @deprecated Version 1.10
+<span class='line'>251</span>   */</span><span class="WHIT">
+<span class='line'>252</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidCancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>253</span> 
-<span class='line'>254</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>255</span>     Implement this if you need to do anything special when cancelling build out;
-<span class='line'>256</span>     note that buildIn will subsequently be called, so you usually won't need to do
-<span class='line'>257</span>     anything.
-<span class='line'>258</span> 
-<span class='line'>259</span>     This is basically called whenever build in happens.
-<span class='line'>260</span> 
-<span class='line'>261</span>     @deprecated Version 1.10
-<span class='line'>262</span>   */</span><span class="WHIT">
-<span class='line'>263</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidCancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>264</span> 
-<span class='line'>265</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>266</span> 
-<span class='line'>267</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>268</span>     Implement this if you need to do anything special when cancelling build in.
-<span class='line'>269</span>     You probably won't be able to do anything. I mean, what are you gonna do?
-<span class='line'>270</span> 
-<span class='line'>271</span>     If build in was cancelled, it means build out is probably happening.
-<span class='line'>272</span>     So, any timers or anything you had going, you can cancel.
-<span class='line'>273</span>     Then buildOut will happen.
-<span class='line'>274</span> 
-<span class='line'>275</span>     @deprecated Version 1.10
-<span class='line'>276</span>   */</span><span class="WHIT">
-<span class='line'>277</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidCancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>278</span> 
+<span class='line'>254</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>255</span> 
+<span class='line'>256</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>257</span>     Implement this if you need to do anything special when cancelling build in.
+<span class='line'>258</span>     You probably won't be able to do anything. I mean, what are you gonna do?
+<span class='line'>259</span> 
+<span class='line'>260</span>     If build in was cancelled, it means build out is probably happening.
+<span class='line'>261</span>     So, any timers or anything you had going, you can cancel.
+<span class='line'>262</span>     Then buildOut will happen.
+<span class='line'>263</span> 
+<span class='line'>264</span>     @deprecated Version 1.10
+<span class='line'>265</span>   */</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidCancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>267</span> 
+<span class='line'>268</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>269</span> 
+<span class='line'>270</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>271</span>     Call this when you have built in.
+<span class='line'>272</span> 
+<span class='line'>273</span>     @deprecated Version 1.10
+<span class='line'>274</span>   */</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidFinish</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo.buildInDidFinishFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>278</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>279</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>280</span> 
 <span class='line'>281</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>282</span>     Call this when you have built in.
+<span class='line'>282</span>     Call this when you have finished building out.
 <span class='line'>283</span> 
 <span class='line'>284</span>     @deprecated Version 1.10
 <span class='line'>285</span>   */</span><span class="WHIT">
-<span class='line'>286</span> </span><span class="WHIT">  </span><span class="NAME">buildInDidFinish</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>287</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>288</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo.buildInDidFinishFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>289</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>286</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidFinish</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>287</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom.buildOutDidFinishFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>290</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>291</span> 
 <span class='line'>292</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>293</span>     Call this when you have finished building out.
+<span class='line'>293</span>     Usually called by parentViewDidChange, this resets the build state (calling resetBuild in the process).
 <span class='line'>294</span> 
 <span class='line'>295</span>     @deprecated Version 1.10
 <span class='line'>296</span>   */</span><span class="WHIT">
-<span class='line'>297</span> </span><span class="WHIT">  </span><span class="NAME">buildOutDidFinish</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>298</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>299</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom.buildOutDidFinishFor</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>300</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>301</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>302</span> 
-<span class='line'>303</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>304</span>     Usually called by parentViewDidChange, this resets the build state (calling resetBuild in the process).
-<span class='line'>305</span> 
-<span class='line'>306</span>     @deprecated Version 1.10
-<span class='line'>307</span>   */</span><span class="WHIT">
-<span class='line'>308</span> </span><span class="WHIT">  </span><span class="NAME">resetBuildState</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>309</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>310</span> </span><span class="WHIT">      </span><span class="NAME">this.buildInDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>311</span> </span><span class="WHIT">      </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>312</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>313</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>314</span> </span><span class="WHIT">      </span><span class="NAME">this.buildOutDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>315</span> </span><span class="WHIT">      </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>316</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>317</span> 
-<span class='line'>318</span> </span><span class="WHIT">    </span><span class="COMM">// finish cleaning up</span><span class="WHIT">
-<span class='line'>319</span> </span><span class="WHIT">    </span><span class="NAME">this.buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>320</span> </span><span class="WHIT">    </span><span class="NAME">this.buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>321</span> 
-<span class='line'>322</span> </span><span class="WHIT">    </span><span class="NAME">this.resetBuild</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>323</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>324</span> 
-<span class='line'>325</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>326</span>     @private (semi)
-<span class='line'>327</span>     Called by building parent view's buildInChild method. This prepares
-<span class='line'>328</span>     to build in, but unlike buildInToView, this is called _before_ the child
-<span class='line'>329</span>     is appended.
-<span class='line'>330</span> 
-<span class='line'>331</span>     Mostly, this cancels any build out _before_ the view is removed through parent change.
+<span class='line'>297</span> </span><span class="WHIT">  </span><span class="NAME">resetBuildState</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>298</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>299</span> </span><span class="WHIT">      </span><span class="NAME">this.buildInDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>300</span> </span><span class="WHIT">      </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">      </span><span class="NAME">this.buildOutDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>304</span> </span><span class="WHIT">      </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>305</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>306</span> 
+<span class='line'>307</span> </span><span class="WHIT">    </span><span class="COMM">// finish cleaning up</span><span class="WHIT">
+<span class='line'>308</span> </span><span class="WHIT">    </span><span class="NAME">this.buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>309</span> </span><span class="WHIT">    </span><span class="NAME">this.buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>310</span> 
+<span class='line'>311</span> </span><span class="WHIT">    </span><span class="NAME">this.resetBuild</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>312</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>313</span> 
+<span class='line'>314</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>315</span>     @private (semi)
+<span class='line'>316</span>     Called by building parent view's buildInChild method. This prepares
+<span class='line'>317</span>     to build in, but unlike buildInToView, this is called _before_ the child
+<span class='line'>318</span>     is appended.
+<span class='line'>319</span> 
+<span class='line'>320</span>     Mostly, this cancels any build out _before_ the view is removed through parent change.
+<span class='line'>321</span>   */</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">  </span><span class="NAME">willBuildInToView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>323</span> </span><span class="WHIT">    </span><span class="COMM">// stop any current build outs (and if we need to, we also need to build in again)</span><span class="WHIT">
+<span class='line'>324</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>325</span> </span><span class="WHIT">      </span><span class="NAME">this.buildOutDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>326</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>327</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>328</span> 
+<span class='line'>329</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>330</span>     @private (semi)
+<span class='line'>331</span>     Called by building parent view's buildInChild method.
 <span class='line'>332</span>   */</span><span class="WHIT">
-<span class='line'>333</span> </span><span class="WHIT">  </span><span class="NAME">willBuildInToView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>334</span> </span><span class="WHIT">    </span><span class="COMM">// stop any current build outs (and if we need to, we also need to build in again)</span><span class="WHIT">
-<span class='line'>335</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>336</span> </span><span class="WHIT">      </span><span class="NAME">this.buildOutDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>337</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>338</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>339</span> 
-<span class='line'>340</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>341</span>     @private (semi)
-<span class='line'>342</span>     Called by building parent view's buildInChild method.
-<span class='line'>343</span>   */</span><span class="WHIT">
-<span class='line'>344</span> </span><span class="WHIT">  </span><span class="NAME">buildInToView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>345</span> </span><span class="WHIT">    </span><span class="COMM">// if we are already building in, do nothing.</span><span class="WHIT">
-<span class='line'>346</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>347</span> 
-<span class='line'>348</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>349</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>350</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>351</span> </span><span class="WHIT">    </span><span class="NAME">this.buildIn</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>352</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>353</span> 
-<span class='line'>354</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>355</span>     @private (semi)
-<span class='line'>356</span>     Called by building parent view's buildOutChild method.
+<span class='line'>333</span> </span><span class="WHIT">  </span><span class="NAME">buildInToView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>334</span> </span><span class="WHIT">    </span><span class="COMM">// if we are already building in, do nothing.</span><span class="WHIT">
+<span class='line'>335</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>336</span> 
+<span class='line'>337</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingInTo</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">    </span><span class="NAME">this.buildIn</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>342</span> 
+<span class='line'>343</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>344</span>     @private (semi)
+<span class='line'>345</span>     Called by building parent view's buildOutChild method.
+<span class='line'>346</span> 
+<span class='line'>347</span>     The supplied view should always be the parent view.
+<span class='line'>348</span>   */</span><span class="WHIT">
+<span class='line'>349</span> </span><span class="WHIT">  </span><span class="NAME">buildOutFromView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">    </span><span class="COMM">// if we are already building out, do nothing.</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>352</span> 
+<span class='line'>353</span> </span><span class="WHIT">    </span><span class="COMM">// cancel any build ins</span><span class="WHIT">
+<span class='line'>354</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>355</span> </span><span class="WHIT">      </span><span class="NAME">this.buildInDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>357</span> 
-<span class='line'>358</span>     The supplied view should always be the parent view.
-<span class='line'>359</span>   */</span><span class="WHIT">
-<span class='line'>360</span> </span><span class="WHIT">  </span><span class="NAME">buildOutFromView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>361</span> </span><span class="WHIT">    </span><span class="COMM">// if we are already building out, do nothing.</span><span class="WHIT">
-<span class='line'>362</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingOut</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>363</span> 
-<span class='line'>364</span> </span><span class="WHIT">    </span><span class="COMM">// cancel any build ins</span><span class="WHIT">
-<span class='line'>365</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this.isBuildingIn</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>366</span> </span><span class="WHIT">      </span><span class="NAME">this.buildInDidCancel</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>367</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>368</span> 
-<span class='line'>369</span> </span><span class="WHIT">    </span><span class="COMM">// in any case, we need to build out</span><span class="WHIT">
-<span class='line'>370</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>371</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>372</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>373</span> </span><span class="WHIT">    </span><span class="NAME">this.buildOut</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>374</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>375</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>376</span> </span></pre></body></html>
+<span class='line'>358</span> </span><span class="WHIT">    </span><span class="COMM">// in any case, we need to build out</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingOut</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>360</span> </span><span class="WHIT">    </span><span class="NAME">this.isBuildingIn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>361</span> </span><span class="WHIT">    </span><span class="NAME">this._buildingOutFrom</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">view</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">    </span><span class="NAME">this.buildOut</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>363</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>364</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>365</span> </span></pre></body></html>

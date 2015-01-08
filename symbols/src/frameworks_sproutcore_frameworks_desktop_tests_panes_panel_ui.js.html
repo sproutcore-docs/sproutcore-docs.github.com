@@ -123,28 +123,44 @@
 <span class='line'>116</span> </span><span class="WHIT">  </span><span class="NAME">SC.run</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>117</span> </span><span class="WHIT">    </span><span class="NAME">pane.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>118</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>119</span> 
-<span class='line'>120</span> </span><span class="WHIT">  </span><span class="COMM">// Tests an edge case where isModal turns YES during a transition out.</span><span class="WHIT">
-<span class='line'>121</span> </span><span class="WHIT">  </span><span class="NAME">pane</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.PanelPane.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">    </span><span class="NAME">contentView</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.View</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="WHIT">    </span><span class="NAME">modalPane</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.ModalPane.create</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>124</span> </span><span class="WHIT">    </span><span class="NAME">isModal</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">NO</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>125</span> </span><span class="WHIT">    </span><span class="NAME">transitionOut</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.View.FADE_OUT</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">    </span><span class="NAME">transitionOutOptions</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="NAME">duration</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0.1</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>127</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>128</span> 
-<span class='line'>129</span> </span><span class="WHIT">  </span><span class="NAME">SC.run</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>130</span> </span><span class="WHIT">    </span><span class="NAME">pane.append</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>131</span> 
-<span class='line'>132</span> </span><span class="WHIT">    </span><span class="NAME">pane.remove</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// trigger transition and then willRemoveFromDocument</span><span class="WHIT">
-<span class='line'>133</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>134</span> </span><span class="WHIT">  </span><span class="NAME">pane.set</span><span class="PUNC">(</span><span class="STRN">'isModal'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">YES</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>135</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">pane.getPath</span><span class="PUNC">(</span><span class="STRN">'modalPane.viewState'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.CoreView.UNRENDERED</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Panel pane does not add modal pane when isModal becomes YES while transitioning out"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>136</span> 
-<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">SC.run</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>138</span> </span><span class="WHIT">    </span><span class="NAME">pane.destroy</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>139</span> 
-<span class='line'>140</span> </span><span class="WHIT">    </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">pane.get</span><span class="PUNC">(</span><span class="STRN">'viewState'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.CoreView.UNRENDERED</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>141</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>142</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>143</span> </span></pre></body></html>
+<span class='line'>119</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> 
+<span class='line'>121</span> </span><span class="NAME">test</span><span class="PUNC">(</span><span class="STRN">"Should changing isModal when a pane is transitioning out not append the modal pane?"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="COMM">/*
+<span class='line'>123</span>   Previously, if the panel pane was not shown it would simply not append the modal pane to it. Which
+<span class='line'>124</span>   causes issues, because what if a pane is hidden and then isModal changes to true? When the view
+<span class='line'>125</span>   becomes visible, isModal will still be true, but there won't be a modal view. This would need to
+<span class='line'>126</span>   be more minutely handled in the pane (i.e. each time it re-shows it has to check if isModal is
+<span class='line'>127</span>   true and if it does have a modal pane or not) or more minutely handled by the developer (i.e. when
+<span class='line'>128</span>   they are transitioning views out they should take care not to change isModal until the view is
+<span class='line'>129</span>   done transitioning). We should probably do the former, but it opens a bigger question, how should
+<span class='line'>130</span>   all views respond when they are modified in transitioning out states?
+<span class='line'>131</span> */</span><span class="WHIT">
+<span class='line'>132</span> </span><span class="COMM">// , function () {</span><span class="WHIT">
+<span class='line'>133</span> 
+<span class='line'>134</span> </span><span class="COMM">//   // Tests an edge case where isModal turns YES during a transition out.</span><span class="WHIT">
+<span class='line'>135</span> </span><span class="COMM">//   pane = SC.PanelPane.create({</span><span class="WHIT">
+<span class='line'>136</span> </span><span class="COMM">//     contentView: SC.View,</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="COMM">//     modalPane: SC.ModalPane.create(),</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="COMM">//     isModal: NO,</span><span class="WHIT">
+<span class='line'>139</span> </span><span class="COMM">//     transitionOut: SC.View.FADE_OUT,</span><span class="WHIT">
+<span class='line'>140</span> </span><span class="COMM">//     transitionOutOptions: { duration: 0.1 }</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="COMM">//   });</span><span class="WHIT">
+<span class='line'>142</span> 
+<span class='line'>143</span> </span><span class="COMM">//   SC.run(function () {</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="COMM">//     pane.append();</span><span class="WHIT">
+<span class='line'>145</span> 
+<span class='line'>146</span> </span><span class="COMM">//     pane.remove(); // trigger transition and then willRemoveFromDocument</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="COMM">//   });</span><span class="WHIT">
+<span class='line'>148</span> 
+<span class='line'>149</span> </span><span class="COMM">//   pane.set('isModal', YES);</span><span class="WHIT">
+<span class='line'>150</span> 
+<span class='line'>151</span> </span><span class="COMM">//   equals(pane.getPath('modalPane.viewState'), SC.CoreView.UNRENDERED, "Panel pane does not add modal pane when isModal becomes YES while transitioning out");</span><span class="WHIT">
+<span class='line'>152</span> 
+<span class='line'>153</span> </span><span class="COMM">//   SC.run(function () {</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="COMM">//     pane.destroy();</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="COMM">//     equals(pane.get('viewState'), SC.CoreView.UNRENDERED);</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="COMM">//   });</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="COMM">// });</span><span class="WHIT">
+<span class='line'>159</span> </span></pre></body></html>

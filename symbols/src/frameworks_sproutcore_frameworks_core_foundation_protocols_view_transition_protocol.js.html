@@ -13,61 +13,66 @@
 <span class='line'>  6</span> 
 <span class='line'>  7</span> 
 <span class='line'>  8</span> </span><span class="COMM">/** @namespace
-<span class='line'>  9</span>   This protocol defines the allowable transition plugin methods.
-<span class='line'> 10</span> 
-<span class='line'> 11</span>   SC.View uses transition plugins to setup, execute and cleanup the
-<span class='line'> 12</span>   swapping between views and expects the given transition plugin object
-<span class='line'> 13</span>   to implement the methods in this protocol.
-<span class='line'> 14</span> */</span><span class="WHIT">
-<span class='line'> 15</span> </span><span class="NAME">SC.ViewTransitionProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 16</span> 
-<span class='line'> 17</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 18</span>     This optional method is called to set up the entrance transition (i.e.
-<span class='line'> 19</span>     transitionIn or transitionShow).
-<span class='line'> 20</span> 
-<span class='line'> 21</span>     Use this method to adjust the layout of the view so that it may be properly
-<span class='line'> 22</span>     animated.  For example, you may need to adjust the content from a flexible
-<span class='line'> 23</span>     layout (i.e. { left: 0, top: 0, right: 0, bottom: 0 }) to a fixed layout
-<span class='line'> 24</span>     (i.e. { left: 0, top: 0, width: 100, height: 200 }) so that it can be
-<span class='line'> 25</span>     moved.
-<span class='line'> 26</span> 
-<span class='line'> 27</span>     @param {SC.View} view The view being transitioned.
-<span class='line'> 28</span>     @param {Object} options Options to modify the transition.  As set by transitionShowOptions or transitionInOptions.
-<span class='line'> 29</span>     @param {Boolean} inPlace Whether the transition should start with the current layout of the view, because a previous transition was cancelled in place.
-<span class='line'> 30</span>   */</span><span class="WHIT">
-<span class='line'> 31</span> </span><span class="WHIT">  </span><span class="NAME">setup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inPlace</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 32</span> 
-<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 34</span>     This method is called to transition the view in or visible (i.e.
-<span class='line'> 35</span>     transitionIn or transitionShow).
-<span class='line'> 36</span> 
-<span class='line'> 37</span>     When the transition completes, this function *must* call `didTransitionIn()`
-<span class='line'> 38</span>     on the view, passing this object and the original options as
-<span class='line'> 39</span>     arguments.
-<span class='line'> 40</span> 
-<span class='line'> 41</span>     @param {SC.View} view The view being transitioned.
-<span class='line'> 42</span>     @param {Object} options Options to modify the transition.  As set by transitionShowOptions or transitionInOptions.
-<span class='line'> 43</span>     @param {Object} finalLayout The final layout of the view, which may be different than the starting layout of the view if a previous transition was cancelled in place.
-<span class='line'> 44</span>     @param {Object} finalFrame The final frame of the view, which may be different than the starting frame of the view if a previous transition was cancelled in place.
-<span class='line'> 45</span>   */</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="NAME">run</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">finalLayout</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">finalFrame</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 47</span> 
-<span class='line'> 48</span> 
-<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 50</span>     This optional property exposes a list of layout properties involved in the
-<span class='line'> 51</span>     transition. This allows the view to more intelligently reset its layout when
-<span class='line'> 52</span>     the transition is complete.
+<span class='line'>  9</span>   The `SC.ViewTransitionProtocol` protocol defines the properties and methods that you may
+<span class='line'> 10</span>   implement in your custom transition plugins. The only required method for a plugin to
+<span class='line'> 11</span>   implement is `run`.
+<span class='line'> 12</span> 
+<span class='line'> 13</span>   SC.View uses transition plugins to setup, execute and cleanup the swapping between views and
+<span class='line'> 14</span>   expects the given transition plugin object to implement this protocol.
+<span class='line'> 15</span> 
+<span class='line'> 16</span>   *Note: Do not mix `SC.ViewTransitionProtocol` into your classes. As a protocol, it exists only
+<span class='line'> 17</span>   for reference sake. You only need define any of the properties or methods listed below in order to
+<span class='line'> 18</span>   use this protocol.*
+<span class='line'> 19</span> */</span><span class="WHIT">
+<span class='line'> 20</span> </span><span class="NAME">SC.ViewTransitionProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 21</span> 
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 23</span>     This optional method is called to set up the entrance transition (i.e.
+<span class='line'> 24</span>     transitionIn or transitionShow).
+<span class='line'> 25</span> 
+<span class='line'> 26</span>     Use this method to adjust the layout of the view so that it may be properly
+<span class='line'> 27</span>     animated.  For example, you may need to adjust the content from a flexible
+<span class='line'> 28</span>     layout (i.e. { left: 0, top: 0, right: 0, bottom: 0 }) to a fixed layout
+<span class='line'> 29</span>     (i.e. { left: 0, top: 0, width: 100, height: 200 }) so that it can be
+<span class='line'> 30</span>     moved.
+<span class='line'> 31</span> 
+<span class='line'> 32</span>     @param {SC.View} view The view being transitioned.
+<span class='line'> 33</span>     @param {Object} options Options to modify the transition.  As set by transitionShowOptions or transitionInOptions.
+<span class='line'> 34</span>     @param {Boolean} inPlace Whether the transition should start with the current layout of the view, because a previous transition was cancelled in place.
+<span class='line'> 35</span>   */</span><span class="WHIT">
+<span class='line'> 36</span> </span><span class="WHIT">  </span><span class="NAME">setup</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">inPlace</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 37</span> 
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 39</span>     This method is called to transition the view in or visible (i.e. transitionIn or
+<span class='line'> 40</span>     transitionShow).
+<span class='line'> 41</span> 
+<span class='line'> 42</span>     When the transition completes, this function *must* call `didTransitionIn()`
+<span class='line'> 43</span>     on the view, passing this object and the original options as
+<span class='line'> 44</span>     arguments.
+<span class='line'> 45</span> 
+<span class='line'> 46</span>     @param {SC.View} view The view being transitioned.
+<span class='line'> 47</span>     @param {Object} options Options to modify the transition.  As set by transitionShowOptions or transitionInOptions.
+<span class='line'> 48</span>     @param {Object} finalLayout The final layout of the view, which may be different than the starting layout of the view if a previous transition was cancelled in place.
+<span class='line'> 49</span>     @param {Object} finalFrame The final frame of the view, which may be different than the starting frame of the view if a previous transition was cancelled in place.
+<span class='line'> 50</span>   */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">run</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">options</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">finalLayout</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">finalFrame</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 52</span> 
 <span class='line'> 53</span> 
-<span class='line'> 54</span>     If unspecified, the transition will cache and reset the entire layout hash. This
-<span class='line'> 55</span>     can cause problems when spearately adjusting or animating those properties during
-<span class='line'> 56</span>     a transition. (Note that you should not adjust or animate the layout properties
-<span class='line'> 57</span>     that are involved in a transition while the transition is under way.)
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 55</span>     This optional property exposes a list of layout properties involved in the
+<span class='line'> 56</span>     transition. This allows the view to more intelligently reset its layout when
+<span class='line'> 57</span>     the transition is complete.
 <span class='line'> 58</span> 
-<span class='line'> 59</span>     @field
-<span class='line'> 60</span>     @type Array
-<span class='line'> 61</span>     @default All layout properties
-<span class='line'> 62</span>   */</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">  </span><span class="NAME">layoutProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT">
-<span class='line'> 64</span> 
-<span class='line'> 65</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 66</span> </span></pre></body></html>
+<span class='line'> 59</span>     If unspecified, the transition will cache and reset the entire layout hash. This
+<span class='line'> 60</span>     can cause problems when spearately adjusting or animating those properties during
+<span class='line'> 61</span>     a transition. (Note that you should not adjust or animate the layout properties
+<span class='line'> 62</span>     that are involved in a transition while the transition is under way.)
+<span class='line'> 63</span> 
+<span class='line'> 64</span>     @field
+<span class='line'> 65</span>     @type Array
+<span class='line'> 66</span>     @default All layout properties
+<span class='line'> 67</span>   */</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="NAME">layoutProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 71</span> </span></pre></body></html>

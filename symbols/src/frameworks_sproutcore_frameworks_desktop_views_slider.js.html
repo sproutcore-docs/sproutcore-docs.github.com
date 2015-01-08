@@ -47,7 +47,7 @@
 <span class='line'> 40</span> </span><span class="WHIT">  </span><span class="COMM">/**
 <span class='line'> 41</span>     The minimum value of the slider.
 <span class='line'> 42</span> 
-<span class='line'> 43</span>     @type {Number}
+<span class='line'> 43</span>     @type Number
 <span class='line'> 44</span>     @default 0
 <span class='line'> 45</span>   */</span><span class="WHIT">
 <span class='line'> 46</span> </span><span class="WHIT">  </span><span class="NAME">minimum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT">
@@ -65,7 +65,7 @@
 <span class='line'> 58</span> </span><span class="WHIT">  </span><span class="COMM">/**
 <span class='line'> 59</span>     The maximum value of the slider bar.
 <span class='line'> 60</span> 
-<span class='line'> 61</span>     @type {Number}
+<span class='line'> 61</span>     @type Number
 <span class='line'> 62</span>     @default 1
 <span class='line'> 63</span>   */</span><span class="WHIT">
 <span class='line'> 64</span> </span><span class="WHIT">  </span><span class="NAME">maximum</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">,</span><span class="WHIT">
@@ -85,7 +85,7 @@
 <span class='line'> 78</span> 
 <span class='line'> 79</span>     All values will be rounded to this step size when displayed.
 <span class='line'> 80</span> 
-<span class='line'> 81</span>     @type {Number}
+<span class='line'> 81</span>     @type Number
 <span class='line'> 82</span>     @default 0.1
 <span class='line'> 83</span>   */</span><span class="WHIT">
 <span class='line'> 84</span> </span><span class="WHIT">  </span><span class="NAME">step</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">0.1</span><span class="PUNC">,</span><span class="WHIT">
@@ -94,8 +94,8 @@
 <span class='line'> 87</span>     When set to true, this draws and positions an element for each step, giving
 <span class='line'> 88</span>     your theme the opportunity to show a mark at each step.
 <span class='line'> 89</span> 
-<span class='line'> 90</span>     @type {Boolean}
-<span class='line'> 91</span>     @default {false}
+<span class='line'> 90</span>     @type Boolean
+<span class='line'> 91</span>     @default false
 <span class='line'> 92</span>   */</span><span class="WHIT">
 <span class='line'> 93</span> </span><span class="WHIT">  </span><span class="NAME">markSteps</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 94</span> 
@@ -104,8 +104,8 @@
 <span class='line'> 97</span>     value. Set to false to prevent a slider in a scroll view from hijacking scroll
 <span class='line'> 98</span>     events mid-scroll, for example.
 <span class='line'> 99</span> 
-<span class='line'>100</span>     @type {Boolean}
-<span class='line'>101</span>     @default {true}
+<span class='line'>100</span>     @type Boolean
+<span class='line'>101</span>     @default true
 <span class='line'>102</span>   */</span><span class="WHIT">
 <span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">updateOnScroll</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>104</span> 
@@ -117,7 +117,7 @@
 <span class='line'>110</span> </span><span class="WHIT">  </span><span class="NAME">displayProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'displayValue'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'markSteps'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>111</span> 
 <span class='line'>112</span> </span><span class="WHIT">  </span><span class="COMM">/** @private
-<span class='line'>113</span>    @property
+<span class='line'>113</span>    @type Number
 <span class='line'>114</span>    The raw, unchanged value to be provided to screen readers and the like.
 <span class='line'>115</span>   */</span><span class="WHIT">
 <span class='line'>116</span> </span><span class="WHIT">  </span><span class="NAME">ariaValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -133,7 +133,7 @@
 <span class='line'>126</span> </span><span class="WHIT">  </span><span class="COMM">/*
 <span class='line'>127</span>     The value, converted to a percent out of 100 between maximum and minimum.
 <span class='line'>128</span> 
-<span class='line'>129</span>     @property
+<span class='line'>129</span>     @type Number
 <span class='line'>130</span>     @readonly
 <span class='line'>131</span>   */</span><span class="WHIT">
 <span class='line'>132</span> </span><span class="WHIT">  </span><span class="NAME">displayValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -144,9 +144,9 @@
 <span class='line'>137</span>     If a nonzero step is specified, this property contains an array of each step's value between
 <span class='line'>138</span>     min and max (inclusive).
 <span class='line'>139</span> 
-<span class='line'>140</span>     @property
-<span class='line'>141</span>     @readonly
-<span class='line'>142</span>     @type {Array|null}
+<span class='line'>140</span>     @type Array
+<span class='line'>141</span>     @default null
+<span class='line'>142</span>     @readonly
 <span class='line'>143</span>   */</span><span class="WHIT">
 <span class='line'>144</span> </span><span class="WHIT">  </span><span class="NAME">steps</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>145</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">step</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'step'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -170,9 +170,9 @@
 <span class='line'>163</span>     expressed as a fraction between 0 and 1 (inclusive). You can use these values to generate
 <span class='line'>164</span>     and position labels for each step, for example.
 <span class='line'>165</span> 
-<span class='line'>166</span>     @property
-<span class='line'>167</span>     @readonly
-<span class='line'>168</span>     @type {Array|null}
+<span class='line'>166</span>     @type Array
+<span class='line'>167</span>     @default null
+<span class='line'>168</span>     @readonly
 <span class='line'>169</span>   */</span><span class="WHIT">
 <span class='line'>170</span> </span><span class="WHIT">  </span><span class="NAME">stepPositions</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>171</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">steps</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'steps'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -188,7 +188,7 @@
 <span class='line'>181</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">ret</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>182</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">.</span><span class="NAME">property</span><span class="PUNC">(</span><span class="STRN">'steps'</span><span class="PUNC">)</span><span class="PUNC">.</span><span class="NAME">cacheable</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>183</span> 
-<span class='line'>184</span> </span><span class="WHIT">  </span><span class="COMM">// Given a particular value, returns the percentage value.</span><span class="WHIT">
+<span class='line'>184</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Given a particular value, returns the percentage value. */</span><span class="WHIT">
 <span class='line'>185</span> </span><span class="WHIT">  </span><span class="NAME">_displayValueForValue</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">value</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>186</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">min</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'minimum'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>187</span> </span><span class="WHIT">        </span><span class="NAME">max</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'maximum'</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
