@@ -1,0 +1,294 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">"system/gesture"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/*
+<span class='line'> 11</span>   TODO Document this class
+<span class='line'> 12</span> */</span><span class="WHIT">
+<span class='line'> 13</span> 
+<span class='line'> 14</span> </span><span class="COMM">/**
+<span class='line'> 15</span>   @class
+<span class='line'> 16</span>   @extends SC.Gesture
+<span class='line'> 17</span> */</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="NAME">SC.PinchGesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Gesture.extend</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="COMM">/** @scope SC.PinchGesture.prototype */</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Whether we have started pinching or not.
+<span class='line'> 22</span> 
+<span class='line'> 23</span>     @type Boolean
+<span class='line'> 24</span>     @default false
+<span class='line'> 25</span>   */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="WHIT">  </span><span class="NAME">_sc_isPinching</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 27</span> 
+<span class='line'> 28</span> </span><span class="WHIT">  </span><span class="COMM">/** @private The previous distance between touches.
+<span class='line'> 29</span> 
+<span class='line'> 30</span>     @type Number
+<span class='line'> 31</span>     @default null
+<span class='line'> 32</span>   */</span><span class="WHIT">
+<span class='line'> 33</span> </span><span class="WHIT">  </span><span class="NAME">_sc_pinchAnchorD</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 34</span> 
+<span class='line'> 35</span> </span><span class="WHIT">  </span><span class="COMM">/** @private The initial scale of the view before pinching.
+<span class='line'> 36</span> 
+<span class='line'> 37</span>     @type Number
+<span class='line'> 38</span>     @default null
+<span class='line'> 39</span>   */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="NAME">_sc_pinchAnchorScale</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 41</span> 
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 43</span>     @type String
+<span class='line'> 44</span>     @default "pinch"
+<span class='line'> 45</span>   */</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="NAME">name</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="STRN">"pinch"</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 49</span>     The amount of time in milliseconds that touches should stop moving before a `pinchEnd` event
+<span class='line'> 50</span>     will fire. When a pinch gesture begins, the `pinchStart` event is fired and as long as the
+<span class='line'> 51</span>     touches continue to change distance, multiple `pinch` events will fire. If the touches remain
+<span class='line'> 52</span>     active but don't change distance any longer, then after `pinchDelay` milliseconds the `pinchEnd`
+<span class='line'> 53</span>     event will fire.
+<span class='line'> 54</span> 
+<span class='line'> 55</span>     @type Number
+<span class='line'> 56</span>     @default 500
+<span class='line'> 57</span>     */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">pinchDelay</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">500</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 61</span>     The number of pixels that multiple touches need to expand or contract in order to trigger the
+<span class='line'> 62</span>     beginning of a pinch.
+<span class='line'> 63</span> 
+<span class='line'> 64</span>     @type Number
+<span class='line'> 65</span>     @default 3
+<span class='line'> 66</span>     */</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="COMM">// pinchStartThreshold: 3,</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Cleans up the touch session. */</span><span class="WHIT">
+<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="NAME">_sc_cleanUpTouchSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 71</span> </span><span class="WHIT">    </span><span class="COMM">// If we were pinching before, end the pinch immediately.</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._sc_isPinching</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_pinchingTimer.invalidate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_pinchingTimer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_lastPinchTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_isPinching</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">      </span><span class="COMM">// Trigger the gesture, 'pinchEnd'.</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">      </span><span class="NAME">this.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="WHIT">    </span><span class="COMM">// Clean up.</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_pinchAnchorD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 85</span> 
+<span class='line'> 86</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Shared function for when a touch ends or cancels. */</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="NAME">_sc_touchFinishedInSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 88</span> </span><span class="WHIT">    </span><span class="COMM">// If there are more than two touches, keep monitoring for pinches by updating _sc_pinchAnchorD.</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession.length</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 90</span> </span><span class="WHIT">      </span><span class="COMM">// Get the averaged touches for the the view. Because pinch is always interested in every touch</span><span class="WHIT">
+<span class='line'> 91</span> </span><span class="WHIT">      </span><span class="COMM">// the touchesInSession will equal the touches for the view.</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">avgTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.averagedTouchesForView</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 93</span> 
+<span class='line'> 94</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_pinchAnchorD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">avgTouch.d</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> 
+<span class='line'> 96</span> </span><span class="WHIT">    </span><span class="COMM">// Disregard incoming touches by clearing out _sc_pinchAnchorD and end an active pinch immediately.</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_cleanUpTouchSession</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>101</span> 
+<span class='line'>102</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Triggers pinchEnd and resets _sc_isPinching if enough time has passed. */</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">_sc_triggerPinchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">    </span><span class="COMM">// If a pinch came in since the time the timer was registered, set up a new timer for the</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="WHIT">    </span><span class="COMM">// remaining time.</span><span class="WHIT">
+<span class='line'>106</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">this._sc_lastPinchTime</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>107</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">timePassed</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Date.now</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">this._sc_lastPinchTime</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>108</span> </span><span class="WHIT">          </span><span class="NAME">pinchDelay</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'pinchDelay'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>109</span> 
+<span class='line'>110</span> </span><span class="WHIT">      </span><span class="COMM">// Prepare to send 'pinchEnd' again.</span><span class="WHIT">
+<span class='line'>111</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_pinchingTimer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Timer.schedule</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">        </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">        </span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this._sc_triggerPinchEnd</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="WHIT">        </span><span class="NAME">interval</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">pinchDelay</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">timePassed</span><span class="WHIT"> </span><span class="COMM">// Trigger the timer the amount of time left since the last pinch</span><span class="WHIT">
+<span class='line'>115</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>116</span> 
+<span class='line'>117</span> </span><span class="WHIT">      </span><span class="COMM">// Clear out the last pinch time.</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_lastPinchTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>119</span> 
+<span class='line'>120</span> </span><span class="WHIT">    </span><span class="COMM">// No additional pinches appeared in the amount of time.</span><span class="WHIT">
+<span class='line'>121</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="WHIT">      </span><span class="COMM">// Trigger the gesture, 'pinchEnd'.</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">      </span><span class="NAME">this.end</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> 
+<span class='line'>125</span> </span><span class="WHIT">      </span><span class="COMM">// Clear out the pinching session.</span><span class="WHIT">
+<span class='line'>126</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_isPinching</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>127</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_pinchingTimer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>128</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>130</span> 
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>132</span>     The pinch gesture is always interested in the touch session. When a new touch is added, the
+<span class='line'>133</span>     distance between all of the touches is registered in order to check for distance changes
+<span class='line'>134</span>     equating to a pinch gesture.
+<span class='line'>135</span> 
+<span class='line'>136</span>     @param {SC.Touch} touch The touch to be added to the session.
+<span class='line'>137</span>     @param {Array} touchesInSession The touches already in the session.
+<span class='line'>138</span>     @returns {Boolean} True.
+<span class='line'>139</span>     @see SC.Gesture#touchAddedToSession
+<span class='line'>140</span>     */</span><span class="WHIT">
+<span class='line'>141</span> </span><span class="WHIT">  </span><span class="NAME">touchAddedToSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>142</span> </span><span class="WHIT">    </span><span class="COMM">// Get the averaged touches for the the view. Because pinch is always interested in every touch</span><span class="WHIT">
+<span class='line'>143</span> </span><span class="WHIT">    </span><span class="COMM">// the touchesInSession will equal the touches for the view.</span><span class="WHIT">
+<span class='line'>144</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">avgTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touch.averagedTouchesForView</span><span class="PUNC">(</span><span class="NAME">this.view</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>145</span> 
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_pinchAnchorD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">avgTouch.d</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>147</span> 
+<span class='line'>148</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>150</span> 
+<span class='line'>151</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>152</span>     If a touch cancels, the pinch remains interested (even if there's only one touch left, because a
+<span class='line'>153</span>     second touch may appear again), but updates its internal variable for tracking for pinch
+<span class='line'>154</span>     movements.
+<span class='line'>155</span> 
+<span class='line'>156</span>     @param {SC.Touch} touch The touch to be removed from the session.
+<span class='line'>157</span>     @param {Array} touchesInSession The touches in the session.
+<span class='line'>158</span>     @returns {Boolean} True
+<span class='line'>159</span>     @see SC.Gesture#touchCancelledInSession
+<span class='line'>160</span>     */</span><span class="WHIT">
+<span class='line'>161</span> </span><span class="WHIT">  </span><span class="NAME">touchCancelledInSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>162</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_touchFinishedInSession</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>163</span> 
+<span class='line'>164</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>166</span> 
+<span class='line'>167</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>168</span>     If a touch ends, the pinch remains interested (even if there's only one touch left, because a
+<span class='line'>169</span>     second touch may appear again), but updates its internal variable for tracking for pinch
+<span class='line'>170</span>     movements.
+<span class='line'>171</span> 
+<span class='line'>172</span>     @param {SC.Touch} touch The touch to be removed from the session.
+<span class='line'>173</span>     @param {Array} touchesInSession The touches in the session.
+<span class='line'>174</span>     @returns {Boolean} True
+<span class='line'>175</span>     @see SC.Gesture#touchEndedInSession
+<span class='line'>176</span>     */</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">  </span><span class="NAME">touchEndedInSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_touchFinishedInSession</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>179</span> 
+<span class='line'>180</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>181</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>182</span> 
+<span class='line'>183</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>184</span>     The pinch is only interested in more than one touch moving. If there are multiple touches
+<span class='line'>185</span>     moving and the distance between the touches has changed then a `pinchStart` event will fire.
+<span class='line'>186</span>     If the touches keep expanding or contracting, the `pinch` event will repeatedly fire. Finally,
+<span class='line'>187</span>     if the touch distance stops changing and enough time passes (value of `pinchDelay`), the
+<span class='line'>188</span>     `pinchEnd` event will fire.
+<span class='line'>189</span> 
+<span class='line'>190</span>     Therefore, it's possible for a pinch gesture to start and end more than once in a single touch
+<span class='line'>191</span>     session. For example, a person may touch two fingers down, expand them to zoom in (`pinchStart`
+<span class='line'>192</span>     and multiple `pinch` events fire) and then if they stop or move their fingers in one direction
+<span class='line'>193</span>     in tandem to scroll content (`pinchEnd` event fires after `pinchDelay` exceeded). If the person
+<span class='line'>194</span>     then starts expanding their fingers again without lifting them, a new set of pinch events will
+<span class='line'>195</span>     fire.
+<span class='line'>196</span> 
+<span class='line'>197</span>     @param {Array} touchesInSession All touches in the session.
+<span class='line'>198</span>     @returns {Boolean} True.
+<span class='line'>199</span>     @see SC.Gesture#touchesMovedInSession
+<span class='line'>200</span>     */</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">  </span><span class="NAME">touchesMovedInSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">    </span><span class="COMM">// console.log('touchesMovedInSession: %@'.fmt(touchesInSession.length));</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">    </span><span class="COMM">// We should pay attention to the movement.</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession.length</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>205</span> </span><span class="WHIT">      </span><span class="COMM">// Get the averaged touches for the the view. Because pinch is always interested in every touch</span><span class="WHIT">
+<span class='line'>206</span> </span><span class="WHIT">      </span><span class="COMM">// the touchesInSession will equal the touches for the view.</span><span class="WHIT">
+<span class='line'>207</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">avgTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Touch.averagedTouch</span><span class="PUNC">(</span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="COMM">// touchesInSession[0].averagedTouchesForView(this.view);</span><span class="WHIT">
+<span class='line'>208</span> 
+<span class='line'>209</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">touchDeltaD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_pinchAnchorD</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NAME">avgTouch.d</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">          </span><span class="NAME">absDeltaD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Math.abs</span><span class="PUNC">(</span><span class="NAME">touchDeltaD</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>211</span> 
+<span class='line'>212</span> </span><span class="WHIT">      </span><span class="COMM">// console.log('  this._sc_pinchAnchorD, %@ - avgTouch.d, %@ = touchDeltaD, %@'.fmt(this._sc_pinchAnchorD, avgTouch.d, touchDeltaD));</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">absDeltaD</span><span class="WHIT"> </span><span class="PUNC">></span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>214</span> </span><span class="WHIT">        </span><span class="COMM">// Trigger the gesture, 'pinchStart', once.</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this._sc_isPinching</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">          </span><span class="NAME">this.start</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> 
+<span class='line'>218</span> </span><span class="WHIT">          </span><span class="COMM">// Prepare to send 'pinchEnd'.</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">          </span><span class="NAME">this._sc_pinchingTimer</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Timer.schedule</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">            </span><span class="NAME">target</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">            </span><span class="NAME">action</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this._sc_triggerPinchEnd</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">            </span><span class="NAME">interval</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'pinchDelay'</span><span class="PUNC">)</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">          </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>224</span> 
+<span class='line'>225</span> </span><span class="WHIT">          </span><span class="COMM">// Track that we are pinching.</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">          </span><span class="NAME">this._sc_isPinching</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>227</span> 
+<span class='line'>228</span> </span><span class="WHIT">        </span><span class="COMM">// Update the last pinch time so that when the timer expires, it doesn't fire pinchEnd.</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">        </span><span class="COMM">// This is faster than invalidating and creating a new timer each time this method is called.</span><span class="WHIT">
+<span class='line'>230</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">          </span><span class="NAME">this._sc_lastPinchTime</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">Date.now</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>233</span> 
+<span class='line'>234</span> </span><span class="WHIT">        </span><span class="COMM">// The percentage difference in touch distance.</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">scalePercentChange</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">avgTouch.d</span><span class="WHIT"> </span><span class="PUNC">/</span><span class="WHIT"> </span><span class="NAME">this._sc_pinchAnchorD</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>236</span> </span><span class="WHIT">            </span><span class="NAME">scale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_pinchAnchorScale</span><span class="WHIT"> </span><span class="PUNC">*</span><span class="WHIT"> </span><span class="NAME">scalePercentChange</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>237</span> 
+<span class='line'>238</span> </span><span class="WHIT">        </span><span class="COMM">// Trigger the gesture, 'pinch'.</span><span class="WHIT">
+<span class='line'>239</span> </span><span class="WHIT">        </span><span class="NAME">this.trigger</span><span class="PUNC">(</span><span class="NAME">scale</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession.length</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>240</span> 
+<span class='line'>241</span> </span><span class="WHIT">        </span><span class="COMM">// Reset the anchor.</span><span class="WHIT">
+<span class='line'>242</span> </span><span class="WHIT">        </span><span class="NAME">this._sc_pinchAnchorD</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">avgTouch.d</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">        </span><span class="NAME">this._sc_pinchAnchorScale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">scale</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>244</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>245</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>246</span> 
+<span class='line'>247</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>248</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>249</span> 
+<span class='line'>250</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>251</span>     Cleans up all touch session variables.
+<span class='line'>252</span> 
+<span class='line'>253</span>     @returns {void}
+<span class='line'>254</span>     @see SC.Gesture#touchSessionCancelled
+<span class='line'>255</span>     */</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">  </span><span class="NAME">touchSessionCancelled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>257</span> </span><span class="WHIT">    </span><span class="COMM">// Clean up.</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_cleanUpTouchSession</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>259</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>260</span> 
+<span class='line'>261</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>262</span>     Cleans up all touch session variables and triggers the gesture.
+<span class='line'>263</span> 
+<span class='line'>264</span>     @returns {void}
+<span class='line'>265</span>     @see SC.Gesture#touchSessionEnded
+<span class='line'>266</span>     */</span><span class="WHIT">
+<span class='line'>267</span> </span><span class="WHIT">  </span><span class="NAME">touchSessionEnded</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>268</span> </span><span class="WHIT">    </span><span class="COMM">// Clean up.</span><span class="WHIT">
+<span class='line'>269</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_cleanUpTouchSession</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>270</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>271</span> 
+<span class='line'>272</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>273</span>     Registers the scale of the view when it starts.
+<span class='line'>274</span> 
+<span class='line'>275</span>     @param {SC.Touch} touch The touch that started the session.
+<span class='line'>276</span>     @returns {void}
+<span class='line'>277</span>     @see SC.Gesture#touchSessionStarted
+<span class='line'>278</span>     */</span><span class="WHIT">
+<span class='line'>279</span> </span><span class="WHIT">  </span><span class="NAME">touchSessionStarted</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>280</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">viewLayout</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.view.get</span><span class="PUNC">(</span><span class="STRN">'layout'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>281</span> 
+<span class='line'>282</span> </span><span class="WHIT">    </span><span class="COMM">/*jshint eqnull:true*/</span><span class="WHIT">
+<span class='line'>283</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_pinchAnchorScale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">viewLayout.scale</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">viewLayout.scale</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>285</span> 
+<span class='line'>286</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>287</span> </span></pre></body></html>

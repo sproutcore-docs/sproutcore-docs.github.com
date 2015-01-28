@@ -1,0 +1,57 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="NAME">sc_require</span><span class="PUNC">(</span><span class="STRN">'system/drag'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  9</span> 
+<span class='line'> 10</span> </span><span class="COMM">/** @namespace
+<span class='line'> 11</span>   The `SC.DragDataSourceProtocol` protocol defines the properties and methods that you may implement
+<span class='line'> 12</span>   in your drag source objects in order to access additional functionality of SproutCore's drag
+<span class='line'> 13</span>   support.
+<span class='line'> 14</span> 
+<span class='line'> 15</span>   This protocol implements a dynamic data source for a drag operation. You should use it to return a
+<span class='line'> 16</span>   set of allowed data types and then the method will be used to actually get data in that format
+<span class='line'> 17</span>   when requested.
+<span class='line'> 18</span> 
+<span class='line'> 19</span>   *Note: Do not mix `SC.DragDataSourceProtocol` into your classes. As a protocol, it exists only for
+<span class='line'> 20</span>   reference sake. You only need define any of the properties or methods listed below in order to use
+<span class='line'> 21</span>   this protocol.*
+<span class='line'> 22</span> */</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="NAME">SC.DragDataSourceProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 26</span>     Implement this property as an array of data types you want to support
+<span class='line'> 27</span>     for drag operations.
+<span class='line'> 28</span> 
+<span class='line'> 29</span>     @type Array
+<span class='line'> 30</span>     @default []
+<span class='line'> 31</span>   */</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="NAME">dragDataTypes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 33</span> 
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 35</span>     Implement this method to return the data in the format passed.  Return
+<span class='line'> 36</span>     null if the requested data type cannot be generated.
+<span class='line'> 37</span> 
+<span class='line'> 38</span>     @param {SC.Drag} drag The Drag instance managing this drag.
+<span class='line'> 39</span>     @param {Object} dataType The proposed dataType to return.  This will
+<span class='line'> 40</span>       always be one of the data types declared in dragDataTypes.
+<span class='line'> 41</span> 
+<span class='line'> 42</span>     @returns The data object for the specified type
+<span class='line'> 43</span>   */</span><span class="WHIT">
+<span class='line'> 44</span> </span><span class="WHIT">  </span><span class="NAME">dragDataForType</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">drag</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">dataType</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 45</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 49</span> 
+<span class='line'> 50</span> </span></pre></body></html>

@@ -1,0 +1,375 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore - JavaScript Application Framework</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @namespace
+<span class='line'>  9</span>   The `SC.ResponderProtocol` protocol defines the properties and methods that you may implement
+<span class='line'> 10</span>   in your `SC.Responder` (i.e. `SC.View`) subclasses in order to handle specific responder chain
+<span class='line'> 11</span>   events.
+<span class='line'> 12</span> 
+<span class='line'> 13</span>   *Note: Do not mix `SC.ResponderProtocol` into your classes. As a protocol, it exists only for
+<span class='line'> 14</span>   reference sake. You only need define any of the properties or methods listed below in order to use
+<span class='line'> 15</span>   this protocol.*
+<span class='line'> 16</span> 
+<span class='line'> 17</span>   @since SproutCore 1.0
+<span class='line'> 18</span> */</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="NAME">SC.ResponderProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 20</span> 
+<span class='line'> 21</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................................</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="WHIT">  </span><span class="COMM">// Mouse Event Handlers</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 24</span> 
+<span class='line'> 25</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 26</span>     Called when the mouse is pressed. You must return `YES` to receive
+<span class='line'> 27</span>     mouseDragged and mouseUp in the future.
+<span class='line'> 28</span> 
+<span class='line'> 29</span>     @param evt {SC.Event} the mousedown event
+<span class='line'> 30</span>     @returns {Boolean} YES to receive additional mouse events, NO otherwise
+<span class='line'> 31</span>   */</span><span class="WHIT">
+<span class='line'> 32</span> </span><span class="WHIT">  </span><span class="NAME">mouseDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 33</span> 
+<span class='line'> 34</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 35</span>     Called when the mouse is released.
+<span class='line'> 36</span> 
+<span class='line'> 37</span>     @param evt {SC.Event} the mouseup event
+<span class='line'> 38</span>     @returns {Boolean} YES to handle the mouseUp, NO to allow click() and doubleClick() to be called
+<span class='line'> 39</span>   */</span><span class="WHIT">
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="NAME">mouseUp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 41</span> 
+<span class='line'> 42</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 43</span>     Called when the mouse is dragged, after responding `YES` to a previous `mouseDown`:
+<span class='line'> 44</span>     call.
+<span class='line'> 45</span> 
+<span class='line'> 46</span>     @param evt {SC.Event} the mousemove event
+<span class='line'> 47</span>     @returns {void}
+<span class='line'> 48</span>   */</span><span class="WHIT">
+<span class='line'> 49</span> </span><span class="WHIT">  </span><span class="NAME">mouseDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 50</span> 
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 52</span>     Called when the mouse exits the view and the root responder is not in a
+<span class='line'> 53</span>     drag session.
+<span class='line'> 54</span> 
+<span class='line'> 55</span>     @param evt {SC.Event} the mousemove event
+<span class='line'> 56</span>     @returns {void}
+<span class='line'> 57</span>   */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">mouseExited</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 59</span> 
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 61</span>     Called when the mouse enters the view and the root responder is not in a
+<span class='line'> 62</span>     drag session.
+<span class='line'> 63</span> 
+<span class='line'> 64</span>     @param evt {SC.Event} the mousemove event
+<span class='line'> 65</span>     @returns {void}
+<span class='line'> 66</span>   */</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">mouseEntered</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 68</span> 
+<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 70</span>     Called when the mouse moves within the view and the root responder is not in a
+<span class='line'> 71</span>     drag session.
+<span class='line'> 72</span> 
+<span class='line'> 73</span>     @param evt {SC.Event} the mousemove event
+<span class='line'> 74</span>     @returns {void}
+<span class='line'> 75</span>   */</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="NAME">mouseMoved</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 79</span>      Called when a contextmenu event is triggered. Used to disable contextmenu
+<span class='line'> 80</span>      per view.
+<span class='line'> 81</span> 
+<span class='line'> 82</span>      @param evt {SC.Event} the contextmenu event
+<span class='line'> 83</span>      @returns {void}
+<span class='line'> 84</span>    */</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">contextMenu</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 88</span>     Called when a selectstart event in IE is triggered. **ONLY IE**
+<span class='line'> 89</span>     We use it to disable IE accelerators and text selection
+<span class='line'> 90</span> 
+<span class='line'> 91</span>     @param evt {SC.Event} the selectstart event
+<span class='line'> 92</span>     @returns {void}
+<span class='line'> 93</span>   */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="NAME">selectStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 95</span> 
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................................</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="COMM">// Touch Event Handlers</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'> 99</span> 
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>101</span>     Called when a touch begins. Capturing a touch is a special case behavior that allows for the
+<span class='line'>102</span>     nesting of touch capable views. In some situations, an outer view may want to capture a touch
+<span class='line'>103</span>     *before* the inner view acts on it. For example, a container view may want to act on swipes or
+<span class='line'>104</span>     pinches, while the inner view may only respond to taps. If the normal event path was followed,
+<span class='line'>105</span>     the inner view would get the `touchStart` event and by accepting it, would inadvertently prevent
+<span class='line'>106</span>     the outer view from being able to act on it.
+<span class='line'>107</span> 
+<span class='line'>108</span>     For this reason, when a touch begins, each view from the top-down has a chance to capture a
+<span class='line'>109</span>     touch first, before it is passed to the bottom-most target view. For example, SC.ScrollView
+<span class='line'>110</span>     captures touches so that it can determine if the touch is the beginning of a swipe or pinch. If
+<span class='line'>111</span>     the touch does become one of these gestures, SC.ScrollView can act on it. However, if the touch
+<span class='line'>112</span>     doesn't become one of these gestures, SC.ScrollView understands that it needs to pass the touch
+<span class='line'>113</span>     to its children.
+<span class='line'>114</span> 
+<span class='line'>115</span>     Therefore, implementors of `captureTouch` are expected to release the touch if they won't use it
+<span class='line'>116</span>     by calling the touch's `captureTouch` method and passing themself as the new starting point
+<span class='line'>117</span>     (capturing will continue from the implementor onward as it would have if the implementor hadn't
+<span class='line'>118</span>     temporarily captured it).
+<span class='line'>119</span> 
+<span class='line'>120</span>     Note, `captureTouch` is only meaningful for container type views where their children may
+<span class='line'>121</span>     handle touches as well. For most controls that want to handle touch, there is no reason to
+<span class='line'>122</span>     capture a touch, because they don't have any children. For these views, simply use the
+<span class='line'>123</span>     `touchStart`, `touchesDragged`, `touchCancelled` and `touchEnd` methods.
+<span class='line'>124</span> 
+<span class='line'>125</span>     @param touch {SC.Touch} the touch
+<span class='line'>126</span>     @returns {Boolean} YES to claim the touch and receive touchStart, NO otherwise
+<span class='line'>127</span>     @see SC.Touch#captureTouch
+<span class='line'>128</span>   */</span><span class="WHIT">
+<span class='line'>129</span> </span><span class="WHIT">  </span><span class="NAME">captureTouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>130</span> 
+<span class='line'>131</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>132</span>     Called when a touch previously claimed by returning `true` from `touchStart` is cancelled.
+<span class='line'>133</span> 
+<span class='line'>134</span>     @param touch {SC.Touch} the touch
+<span class='line'>135</span>     @returns {void}
+<span class='line'>136</span>   */</span><span class="WHIT">
+<span class='line'>137</span> </span><span class="WHIT">  </span><span class="NAME">touchCancelled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>138</span> 
+<span class='line'>139</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>140</span>     Called when an active touch moves. The touches array contains all of the touches that this view
+<span class='line'>141</span>     has claimed by returning `true` from `touchStart`.
+<span class='line'>142</span> 
+<span class='line'>143</span>     @param evt {SC.Event} the event
+<span class='line'>144</span>     @param touches {Array} the touches
+<span class='line'>145</span>     @returns {void}
+<span class='line'>146</span>   */</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>148</span> 
+<span class='line'>149</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>150</span>     Called when a touch previously claimed by returning `true` from `touchStart` ends.
+<span class='line'>151</span> 
+<span class='line'>152</span>     @param touch {SC.Touch} the touch
+<span class='line'>153</span>     @returns {void}
+<span class='line'>154</span>   */</span><span class="WHIT">
+<span class='line'>155</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>156</span> 
+<span class='line'>157</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>158</span>     Called when a touch begins. You must return `YES` to receive `touchesDragged` and `touchEnd` in
+<span class='line'>159</span>     the future.
+<span class='line'>160</span> 
+<span class='line'>161</span>     @param touch {SC.Touch} the touch
+<span class='line'>162</span>     @returns {Boolean} YES to receive additional touch events, NO otherwise
+<span class='line'>163</span>   */</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>165</span> 
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="COMM">// .......................................................................</span><span class="WHIT">
+<span class='line'>167</span> </span><span class="WHIT">  </span><span class="COMM">// Keyboard Event Handlers</span><span class="WHIT">
+<span class='line'>168</span> </span><span class="WHIT">  </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">  </span><span class="COMM">// These methods are called by the input manager in response to keyboard</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">  </span><span class="COMM">// events.  Most of these methods are defined here for you, but not actually</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">  </span><span class="COMM">// implemented in code.</span><span class="WHIT">
+<span class='line'>172</span> 
+<span class='line'>173</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>174</span>     Insert the text or act on the key.
+<span class='line'>175</span> 
+<span class='line'>176</span>     @param {String} the text to insert or respond to
+<span class='line'>177</span>     @returns {Boolean} YES if you handled the method; NO otherwise
+<span class='line'>178</span>   */</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">  </span><span class="NAME">insertText</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">text</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>180</span> 
+<span class='line'>181</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>182</span>     When the user presses a key-combination event, this will be called so you
+<span class='line'>183</span>     can run the command.
+<span class='line'>184</span> 
+<span class='line'>185</span>     @param charCode {String} the character code
+<span class='line'>186</span>     @param evt {SC.Event} the keydown event
+<span class='line'>187</span>     @returns {Boolean} YES if you handled the method; NO otherwise
+<span class='line'>188</span>   */</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">  </span><span class="NAME">performKeyEquivalent</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">charCode</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT"> </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>190</span> 
+<span class='line'>191</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>192</span>     This method is called if no other view in the current view hierarchy is
+<span class='line'>193</span>     bound to the escape or command-. key equivalent.  You can use this to
+<span class='line'>194</span>     cancel whatever operation is running.
+<span class='line'>195</span> 
+<span class='line'>196</span>     @param sender {Object} the object that triggered; may be null
+<span class='line'>197</span>     @param evt {SC.Event} the event that triggered the method
+<span class='line'>198</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>199</span>   */</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">  </span><span class="NAME">cancel</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>201</span> 
+<span class='line'>202</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>203</span>     Delete the current selection or delete one element backward from the
+<span class='line'>204</span>     current selection.
+<span class='line'>205</span> 
+<span class='line'>206</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>207</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>208</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>209</span>   */</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">  </span><span class="NAME">deleteBackward</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>211</span> 
+<span class='line'>212</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>213</span>     Delete the current selection or delete one element forward from the
+<span class='line'>214</span>     current selection.
+<span class='line'>215</span> 
+<span class='line'>216</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>217</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>218</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>219</span>   */</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">  </span><span class="NAME">deleteForward</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>221</span> 
+<span class='line'>222</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>223</span>     A field editor might respond by selecting the field before it.
+<span class='line'>224</span> 
+<span class='line'>225</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>226</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>227</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>228</span>   */</span><span class="WHIT">
+<span class='line'>229</span> </span><span class="WHIT">  </span><span class="NAME">insertBacktab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>230</span> 
+<span class='line'>231</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>232</span>     Insert a newline character or end editing of the receiver.
+<span class='line'>233</span> 
+<span class='line'>234</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>235</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>236</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>237</span>   */</span><span class="WHIT">
+<span class='line'>238</span> </span><span class="WHIT">  </span><span class="NAME">insertNewline</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>239</span> 
+<span class='line'>240</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>241</span>     Insert a tab or move forward to the next field.
+<span class='line'>242</span> 
+<span class='line'>243</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>244</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>245</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>246</span>   */</span><span class="WHIT">
+<span class='line'>247</span> </span><span class="WHIT">  </span><span class="NAME">insertTab</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>248</span> 
+<span class='line'>249</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>250</span>     Move insertion point/selection backward one. (i.e. left arrow key)
+<span class='line'>251</span> 
+<span class='line'>252</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>253</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>254</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>255</span>   */</span><span class="WHIT">
+<span class='line'>256</span> </span><span class="WHIT">  </span><span class="NAME">moveLeft</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>257</span> 
+<span class='line'>258</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>259</span>     Move the insertion point/selection forward one (i.e. right arrow key)
+<span class='line'>260</span>     in left-to-right text, this could be the left arrow key.
+<span class='line'>261</span> 
+<span class='line'>262</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>263</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>264</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>265</span>   */</span><span class="WHIT">
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="NAME">moveRight</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>267</span> 
+<span class='line'>268</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>269</span>     Move the insertion point/selection up one (i.e. up arrow key)
+<span class='line'>270</span> 
+<span class='line'>271</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>272</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>273</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>274</span>   */</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">  </span><span class="NAME">moveUp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>276</span> 
+<span class='line'>277</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>278</span>     Move the insertion point/selection down one (i.e. down arrow key)
+<span class='line'>279</span> 
+<span class='line'>280</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>281</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>282</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>283</span>   */</span><span class="WHIT">
+<span class='line'>284</span> </span><span class="WHIT">  </span><span class="NAME">moveDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>285</span> 
+<span class='line'>286</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>287</span>     Move left, extending the selection. - shift || alt
+<span class='line'>288</span> 
+<span class='line'>289</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>290</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>291</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>292</span>   */</span><span class="WHIT">
+<span class='line'>293</span> </span><span class="WHIT">  </span><span class="NAME">moveLeftAndModifySelection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>294</span> 
+<span class='line'>295</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>296</span>     Move right, extending the seleciton - shift || alt
+<span class='line'>297</span> 
+<span class='line'>298</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>299</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>300</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>301</span>   */</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">  </span><span class="NAME">moveRightAndModifySelection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>303</span> 
+<span class='line'>304</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>305</span>     Move up, extending the selection - shift || alt
+<span class='line'>306</span> 
+<span class='line'>307</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>308</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>309</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>310</span>   */</span><span class="WHIT">
+<span class='line'>311</span> </span><span class="WHIT">  </span><span class="NAME">moveUpAndModifySelection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>312</span> 
+<span class='line'>313</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>314</span>     Move down, extending selection - shift || alt
+<span class='line'>315</span> 
+<span class='line'>316</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>317</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>318</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>319</span>   */</span><span class="WHIT">
+<span class='line'>320</span> </span><span class="WHIT">  </span><span class="NAME">moveDownAndModifySelection</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>321</span> 
+<span class='line'>322</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>323</span>     Move insertion point/selection to beginning of document.
+<span class='line'>324</span> 
+<span class='line'>325</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>326</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>327</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>328</span>   */</span><span class="WHIT">
+<span class='line'>329</span> </span><span class="WHIT">  </span><span class="NAME">moveToBeginningOfDocument</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>330</span> 
+<span class='line'>331</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>332</span>     Move insertion point/selection to end of document.
+<span class='line'>333</span> 
+<span class='line'>334</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>335</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>336</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>337</span>   */</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">  </span><span class="NAME">moveToEndOfDocument</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>339</span> 
+<span class='line'>340</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>341</span>     Page down
+<span class='line'>342</span> 
+<span class='line'>343</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>344</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>345</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>346</span>   */</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">  </span><span class="NAME">pageDown</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>348</span> 
+<span class='line'>349</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>350</span>     Page up
+<span class='line'>351</span> 
+<span class='line'>352</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>353</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>354</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>355</span>   */</span><span class="WHIT">
+<span class='line'>356</span> </span><span class="WHIT">  </span><span class="NAME">pageUp</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>357</span> 
+<span class='line'>358</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>359</span>     Select all
+<span class='line'>360</span> 
+<span class='line'>361</span>     @param sender {Object} the object that triggered the method; may be null
+<span class='line'>362</span>     @param evt {SC.Event} the event that triggered the method; may be null
+<span class='line'>363</span>     @returns {Boolean} YES if you handle the event; NO otherwise
+<span class='line'>364</span>   */</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">  </span><span class="NAME">selectAll</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">sender</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">evt</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>366</span> 
+<span class='line'>367</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>368</span> </span></pre></body></html>

@@ -279,7 +279,7 @@
 <span class='line'>272</span> 
 <span class='line'>273</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">storeKeys</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Unable to edit an SC.RecordArray that does not have its storeKeys property set."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>274</span> 
-<span class='line'>275</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditable'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="NAME">SC.RecordArray.NOT_EDITABLE</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">'isEditable'</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="NAME">SC.RecordArray.NOT_EDITABLE.throw</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>276</span> 
 <span class='line'>277</span> </span><span class="WHIT">    </span><span class="COMM">// map to store keys</span><span class="WHIT">
 <span class='line'>278</span> </span><span class="WHIT">    </span><span class="NAME">keys</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">;</span><span class="WHIT">
@@ -821,7 +821,7 @@
 <span class='line'>814</span> 
 <span class='line'>815</span>     @type SC.Error
 <span class='line'>816</span>   */</span><span class="WHIT">
-<span class='line'>817</span> </span><span class="WHIT">  </span><span class="NAME">NOT_EDITABLE</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.Error.desc</span><span class="PUNC">(</span><span class="STRN">"SC.RecordArray is not editable"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>817</span> </span><span class="WHIT">  </span><span class="NAME">NOT_EDITABLE</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NAME">SC.$error</span><span class="PUNC">(</span><span class="STRN">"SC.RecordArray is not editable"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>818</span> 
 <span class='line'>819</span> </span><span class="WHIT">  </span><span class="COMM">/**
 <span class='line'>820</span>     Number of milliseconds to allow a query matching to run for. If this number

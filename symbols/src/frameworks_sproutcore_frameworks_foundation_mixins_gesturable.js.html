@@ -15,249 +15,437 @@
 <span class='line'>  8</span> </span><span class="COMM">/**
 <span class='line'>  9</span>   @namespace
 <span class='line'> 10</span> 
-<span class='line'> 11</span>   You can mix in SC.Gesturable to your views to add some support for recognizing
-<span class='line'> 12</span>   gestures.
-<span class='line'> 13</span> 
-<span class='line'> 14</span>   SproutCore views have built-in touch events. However, sometimes you may want
-<span class='line'> 15</span>   to recognize gestures like tap, pinch, swipe, etc. This becomes tedious if you
-<span class='line'> 16</span>   need to do this often, and more so if you need to check for multiple possible
-<span class='line'> 17</span>   gestures on the same view.
-<span class='line'> 18</span> 
-<span class='line'> 19</span>   SC.Gesturable allows you to define a collection of gestures (SC.Gesture objects)
-<span class='line'> 20</span>   that your view should recognize. When a gesture is recognized, methods will be
-<span class='line'> 21</span>   called on the view:
-<span class='line'> 22</span> 
-<span class='line'> 23</span>     - [gestureName](gesture, args...): called when the gesture has occurred. This is
-<span class='line'> 24</span>       useful for event-style gestures, where you aren't interested in when it starts or
-<span class='line'> 25</span>       ends, but just that it has occurred. SC.SwipeGesture triggers this after the
-<span class='line'> 26</span>       swipe has moved a minimum amount—40px by default.
-<span class='line'> 27</span>     - [gestureName]Start(gesture, args...): called when the gesture is first recognized.
-<span class='line'> 28</span>       For instance, a swipe gesture may be recognized after the finger has moved a
-<span class='line'> 29</span>       minimum distance in a horizontal.
-<span class='line'> 30</span>     - [gestureName]Changed(gesture, args...): called when some property of the gesture
-<span class='line'> 31</span>       has changed. For instance, this may be called continuously as the user swipes as
-<span class='line'> 32</span>       the swipe's distance changes.
-<span class='line'> 33</span>     - [gestureName]Cancelled(gesture, args...): called when a gesture, for one reason
-<span class='line'> 34</span>       or another, is no longer recognized. For instance, a horizontal swipe gesture
-<span class='line'> 35</span>       could cancel if the user moves too far in a vertical direction.
-<span class='line'> 36</span>     - [gestureName]End(gesture, args...): called when a gesture ends. A swipe would end
-<span class='line'> 37</span>       when the user lifts their finger.
-<span class='line'> 38</span> 
-<span class='line'> 39</span>   Each of these methods is passed the gesture instance, in addition to any arguments
-<span class='line'> 40</span>   the gesture sends for your convenience. The default swipe gesture sends an SC.Touch
-<span class='line'> 41</span>   instance, the swipe direction, and the distance the swipe has moved in that direction.
-<span class='line'> 42</span> 
-<span class='line'> 43</span>   Using SC.Gesturable
-<span class='line'> 44</span>   -------------------
-<span class='line'> 45</span> 
-<span class='line'> 46</span>   To make your view recognize gestures, mix in Gesturable and add items to the 'gestures'
-<span class='line'> 47</span>   property:
-<span class='line'> 48</span> 
-<span class='line'> 49</span>       SC.View.extend(SC.Gesturable, {
-<span class='line'> 50</span>         gestures: [SC.PinchGesture, 'mySwipeGesture'],
-<span class='line'> 51</span> 
-<span class='line'> 52</span>         // specifying as a string allows you to configure it:
-<span class='line'> 53</span>         mySwipeGesture: SC.SwipeGesture.extend({
-<span class='line'> 54</span>           direction: SC.SWIPE_VERTICAL,
-<span class='line'> 55</span>           startDistance: 3,
-<span class='line'> 56</span>           swipeDistance: 20
-<span class='line'> 57</span>         }),
-<span class='line'> 58</span> 
-<span class='line'> 59</span>         // handle the swipe action
-<span class='line'> 60</span>         swipe: function(touch, direction) {
-<span class='line'> 61</span>           console.error("Swiped! In direction: " + direction);
-<span class='line'> 62</span>         },
-<span class='line'> 63</span> 
-<span class='line'> 64</span>         swipeStart: function(touch, direction, delta) {
-<span class='line'> 65</span>           console.error("Swipe started in direction: " + direction + "; dist: " + delta);
-<span class='line'> 66</span>         },
-<span class='line'> 67</span> 
-<span class='line'> 68</span>         swipeChanged: function(touch, direction, delta) {
-<span class='line'> 69</span>           console.error("Swipe continued in direction: " + direction + "; dist: " + delta);
-<span class='line'> 70</span>         },
-<span class='line'> 71</span> 
-<span class='line'> 72</span>         swipeEnd: function(touch, direction, delta) {
-<span class='line'> 73</span>           console.error("Completed swipe in direction: " + direction + "; dist: " + delta);
-<span class='line'> 74</span>         }
-<span class='line'> 75</span> 
-<span class='line'> 76</span>       })
-<span class='line'> 77</span> 
-<span class='line'> 78</span>   @extends SC.ObjectMixinProtocol
+<span class='line'> 11</span>   You can mix in SC.Gesturable to your views to add some support for recognizing gestures.
+<span class='line'> 12</span> 
+<span class='line'> 13</span>   SproutCore views have built-in touch events. However, sometimes you may want
+<span class='line'> 14</span>   to recognize gestures like tap, pinch, swipe, etc. This becomes tedious if you
+<span class='line'> 15</span>   need to do this often, and more so if you need to check for multiple possible
+<span class='line'> 16</span>   gestures on the same view.
+<span class='line'> 17</span> 
+<span class='line'> 18</span>   SC.Gesturable allows you to define a collection of gestures (SC.Gesture objects)
+<span class='line'> 19</span>   that your view should recognize. When a gesture is recognized, methods will be
+<span class='line'> 20</span>   called on the view:
+<span class='line'> 21</span> 
+<span class='line'> 22</span>     - [gestureName](gesture, args...): called when the gesture has occurred. This is
+<span class='line'> 23</span>       useful for event-style gestures, where you aren't interested in when it starts or
+<span class='line'> 24</span>       ends, but just that it has occurred. SC.SwipeGesture triggers this after the
+<span class='line'> 25</span>       swipe has moved a minimum amount—40px by default.
+<span class='line'> 26</span>     - [gestureName]Start(gesture, args...): called when the gesture is first recognized.
+<span class='line'> 27</span>       For instance, a swipe gesture may be recognized after the finger has moved a
+<span class='line'> 28</span>       minimum distance in a horizontal.
+<span class='line'> 29</span>     - [gestureName]Changed(gesture, args...): called when some property of the gesture
+<span class='line'> 30</span>       has changed. For instance, this may be called continuously as the user swipes as
+<span class='line'> 31</span>       the swipe's distance changes.
+<span class='line'> 32</span>     - [gestureName]Cancelled(gesture, args...): called when a gesture, for one reason
+<span class='line'> 33</span>       or another, is no longer recognized. For instance, a horizontal swipe gesture
+<span class='line'> 34</span>       could cancel if the user moves too far in a vertical direction.
+<span class='line'> 35</span>     - [gestureName]End(gesture, args...): called when a gesture ends. A swipe would end
+<span class='line'> 36</span>       when the user lifts their finger.
+<span class='line'> 37</span> 
+<span class='line'> 38</span>   Each of these methods is passed the gesture instance, in addition to any arguments
+<span class='line'> 39</span>   the gesture sends for your convenience. The default swipe gesture sends an SC.Touch
+<span class='line'> 40</span>   instance, the swipe direction, and the distance the swipe has moved in that direction.
+<span class='line'> 41</span> 
+<span class='line'> 42</span>   Using SC.Gesturable
+<span class='line'> 43</span>   -------------------
+<span class='line'> 44</span> 
+<span class='line'> 45</span>   To make your view recognize gestures, mix in Gesturable and add items to the 'gestures'
+<span class='line'> 46</span>   property:
+<span class='line'> 47</span> 
+<span class='line'> 48</span>       SC.View.extend(SC.Gesturable, {
+<span class='line'> 49</span>         gestures: [SC.PinchGesture, 'mySwipeGesture'],
+<span class='line'> 50</span> 
+<span class='line'> 51</span>         // specifying as a string allows you to configure it:
+<span class='line'> 52</span>         mySwipeGesture: SC.SwipeGesture.extend({
+<span class='line'> 53</span>           direction: SC.SWIPE_VERTICAL,
+<span class='line'> 54</span>           startDistance: 3,
+<span class='line'> 55</span>           swipeDistance: 20
+<span class='line'> 56</span>         }),
+<span class='line'> 57</span> 
+<span class='line'> 58</span>         // handle the swipe action
+<span class='line'> 59</span>         swipe: function(touch, direction) {
+<span class='line'> 60</span>           console.error("Swiped! In direction: " + direction);
+<span class='line'> 61</span>         },
+<span class='line'> 62</span> 
+<span class='line'> 63</span>         swipeStart: function(touch, direction, delta) {
+<span class='line'> 64</span>           console.error("Swipe started in direction: " + direction + "; dist: " + delta);
+<span class='line'> 65</span>         },
+<span class='line'> 66</span> 
+<span class='line'> 67</span>         swipeChanged: function(touch, direction, delta) {
+<span class='line'> 68</span>           console.error("Swipe continued in direction: " + direction + "; dist: " + delta);
+<span class='line'> 69</span>         },
+<span class='line'> 70</span> 
+<span class='line'> 71</span>         swipeEnd: function(touch, direction, delta) {
+<span class='line'> 72</span>           console.error("Completed swipe in direction: " + direction + "; dist: " + delta);
+<span class='line'> 73</span>         }
+<span class='line'> 74</span> 
+<span class='line'> 75</span>       })
+<span class='line'> 76</span> 
+<span class='line'> 77</span>   @extends SC.ObjectMixinProtocol
+<span class='line'> 78</span>   @extends SC.ResponderProtocol
 <span class='line'> 79</span> */</span><span class="WHIT">
 <span class='line'> 80</span> </span><span class="NAME">SC.Gesturable</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 81</span> 
-<span class='line'> 82</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 83</span>     @type Array
-<span class='line'> 84</span>     @default ['gestures']
-<span class='line'> 85</span>     @see SC.Object#concatenatedProperties
+<span class='line'> 82</span> </span><span class="WHIT">  </span><span class="COMM">/** @private An array of all gestures currently interested in the touch session.
+<span class='line'> 83</span> 
+<span class='line'> 84</span>     @type Array
+<span class='line'> 85</span>     @default null
 <span class='line'> 86</span>   */</span><span class="WHIT">
-<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="NAME">concatenatedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'gestures'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="NAME">_sc_interestedGestures</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 88</span> 
-<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 90</span>     The gestures that the view will support. This property must be set on the consumer of
-<span class='line'> 91</span>     `SC.Gesturable` before it is initialized.
-<span class='line'> 92</span> 
-<span class='line'> 93</span>     These gestures should be objects that extend the `SC.Gesture` class. You can use SproutCore's
-<span class='line'> 94</span>     pre-built gestures or create your own. If you create your own, you can use a property name
-<span class='line'> 95</span>     in the list of gestures to refer to the actual gesture class, similar to how the childViews
-<span class='line'> 96</span>     array works. For example,
-<span class='line'> 97</span> 
-<span class='line'> 98</span>         gestures: [SC.PinchGesture, 'mySwipeGesture'],
-<span class='line'> 99</span> 
-<span class='line'>100</span>         // Specifying the Gesture by property name allows you to configure it.
-<span class='line'>101</span>         mySwipeGesture: SC.SwipeGesture.extend({
-<span class='line'>102</span>           direction: SC.SWIPE_VERTICAL,
-<span class='line'>103</span>           startDistance: 3,
-<span class='line'>104</span>           swipeDistance: 20
-<span class='line'>105</span>         }),
-<span class='line'>106</span> 
-<span class='line'>107</span>     Note that `gestures` is a *concatenated property*, which means that it will not be overwritten
-<span class='line'>108</span>     by subclasses. So for example, if the base class lists gestures as `[SC.PinchGesture]` and its
-<span class='line'>109</span>     subclass lists gestures as `[SC.TapGesture]`, the actual gestures supported by the subclass will
-<span class='line'>110</span>     be `[SC.PinchGesture, SC.TapGesture]`.
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="COMM">/** @private An array of the touches that are currently active in a touch session.
+<span class='line'> 90</span> 
+<span class='line'> 91</span>     @type Array
+<span class='line'> 92</span>     @default null
+<span class='line'> 93</span>   */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="NAME">_sc_touchesInSession</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 95</span> 
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 97</span>     Gestures need to understand multiple touches.
+<span class='line'> 98</span> 
+<span class='line'> 99</span>     @type Boolean
+<span class='line'>100</span>     @default true
+<span class='line'>101</span>     @see SC.View#acceptsMultitouch
+<span class='line'>102</span>   */</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">acceptsMultitouch</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>104</span> 
+<span class='line'>105</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>106</span>     @type Array
+<span class='line'>107</span>     @default ['gestures']
+<span class='line'>108</span>     @see SC.Object#concatenatedProperties
+<span class='line'>109</span>   */</span><span class="WHIT">
+<span class='line'>110</span> </span><span class="WHIT">  </span><span class="NAME">concatenatedProperties</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'gestures'</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>111</span> 
-<span class='line'>112</span>     @type Array
-<span class='line'>113</span>     @default null
-<span class='line'>114</span>   */</span><span class="WHIT">
-<span class='line'>115</span> </span><span class="WHIT">  </span><span class="NAME">gestures</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>116</span> 
-<span class='line'>117</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>118</span>     When SC.Gesturable initializes, any gestures named on the view are instantiated.
-<span class='line'>119</span> 
-<span class='line'>120</span>     @see SC.ObjectMixinProtocol#initMixin
-<span class='line'>121</span>   */</span><span class="WHIT">
-<span class='line'>122</span> </span><span class="WHIT">  </span><span class="NAME">initMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>123</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
-<span class='line'>124</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">this.gestures</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>125</span> </span><span class="WHIT">      </span><span class="NAME">SC.error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: When mixing in SC.Gesturable, you must define a list of gestures to use."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>126</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>127</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
-<span class='line'>128</span> </span><span class="WHIT">    </span><span class="NAME">this.createGestures</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>129</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>130</span> 
-<span class='line'>131</span> </span><span class="WHIT">  </span><span class="COMM">/** @private  Instantiates the gestures. */</span><span class="WHIT">
-<span class='line'>132</span> </span><span class="WHIT">  </span><span class="NAME">createGestures</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>133</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>134</span> </span><span class="WHIT">        </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>135</span> </span><span class="WHIT">        </span><span class="NAME">instantiatedGestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>136</span> </span><span class="WHIT">        </span><span class="NAME">idx</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>137</span> 
-<span class='line'>138</span> </span><span class="WHIT">    </span><span class="COMM">// loop through all gestures</span><span class="WHIT">
-<span class='line'>139</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>140</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>113</span>     The gestures that the view will support. This property must be set on the consumer of
+<span class='line'>114</span>     `SC.Gesturable` before it is initialized.
+<span class='line'>115</span> 
+<span class='line'>116</span>     These gestures should be objects that extend the `SC.Gesture` class. You can use SproutCore's
+<span class='line'>117</span>     pre-built gestures or create your own. If you create your own, you can use a property name
+<span class='line'>118</span>     in the list of gestures to refer to the actual gesture class, similar to how the childViews
+<span class='line'>119</span>     array works. For example,
+<span class='line'>120</span> 
+<span class='line'>121</span>         gestures: [SC.PinchGesture, 'mySwipeGesture'],
+<span class='line'>122</span> 
+<span class='line'>123</span>         // Specifying the Gesture by property name allows you to configure it.
+<span class='line'>124</span>         mySwipeGesture: SC.SwipeGesture.extend({
+<span class='line'>125</span>           direction: SC.SWIPE_VERTICAL,
+<span class='line'>126</span>           startDistance: 3,
+<span class='line'>127</span>           swipeDistance: 20
+<span class='line'>128</span>         }),
+<span class='line'>129</span> 
+<span class='line'>130</span>     Note that `gestures` is a *concatenated property*, which means that it will not be overwritten
+<span class='line'>131</span>     by subclasses. So for example, if the base class lists gestures as `[SC.PinchGesture]` and its
+<span class='line'>132</span>     subclass lists gestures as `[SC.TapGesture]`, the actual gestures supported by the subclass will
+<span class='line'>133</span>     be `[SC.PinchGesture, SC.TapGesture]`.
+<span class='line'>134</span> 
+<span class='line'>135</span>     @type Array
+<span class='line'>136</span>     @default null
+<span class='line'>137</span>   */</span><span class="WHIT">
+<span class='line'>138</span> </span><span class="WHIT">  </span><span class="NAME">gestures</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>139</span> 
+<span class='line'>140</span> </span><span class="WHIT">  </span><span class="COMM">/** @private Shared method for finishing a touch.
 <span class='line'>141</span> 
-<span class='line'>142</span> </span><span class="WHIT">      </span><span class="COMM">// get the proper gesture</span><span class="WHIT">
-<span class='line'>143</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>144</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>145</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>146</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>147</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>142</span>     @param {SC.Touch} touch The touch that ended or cancelled.
+<span class='line'>143</span>     @param {Boolean} wasCancelled Whether the touch was cancelled or not (i.e. ended normally).
+<span class='line'>144</span>   */</span><span class="WHIT">
+<span class='line'>145</span> </span><span class="WHIT">  </span><span class="NAME">_sc_gestureTouchFinish</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">wasCancelled</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>146</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_touchesInSession</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>147</span> </span><span class="WHIT">        </span><span class="NAME">touchIndexInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">touchesInSession.indexOf</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>148</span> 
-<span class='line'>149</span> </span><span class="WHIT">      </span><span class="COMM">// if it was not found, well, that's an error.</span><span class="WHIT">
-<span class='line'>150</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>151</span> </span><span class="WHIT">        </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: Could not find gesture named '"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"' on view."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>152</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>153</span> 
-<span class='line'>154</span> </span><span class="WHIT">      </span><span class="COMM">// if it is a class, instantiate (it really ought to be a class...)</span><span class="WHIT">
-<span class='line'>155</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">gesture.isClass</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>156</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>157</span> </span><span class="WHIT">          </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT">
-<span class='line'>158</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>159</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>160</span> 
-<span class='line'>161</span> </span><span class="WHIT">      </span><span class="COMM">// and set the gesture instance and add it to the array.</span><span class="WHIT">
-<span class='line'>162</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">[</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>163</span> </span><span class="WHIT">      </span><span class="NAME">instantiatedGestures.push</span><span class="PUNC">(</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>164</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>165</span> 
-<span class='line'>166</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">instantiatedGestures</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>167</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>168</span> 
-<span class='line'>169</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>170</span>     Handles touch start by handing it to the gesture recognizing code.
-<span class='line'>171</span> 
-<span class='line'>172</span>     If you override touchStart, you will need to call gestureTouchStart to
-<span class='line'>173</span>     give the gesture system control of the touch. You will continue to get
-<span class='line'>174</span>     events until if and when a gesture decides to take "possession" of a touch—
-<span class='line'>175</span>     at this point, you will get a [gestureName]Start event.
+<span class='line'>149</span> </span><span class="WHIT">    </span><span class="COMM">// Decrement our list of touches that are being acted upon.</span><span class="WHIT">
+<span class='line'>150</span> </span><span class="WHIT">    </span><span class="NAME">touchesInSession.replace</span><span class="PUNC">(</span><span class="NAME">touchIndexInSession</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>151</span> 
+<span class='line'>152</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_interestedGestures</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>153</span> </span><span class="WHIT">        </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>154</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>155</span> 
+<span class='line'>156</span> </span><span class="WHIT">    </span><span class="COMM">// Loop through the gestures in reverse, as the list may be mutated.</span><span class="WHIT">
+<span class='line'>157</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>158</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">isInterested</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>159</span> 
+<span class='line'>160</span> </span><span class="WHIT">      </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>161</span> 
+<span class='line'>162</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">wasCancelled</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>163</span> </span><span class="WHIT">        </span><span class="NAME">isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture.touchCancelledInSession</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>164</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>165</span> </span><span class="WHIT">        </span><span class="NAME">isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture.touchEndedInSession</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>167</span> 
+<span class='line'>168</span> </span><span class="WHIT">      </span><span class="COMM">// If the gesture is no longer interested in *any* touches for this session, remove it.</span><span class="WHIT">
+<span class='line'>169</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>170</span> </span><span class="WHIT">        </span><span class="COMM">// Tell the gesture that the touch session has ended for it.</span><span class="WHIT">
+<span class='line'>171</span> </span><span class="WHIT">        </span><span class="NAME">gesture.touchSessionCancelled</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>172</span> 
+<span class='line'>173</span> </span><span class="WHIT">        </span><span class="NAME">gestures.replace</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>174</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>175</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'>176</span> 
-<span class='line'>177</span>     You do not have to call gestureTouchStart immediately; you can call it
-<span class='line'>178</span>     at any time. This allows you to avoid passing control until _after_ you
-<span class='line'>179</span>     have determined your own touchStart, touchesDragged, and touchEnd methods
-<span class='line'>180</span>     are not going to handle it.
-<span class='line'>181</span>   */</span><span class="WHIT">
-<span class='line'>182</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>183</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchStart</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>184</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>185</span> 
-<span class='line'>186</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>187</span>     Tells the gesture recognizing code about touches moving.
-<span class='line'>188</span> 
-<span class='line'>189</span>     If you override touchesDragged, you will need to call gestureTouchesDragged
-<span class='line'>190</span>     (at least for any touches you called gestureTouchStart for in touchStart) to
-<span class='line'>191</span>     allow the gesture system to update.
-<span class='line'>192</span>   */</span><span class="WHIT">
-<span class='line'>193</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>194</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchesDragged</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>195</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>196</span> 
-<span class='line'>197</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>198</span>     Tells the gesture recognizing code about a touch ending.
-<span class='line'>199</span> 
-<span class='line'>200</span>     If you override touchEnd, you will need to call gestureTouchEnd
-<span class='line'>201</span>     for any touches you called touchStart for.
-<span class='line'>202</span>   */</span><span class="WHIT">
-<span class='line'>203</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>204</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchEnd</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>177</span> </span><span class="WHIT">    </span><span class="COMM">// Once there are no more touches in the session, reset the interested gestures.</span><span class="WHIT">
+<span class='line'>178</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession.length</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>179</span> </span><span class="WHIT">      </span><span class="COMM">// Notify all remaining interested gestures that the touch session has finished cleanly.</span><span class="WHIT">
+<span class='line'>180</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>181</span> 
+<span class='line'>182</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>183</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>184</span> 
+<span class='line'>185</span> </span><span class="WHIT">        </span><span class="NAME">gesture.touchSessionEnded</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>186</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>187</span> 
+<span class='line'>188</span> </span><span class="WHIT">      </span><span class="COMM">// Clear out the current cache of interested gestures for the session.</span><span class="WHIT">
+<span class='line'>189</span> </span><span class="WHIT">      </span><span class="NAME">this._sc_interestedGestures.length</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>190</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>191</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>192</span> 
+<span class='line'>193</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>194</span>     When SC.Gesturable initializes, any gestures named on the view are instantiated.
+<span class='line'>195</span> 
+<span class='line'>196</span>     @see SC.ObjectMixinProtocol#initMixin
+<span class='line'>197</span>   */</span><span class="WHIT">
+<span class='line'>198</span> </span><span class="WHIT">  </span><span class="NAME">initMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">    </span><span class="COMM">//@if(debug)</span><span class="WHIT">
+<span class='line'>200</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.none</span><span class="PUNC">(</span><span class="NAME">this.gestures</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>201</span> </span><span class="WHIT">      </span><span class="NAME">SC.error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: When mixing in SC.Gesturable, you must define a list of gestures to use."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>202</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>203</span> </span><span class="WHIT">    </span><span class="COMM">//@endif</span><span class="WHIT">
+<span class='line'>204</span> </span><span class="WHIT">    </span><span class="NAME">this.createGestures</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>205</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>206</span> 
-<span class='line'>207</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>208</span>     Tells the gesture recognizing system about a new touch.
-<span class='line'>209</span> 
-<span class='line'>210</span>     This informs all gestures that a new touch, "unassigned" to any gesture,
-<span class='line'>211</span>     has been located. Later, each gesture has an opportunity to claim the touch.
-<span class='line'>212</span> 
-<span class='line'>213</span>     Once they have claimed the touch, further events will go _directly_ to them—
-<span class='line'>214</span>     this view will cease receiving the touchesDragged and will not receive a touchEnd.
-<span class='line'>215</span>   */</span><span class="WHIT">
-<span class='line'>216</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>217</span> </span><span class="WHIT">    </span><span class="NAME">touch.isInteresting</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>218</span> 
-<span class='line'>219</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">g</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>220</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>221</span> </span><span class="WHIT">      </span><span class="NAME">g</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>222</span> </span><span class="WHIT">      </span><span class="NAME">g.unassignedTouchDidStart</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>223</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>224</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>225</span> 
-<span class='line'>226</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>227</span>     Tells the gesture recognition system that some touches have moved.
-<span class='line'>228</span> 
-<span class='line'>229</span>     This informs all gestures that these touches have changed. All such touches
-<span class='line'>230</span>     are "unassigned" because all "assigned" touches already get sent directly
-<span class='line'>231</span>     to the gesture.
-<span class='line'>232</span>   */</span><span class="WHIT">
-<span class='line'>233</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>234</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">g</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>235</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>236</span> </span><span class="WHIT">      </span><span class="NAME">g</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>237</span> </span><span class="WHIT">      </span><span class="NAME">g.unassignedTouchesDidChange</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>238</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>239</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'>240</span> 
-<span class='line'>241</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'>242</span>     Tells the gesture recognition system that a touch have ended.
-<span class='line'>243</span> 
-<span class='line'>244</span>     This informs all of the gestures that the touch ended. The touch is
-<span class='line'>245</span>     an unassigned touch as, if it were assigned to a gesture, it would have
-<span class='line'>246</span>     been sent directly to the gesture, bypassing this view.
-<span class='line'>247</span>   */</span><span class="WHIT">
-<span class='line'>248</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>249</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">g</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>250</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>251</span> </span><span class="WHIT">      </span><span class="NAME">g</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>252</span> </span><span class="WHIT">      </span><span class="NAME">g.unassignedTouchDidEnd</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>253</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>254</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>255</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>256</span> </span></pre></body></html>
+<span class='line'>207</span> </span><span class="WHIT">  </span><span class="COMM">/** @private  Instantiates the gestures. */</span><span class="WHIT">
+<span class='line'>208</span> </span><span class="WHIT">  </span><span class="NAME">createGestures</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>209</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>210</span> </span><span class="WHIT">        </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>211</span> </span><span class="WHIT">        </span><span class="NAME">instantiatedGestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>212</span> </span><span class="WHIT">        </span><span class="NAME">idx</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>213</span> 
+<span class='line'>214</span> </span><span class="WHIT">    </span><span class="COMM">// loop through all gestures</span><span class="WHIT">
+<span class='line'>215</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>216</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>217</span> 
+<span class='line'>218</span> </span><span class="WHIT">      </span><span class="COMM">// get the proper gesture</span><span class="WHIT">
+<span class='line'>219</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>220</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>221</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>223</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>224</span> 
+<span class='line'>225</span> </span><span class="WHIT">      </span><span class="COMM">// if it was not found, well, that's an error.</span><span class="WHIT">
+<span class='line'>226</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>227</span> </span><span class="WHIT">        </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Developer Error: Could not find gesture named '"</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">+</span><span class="WHIT"> </span><span class="STRN">"' on view."</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>228</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>229</span> 
+<span class='line'>230</span> </span><span class="WHIT">      </span><span class="COMM">// if it is a class, instantiate (it really ought to be a class...)</span><span class="WHIT">
+<span class='line'>231</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">gesture.isClass</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>232</span> </span><span class="WHIT">        </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture.create</span><span class="PUNC">(</span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>233</span> </span><span class="WHIT">          </span><span class="NAME">view</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="WHIT">
+<span class='line'>234</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>235</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>236</span> 
+<span class='line'>237</span> </span><span class="WHIT">      </span><span class="COMM">// and set the gesture instance and add it to the array.</span><span class="WHIT">
+<span class='line'>238</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">SC.typeOf</span><span class="PUNC">(</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NAME">SC.T_STRING</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">[</span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>239</span> </span><span class="WHIT">      </span><span class="NAME">instantiatedGestures.push</span><span class="PUNC">(</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>241</span> 
+<span class='line'>242</span> </span><span class="WHIT">    </span><span class="NAME">this.set</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">instantiatedGestures</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>243</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>244</span> 
+<span class='line'>245</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>246</span>     Handles touch start by handing it to the gesture recognizing code.
+<span class='line'>247</span> 
+<span class='line'>248</span>     If you override touchStart, you will need to call gestureTouchStart to
+<span class='line'>249</span>     give the gesture system control of the touch. You will continue to get
+<span class='line'>250</span>     events until if and when a gesture decides to take "possession" of a touch—
+<span class='line'>251</span>     at this point, you will get a [gestureName]Start event.
+<span class='line'>252</span> 
+<span class='line'>253</span>     You do not have to call gestureTouchStart immediately; you can call it
+<span class='line'>254</span>     at any time. This allows you to avoid passing control until _after_ you
+<span class='line'>255</span>     have determined your own touchStart, touchesDragged, and touchEnd methods
+<span class='line'>256</span>     are not going to handle it.
+<span class='line'>257</span> 
+<span class='line'>258</span>     @param {SC.Touch} touch The touch that started.
+<span class='line'>259</span>     @returns {Boolean} Whether the touch should be claimed by the view or not.
+<span class='line'>260</span>     @see SC.ResponderProtocol#touchStart
+<span class='line'>261</span>   */</span><span class="WHIT">
+<span class='line'>262</span> </span><span class="WHIT">  </span><span class="NAME">touchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>263</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.gestureTouchStart</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>264</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>265</span> 
+<span class='line'>266</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>267</span>     Tells the gesture recognizing code about touches moving.
+<span class='line'>268</span> 
+<span class='line'>269</span>     If you override touchesDragged, you will need to call gestureTouchesDragged
+<span class='line'>270</span>     (at least for any touches you called gestureTouchStart for in touchStart) to
+<span class='line'>271</span>     allow the gesture system to update.
+<span class='line'>272</span> 
+<span class='line'>273</span>     @see SC.ResponderProtocol#touchesDragged
+<span class='line'>274</span>   */</span><span class="WHIT">
+<span class='line'>275</span> </span><span class="WHIT">  </span><span class="NAME">touchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>276</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchesDragged</span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>277</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>278</span> 
+<span class='line'>279</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>280</span>     Tells the gesture recognizing code about a touch ending.
+<span class='line'>281</span> 
+<span class='line'>282</span>     If you override touchEnd, you will need to call gestureTouchEnd
+<span class='line'>283</span>     for any touches you called gestureTouchStart for in touchStart (if overridden).
+<span class='line'>284</span> 
+<span class='line'>285</span>     @param {SC.Touch} touch The touch that ended.
+<span class='line'>286</span>     @see SC.ResponderProtocol#touchEnd
+<span class='line'>287</span>   */</span><span class="WHIT">
+<span class='line'>288</span> </span><span class="WHIT">  </span><span class="NAME">touchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>289</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchEnd</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>290</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>291</span> 
+<span class='line'>292</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>293</span>     Tells the gesture recognizing code about a touch cancelling.
+<span class='line'>294</span> 
+<span class='line'>295</span>     If you override touchCancelled, you will need to call gestureTouchCancelled
+<span class='line'>296</span>     for any touches you called gestureTouchStart for in touchStart (if overridden).
+<span class='line'>297</span> 
+<span class='line'>298</span>     @param {SC.Touch} touch The touch that cancelled.
+<span class='line'>299</span>     @see SC.ResponderProtocol#touchCancelled
+<span class='line'>300</span>   */</span><span class="WHIT">
+<span class='line'>301</span> </span><span class="WHIT">  </span><span class="NAME">touchCancelled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>302</span> </span><span class="WHIT">    </span><span class="NAME">this.gestureTouchCancelled</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>303</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>304</span> 
+<span class='line'>305</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>306</span>     Called by a gesture that has lost interest in the entire touch session, likely due to too much
+<span class='line'>307</span>     time having passed since `gestureTouchStart` or `gestureTouchesDragged` having been called.
+<span class='line'>308</span> 
+<span class='line'>309</span>     Simply removes the gesture from the list of interested gestures and calls
+<span class='line'>310</span>     `touchSessionCancelled` on the gesture.
+<span class='line'>311</span>   */</span><span class="WHIT">
+<span class='line'>312</span> </span><span class="WHIT">  </span><span class="NAME">gestureLostInterest</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>313</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_interestedGestures</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>314</span> </span><span class="WHIT">        </span><span class="NAME">gestureIndex</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.indexOf</span><span class="PUNC">(</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>315</span> 
+<span class='line'>316</span> </span><span class="WHIT">    </span><span class="COMM">// Remove the gesture.</span><span class="WHIT">
+<span class='line'>317</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">gestureIndex</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>318</span> </span><span class="WHIT">      </span><span class="NAME">gesture.touchSessionCancelled</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>319</span> 
+<span class='line'>320</span> </span><span class="WHIT">      </span><span class="NAME">gestures.replace</span><span class="PUNC">(</span><span class="NAME">gestureIndex</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>321</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>322</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>323</span> 
+<span class='line'>324</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>325</span>     Tells the gesture recognizing system about a new touch. This notifies all gestures of a new
+<span class='line'>326</span>     touch session starting (if there were no previous touches) or notifies all interested gestures
+<span class='line'>327</span>     that a touch has been added.
+<span class='line'>328</span> 
+<span class='line'>329</span>     As touches are added beyond the first touch, gestures may "lose interest" in the touch session.
+<span class='line'>330</span>     For example, a gesture may explicitly want only a single touch and if a second touch appears,
+<span class='line'>331</span>     the gesture may not want any further updates on this touch session (even if the second touch
+<span class='line'>332</span>     ends again).
+<span class='line'>333</span> 
+<span class='line'>334</span>     @param {SC.Touch} touch The touch that started.
+<span class='line'>335</span>     @returns {Boolean} Whether any gesture is interested in the touch or not.
+<span class='line'>336</span>   */</span><span class="WHIT">
+<span class='line'>337</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchStart</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>338</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">interestedGestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_interestedGestures</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>339</span> </span><span class="WHIT">        </span><span class="NAME">touchesInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_touchesInSession</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>340</span> </span><span class="WHIT">        </span><span class="NAME">claimedTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>341</span> </span><span class="WHIT">        </span><span class="NAME">idx</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>342</span> 
+<span class='line'>343</span> </span><span class="WHIT">    </span><span class="COMM">// Instantiate once.</span><span class="WHIT">
+<span class='line'>344</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>345</span> </span><span class="WHIT">      </span><span class="NAME">touchesInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_touchesInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>346</span> </span><span class="WHIT">      </span><span class="NAME">interestedGestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_interestedGestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>347</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>348</span> 
+<span class='line'>349</span> </span><span class="WHIT">    </span><span class="COMM">// When there are no touches in the session, check all gestures.</span><span class="WHIT">
+<span class='line'>350</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">touchesInSession.length</span><span class="WHIT"> </span><span class="PUNC">===</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>351</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.get</span><span class="PUNC">(</span><span class="STRN">"gestures"</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>352</span> </span><span class="WHIT">          </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>353</span> 
+<span class='line'>354</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">&lt;</span><span class="WHIT"> </span><span class="NAME">len</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">++</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>355</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>356</span> 
+<span class='line'>357</span> </span><span class="WHIT">        </span><span class="NAME">gesture.touchSessionStarted</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>358</span> </span><span class="WHIT">        </span><span class="NAME">interestedGestures.push</span><span class="PUNC">(</span><span class="NAME">gesture</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>359</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>360</span> 
+<span class='line'>361</span> </span><span class="WHIT">      </span><span class="COMM">// Keep this touch.</span><span class="WHIT">
+<span class='line'>362</span> </span><span class="WHIT">      </span><span class="NAME">claimedTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>363</span> 
+<span class='line'>364</span> </span><span class="WHIT">    </span><span class="COMM">// Only check gestures that are interested.</span><span class="WHIT">
+<span class='line'>365</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>366</span> </span><span class="WHIT">      </span><span class="COMM">// Loop through the gestures in reverse, as the list may be mutated.</span><span class="WHIT">
+<span class='line'>367</span> </span><span class="WHIT">      </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">interestedGestures.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">idx</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>368</span> </span><span class="WHIT">        </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">interestedGesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">interestedGestures</span><span class="PUNC">[</span><span class="NAME">idx</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>369</span> </span><span class="WHIT">            </span><span class="NAME">isInterested</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>370</span> 
+<span class='line'>371</span> </span><span class="WHIT">        </span><span class="COMM">// Keep only the gestures still interested in the touch.</span><span class="WHIT">
+<span class='line'>372</span> </span><span class="WHIT">        </span><span class="NAME">isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">interestedGesture.touchAddedToSession</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>373</span> 
+<span class='line'>374</span> </span><span class="WHIT">        </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>375</span> </span><span class="WHIT">          </span><span class="COMM">// Keep this touch.</span><span class="WHIT">
+<span class='line'>376</span> </span><span class="WHIT">          </span><span class="NAME">claimedTouch</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>377</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>378</span> </span><span class="WHIT">          </span><span class="COMM">// Tell the gesture that the touch session has ended for it.</span><span class="WHIT">
+<span class='line'>379</span> </span><span class="WHIT">          </span><span class="NAME">interestedGesture.touchSessionCancelled</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>380</span> 
+<span class='line'>381</span> </span><span class="WHIT">          </span><span class="NAME">interestedGestures.replace</span><span class="PUNC">(</span><span class="NAME">idx</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>382</span> </span><span class="WHIT">        </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>383</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>384</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>385</span> 
+<span class='line'>386</span> </span><span class="WHIT">    </span><span class="COMM">// If any gesture is interested in the new touch. Add it to the list of touches in the session.</span><span class="WHIT">
+<span class='line'>387</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">claimedTouch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>388</span> </span><span class="WHIT">      </span><span class="NAME">touchesInSession.push</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>389</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>390</span> 
+<span class='line'>391</span> </span><span class="WHIT">    </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">claimedTouch</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>392</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>393</span> 
+<span class='line'>394</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>395</span>     Tells the gesture recognition system that touches have moved.
+<span class='line'>396</span> 
+<span class='line'>397</span>     @param {SC.Event} evt The touch event.
+<span class='line'>398</span>     @param {Array} touches The touches previously claimed by this view.
+<span class='line'>399</span>     @returns {void}
+<span class='line'>400</span>   */</span><span class="WHIT">
+<span class='line'>401</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchesDragged</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">evt</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">touches</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>402</span> </span><span class="WHIT">    </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_interestedGestures</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>403</span> </span><span class="WHIT">        </span><span class="NAME">touchesInSession</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this._sc_touchesInSession</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>404</span> 
+<span class='line'>405</span> </span><span class="WHIT">    </span><span class="COMM">// Loop through the gestures in reverse, as the list may be mutated.</span><span class="WHIT">
+<span class='line'>406</span> </span><span class="WHIT">    </span><span class="KEYW">for</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures.length</span><span class="WHIT"> </span><span class="PUNC">-</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="WHIT"> </span><span class="PUNC">>=</span><span class="WHIT"> </span><span class="NUMB">0</span><span class="PUNC">;</span><span class="WHIT"> </span><span class="NAME">i</span><span class="PUNC">--</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>407</span> </span><span class="WHIT">      </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">gesture</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gestures</span><span class="PUNC">[</span><span class="NAME">i</span><span class="PUNC">]</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>408</span> </span><span class="WHIT">          </span><span class="NAME">isInterested</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">gesture.touchesMovedInSession</span><span class="PUNC">(</span><span class="NAME">touchesInSession</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>409</span> 
+<span class='line'>410</span> </span><span class="WHIT">      </span><span class="COMM">// If the gesture is no longer interested in *any* touches for this session, remove it.</span><span class="WHIT">
+<span class='line'>411</span> </span><span class="WHIT">      </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">isInterested</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>412</span> </span><span class="WHIT">        </span><span class="COMM">// Tell the gesture that the touch session has ended for it.</span><span class="WHIT">
+<span class='line'>413</span> </span><span class="WHIT">        </span><span class="NAME">gesture.touchSessionCancelled</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>414</span> 
+<span class='line'>415</span> </span><span class="WHIT">        </span><span class="NAME">gestures.replace</span><span class="PUNC">(</span><span class="NAME">i</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NUMB">1</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>416</span> 
+<span class='line'>417</span> </span><span class="WHIT">        </span><span class="COMM">// TODO: When there are no more interested gestures? Do what with the touches? Anything?</span><span class="WHIT">
+<span class='line'>418</span> </span><span class="WHIT">      </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>419</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>420</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>421</span> 
+<span class='line'>422</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>423</span>     Tells the gesture recognition system that an unassigned touch has ended.
+<span class='line'>424</span> 
+<span class='line'>425</span>     This informs all of the gestures that the touch ended. The touch is
+<span class='line'>426</span>     an unassigned touch as, if it were assigned to a gesture, it would have
+<span class='line'>427</span>     been sent directly to the gesture, bypassing this view.
+<span class='line'>428</span>   */</span><span class="WHIT">
+<span class='line'>429</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchEnd</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>430</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_gestureTouchFinish</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>431</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>432</span> 
+<span class='line'>433</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>434</span>     Tells the gesture recognition system that an unassigned touch has cancelled.
+<span class='line'>435</span> 
+<span class='line'>436</span>     This informs all of the gestures that the touch cancelled. The touch is
+<span class='line'>437</span>     an unassigned touch as, if it were assigned to a gesture, it would have
+<span class='line'>438</span>     been sent directly to the gesture, bypassing this view.
+<span class='line'>439</span>   */</span><span class="WHIT">
+<span class='line'>440</span> </span><span class="WHIT">  </span><span class="NAME">gestureTouchCancelled</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>441</span> </span><span class="WHIT">    </span><span class="NAME">this._sc_gestureTouchFinish</span><span class="PUNC">(</span><span class="NAME">touch</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>442</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>443</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>444</span> </span></pre></body></html>

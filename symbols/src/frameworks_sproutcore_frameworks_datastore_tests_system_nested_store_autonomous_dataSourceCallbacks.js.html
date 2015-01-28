@@ -170,7 +170,7 @@
 <span class='line'>163</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>164</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="PUNC">=</span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>165</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>166</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>166</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>167</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>168</span> 
 <span class='line'>169</span> </span><span class="WHIT">  </span><span class="NAME">store.dataSourceDidCancel</span><span class="PUNC">(</span><span class="NAME">storeKey2</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -203,7 +203,7 @@
 <span class='line'>196</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>197</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="PUNC">=</span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>198</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>199</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>199</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>200</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>201</span> 
 <span class='line'>202</span> </span><span class="PUNC">}</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -217,7 +217,7 @@
 <span class='line'>210</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>211</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="PUNC">=</span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>212</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>213</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>213</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>214</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>215</span> 
 <span class='line'>216</span> </span><span class="WHIT">  </span><span class="KEYW">try</span><span class="PUNC">{</span><span class="WHIT">
@@ -226,7 +226,7 @@
 <span class='line'>219</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>220</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="PUNC">=</span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>221</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>222</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>222</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>223</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>224</span> 
 <span class='line'>225</span> </span><span class="WHIT">  </span><span class="NAME">store.dataSourceDidComplete</span><span class="PUNC">(</span><span class="NAME">storeKey11</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -244,7 +244,7 @@
 <span class='line'>237</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>238</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="PUNC">=</span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>239</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>240</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>240</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>241</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>242</span> 
 <span class='line'>243</span> </span><span class="WHIT">  </span><span class="NAME">store.dataSourceDidDestroy</span><span class="PUNC">(</span><span class="NAME">storeKey13</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -262,7 +262,7 @@
 <span class='line'>255</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="KEYW">catch</span><span class="PUNC">(</span><span class="NAME">error</span><span class="PUNC">)</span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'>256</span> </span><span class="WHIT">    </span><span class="NAME">msg</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">error.message</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>257</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'>258</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>258</span> </span><span class="WHIT">  </span><span class="NAME">equals</span><span class="PUNC">(</span><span class="NAME">SC.Record.BAD_STATE_ERROR.toString</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">msg</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'>259</span> </span><span class="WHIT">    </span><span class="STRN">"should throw the following error "</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>260</span> 
 <span class='line'>261</span> </span><span class="WHIT">  </span><span class="NAME">store.dataSourceDidError</span><span class="PUNC">(</span><span class="NAME">storeKey15</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.Record.BAD_STATE_ERROR</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">

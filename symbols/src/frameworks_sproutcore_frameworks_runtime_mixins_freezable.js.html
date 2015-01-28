@@ -18,7 +18,7 @@
 <span class='line'> 11</span> 
 <span class='line'> 12</span>   @type Error
 <span class='line'> 13</span> */</span><span class="WHIT">
-<span class='line'> 14</span> </span><span class="NAME">SC.FROZEN_ERROR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">Error</span><span class="PUNC">(</span><span class="STRN">"Cannot modify a frozen object"</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="NAME">SC.FROZEN_ERROR</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"Cannot modify a frozen object"</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 15</span> 
 <span class='line'> 16</span> </span><span class="COMM">/**
 <span class='line'> 17</span>   @class
@@ -55,7 +55,7 @@
 <span class='line'> 48</span> 
 <span class='line'> 49</span>           // swaps the names
 <span class='line'> 50</span>           swapNames: function() {
-<span class='line'> 51</span>             if (this.get('isFrozen')) throw SC.FROZEN_ERROR;
+<span class='line'> 51</span>             if (this.get('isFrozen')) throw new Error(SC.FROZEN_ERROR);
 <span class='line'> 52</span>             var tmp = this.get('firstName');
 <span class='line'> 53</span>             this.set('firstName', this.get('lastName'));
 <span class='line'> 54</span>             this.set('lastName', tmp);

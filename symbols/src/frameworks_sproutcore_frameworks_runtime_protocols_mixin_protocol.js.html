@@ -1,0 +1,158 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">// Project:   SproutCore Costello - Property Observing Library</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Copyright: ©2006-2011 Strobe Inc. and contributors.</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">//            Portions ©2008-2011 Apple Inc. All rights reserved.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// License:   Licensed under MIT license (see license.js)</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">// ==========================================================================</span><span class="WHIT">
+<span class='line'>  7</span> 
+<span class='line'>  8</span> </span><span class="COMM">/** @namespace
+<span class='line'>  9</span>   The `SC.ObjectMixinProtocol` protocol defines the properties and methods that you may implement
+<span class='line'> 10</span>   in your mixin objects (i.e. JavaScript Objects passed to SC.Object's `extend` or `create`) in
+<span class='line'> 11</span>   order to access additional functionality when used. They will be used if defined but are not
+<span class='line'> 12</span>   required.
+<span class='line'> 13</span> 
+<span class='line'> 14</span>   # What is a Mixin?
+<span class='line'> 15</span> 
+<span class='line'> 16</span>   A mixin, in this context, is a simple JavaScript Object that can be used to provide extra
+<span class='line'> 17</span>   functionality to SC.Object subclasses. While you can mix JavaScript Objects into "classes" (i.e.
+<span class='line'> 18</span>   using `SC.mixin(SomeClass)`), this particular protocol only refers to mixins in the context of
+<span class='line'> 19</span>   use with an SC.Object "instance" (i.e. SC.Object.create({ ... })).
+<span class='line'> 20</span> 
+<span class='line'> 21</span>   For example, in order to share a method between two different classes of object, we can use a
+<span class='line'> 22</span>   mixin object that both will consume,
+<span class='line'> 23</span> 
+<span class='line'> 24</span>       // Common default properties and shared methods which our different classes may consume.
+<span class='line'> 25</span>       MyApp.MyMixin = {
+<span class='line'> 26</span>         a: true,
+<span class='line'> 27</span> 
+<span class='line'> 28</span>         aFunc: function () {
+<span class='line'> 29</span>           this.set('a', false);
+<span class='line'> 30</span>         },
+<span class='line'> 31</span> 
+<span class='line'> 32</span>         b: [], // SHARED OBJECT!
+<span class='line'> 33</span> 
+<span class='line'> 34</span>         c: {} // SHARED OBJECT!
+<span class='line'> 35</span>       };
+<span class='line'> 36</span> 
+<span class='line'> 37</span>       // Two different object types, which both need the functionality provided by MyApp.MyMixin.
+<span class='line'> 38</span>       MyApp.ObjectType1 = SC.Object.extend(MyApp.MyMixin);
+<span class='line'> 39</span>       MyApp.ObjectType2 = SC.Object.extend();
+<span class='line'> 40</span> 
+<span class='line'> 41</span>       obj1 = MyApp.ObjectType1.create();
+<span class='line'> 42</span>       obj2 = MyApp.ObjectType2.create(MyApp.MyMixin);
+<span class='line'> 43</span> 
+<span class='line'> 44</span>       // Some proofs.
+<span class='line'> 45</span>       // 1. The default properties are copied over to the new objects.
+<span class='line'> 46</span>       obj1.get('a'); // true &lt;--
+<span class='line'> 47</span>       obj2.get('a'); // true &lt;--
+<span class='line'> 48</span> 
+<span class='line'> 49</span>       // 2. The primitive properties are unique to each object.
+<span class='line'> 50</span>       obj1.set('a', false);
+<span class='line'> 51</span>       obj1.get('a'); // false &lt;--
+<span class='line'> 52</span>       obj2.get('a'); // true &lt;--
+<span class='line'> 53</span> 
+<span class='line'> 54</span>       // 3. The methods are copied over to the new objects.
+<span class='line'> 55</span>       obj1.aFunc; // function () { ... } &lt;--
+<span class='line'> 56</span>       obj2.aFunc; // function () { ... } &lt;--
+<span class='line'> 57</span> 
+<span class='line'> 58</span>       // 4. The functions/objects are shared between objects.
+<span class='line'> 59</span>       obj1.aFunc === MyApp.MyMixin.aFunc; // true &lt;--
+<span class='line'> 60</span>       obj1.aFunc === obj2.aFunc; // true &lt;--
+<span class='line'> 61</span>       obj1.b === obj2.b; // true &lt;-- !! Beware of modifying this object !!
+<span class='line'> 62</span>       obj1.c === obj2.c; // true &lt;-- !! Beware of modifying this object !!
+<span class='line'> 63</span> 
+<span class='line'> 64</span>   In this example, we used a mixin to share functionality between two classes, which is very easily
+<span class='line'> 65</span>   achieved. There is one issue, that has been known to trip up developers, which should be
+<span class='line'> 66</span>   highlighted. If you set default *Objects* (e.g. [] or {}) in a mixin, these same Objects will be
+<span class='line'> 67</span>   shared between all of the mixin's consumers.
+<span class='line'> 68</span> 
+<span class='line'> 69</span>   If you want to set a default Object that is unique to each consumer of the mixin, a better
+<span class='line'> 70</span>   practice is to set it in `initMixin()` or to check for its existence the first time it is used
+<span class='line'> 71</span>   and only create it then.
+<span class='line'> 72</span> 
+<span class='line'> 73</span>   *Note: Do not mix `SC.ObjectMixinProtocol` into your classes. As a protocol, it exists only for
+<span class='line'> 74</span>   reference sake. You only need define any of the properties or methods listed below in order to use
+<span class='line'> 75</span>   this protocol.*
+<span class='line'> 76</span> */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="NAME">SC.ObjectMixinProtocol</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> 
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 80</span>     This *optional* method is called to further initialize the consumer of the mixin when it is
+<span class='line'> 81</span>     created. When a mixin (i.e. JavaScript Object) is used to extend an `SC.Object` subclass, we may
+<span class='line'> 82</span>     want to perform additional set up of the `SC.Object` instance when it is created according to
+<span class='line'> 83</span>     the needs of the mixin. In order to support this, `SC.Object` will call this method,
+<span class='line'> 84</span>     `initMixin`, *if implemented*, on each mixin in the order that they were added.
+<span class='line'> 85</span> 
+<span class='line'> 86</span>     For example, if we use two mixins that both initialize the same value, the last mixin added
+<span class='line'> 87</span>     would win,
+<span class='line'> 88</span> 
+<span class='line'> 89</span>         myObject = SC.Object.create(
+<span class='line'> 90</span>           // First mixin.
+<span class='line'> 91</span>           {
+<span class='line'> 92</span>             initMixin: function () {
+<span class='line'> 93</span>               this.set('a', true);
+<span class='line'> 94</span>             }
+<span class='line'> 95</span>           },
+<span class='line'> 96</span> 
+<span class='line'> 97</span>           // Second mixin.
+<span class='line'> 98</span>           {
+<span class='line'> 99</span>             initMixin: function () {
+<span class='line'>100</span>               this.set('a', false);
+<span class='line'>101</span>             }
+<span class='line'>102</span>           });
+<span class='line'>103</span> 
+<span class='line'>104</span>         myObject.get('a'); // false &lt;--
+<span class='line'>105</span> 
+<span class='line'>106</span>     This was just an example to illustrate the order in which `initMixin` is called. It is rare
+<span class='line'>107</span>     that mixins will collide with each other, but it is something to bear in mind when making heavy
+<span class='line'>108</span>     use of mixins.
+<span class='line'>109</span> 
+<span class='line'>110</span>     Note, that unlike the similar `init()` method of `SC.Object`, you do *not* need to call
+<span class='line'>111</span>     `sc_super` in `initMixin`.
+<span class='line'>112</span>   */</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="NAME">initMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>114</span> 
+<span class='line'>115</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'>116</span>     This *optional* method is called to further de-initialize the consumer of the mixin when it is
+<span class='line'>117</span>     destroyed. When a mixin (i.e. JavaScript Object) is used to extend an `SC.Object` subclass, we
+<span class='line'>118</span>     may want to perform additional teardown of the `SC.Object` instance when it is destroyed
+<span class='line'>119</span>     according to the needs of the mixin (e.g. to clean up objects that the mixin code initialized
+<span class='line'>120</span>     and that may otherwise lead to memory leaks). In order to support this, `SC.Object` will call
+<span class='line'>121</span>     this method, `destroyMixin`, *if implemented*, on each mixin in the order that they were
+<span class='line'>122</span>     initially added.
+<span class='line'>123</span> 
+<span class='line'>124</span>     For example, if we use two mixins that both de-initialize the same value, the last mixin added
+<span class='line'>125</span>     would win,
+<span class='line'>126</span> 
+<span class='line'>127</span>         myObject = SC.Object.create(
+<span class='line'>128</span>           // Mixin.
+<span class='line'>129</span>           {
+<span class='line'>130</span>             initMixin: function () {
+<span class='line'>131</span>               // Created extra object for some purpose.
+<span class='line'>132</span>               this.set('anObject', SC.Object.create());
+<span class='line'>133</span>             },
+<span class='line'>134</span> 
+<span class='line'>135</span>             destroyMixin: function () {
+<span class='line'>136</span>               // Clean up extra object that the mixin is responsible for.
+<span class='line'>137</span>               var anObject = this.get('anObject');
+<span class='line'>138</span>               anObject.destroy();
+<span class='line'>139</span>               this.set('anObject', null);
+<span class='line'>140</span>             }
+<span class='line'>141</span>           });
+<span class='line'>142</span> 
+<span class='line'>143</span>         myObject.get('a'); // false &lt;--
+<span class='line'>144</span> 
+<span class='line'>145</span>     Note, that unlike the similar `destroy()` method of `SC.Object`, you do *not* need to call
+<span class='line'>146</span>     `sc_super` in `destroyMixin`.
+<span class='line'>147</span>   */</span><span class="WHIT">
+<span class='line'>148</span> </span><span class="WHIT">  </span><span class="NAME">destroyMixin</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'>149</span> 
+<span class='line'>150</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>151</span> </span></pre></body></html>
