@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Represents a state within a statechart.</p>
@@ -694,3 +694,2509 @@ state heirarchy and create the states itself.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#.plugin">plugin(<span class="method-arguments">value, args</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#addSubstate">addSubstate(<span class="method-arguments">name, state, <span style="font-style: italic;">attr</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#createStateRouteHandlerContext">createStateRouteHandlerContext(<span class="method-arguments">attr</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#createSubstate">createSubstate(<span class="method-arguments">state, attr</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#destroy">destroy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#enterState">enterState(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#exitState">exitState(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#findFirstRelativeCurrentState">findFirstRelativeCurrentState(<span class="method-arguments">anchor</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#fullPath">fullPath(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#getState">getState(<span class="method-arguments">value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#getSubstate">getSubstate(<span class="method-arguments">value, <span style="font-style: italic;">callback</span>, <span style="font-style: italic;">target</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#gotoHistoryState">gotoHistoryState(<span class="method-arguments">value, <span style="font-style: italic;">recusive</span>, <span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#gotoState">gotoState(<span class="method-arguments">value, <span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#handleTriggeredRoute">handleTriggeredRoute(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#hasCurrentSubstates">hasCurrentSubstates(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#hasEnteredSubstates">hasEnteredSubstates(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#hasSubstates">hasSubstates(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#initState">initState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#isConcurrentState">isConcurrentState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#isCurrentState">isCurrentState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#isEnteredState">isEnteredState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#isRootState">isRootState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#location">location(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#owner">owner(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#pathRelativeTo">pathRelativeTo(<span class="method-arguments">state</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#performAsync">performAsync(<span class="method-arguments">func, arg1, arg2</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#reenter">reenter(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#respondsToEvent">respondsToEvent(<span class="method-arguments">event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#resumeGotoState">resumeGotoState(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#routeTriggered">routeTriggered(<span class="method-arguments">params</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#statechartDelegate">statechartDelegate(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateDidBecomeEntered">stateDidBecomeEntered(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateDidBecomeExited">stateDidBecomeExited(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateIsCurrentSubstate">stateIsCurrentSubstate(<span class="method-arguments">state</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateIsEnteredSubstate">stateIsEnteredSubstate(<span class="method-arguments">state</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateLogError">stateLogError(<span class="method-arguments">msg</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateLogTrace">stateLogTrace(<span class="method-arguments">msg, style</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateLogWarning">stateLogWarning(<span class="method-arguments">msg</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateWillBecomeEntered">stateWillBecomeEntered(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#stateWillBecomeExited">stateWillBecomeExited(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#toString">toString(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#trace">trace(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.State.html#tryToHandleEvent">tryToHandleEvent(<span class="method-arguments">event, arg1, arg2</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="currentSubstates"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>currentSubstates</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              An array of this state's current substates. Managed by the statechart
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="enteredSubstates"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>enteredSubstates</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An array of this state's substates that are currently entered. Managed by
+the statechart.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="historyState"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>historyState</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">State</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              This state's history state. Can be null. Managed by the statechart.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="initialSubstate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>initialSubstate</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Used to indicate the initial substate of this state to enter into.</p>
+
+<p>You assign the value with the name of the state. Upon creation of
+the state, the statechart will automatically change the property
+to be a corresponding state object</p>
+
+<p>The substate is only to be this state's immediate substates. If
+no initial substate is assigned then this states initial substate
+will be an instance of an empty state (SC.EmptyState).</p>
+
+<p>Note that a statechart's root state must always have an explicity
+initial substate value assigned else an error will be thrown.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="name"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>name</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The name of the state
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="parentState"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>parentState</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">State</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              This state's parent state. Managed by the statechart
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="representRoute"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>representRoute</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Can optionally assign what route this state is to represent.</p>
+
+<p>If assigned then this state will be notified to handle the route when triggered
+any time the app's location changes and matches this state's assigned route.
+The handler invoked is this state's #routeTriggered method.</p>
+
+<p>The value assigned to this property is dependent on the underlying routing
+mechanism used by the application. The default routing mechanism is to use
+<code class='syntax js'><span class="class">SC</span>.<span class="variable">routes</span>.</code></p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>#routeTriggered</dd>
+                
+                <dd>#location</dd>
+                
+                <dd><a href="../symbols/SC.StatechartDelegate.html">SC.StatechartDelegate</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="statechart"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>statechart</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Statechart</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The statechart that this state belongs to. Assigned by the owning
+statechart.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="stateIsInitialized"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>stateIsInitialized</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Indicates if this state has been initialized by the statechart
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="substates"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>substates</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The immediate substates of this state. Managed by the statechart.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="substatesAreConcurrent"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>substatesAreConcurrent</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Used to indicates if this state's immediate substates are to be
+concurrent (orthogonal) to each other.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".plugin"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">plugin(<span class="method-arguments">value, args</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Use this when you want to plug-in a state into a statechart. This is beneficial
+in cases where you split your statechart's states up into multiple files and
+don't want to fuss with the sc_require construct.</p>
+
+<p>Example:</p>
+
+<pre><code class='syntax js'><span class="class">MyApp</span>.<span class="variable">statechart</span> = <span class="class">SC</span>.<span class="class">Statechart</span>.<span class="variable">create</span>({
+  <span class="variable">rootState</span>: <span class="class">SC</span>.<span class="class">State</span>.<span class="variable">design</span>({
+    <span class="variable">initialSubstate</span>: <span class="string">'a'</span>,
+    <span class="variable">a</span>: <span class="class">SC</span>.<span class="class">State</span>.<span class="variable">plugin</span>(<span class="string">'path.to.a.state.class'</span>),
+    <span class="variable">b</span>: <span class="class">SC</span>.<span class="class">State</span>.<span class="variable">plugin</span>(<span class="string">'path.to.another.state.class'</span>)
+  })
+});
+</code></pre>
+
+<p>You can also supply hashes the plugin feature in order to enhance a state or
+implement required functionality:</p>
+
+<pre><code class='syntax js'><span class="class">SomeMixin</span> = { ... };
+
+<span class="variable">stateA</span>: <span class="class">SC</span>.<span class="class">State</span>.<span class="variable">plugin</span>(<span class="string">'path.to.state'</span>, <span class="class">SomeMixin</span>, { ... })
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd>{String} property path to a state class</dd>
+                  
+                    <dt>
+                      <span class="method-param">args</span> 
+                      
+                    </dt>
+                    <dd>{Hash,...} Optional. Hash objects to be added to the created state</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="addSubstate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addSubstate(<span class="method-arguments">name, state, <span style="font-style: italic;">attr</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to dynamically add a substate to this state. Once added successfully you
+are then able to go to it from any other state within the owning statechart.</p>
+
+<p>A couple of notes when adding a substate:</p>
+
+<ul>
+<li><p>If this state does not have any substates, then in addition to the
+substate being added, an empty state will also be added and set as the
+initial substate. To make the added substate the initial substate, set
+this object's <code class='syntax js'><span class="variable">initialSubstate</span></code> property.</p></li>
+<li><p>If this state is a current state, the added substate will not be entered.</p></li>
+<li><p>If this state is entered and its substates are concurrent, the added
+substate will not be entered.</p></li>
+</ul>
+
+<p>If this state is either entered or current and you'd like the added substate
+to take affect, you will need to explicitly reenter this state by calling
+its <code class='syntax js'><span class="variable">reenter</span></code> method.</p>
+
+<p>Be aware that the name of the state you are adding must not conflict with
+the name of a property on this state or else you will get an error.
+In addition, this state must be initialized to add substates.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">name</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>a unique name for the given substate.</dd>
+                  
+                    <dt>
+                      <span class="method-param">state</span> <span class="light fixedFont"><a href="../symbols/SC.State.html">SC.State</a></span> 
+                      
+                    </dt>
+                    <dd>a class that derives from `SC.State`</dd>
+                  
+                    <dt>
+                      <span class="method-param">attr</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>literal to be applied to the substate</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.State.html">SC.State</a></span> </dt>
+                    <dd>an instance of the given state class</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="createStateRouteHandlerContext"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">createStateRouteHandlerContext(<span class="method-arguments">attr</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Constructs a new instance of a state routing context object.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">attr</span> <span class="light fixedFont">Hash</span> 
+                      
+                    </dt>
+                    <dd>attributes to apply to the constructed object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">SC.StateRouteContext</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#handleRoute</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="createSubstate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">createSubstate(<span class="method-arguments">state, attr</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                creates a substate for this state
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">state</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">attr</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="destroy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">destroy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="enterState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">enterState(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called whenever this state is to be entered during a state transition process. This
+is useful when you want the state to perform some initial set up procedures.</p>
+
+<p>If when entering the state you want to perform some kind of asynchronous action, such
+as an animation or fetching remote data, then you need to return an asynchronous
+action, which is done like so:</p>
+
+<pre><code class='syntax js'><span class="variable">enterState</span>: <span class="keyword">function</span>() {
+  <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">performAsync</span>(<span class="string">'foo'</span>);
+}
+</code></pre>
+
+<p>After returning an action to be performed asynchronously, the statechart will suspend
+the active state transition process. In order to resume the process, you must call
+this state's <code class='syntax js'><span class="variable">resumeGotoState</span></code> method or the statechart's <code class='syntax js'><span class="variable">resumeGotoState</span></code>. If no asynchronous
+action is to be perform, then nothing needs to be returned.</p>
+
+<p>When the <code class='syntax js'><span class="variable">enterState</span></code> method is called, an optional context value may be supplied if
+one was provided to the <code class='syntax js'><span class="variable">gotoState</span></code> method.</p>
+
+<p>In the case that the context being supplied is a state context object
+({@link <code class='syntax js'><span class="class">SC</span>.<span class="class">StateRouteHandlerContext</span></code>}), an optional <code class='syntax js'><span class="variable">enterStateByRoute</span></code> method can be invoked
+on this state if the state has implemented the method. If <code class='syntax js'><span class="variable">enterStateByRoute</span></code> is
+not part of this state then the <code class='syntax js'><span class="variable">enterState</span></code> method will be invoked by default. The
+<code class='syntax js'><span class="variable">enterStateByRoute</span></code> is simply a convenience method that helps removes checks to
+determine if the context provide is a state route context object.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont">Hash</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#representRoute</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="exitState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">exitState(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called whenever this state is to be exited during a state transition process. This is
+useful when you want the state to peform some clean up procedures.</p>
+
+<p>If when exiting the state you want to perform some kind of asynchronous action, such
+as an animation or fetching remote data, then you need to return an asynchronous
+action, which is done like so:</p>
+
+<pre><code class='syntax js'><span class="variable">exitState</span>: <span class="keyword">function</span>() {
+  <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">performAsync</span>(<span class="string">'foo'</span>);
+}
+</code></pre>
+
+<p>After returning an action to be performed asynchronously, the statechart will suspend
+the active state transition process. In order to resume the process, you must call
+this state's <code class='syntax js'><span class="variable">resumeGotoState</span></code> method or the statechart's <code class='syntax js'><span class="variable">resumeGotoState</span></code>. If no asynchronous
+action is to be perform, then nothing needs to be returned.</p>
+
+<p>When the <code class='syntax js'><span class="variable">exitState</span></code> method is called, an optional context value may be supplied if
+one was provided to the <code class='syntax js'><span class="variable">gotoState</span></code> method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd>{Hash} Optional value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="findFirstRelativeCurrentState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">findFirstRelativeCurrentState(<span class="method-arguments">anchor</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will attempt to find a current state in the statechart that is relative to
+this state.</p>
+
+<p>Ordered set of rules to find a relative current state:</p>
+
+<ol>
+<li><p>If this state is a current state then it will be returned</p></li>
+<li><p>If this state has no current states and this state has a parent state then
+return parent state's first relative current state, otherwise return null</p></li>
+<li><p>If this state has more than one current state then use the given anchor state
+ to get a corresponding substate that can be used to find a current state relative
+ to the substate, if a substate was found.</p></li>
+<li><p>If (3) did not find a relative current state then default to returning
+ this state's first current substate.</p></li>
+</ol>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">anchor</span> 
+                      
+                    </dt>
+                    <dd>{State|String} Optional. a substate of this state used to help direct
+      finding a current state</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.State.html">SC.State</a></span> </dt>
+                    <dd>a current state</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="fullPath"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fullPath(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the path for this state relative to the statechart's
+root state.</p>
+
+<p>The path is a dot-notation string representing the path from
+this state to the statechart's root state, but without including
+the root state in the path. For instance, if the name of this
+state if "foo" and the parent state's name is "bar" where bar's
+parent state is the root state, then the full path is "bar.foo"</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="getState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getState(<span class="method-arguments">value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will attempt to get a state relative to this state.</p>
+
+<p>A state is returned based on the following:</p>
+
+<ol>
+<li>First check this state's substates for a match; and</li>
+<li>If no matching substate then attempt to get the state from
+this state's parent state.</li>
+</ol>
+
+<p>Therefore states are recursively traversed up to the root state
+to identify a match, and if found is ultimately returned, otherwise
+null is returned. In the case that the value supplied is ambiguous
+an error message is returned.</p>
+
+<p>The value provided can either be a state object or a state path expression.
+For path expression syntax, refer to the {@link <code class='syntax js'><span class="class">SC</span>.<span class="class">StatePathMatcher</span></code>} class.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="getSubstate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getSubstate(<span class="method-arguments">value, <span style="font-style: italic;">callback</span>, <span style="font-style: italic;">target</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to get a substate of this state that matches a given value.</p>
+
+<p>If the value is a state object, then the value will be returned if it is indeed
+a substate of this state, otherwise null is returned.</p>
+
+<p>If the given value is a string, then the string is assumed to be a path expression
+to a substate. The value is then parsed to find the closest match. For path expression
+syntax, refer to the {@link <code class='syntax js'><span class="class">SC</span>.<span class="class">StatePathMatcher</span></code>} class.</p>
+
+<p>If there is no match then null is returned. If there is more than one match then null
+is return and an error is generated indicating ambiguity of the given value.</p>
+
+<p>An optional callback can be provided to handle the scenario when either no
+substate is found or there is more than one match. The callback is then given
+the opportunity to further handle the outcome and return a result which the
+<code class='syntax js'><span class="variable">getSubstate</span></code> method will then return. The callback should have the following
+signature:</p>
+
+<p>function(state, value, paths)</p>
+
+<ul>
+<li>state: The state <code class='syntax js'><span class="variable">getState</span></code> was invoked on</li>
+<li>value: The value supplied to <code class='syntax js'><span class="variable">getState</span></code></li>
+<li>paths: An array of substate paths that matched the given value</li>
+</ul>
+
+<p>If there were no matches then <code class='syntax js'><span class="variable">paths</span></code> is not provided to the callback.</p>
+
+<p>You can also optionally provide a target that the callback is invoked on. If no
+target is provided then this state is used as the target.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd>{State|String} used to identify a substate of this state</dd>
+                  
+                    <dt>
+                      <span class="method-param">callback</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Function} the callback</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Object} the target</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="gotoHistoryState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">gotoHistoryState(<span class="method-arguments">value, <span style="font-style: italic;">recusive</span>, <span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to go to a given state's history state in the statechart either directly from this state if it
+is a current state or from one of this state's current substates.</p>
+
+<p>If the value given is a string then it is considered a state path expression. The path is then
+used to find a state relative to this state based on rules of the #getState method.</p>
+
+<p>Method can be called in the following ways:</p>
+
+<pre><code class='syntax js'><span class="comment">// With one argument</span>
+<span class="variable">gotoHistoryState</span>(&lt;<span class="variable">value</span>&gt;)
+
+<span class="comment">// With two arguments</span>
+<span class="variable">gotoHistoryState</span>(&lt;<span class="variable">value</span>&gt;, &lt;<span class="variable">boolean</span> | <span class="variable">hash</span>&gt;)
+
+<span class="comment">// With three arguments</span>
+<span class="variable">gotoHistoryState</span>(&lt;<span class="variable">value</span>&gt;, &lt;<span class="variable">boolean</span>&gt;, &lt;<span class="variable">hash</span>&gt;)
+</code></pre>
+
+<p>Where <value> is either a string or a <code class='syntax js'><span class="class">SC</span>.<span class="class">State</span></code> object and <hash> is a regular JS hash object.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd>{SC.State|String} the state whose history state to go to</dd>
+                  
+                    <dt>
+                      <span class="method-param">recusive</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Boolean} indicates whether to follow history states recusively starting
+           from the given state</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Hash|Object} context object that will be supplied to all states that are exited
+           entered during the state transition process. Context can not be an instance of SC.State.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="gotoState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">gotoState(<span class="method-arguments">value, <span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to go to a state in the statechart either directly from this state if it is a current state,
+or from the first relative current state from this state.</p>
+
+<p>If the value given is a string then it is considered a state path expression. The path is then
+used to find a state relative to this state based on rules of the #getState method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd>{SC.State|String} the state to go to</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Hash|Object} context object that will be supplied to all states that are
+           exited and entered during the state transition process. Context can not be an instance of
+           SC.State.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="handleTriggeredRoute"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">handleTriggeredRoute(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked by this state's #routeTriggered method if the state is
+actually allowed to handle the triggered route.</p>
+
+<p>By default the method invokes a state transition to this state.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="hasCurrentSubstates"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hasCurrentSubstates(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicates if this state has any current substates
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="hasEnteredSubstates"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hasEnteredSubstates(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicates if this state has any currently entered substates
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="hasSubstates"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hasSubstates(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicate if this state has any substates
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="initState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">initState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Used to initialize this state. To only be called by the owning statechart.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isConcurrentState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isConcurrentState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicates if this state is a concurrent state
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isCurrentState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isCurrentState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicates if this state is a current state of the statechart.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isEnteredState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isEnteredState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Indicates if this state is a currently entered state.</p>
+
+<p>A state is currently entered if during a state transition process the
+state's <code class='syntax js'><span class="variable">enterState</span></code> method was invoked, but only after its <code class='syntax js'><span class="variable">exitState</span></code> method
+was called, if at all.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isRootState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isRootState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Indicates if this state is the root state of the statechart.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="location"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">location(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>A volatile property used to get and set the app's current location.</p>
+
+<p>This computed property defers to the the statechart's delegate to
+actually update and acquire the app's location.</p>
+
+<p>Note: Binding for this particular case is discouraged since in most
+cases we need the location value immediately. If we were to use
+bindings then the location value wouldn't be updated until at least
+the end of one run loop. It is also advised that the delegate not
+have its <code class='syntax js'><span class="variable">statechartUpdateLocationForState</span></code> and
+<code class='syntax js'><span class="variable">statechartAcquireLocationForState</span></code> methods implemented where bindings
+are used since they will inadvertenly stall the location value from
+propogating immediately.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd><a href="../symbols/SC.StatechartDelegate.html#statechartUpdateLocationForState">SC.StatechartDelegate#statechartUpdateLocationForState</a></dd>
+                  
+                    <dd><a href="../symbols/SC.StatechartDelegate.html#statechartAcquireLocationForState">SC.StatechartDelegate#statechartAcquireLocationForState</a></dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="owner"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">owner(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Indicates who the owner is of this state. If not set on the statechart
+then the owner is the statechart, otherwise it is the assigned
+object. Managed by the statechart.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd><a href="../symbols/SC.StatechartManager.html#owner">SC.StatechartManager#owner</a></dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="pathRelativeTo"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">pathRelativeTo(<span class="method-arguments">state</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will generate path for a given state that is relative to this state. It is
+required that the given state is a substate of this state.</p>
+
+<p>If the heirarchy of the given state to this state is the following:
+A > B > C, where A is this state and C is the given state, then the
+relative path generated will be "B.C"</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">state</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="performAsync"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">performAsync(<span class="method-arguments">func, arg1, arg2</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call when an asynchronous action need to be performed when either entering or exiting
+a state.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">func</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">arg1</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">arg2</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>enterState</dd>
+                  
+                    <dd>exitState</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="reenter"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reenter(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to re-enter this state. Call this only when the state a current state of
+the statechart.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="respondsToEvent"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">respondsToEvent(<span class="method-arguments">event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd>{String} the value to check</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="resumeGotoState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">resumeGotoState(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Resumes an active goto state transition process that has been suspended.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="routeTriggered"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">routeTriggered(<span class="method-arguments">params</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Main handler that gets triggered whenever the app's location matches this state's assigned
+route.</p>
+
+<p>When invoked the handler will first refer to the statechart delegate to determine if it
+should actually handle the route via the delegate's
+{@see <code class='syntax js'><span class="class">SC</span>.<span class="class">StatechartDelegate</span></code>#statechartShouldStateHandleTriggeredRoute} method. If the
+delegate allows the handling of the route then the state will continue on with handling
+the triggered route by calling the state's #handleTriggeredRoute method, otherwise
+the state will cancel the handling and inform the delegate through the delegate's
+{@see <code class='syntax js'><span class="class">SC</span>.<span class="class">StatechartDelegate</span></code>#statechartStateCancelledHandlingRoute} method.</p>
+
+<p>The handler will create a state route context ({@link <code class='syntax js'><span class="class">SC</span>.<span class="class">StateRouteContext</span></code>}) object
+that packages information about what is being currently handled. This context object gets
+passed along to the delegate's invoked methods as well as the state transition process.</p>
+
+<p>Note that this method is not intended to be directly called or overridden.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">params</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#representRoute</dd>
+                  
+                    <dd>SC.StatechartDelegate#statechartShouldStateHandleRoute</dd>
+                  
+                    <dd>SC.StatechartDelegate#statechartStateCancelledHandlingRoute</dd>
+                  
+                    <dd>#createStateRouteHandlerContext</dd>
+                  
+                    <dd>#handleTriggeredRoute</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="statechartDelegate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">statechartDelegate(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the statechart's assigned delegate. A statechart delegate is one
+that adheres to the {@link <code class='syntax js'><span class="class">SC</span>.<span class="class">StatechartDelegate</span></code>} mixin.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd><a href="../symbols/SC.StatechartDelegate.html">SC.StatechartDelegate</a></dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="stateDidBecomeEntered"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateDidBecomeEntered(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Notification called just after <code class='syntax js'><span class="variable">enterState</span></code> is invoked.</p>
+
+<p>Note: This is intended to be used by the owning statechart but it can be overridden if
+you need to do something special.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd>{Hash} Optional value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#enterState</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="stateDidBecomeExited"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateDidBecomeExited(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Notification called just after <code class='syntax js'><span class="variable">exitState</span></code> is invoked.</p>
+
+<p>Note: This is intended to be used by the owning statechart but it can be overridden
+if you need to do something special.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd>{Hash} Optional value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#exitState</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="stateIsCurrentSubstate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateIsCurrentSubstate(<span class="method-arguments">state</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Used to check if a given state is a current substate of this state. Mainly used in cases
+when this state is a concurrent state.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">state</span> 
+                      
+                    </dt>
+                    <dd>{State|String} either a state object or the name of a state</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>true is the given state is a current substate, otherwise false is returned</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stateIsEnteredSubstate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateIsEnteredSubstate(<span class="method-arguments">state</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Used to check if a given state is a substate of this state that is currently entered.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">state</span> 
+                      
+                    </dt>
+                    <dd>{State|String} either a state object of the name of a state</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>true if the given state is a entered substate, otherwise false is returned</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stateLogError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateLogError(<span class="method-arguments">msg</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Used to log a state error message
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">msg</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stateLogTrace"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateLogTrace(<span class="method-arguments">msg, style</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Used to log a state trace message
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">msg</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">style</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stateLogWarning"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateLogWarning(<span class="method-arguments">msg</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Used to log a state warning message
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">msg</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stateWillBecomeEntered"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateWillBecomeEntered(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Notification called just before <code class='syntax js'><span class="variable">enterState</span></code> is invoked.</p>
+
+<p>Note: This is intended to be used by the owning statechart but it can be overridden if
+you need to do something special.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont">Hash</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#enterState</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="stateWillBecomeExited"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stateWillBecomeExited(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Notification called just before <code class='syntax js'><span class="variable">exitState</span></code> is invoked.</p>
+
+<p>Note: This is intended to be used by the owning statechart but it can be overridden
+if you need to do something special.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd>{Hash} Optional value if one was supplied to gotoState when invoked</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>#exitState</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="toString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toString(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="trace"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">trace(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Indicates if this state should trace actions. Useful for debugging
+purposes. Managed by the statechart.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd><a href="../symbols/SC.StatechartManager.html#trace">SC.StatechartManager#trace</a></dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="tryToHandleEvent"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">tryToHandleEvent(<span class="method-arguments">event, arg1, arg2</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the statechart to allow a state to try and handle the given event. If the
+event is handled by the state then <code class='syntax js'><span class="keyword">YES</span></code> is returned, otherwise NO.</p>
+
+<p>There is a particular order in how an event is handled by a state:</p>
+
+<ol>
+<li>Basic function whose name matches the event</li>
+<li>Registered event handler that is associated with an event represented as a string</li>
+<li>Registered event handler that is associated with events matching a regular expression</li>
+<li>The <code class='syntax js'><span class="variable">unknownEvent</span></code> function</li>
+</ol>
+
+<p>Use of event handlers that are associated with events matching a regular expression may
+incur a performance hit, so they should be used sparingly.</p>
+
+<p>The <code class='syntax js'><span class="variable">unknownEvent</span></code> function is only invoked if the state has it, otherwise it is skipped. Note that
+you should be careful when using <code class='syntax js'><span class="variable">unknownEvent</span></code> since it can be either abused or cause unexpected
+behavior.</p>
+
+<p>Example of a state using all four event handling techniques:</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">State</span>.<span class="variable">extend</span>({
+
+  <span class="comment">// Basic function handling event 'foo'</span>
+  <span class="variable">foo</span>: <span class="keyword">function</span>(<span class="variable">arg1</span>, <span class="variable">arg2</span>) { ... },
+
+  <span class="comment">// event handler that handles 'frozen' and 'canuck'</span>
+  <span class="variable">eventHandlerA</span>: <span class="keyword">function</span>(<span class="variable">event</span>, <span class="variable">arg1</span>, <span class="variable">arg2</span>) {
+    ...
+  }.<span class="variable">handleEvent</span>(<span class="string">'frozen'</span>, <span class="string">'canuck'</span>),
+
+  <span class="comment">// event handler that handles events matching the regular expression /num\d/</span>
+  <span class="comment">//   ex. num1, num2</span>
+  <span class="variable">eventHandlerB</span>: <span class="keyword">function</span>(<span class="variable">event</span>, <span class="variable">arg1</span>, <span class="variable">arg2</span>) {
+    ...
+  }.<span class="variable">handleEvent</span>(<span class="regexp">/num\d/</span>),
+
+  <span class="comment">// Handle any event that was not handled by some other</span>
+  <span class="comment">// method on the state</span>
+  <span class="variable">unknownEvent</span>: <span class="keyword">function</span>(<span class="variable">event</span>, <span class="variable">arg1</span>, <span class="variable">arg2</span>) {
+
+  }
+
+});
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">arg1</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">arg2</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

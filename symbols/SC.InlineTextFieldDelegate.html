@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This is the default InlineEditorDelegate for <code class='syntax js'><span class="class">SC</span>.<span class="class">LabelView</span>.</code> The default editor
@@ -652,3 +652,197 @@ itself correctly in its <code class='syntax js'><span class="variable">beginEdit
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineTextFieldDelegate.html#.acquireEditor">acquireEditor(<span class="method-arguments">label</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineTextFieldDelegate.html#.releaseEditor">releaseEditor(<span class="method-arguments">editor</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".editor"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineTextFieldDelegate.</span><b>editor</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.InlineTextFieldView.html">SC.InlineTextFieldView</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The current shared inline editor.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".acquireEditor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">acquireEditor(<span class="method-arguments">label</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>If an editor is currently active, dismisses it by first attempting to commit
+and if that fails attempting to dismiss. If that fails, the acquire fails
+and returns null.</p>
+
+<p>Otherwise, it creates the editor as a child of the client view's <code class='syntax js'><span class="variable">parentView</span></code>
+and returns it.</p>
+
+<p>The default editor is an <code class='syntax js'><span class="class">SC</span>.<span class="class">InlineTextFieldView</span>.</code> The client view may
+customize this by setting a different <code class='syntax js'><span class="variable">inlineEditor</span></code> as its <code class='syntax js'><span class="variable">exampleEditor</span></code>
+property.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">label</span> <span class="light fixedFont"><a href="../symbols/SC.InlineEditable.html">SC.InlineEditable</a></span> 
+                      
+                    </dt>
+                    <dd>the label that is requesting an editor</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.InlineEditor.html">SC.InlineEditor</a></span> </dt>
+                    <dd>the editor the label should use to edit</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".releaseEditor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">releaseEditor(<span class="method-arguments">editor</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Cleans up the given editor by simply destroying it, which removes it from
+the view hierarchy. The client view should null any references to the editor
+so it may be garbage collected.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>whether the cleanup succeeded</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

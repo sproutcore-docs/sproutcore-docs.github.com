@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>NavigationBuilder is an implementation of the Builder protocol. It implements
@@ -643,3 +643,328 @@ override if needed; the navigation builders will still be accessible).</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.buildIn">buildIn(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.buildInNavigation">buildInNavigation(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.buildOut">buildOut(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.buildOutNavigation">buildOutNavigation(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.initMixin">initMixin(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.navigationBuildDidFinish">navigationBuildDidFinish(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NavigationBuilder.html#.resetBuild">resetBuild(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isNavigationBuilder"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.NavigationBuilder.</span><b>isNavigationBuilder</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".navigationTransitions"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.NavigationBuilder.</span><b>navigationTransitions</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The transitions to be used for navigation; these are mixed in to the existing
+transitions hash if one exists, or become the transitions hash otherwise.</p>
+
+<p>If <code class='syntax js'><span class="keyword">NO</span></code>, it uses the (hard-coded) defaults.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".buildIn"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">buildIn(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>You may override this. If you do, call <code class='syntax js'><span class="variable">buildInNavigation</span></code> to call the original functionality.
+You may need to override <code class='syntax js'><span class="variable">navigationBuildDidFinish</span></code> as well if you call <code class='syntax js'><span class="variable">buildInNavigation</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".buildInNavigation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">buildInNavigation(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".buildOut"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">buildOut(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>You may override this. If you do, call <code class='syntax js'><span class="variable">buildOutNavigation</span></code> to call the original functionality.
+You may need to override <code class='syntax js'><span class="variable">navigationBuildDidFinish</span></code>as well if you call <code class='syntax js'><span class="variable">buildOutNavigation</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".buildOutNavigation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">buildOutNavigation(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".initMixin"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">initMixin(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".navigationBuildDidFinish"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">navigationBuildDidFinish(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Called when the transitions finish.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".resetBuild"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">resetBuild(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                This ensures that the view has a CSS transform set, even if it is added without build in, etc.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p><code class='syntax js'><span class="class">SingleAttribute</span></code> is a subclass of <code class='syntax js'><span class="class">RecordAttribute</span></code> and handles to-one
@@ -660,3 +660,280 @@ relationships.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.RecordAttribute.html">SC.RecordAttribute</a>: </dt>
+              <dd><a href="../symbols/SC.RecordAttribute.html#aggregate">aggregate</a>, <a href="../symbols/SC.RecordAttribute.html#defaultValue">defaultValue</a>, <a href="../symbols/SC.RecordAttribute.html#isEditable">isEditable</a>, <a href="../symbols/SC.RecordAttribute.html#isRecordAttribute">isRecordAttribute</a>, <a href="../symbols/SC.RecordAttribute.html#isRequired">isRequired</a>, <a href="../symbols/SC.RecordAttribute.html#key">key</a>, <a href="../symbols/SC.RecordAttribute.html#lazilyInstantiate">lazilyInstantiate</a>, <a href="../symbols/SC.RecordAttribute.html#type">type</a>, <a href="../symbols/SC.RecordAttribute.html#useIsoDate">useIsoDate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SingleAttribute.html#inverseDidAddRecord">inverseDidAddRecord(<span class="method-arguments">record, key, inverseRecord, inverseKey</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SingleAttribute.html#inverseDidRemoveRecord">inverseDidRemoveRecord(<span class="method-arguments">record, key, inverseRecord, inverseKey</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="inverse"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>inverse</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Specifies the property on the member record that represents the inverse
+of the current relationship.  If set, then modifying this relationship
+will also alter the opposite side of the relationship.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isMaster"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isMaster</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If set, determines that when an inverse relationship changes whether this
+record should become dirty also or not.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="inverseDidAddRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverseDidAddRecord(<span class="method-arguments">record, key, inverseRecord, inverseKey</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by an inverse relationship whenever the receiver is added to the
+inverse relationship.  This will set the value of this inverse record to
+the new record.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">record</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>the record owning this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the key for this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record that was added to inverse</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseKey</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>key on inverse that was modified</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="inverseDidRemoveRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverseDidRemoveRecord(<span class="method-arguments">record, key, inverseRecord, inverseKey</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by an inverse relationship whenever the receiver is no longer part
+of the relationship.  If this matches the inverse setting of the attribute
+then it will update itself accordingly.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">record</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>the record owning this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the key for this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record that was removed from inverse</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseKey</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>key on inverse that was modified</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

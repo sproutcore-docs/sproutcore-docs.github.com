@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The run loop provides a universal system for coordinating events within
@@ -671,3 +671,881 @@ application.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#.begin">begin(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#.end">end(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#.isRunLoopInProgress">isRunLoopInProgress(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#.kill">kill(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#.wrapFunction">wrapFunction(<span class="method-arguments">func</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#beginRunLoop">beginRunLoop(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#cancelTimer">cancelTimer(<span class="method-arguments">timer</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#endRunLoop">endRunLoop(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#fireExpiredTimers">fireExpiredTimers(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#flushAllPending">flushAllPending(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#flushApplicationQueues">flushApplicationQueues(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#invokeLast">invokeLast(<span class="method-arguments">target, method</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#invokeNext">invokeNext(<span class="method-arguments">target, method</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#invokeOnce">invokeOnce(<span class="method-arguments">target, method</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#isRunLoopInProgress">isRunLoopInProgress(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#scheduleTimer">scheduleTimer(<span class="method-arguments">timer, runTime</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RunLoop.html#startTime">startTime(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".currentRunLoop"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.RunLoop.</span><b>currentRunLoop</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current run loop.  This is created automatically the first time you
+call begin().</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".runLoopClass"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.RunLoop.</span><b>runLoopClass</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Class</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The default RunLoop class.  If you choose to extend the RunLoop, you can
+set this property to make sure your class is used instead.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".begin"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">begin(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Begins a new run loop on the <code class='syntax js'><span class="variable">currentRunLoop</span></code>.  If you are already in a
+runloop, this method has no effect.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".end"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">end(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Ends the run loop on the <code class='syntax js'><span class="variable">currentRunLoop</span></code>.  This will deliver any final
+pending notifications and schedule any additional necessary cleanup.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".isRunLoopInProgress"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isRunLoopInProgress(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns YES when a run loop is in progress
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".kill"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">kill(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this to kill the current run loop--stopping all propagation of bindings
+and observers and clearing all timers.</p>
+
+<p>This is useful if you are popping up an error catcher: you need a run loop
+for the error catcher, but you don't want the app itself to continue
+running.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".wrapFunction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">wrapFunction(<span class="method-arguments">func</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Wraps the passed function in code that ensures a run loop will
+surround it when run.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">func</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="beginRunLoop"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">beginRunLoop(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this method whenver you begin executing code.</p>
+
+<p>This is typically invoked automatically for you from event handlers and
+the timeout handler.  If you call <code class='syntax js'><span class="variable">setTimeout</span></code>() or <code class='syntax js'><span class="variable">setInterval</span></code>() yourself,
+you may need to invoke this yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="cancelTimer"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">cancelTimer(<span class="method-arguments">timer</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Removes the named timer from the timeout queue.  If the timer is not
+currently scheduled, this method will have no effect.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_ext_run_loop.js.html">run_loop.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">timer</span> <span class="light fixedFont"><a href="../symbols/SC.Timer.html">SC.Timer</a></span> 
+                      
+                    </dt>
+                    <dd>the timer to schedule</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="endRunLoop"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">endRunLoop(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this method whenever you are done executing code.</p>
+
+<p>This is typically invoked automatically for you from event handlers and
+the timeout handler.  If you call <code class='syntax js'><span class="variable">setTimeout</span></code>() or <code class='syntax js'><span class="variable">setInterval</span></code>() yourself
+you may need to invoke this yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="fireExpiredTimers"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fireExpiredTimers(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invokes any timers that have expired since this method was last called.
+Usually you will not call this method directly, but it will be invoked
+automatically at the end of the run loop.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_ext_run_loop.js.html">run_loop.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if timers were fired, NO otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="flushAllPending"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">flushAllPending(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Repeatedly flushes all bindings, observers, and other queued functions until all queues are empty.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="flushApplicationQueues"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">flushApplicationQueues(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Executes any pending events at the end of the run loop.  This method is
+called automatically at the end of a run loop to flush any pending
+queue changes.</p>
+
+<p>The default method will invoke any one time methods and then sync any
+bindings that might have changed.  You can override this method in a
+subclass if you like to handle additional cleanup.</p>
+
+<p>This method must return <code class='syntax js'><span class="keyword">YES</span></code> if it found any items pending in its queues
+to take action on.  <code class='syntax js'><span class="variable">endRunLoop</span></code> will invoke this method repeatedly until
+the method returns NO.  This way if any if your final executing code
+causes additional queues to trigger, then can be flushed again.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if items were found in any queue, NO otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="invokeLast"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invokeLast(<span class="method-arguments">target, method</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invokes the passed target/method pair at the very end of the run loop,
+once all other delayed invoke queues have been flushed.  Use this to
+schedule cleanup methods at the end of the run loop once all other work
+(including rendering) has finished.</p>
+
+<p>If you call this with the same target/method pair multiple times it will
+only invoke the pair only once at the end of the runloop.</p>
+
+<p>Usually you will not call this method directly but use <code class='syntax js'><span class="variable">invokeLast</span></code>()
+defined on <code class='syntax js'><span class="class">SC</span>.<span class="class">Object</span>.</code></p>
+
+<p>Note that in development mode only, the object and method that call this
+method will be recorded, for help in debugging scheduled code.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="invokeNext"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invokeNext(<span class="method-arguments">target, method</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invokes the passed target/method pair once at the beginning of the next
+run of the run loop, before any other methods (including events) are
+processed.  Use this to defer painting to make views more responsive.</p>
+
+<p>If you call this with the same target/method pair multiple times it will
+only invoke the pair only once at the beginning of the next runloop.</p>
+
+<p>Usually you will not call this method directly but use <code class='syntax js'><span class="variable">invokeNext</span></code>()
+defined on <code class='syntax js'><span class="class">SC</span>.<span class="class">Object</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="invokeOnce"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invokeOnce(<span class="method-arguments">target, method</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invokes the passed target/method pair once at the end of the runloop.
+You can call this method as many times as you like and the method will
+only be invoked once.</p>
+
+<p>Usually you will not call this method directly but use <code class='syntax js'><span class="variable">invokeOnce</span></code>()
+defined on <code class='syntax js'><span class="class">SC</span>.<span class="class">Object</span>.</code></p>
+
+<p>Note that in development mode only, the object and method that call this
+method will be recorded, for help in debugging scheduled code.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="isRunLoopInProgress"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isRunLoopInProgress(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                YES when a run loop is in progress
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="scheduleTimer"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scheduleTimer(<span class="method-arguments">timer, runTime</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Schedules a timer to execute at the specified <code class='syntax js'><span class="variable">runTime</span></code>.  You will not
+usually call this method directly.  Instead you should work with <code class='syntax js'><span class="class">SC</span>.<span class="class">Timer</span></code>,
+which will manage both creating the timer and scheduling it.</p>
+
+<p>Calling this method on a timer that is already scheduled will remove it
+from the existing schedule and reschedule it.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_ext_run_loop.js.html">run_loop.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">timer</span> <span class="light fixedFont"><a href="../symbols/SC.Timer.html">SC.Timer</a></span> 
+                      
+                    </dt>
+                    <dd>the timer to schedule</dd>
+                  
+                    <dt>
+                      <span class="method-param">runTime</span> <span class="light fixedFont">Time</span> 
+                      
+                    </dt>
+                    <dd>the time offset when you want this to run</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RunLoop.html">SC.RunLoop</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="startTime"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">startTime(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The time the current run loop began executing.</p>
+
+<p>All timers scheduled during this run loop will begin executing as if
+they were scheduled at this time.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_ext_run_loop.js.html">run_loop.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p><code class='syntax js'><span class="class">CollectionRowDelegate</span></code>s are consulted by collection views, such as <code class='syntax js'><span class="class">SC</span>.<span class="class">ListView</span></code>
@@ -656,3 +656,522 @@ height or width of each row.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionRowDelegate.html#.contentIndexRowHeight">contentIndexRowHeight(<span class="method-arguments">view, content, contentIndex</span>)</a>
+              <span class="field-summary-deprecated">Deprecated</span>
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionRowDelegate.html#.contentIndexRowSize">contentIndexRowSize(<span class="method-arguments">view, content, contentIndex</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionRowDelegate.html#.customRowSizeIndexes">customRowSizeIndexes(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionRowDelegate.html#.rowHeight">rowHeight(<span class="method-arguments">key, value</span>)</a>
+              <span class="field-summary-deprecated">Deprecated</span>
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionRowDelegate.html#.rowSize">rowSize(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".customRowHeightIndexes"> </a>
+          <!-- If the field is deprecated. -->
+          <div class="field-deprecated">Deprecated: <p>Version 1.11. Please use the <code class='syntax js'><span class="variable">customRowSizeIndexes</span></code> property instead.
+Index set of rows that should have a custom row height. If you need
+certain rows to have a custom row height, then set this property to a
+non-null value.  Otherwise leave it blank to disable custom row heights.</p></div>
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionRowDelegate.</span><b>customRowHeightIndexes</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".isCollectionRowDelegate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionRowDelegate.</span><b>isCollectionRowDelegate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".itemHeight"> </a>
+          <!-- If the field is deprecated. -->
+          <div class="field-deprecated">Deprecated: <p>Version 1.11. Please use the <code class='syntax js'><span class="variable">rowSize</span></code> property instead.
+Size of an item without spacing or padding.
+Unless you implement custom row height or widths upport, this row height will be used for all items.</p></div>
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionRowDelegate.</span><b>itemHeight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>24</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".rowPadding"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionRowDelegate.</span><b>rowPadding</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Padding space added to the top and bottom of each row when laid out vertically,
+or to the left and right when laid out horizontally.</p>
+
+<p>This is useful if you are using a custom item view that needs to be padded.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".rowSpacing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionRowDelegate.</span><b>rowSpacing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The amount of space to leave between each row.</p>
+
+<p>This is useful when you need to leave space for borders.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".contentIndexRowHeight"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              <div class="method-deprecated">Deprecated: <p>Version 1.11. Please use the <code class='syntax js'><span class="variable">contentIndexRowSize</span>()</code> function instead.
+Called for each index in the <code class='syntax js'><span class="variable">customRowSizeIndexes</span></code> set to get the
+actual row height for the index.  This method should return the default
+<code class='syntax js'><span class="variable">rowSize</span></code> if you don't want the row to have a custom height.</p>
+
+<p>The default implementation just returns the default <code class='syntax js'><span class="variable">rowSize</span></code>.</p></div>
+              <span class="methodname">contentIndexRowHeight(<span class="method-arguments">view, content, contentIndex</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the calling view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the content array</dd>
+                  
+                    <dt>
+                      <span class="method-param">contentIndex</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>row height</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexRowSize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexRowSize(<span class="method-arguments">view, content, contentIndex</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called for each index in the <code class='syntax js'><span class="variable">customRowSizeIndexes</span></code> set to get the
+actual row size for the index.  This method should return the default
+<code class='syntax js'><span class="variable">rowSize</span></code> if you don't want the row to have a custom size.</p>
+
+<p>The default implementation just returns the default <code class='syntax js'><span class="variable">rowSize</span></code> plus <code class='syntax js'><span class="variable">rowPadding</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the calling view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the content array</dd>
+                  
+                    <dt>
+                      <span class="method-param">contentIndex</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>row size</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".customRowSizeIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">customRowSizeIndexes(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Index set of rows that should have a custom row height. If you need
+certain rows to have a custom row height, then set this property to a
+non-null value.  Otherwise leave it blank to disable custom row heights.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".rowHeight"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              <div class="method-deprecated">Deprecated: <p>Version 1.11. Please use a combination of <code class='syntax js'><span class="variable">rowSize</span></code> and <code class='syntax js'><span class="variable">rowPadding</span></code> to specify the total height or width of each row.
+Total row size used for calculation. Equal to <code class='syntax js'><span class="variable">rowSize</span> + (<span class="number integer">2</span> *</code>rowPadding<code class='syntax js'>)</code>.</p></div>
+              <span class="methodname">rowHeight(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".rowSize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">rowSize(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The height or width of a row before padding depending on whether the
+collection is laid out vertically or horizontally.</p>
+
+<p>Unless you implement custom row size support, this value will be used for
+all rows.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

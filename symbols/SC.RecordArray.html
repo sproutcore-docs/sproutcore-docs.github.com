@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A <code class='syntax js'><span class="class">RecordArray</span></code> is a managed list of records (instances of your <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span></code>
@@ -718,3 +718,853 @@ whenever records in the store changes. It will also ask the query to refresh the
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Enumerable.html">SC.Enumerable</a>: </dt>
+              <dd><a href="../symbols/SC.Enumerable.html#isEnumerable">isEnumerable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Array.html">SC.Array</a>: </dt>
+              <dd><a href="../symbols/SC.Array.html#isSCArray">isSCArray</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#add">add(<span class="method-arguments">record</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#contains">contains(<span class="method-arguments">record</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#destroy">destroy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#errorObject">errorObject(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#errorValue">errorValue(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#find">find(<span class="method-arguments">query, target, target</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#flush">flush(<span class="method-arguments">_flush</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#isEditable">isEditable(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#isError">isError(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#propertyWillChange">propertyWillChange(<span class="method-arguments">key</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#refresh">refresh(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#reload">reload(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#remove">remove(<span class="method-arguments">record</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RecordArray.html#toString">toString(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="needsFlush"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>needsFlush</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to <code class='syntax js'><span class="keyword">YES</span></code> when the query is dirty and needs to update its <code class='syntax js'><span class="variable">storeKeys</span></code>
+before returning any results.  <code class='syntax js'><span class="class">RecordArray</span></code>s always start dirty and become
+clean the first time you try to access their contents.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="NOT_EDITABLE"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>NOT_EDITABLE</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Error.html">SC.Error</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Standard error throw when you try to modify a record that is not editable
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="query"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>query</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Query.html">SC.Query</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The <code class='syntax js'><span class="class">SC</span>.<span class="class">Query</span></code> object this record array is based upon.  All record arrays<em>
+MUST</em>* have an associated query in order to function correctly.  You
+cannot change this property once it has been set.</p>
+
+<p>NOTE: You<strong> MUST</strong> set this property on the <code class='syntax js'><span class="class">RecordArray</span></code> when creating
+it or else it will fail.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="QUERY_MATCHING_THRESHOLD"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>QUERY_MATCHING_THRESHOLD</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Number of milliseconds to allow a query matching to run for. If this number
+is exceeded, the query matching will be paced so as to not lock up the
+browser (by essentially splitting the work with an <code class='syntax js'><span class="variable">invokeNext</span></code>)</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="status"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>status</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Reflects the store's current status in fulfilling the record array's query. Note
+that this status is not directly related to the status of the array's records:</p>
+
+<ul>
+<li>The store returns local queries immediately, regardless of any first-time loading
+they may trigger. (Note that by default, local queries are limited to 100ms
+processing time per run loop, so very complex queries may take several run loops
+to return to <code class='syntax js'><span class="class">READY</span></code> status. You can edit <code class='syntax js'><span class="class">SC</span>.<span class="class">RecordArray</span>.<span class="class">QUERY_MATCHING_THRESHOLD</span></code>
+to change this duration.)</li>
+<li>The store fulfills remote queries by passing them to your data source's <code class='syntax js'><span class="variable">fetch</span></code>
+method. While fetching, it sets your array's status to <code class='syntax js'><span class="class">BUSY_LOADING</span></code> or
+<code class='syntax js'><span class="class">BUSY_REFRESHING</span></code>. Once your data source has finished fetching (successfully or
+otherwise), it will call the appropriate store methods (e.g. <code class='syntax js'><span class="variable">dataSourceDidFetchQuery</span></code>
+or <code class='syntax js'><span class="variable">dataSourceDidErrorQuery</span></code>), which will update the query's array's status.</li>
+</ul>
+
+<p>Thus, a record array may have a <code class='syntax js'><span class="class">READY</span></code> status while records are still loading (if
+a local query triggers a call to <code class='syntax js'><span class="class">SC</span>.<span class="class">DataSource</span>#<span class="variable">fetch</span></code>), and will not reflect the
+<code class='syntax js'><span class="class">DIRTY</span></code> status of any of its records.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="store"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>store</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Store.html">SC.Store</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The store that owns this record array.  All record arrays must have a
+store to function properly.</p>
+
+<p>NOTE: You<strong> MUST</strong> set this property on the <code class='syntax js'><span class="class">RecordArray</span></code> when creating
+it or else it will fail.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="storeKeys"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>storeKeys</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Array.html">SC.Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The array of `storeKeys` as retrieved from the owner store.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="add"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">add(<span class="method-arguments">record</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds the specified record to the record array if it is not already part
+of the array.  Provided for compatibility with <code class='syntax js'><span class="class">SC</span>.<span class="class">Set</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">record</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="contains"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contains(<span class="method-arguments">record</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns <code class='syntax js'><span class="keyword">YES</span></code> if the passed record can be found in the record array.  This is
+provided for compatibility with <code class='syntax js'><span class="class">SC</span>.<span class="class">Set</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">record</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="destroy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">destroy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Destroys the record array.  Releases any <code class='syntax js'><span class="variable">storeKeys</span></code>, and deregisters with
+the owner store.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="errorObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">errorObject(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the current error object only if the record array is in an error
+state. If no explicit error object has been set, returns
+<code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="class">GENERIC_ERROR</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="errorValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">errorValue(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the receiver if the record array is in an error state.  Returns
+<code class='syntax js'><span class="keyword">null</span></code> otherwise.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="find"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">find(<span class="method-arguments">query, target, target</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Extends the standard <code class='syntax js'><span class="class">SC</span>.<span class="class">Enumerable</span></code> implementation to return results based
+on a Query if you pass it in.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">query</span> <span class="light fixedFont"><a href="../symbols/SC.Query.html">SC.Query</a></span> 
+                      
+                    </dt>
+                    <dd>a SC.Query object</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the target object to use</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="flush"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">flush(<span class="method-arguments">_flush</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Applies the query to any pending changed store keys, updating the record
+array contents as necessary.  This method is called automatically anytime
+you access the RecordArray to make sure it is up to date, but you can
+call it yourself as well if you need to force the record array to fully
+update immediately.</p>
+
+<p>Currently this method only has an effect if the query location is
+<code class='syntax js'><span class="class">SC</span>.<span class="class">Query</span>.<span class="class">LOCAL</span></code>.  You can call this method on any <code class='syntax js'><span class="class">RecordArray</span></code> however,
+without an error.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">_flush</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>to force it - use reload() to trigger it</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="isEditable"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isEditable(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The current editable state of the query. If this record array is not backed by a
+query, it is assumed to be editable.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isError(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns <code class='syntax js'><span class="keyword">YES</span></code> whenever the status is <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="class">ERROR</span></code>.  This will allow
+you to put the UI into an error state.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="propertyWillChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">propertyWillChange(<span class="method-arguments">key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="refresh"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">refresh(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call whenever you want to refresh the results of this query.  This will
+notify the data source, asking it to refresh the contents.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="reload"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reload(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will recompute the results of the attached <code class='syntax js'><span class="class">SC</span>.<span class="class">Query</span></code>. Useful if your query
+is based on computed properties that might have changed.</p>
+
+<p>This method is for local use only, operating only on records that have already
+been loaded into your store. If you wish to re-fetch a remote query via your
+data source, use <code class='syntax js'><span class="variable">refresh</span>()</code> instead.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="remove"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">remove(<span class="method-arguments">record</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Removes the specified record from the array if it is not already a part
+of the array.  Provided for compatibility with <code class='syntax js'><span class="class">SC</span>.<span class="class">Set</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">record</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="toString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toString(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

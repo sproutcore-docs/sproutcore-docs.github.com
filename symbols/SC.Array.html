@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This module implements Observer-friendly Array-like behavior.  This mixin is
@@ -668,3 +668,1721 @@ primitives to use it: replace() and <code class='syntax js'><span class="variabl
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Enumerable.html">SC.Enumerable</a>: </dt>
+              <dd><a href="../symbols/SC.Enumerable.html#isEnumerable">isEnumerable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#addArrayObservers">addArrayObservers(<span class="method-arguments">options</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#addRangeObserver">addRangeObserver(<span class="method-arguments">indexes, target, method, context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#arrayContentDidChange">arrayContentDidChange(<span class="method-arguments">start, removedCount, addedCount</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#arrayContentWillChange">arrayContentWillChange(<span class="method-arguments">start, removedCount, addedCount</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#compact">compact(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#contains">contains(<span class="method-arguments">object</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#flatten">flatten(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#indexOf">indexOf(<span class="method-arguments">object, startAt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#insertAt">insertAt(<span class="method-arguments">idx, object</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#isEqual">isEqual(<span class="method-arguments">ary</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#lastIndexOf">lastIndexOf(<span class="method-arguments">object, startAt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#max">max(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#min">min(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#objectAt">objectAt(<span class="method-arguments">idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#popObject">popObject(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#pushObject">pushObject(<span class="method-arguments">object</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#pushObjects">pushObjects(<span class="method-arguments">objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#registerDependentKeyWithChain">registerDependentKeyWithChain(<span class="method-arguments">property, chain</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeArrayObservers">removeArrayObservers(<span class="method-arguments">options</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeAt">removeAt(<span class="method-arguments">start, length</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeDependentKeyWithChain">removeDependentKeyWithChain(<span class="method-arguments">property, chain</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeObject">removeObject(<span class="method-arguments">obj</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeObjects">removeObjects(<span class="method-arguments">objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#removeRangeObserver">removeRangeObserver(<span class="method-arguments">rangeObserver</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#replace">replace(<span class="method-arguments">idx, amt, objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#setupEnumerablePropertyChains">setupEnumerablePropertyChains(<span class="method-arguments">addedObjects, removedObjects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#shiftObject">shiftObject(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#slice">slice(<span class="method-arguments">beginIndex, endIndex</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#teardownEnumerablePropertyChains">teardownEnumerablePropertyChains(<span class="method-arguments">removedObjects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#uniq">uniq(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#unshiftObject">unshiftObject(<span class="method-arguments">obj</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#unshiftObjects">unshiftObjects(<span class="method-arguments">objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#updateRangeObserver">updateRangeObserver(<span class="method-arguments">rangeObserver, indexes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Array.html#without">without(<span class="method-arguments">value</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="isSCArray"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isSCArray</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck - use isSCArray to avoid conflicts
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="addArrayObservers"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addArrayObservers(<span class="method-arguments">options</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">options</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="addRangeObserver"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addRangeObserver(<span class="method-arguments">indexes, target, method, context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates a new range observer on the receiver.  The target/method callback
+you provide will be invoked anytime any property on the objects in the
+specified range changes.  It will also be invoked if the objects in the
+range itself changes also.</p>
+
+<p>The callback for a range observer should have the signature:</p>
+
+<pre><code class='syntax js'><span class="keyword">function</span> <span class="variable">rangePropertyDidChange</span>(<span class="variable">array</span>, <span class="variable">objects</span>, <span class="variable">key</span>, <span class="variable">indexes</span>, <span class="variable">context</span>)
+</code></pre>
+
+<p>If the passed key is '[]' it means that the object itself changed.</p>
+
+<p>The return value from this method is an opaque reference to the
+range observer object.  You can use this reference to destroy the
+range observer when you are done with it or to update its range.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>indexes to observe</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object to invoke on change</dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>the method to invoke</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>optional context</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>range observer</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="arrayContentDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">arrayContentDidChange(<span class="method-arguments">start, removedCount, addedCount</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">start</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">removedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">addedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="arrayContentWillChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">arrayContentWillChange(<span class="method-arguments">start, removedCount, addedCount</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">start</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">removedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">addedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="compact"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">compact(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a new array with the contents of the old array, sans any null
+values.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>The new, compact array</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="contains"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contains(<span class="method-arguments">object</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns YES if object is in the array
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>to look for</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="flatten"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">flatten(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new array that is a one-dimensional flattening of this array,
+i.e. for every element of this array extract that and it's elements into
+a new array.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="indexOf"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">indexOf(<span class="method-arguments">object, startAt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns the index for a particular object in the index.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the item to search for</dd>
+                  
+                    <dt>
+                      <span class="method-param">startAt</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>optional starting location to search, default 0</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>index of -1 if not found</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="insertAt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">insertAt(<span class="method-arguments">idx, object</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This will use the primitive replace() method to insert an object at the
+specified index.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>index of insert the object at.</dd>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object to insert</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="isEqual"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isEqual(<span class="method-arguments">ary</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Compares each item in the passed array to this one.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">ary</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The array you want to compare to</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>true if they are equal.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="lastIndexOf"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">lastIndexOf(<span class="method-arguments">object, startAt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns the last index for a particular object in the index.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the item to search for</dd>
+                  
+                    <dt>
+                      <span class="method-param">startAt</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>optional starting location to search, default 0</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>index of -1 if not found</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="max"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">max(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the largest Number in an array of Numbers. Make sure the array
+only contains values of type Number to get expected result.</p>
+
+<p>Note: This only works for dense arrays.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="min"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">min(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the smallest Number in an array of Numbers. Make sure the array
+only contains values of type Number to get expected result.</p>
+
+<p>Note: This only works for dense arrays.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="objectAt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectAt(<span class="method-arguments">idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This is one of the primitives you must implement to support <code class='syntax js'><span class="class">SC</span>.<span class="class">Array</span>.</code>
+Returns the object at the named index.  If your object supports retrieving
+the value of an array item using get() (i.e. <code class='syntax js'><span class="variable">myArray</span></code>.get(0)), then you do
+not need to implement this method yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>The index of the item to return.  If idx exceeds the current length,
+      return null.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="popObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">popObject(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Pop object from array or nil if none are left.  Works just like pop() but
+it is KVO-compliant.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>The popped object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="pushObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">pushObject(<span class="method-arguments">object</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Push the object onto the end of the array.  Works just like push() but it
+is KVO-compliant.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the objects to push</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>The passed object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="pushObjects"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">pushObjects(<span class="method-arguments">objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Add the objects in the passed numerable to the end of the array.  Defers
+notifying observers of the change until all objects are added.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/SC.Enumerable.html">SC.Enumerable</a></span> 
+                      
+                    </dt>
+                    <dd>the objects to add</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="registerDependentKeyWithChain"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">registerDependentKeyWithChain(<span class="method-arguments">property, chain</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Register a property chain to propagate to enumerable content.</p>
+
+<p>This will clone the property chain to each item in the enumerable,
+then save it so that it is automatically set up and torn down when
+the enumerable content changes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">property</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the property being listened for on this object</dd>
+                  
+                    <dt>
+                      <span class="method-param">chain</span> <span class="light fixedFont">SC._PropertyChain</span> 
+                      
+                    </dt>
+                    <dd>the chain to clone to items</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeArrayObservers"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeArrayObservers(<span class="method-arguments">options</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">options</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeAt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeAt(<span class="method-arguments">start, length</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Remove an object at the specified index using the replace() primitive
+method.  You can pass either a single index, a start and a length or an
+index set.</p>
+
+<p>If you pass a single index or a start and length that is beyond the
+length this method will throw an <code class='syntax js'><span class="class">SC</span>.<span class="class">OUT_OF_RANGE_EXCEPTION</span></code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">start</span> <span class="light fixedFont">Number|<a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>index, start of range, or index set</dd>
+                  
+                    <dt>
+                      <span class="method-param">length</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>length of passing range</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeDependentKeyWithChain"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeDependentKeyWithChain(<span class="method-arguments">property, chain</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Removes a dependent key from the enumerable, and tears it down on
+all content objects.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">property</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">chain</span> <span class="light fixedFont">SC._PropertyChain</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeObject(<span class="method-arguments">obj</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Search the array of this object, removing any occurrences of it.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">obj</span> <span class="light fixedFont">object</span> 
+                      
+                    </dt>
+                    <dd>object to remove</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeObjects"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeObjects(<span class="method-arguments">objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Search the array for the passed set of objects and remove any occurrences
+of the.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/SC.Enumerable.html">SC.Enumerable</a></span> 
+                      
+                    </dt>
+                    <dd>the objects to remove</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="removeRangeObserver"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeRangeObserver(<span class="method-arguments">rangeObserver</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Removes a range observer from the receiver.  The range observer must
+already be active on the array.</p>
+
+<p>The return value should replace the old range observer object.  It will
+usually be null.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">rangeObserver</span> <span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> 
+                      
+                    </dt>
+                    <dd>the range observer</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>updated range observer or null</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="replace"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">replace(<span class="method-arguments">idx, amt, objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This is one of the primitives you must implement to support <code class='syntax js'><span class="class">SC</span>.<span class="class">Array</span>.</code>  You
+should replace amt objects started at idx with the objects in the passed
+array.</p>
+
+<p>Before mutating the underlying data structure, you must call
+this.arrayContentWillChange(). After the mutation is complete, you must
+call <code class='syntax js'><span class="variable">arrayContentDidChange</span></code>().</p>
+
+<p>NOTE: JavaScript arrays already implement <code class='syntax js'><span class="class">SC</span>.<span class="class">Array</span></code> and automatically call
+the correct callbacks.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>Starting index in the array to replace.  If idx >= length, then append to
+      the end of the array.</dd>
+                  
+                    <dt>
+                      <span class="method-param">amt</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>Number of elements that should be removed from the array, starting at
+idx*.</dd>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>An array of zero or more objects that should be inserted into the array at
+idx*</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="setupEnumerablePropertyChains"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">setupEnumerablePropertyChains(<span class="method-arguments">addedObjects, removedObjects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>For all registered property chains on this object, removed them from objects
+being removed from the enumerable, and clone them onto newly added objects.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">addedObjects</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a>[]</span> 
+                      
+                    </dt>
+                    <dd>the objects being added to the enumerable</dd>
+                  
+                    <dt>
+                      <span class="method-param">removedObjects</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a>[]</span> 
+                      
+                    </dt>
+                    <dd>the objected being removed from the enumerable</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="shiftObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">shiftObject(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Shift an object from start of array or nil if none are left.  Works just
+like shift() but it is KVO-compliant.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>The shifted object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="slice"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">slice(<span class="method-arguments">beginIndex, endIndex</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new array that is a slice of the receiver.  This implementation
+uses the observable array methods to retrieve the objects for the new
+slice.</p>
+
+<p>If you don't pass in <code class='syntax js'><span class="variable">beginIndex</span></code> and <code class='syntax js'><span class="variable">endIndex</span></code>, it will act as a copy of the
+array.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">beginIndex</span> 
+                      
+                    </dt>
+                    <dd>{Integer} (Optional) index to begin slicing from.</dd>
+                  
+                    <dt>
+                      <span class="method-param">endIndex</span> 
+                      
+                    </dt>
+                    <dd>{Integer} (Optional) index to end the slice at.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>New array with specified slice</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="teardownEnumerablePropertyChains"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">teardownEnumerablePropertyChains(<span class="method-arguments">removedObjects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">removedObjects</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="uniq"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">uniq(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a new array with only unique values from the contents of the
+old array.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>The new, de-duped array</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="unshiftObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unshiftObject(<span class="method-arguments">obj</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Unshift an object to start of array.  Works just like unshift() but it is
+KVO-compliant.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">obj</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the object to add</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>The passed object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="unshiftObjects"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unshiftObjects(<span class="method-arguments">objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds the named objects to the beginning of the array.  Defers notifying
+observers until all objects have been added.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/SC.Enumerable.html">SC.Enumerable</a></span> 
+                      
+                    </dt>
+                    <dd>the objects to add</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="updateRangeObserver"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">updateRangeObserver(<span class="method-arguments">rangeObserver, indexes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Moves a range observer so that it observes a new range of objects on the
+array.  You must have an existing range observer object from a call to
+<code class='syntax js'><span class="variable">addRangeObserver</span></code>().</p>
+
+<p>The return value should replace the old range observer object that you
+pass in.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">rangeObserver</span> <span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> 
+                      
+                    </dt>
+                    <dd>the range observer</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>new indexes to observe</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>the range observer (or a new one)</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="without"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">without(<span class="method-arguments">value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a new array with the contents of the old array, sans the passed
+value.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The value you want to be removed</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>The new, filtered array</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

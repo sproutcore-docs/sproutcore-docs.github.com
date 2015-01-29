@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A Collection View Delegate is consulted by a <code class='syntax js'><span class="class">SC</span>.<span class="class">CollectionView</span></code> to make
@@ -661,3 +661,898 @@ delegate for the view.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewComputeDragOperations">collectionViewComputeDragOperations(<span class="method-arguments">view, drag, proposedDragOperations</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewDeleteContent">collectionViewDeleteContent(<span class="method-arguments">view, indexes, indexes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewDragDataForType">collectionViewDragDataForType(<span class="method-arguments">view, dataType, drag</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewDragDataTypes">collectionViewDragDataTypes(<span class="method-arguments">view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewDragViewFor">collectionViewDragViewFor(<span class="method-arguments">view, dragContent</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewPerformDragOperation">collectionViewPerformDragOperation(<span class="method-arguments">view, drag, op, proposedInsertionIndex, proposedDropOperation</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewSelectionForProposedSelection">collectionViewSelectionForProposedSelection(<span class="method-arguments">view, sel</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewShouldBeginDrag">collectionViewShouldBeginDrag(<span class="method-arguments">view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewShouldDeleteIndexes">collectionViewShouldDeleteIndexes(<span class="method-arguments">view, indexes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewShouldDeselectIndexes">collectionViewShouldDeselectIndexes(<span class="method-arguments">view, indexes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewShouldSelectIndexes">collectionViewShouldSelectIndexes(<span class="method-arguments">view, indexes, extend</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionViewDelegate.html#.collectionViewValidateDragOperation">collectionViewValidateDragOperation(<span class="method-arguments">view, drag, op, proposedInsertionIndex, proposedDropOperation</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".ghostActsLikeCursor"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionViewDelegate.</span><b>ghostActsLikeCursor</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Allows the ghost view created in <code class='syntax js'><span class="variable">collectionViewDragViewFor</span></code> to be displayed
+like a cursor instead of the default implementation. This sets the view 
+origin to be the location of the mouse cursor.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".isCollectionViewDelegate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionViewDelegate.</span><b>isCollectionViewDelegate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck. Used to detect the mixin by SC.CollectionView.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".collectionViewComputeDragOperations"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewComputeDragOperations(<span class="method-arguments">view, drag, proposedDragOperations</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called once during a drag the first time view is entered. Return all
+possible drag operations OR'd together.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view that initiated the drag</dd>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>the drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">proposedDragOperations</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>proposed logical OR of allowed drag operations.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>the allowed drag operations. Defaults to op</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewDeleteContent"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewDeleteContent(<span class="method-arguments">view, indexes, indexes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view to actually delete the selected items.</p>
+
+<p>The default behavior will use standard array operators to delete the
+indexes from the array. You can implement this method to provide your own
+deletion method.</p>
+
+<p>If you simply want to control the items to be deleted, you should instead
+implement <code class='syntax js'><span class="variable">collectionViewShouldDeleteItems</span>()</code>. This method will only be
+called if <code class='syntax js'><span class="variable">canDeleteContent</span></code> is <code class='syntax js'><span class="keyword">YES</span></code> and <code class='syntax js'><span class="variable">collectionViewShouldDeleteIndexes</span>()</code>
+returns a non-empty index set</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>the items to delete</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if the deletion was a success.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewDragDataForType"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewDragDataForType(<span class="method-arguments">view, dataType, drag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by a collection view when a drag concludes to give you the option
+to provide the drag data for the drop.</p>
+
+<p>This method should be implemented essentially as you would implement the
+<code class='syntax js'><span class="variable">dragDataForType</span>()</code> if you were a drag data source.  You will never be asked
+to provide drag data for a reorder event, only for other types of data.</p>
+
+<p>The default implementation returns null.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> 
+                      
+                    </dt>
+                    <dd>{SC.CollectionView} the collection view that initiated the drag</dd>
+                  
+                    <dt>
+                      <span class="method-param">dataType</span> 
+                      
+                    </dt>
+                    <dd>{String} the data type to provide</dd>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> 
+                      
+                    </dt>
+                    <dd>{SC.Drag} the drag object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>the data object or null if the data could not be provided.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewDragDataTypes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewDragDataTypes(<span class="method-arguments">view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view just before it starts a drag so that
+you can provide the data types you would like to support in the data.</p>
+
+<p>You can implement this method to return an array of the data types you
+will provide for the drag data.</p>
+
+<p>If you return <code class='syntax js'><span class="keyword">null</span></code> or an empty array, can you have set <code class='syntax js'><span class="variable">canReorderContent</span></code>
+to <code class='syntax js'><span class="keyword">YES</span></code> on the CollectionView, then the drag will go ahead but only
+reordering will be allowed.  If <code class='syntax js'><span class="variable">canReorderContent</span></code> is <code class='syntax js'><span class="keyword">NO</span></code>, then the drag
+will not be allowed to start.</p>
+
+<p>If you simply want to control whether a drag is allowed or not, you
+should instead implement <code class='syntax js'><span class="variable">collectionViewShouldBeginDrag</span>()</code>.</p>
+
+<p>The default returns an empty array.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view to begin dragging.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>array of supported data types.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewDragViewFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewDragViewFor(<span class="method-arguments">view, dragContent</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Renders a drag view for the passed content indexes. If you return null
+from this, then a default drag view will be generated for you.</p>
+
+<p>The default implementation returns null.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">dragContent</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> </dt>
+                    <dd>view or null</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewPerformDragOperation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewPerformDragOperation(<span class="method-arguments">view, drag, op, proposedInsertionIndex, proposedDropOperation</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view to actually accept a drop.  This method will
+only be invoked AFTER your `validateDrop method has been called to
+determine if you want to even allow the drag operation to go through.</p>
+
+<p>You should actually make changes to the data model if needed here and
+then return the actual drag operation that was performed. If you return
+<code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code> and the <code class='syntax js'><span class="variable">dragOperation</span></code> was <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_REORDER</span></code>, then the default
+reorder behavior will be provided by the collection view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>the current drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>proposed logical OR of allowed drag operations.</dd>
+                  
+                    <dt>
+                      <span class="method-param">proposedInsertionIndex</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>an index into the content array representing the proposed insertion point.</dd>
+                  
+                    <dt>
+                      <span class="method-param">proposedDropOperation</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the proposed drop operation.  Will be one of SC.DROP_ON, SC.DROP_BEFORE, or SC.DROP_ANY.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>the allowed drag operation. Defaults to proposedDragOperation</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewSelectionForProposedSelection"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewSelectionForProposedSelection(<span class="method-arguments">view, sel</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method will be called anytime the collection view is about to
+change the selection in response to user mouse clicks or keyboard events.</p>
+
+<p>You can use this method to adjust the proposed selection, eliminating any
+selected objects that cannot be selected.  The default implementation of
+this method simply returns the proposed selection.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">sel</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>Proposed array of selected objects.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>Actual allow selection index set</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewShouldBeginDrag"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewShouldBeginDrag(<span class="method-arguments">view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view just before it starts a drag to give you
+an opportunity to decide if the drag should be allowed.</p>
+
+<p>You can use this method to implement fine-grained control over when a
+drag will be allowed and when it will not be allowed. For example, you
+may enable content reordering but then implement this method to prevent
+reordering of certain items in the view.</p>
+
+<p>The default implementation always returns <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES to allow, NO to prevent it</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewShouldDeleteIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewShouldDeleteIndexes(<span class="method-arguments">view, indexes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view whenever the <code class='syntax js'><span class="variable">deleteSelection</span>()</code> method is
+called.  You can implement this method to get fine-grained control over
+which items can be deleted.  To prevent deletion, return null.</p>
+
+<p>This method is only called if <code class='syntax js'><span class="variable">canDeleteContent</span></code> is <code class='syntax js'><span class="keyword">YES</span></code> on the collection
+view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>proposed index set of items to delete.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>index set allowed to delete or null.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewShouldDeselectIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewShouldDeselectIndexes(<span class="method-arguments">view, indexes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection when attempting to deselect an item.  Return the
+actual indexes you want to allow to be deselected.  Return <code class='syntax js'><span class="keyword">null</span></code> to
+disallow the change.  The default allows all selection.</p>
+
+<p>Note that you should not modify the passed in IndexSet.  clone it instead.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the view collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>the indexes to be selected</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>allowed index set</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewShouldSelectIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewShouldSelectIndexes(<span class="method-arguments">view, indexes, extend</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection when attempting to select an item.  Return the
+actual indexes you want to allow to be selected.  Return null to disallow
+the change.  The default allows all selection.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the view collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>the indexes to be selected</dd>
+                  
+                    <dt>
+                      <span class="method-param">extend</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>YES if the indexes will extend existing sel</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>allowed index set</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".collectionViewValidateDragOperation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">collectionViewValidateDragOperation(<span class="method-arguments">view, drag, op, proposedInsertionIndex, proposedDropOperation</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the collection view during a drag to let you determine the
+kind and location of a drop you might want to accept.</p>
+
+<p>You can override this method to implement fine-grained control over how
+and when a dragged item is allowed to be dropped into a collection view.</p>
+
+<p>This method will be called by the collection view both to determine in
+general which operations you might support and specifically the operations
+you would support if the user dropped an item over a specific location.</p>
+
+<p>If the <code class='syntax js'><span class="variable">proposedDropOperation</span></code> parameter is <code class='syntax js'><span class="class">SC</span>.<span class="class">DROP_ON</span></code> or <code class='syntax js'><span class="class">SC</span>.<span class="class">DROP_BEFORE</span></code>,
+then the <code class='syntax js'><span class="variable">proposedInsertionPoint</span></code> will be a non-negative value and you
+should determine the specific operations you will support if the user
+dropped the drag item at that point.</p>
+
+<p>If you do not like the proposed drop operation or insertion point, you
+can override these properties as well by setting the <code class='syntax js'><span class="variable">proposedDropOperation</span></code>
+and <code class='syntax js'><span class="variable">proposedInsertionIndex</span></code> properties on the collection view during this
+method. These properties are ignored all other times.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>the current drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>proposed logical OR of allowed drag operations.</dd>
+                  
+                    <dt>
+                      <span class="method-param">proposedInsertionIndex</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>an index into the content array representing the proposed insertion point.</dd>
+                  
+                    <dt>
+                      <span class="method-param">proposedDropOperation</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the proposed drop operation. Will be one of SC.DROP_ON, SC.DROP_BEFORE, or SC.DROP_ANY.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>the allowed drag operation. Defaults to op</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

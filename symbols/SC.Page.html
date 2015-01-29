@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p><code class='syntax js'><span class="class">SC</span>.<span class="class">Page</span></code></p>
@@ -645,3 +645,376 @@ first time you try to get the page</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#.localization">localization(<span class="method-arguments">attrs</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#designController">designController(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#emitDesign">emitDesign(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#get">get(<span class="method-arguments">key</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#getIfConfigured">getIfConfigured(<span class="method-arguments">key</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Page.html#loc">loc(<span class="method-arguments">locs</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".design"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Page.</span><b>design</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Calling design() on a page is the same as calling create()
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="owner"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>owner</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>When you create a page, you can set it's "owner" property to an
+object outside the page definition. This allows views in the page
+to use the owner object as a target, (as well as other objects
+accessible through the owner object). <code class='syntax js'><span class="class">E</span>.<span class="variable">g</span>.</code></p>
+
+<pre><code class='syntax js'><span class="variable">myButton</span>: <span class="class">SC</span>.<span class="class">ButtonView</span>.<span class="variable">design</span>({
+  <span class="variable">title</span>: <span class="string">'Click me'</span>,
+  <span class="variable">target</span>: <span class="class">SC</span>.<span class="variable">outlet</span>(<span class="string">'page.owner'</span>),
+  <span class="variable">action</span>: <span class="string">'buttonClicked'</span>
+})
+</code></pre>
+
+<p>Usually, you'll set 'owner' to the object defined in core.js.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".localization"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">localization(<span class="method-arguments">attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Calling localization returns passed attrs.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="designController"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">designController(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Extend `SC.Page` to create a `PageDesignController` on demand.
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_designer_ext_page.js.html">page.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="emitDesign"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">emitDesign(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Extend `SC.Page` to emit a design document for the entire page.
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_designer_ext_page.js.html">page.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="get"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">get(<span class="method-arguments">key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="getIfConfigured"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getIfConfigured(<span class="method-arguments">key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the named property unless the property is a view that has not yet
+been configured.  In that case it will return undefined.  You can use this
+method to safely get a view without waking it up.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="loc"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">loc(<span class="method-arguments">locs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Applies a localization to every view builder defined on the page.  You must call this before you construct a view to apply the localization.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">locs</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

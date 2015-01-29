@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A nested store can buffer changes to a parent store and then commit them
@@ -671,3 +671,673 @@ working with the nested store, <code class='syntax js'><span class="variable">de
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Store.html">SC.Store</a>: </dt>
+              <dd><a href="../symbols/SC.Store.html#CHAIN_CONFLICT_ERROR">CHAIN_CONFLICT_ERROR</a>, <a href="../symbols/SC.Store.html#changelog">changelog</a>, <a href="../symbols/SC.Store.html#childRecords">childRecords</a>, <a href="../symbols/SC.Store.html#commitRecordsAutomatically">commitRecordsAutomatically</a>, <a href="../symbols/SC.Store.html#dataSource">dataSource</a>, <a href="../symbols/SC.Store.html#EDITABLE">EDITABLE</a>, <a href="../symbols/SC.Store.html#editables">editables</a>, <a href="../symbols/SC.Store.html#INHERITED">INHERITED</a>, <a href="../symbols/SC.Store.html#LOCKED">LOCKED</a>, <a href="../symbols/SC.Store.html#name">name</a>, <a href="../symbols/SC.Store.html#NESTED_STORE_RETRIEVE_DIRTY_ERROR">NESTED_STORE_RETRIEVE_DIRTY_ERROR</a>, <a href="../symbols/SC.Store.html#NESTED_STORE_UNSUPPORTED_ERROR">NESTED_STORE_UNSUPPORTED_ERROR</a>, <a href="../symbols/SC.Store.html#nestedStores">nestedStores</a>, <a href="../symbols/SC.Store.html#NO_PARENT_STORE_ERROR">NO_PARENT_STORE_ERROR</a>, <a href="../symbols/SC.Store.html#parentRecords">parentRecords</a>, <a href="../symbols/SC.Store.html#queryErrors">queryErrors</a>, <a href="../symbols/SC.Store.html#recordErrors">recordErrors</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#commitChanges">commitChanges(<span class="method-arguments">force</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#commitSuccessfulChanges">commitSuccessfulChanges(<span class="method-arguments">force</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#destroy">destroy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#discardChanges">discardChanges(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#find">find(<span class="method-arguments">query</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#readError">readError(<span class="method-arguments">storeKey</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#readQueryError">readQueryError(<span class="method-arguments">query</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#reset">reset(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.NestedStore.html#storeKeyEditState">storeKeyEditState(<span class="method-arguments">storeKey</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="conflictedStoreKeys"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>conflictedStoreKeys</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An array of store keys for all conflicting records with the parent store. If there are no
+conflicting records, this property will be null.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="hasChanges"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasChanges</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This is set to <code class='syntax js'><span class="keyword">YES</span></code> when there are changes that have not been committed
+yet.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isNested"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isNested</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              `YES` if the store is nested. Walk like a duck
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="lockOnRead"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>lockOnRead</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, then the attribute hash state will be locked when you first
+read the data hash or status.  This means that if you retrieve a record
+then change the record in the parent store, the changes will not be
+visible to your nested store until you commit or discard changes.</p>
+
+<p>If <code class='syntax js'><span class="keyword">NO</span></code>, then the attribute hash will lock only when you write data.</p>
+
+<p>Normally you want to lock your attribute hash the first time you read it.
+This will make your nested store behave most consistently.  However, if
+you are using multiple sibling nested stores at one time, you may want
+to turn off this property so that changes from one store will be reflected
+in the other one immediately.  In this case you will be responsible for
+ensuring that the sibling stores do not edit the same part of the object
+graph at the same time.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="parentStore"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>parentStore</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Store.html">SC.Store</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The parent store this nested store is chained to.  Nested stores must have
+a parent store in order to function properly.  Normally, you create a
+nested store using the <code class='syntax js'><span class="class">SC</span>.<span class="class">Store</span>#<span class="variable">chain</span>()</code> method and this property will be
+set for you.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="commitChanges"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">commitChanges(<span class="method-arguments">force</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Propagate this store's changes to its parent.  If the store does not
+have a parent, this has no effect other than to clear the change set.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">force</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>if YES, does not check for conflicts first</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Store.html">SC.Store</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="commitSuccessfulChanges"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">commitSuccessfulChanges(<span class="method-arguments">force</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Propagate this store's successful changes to its parent (if exists). At the end, it clears the
+local, private status of the committed records therefore the method can be called several times
+until the full transaction is successful or editing is abandoned</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">force</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>if YES, does not check for conflicts first</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Store.html">SC.Store</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="destroy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">destroy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>When you are finished working with a chained store, call this method to
+tear it down.  This will also discard any pending changes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Store.html">SC.Store</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="discardChanges"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">discardChanges(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Discard the changes made to this store and reset the store.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Store.html">SC.Store</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="find"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">find(<span class="method-arguments">query</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="variable">find</span>()</code> cannot accept REMOTE queries in a nested store.  This override will
+verify that condition for you.  See <code class='syntax js'><span class="class">SC</span>.<span class="class">Store</span>#<span class="variable">find</span>()</code> for info on using this
+method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">query</span> <span class="light fixedFont"><a href="../symbols/SC.Query.html">SC.Query</a></span> 
+                      
+                    </dt>
+                    <dd>query object to use.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a>|<a href="../symbols/SC.RecordArray.html">SC.RecordArray</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="readError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">readError(<span class="method-arguments">storeKey</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the <code class='syntax js'><span class="class">SC</span>.<span class="class">Error</span></code> object associated with a specific record.</p>
+
+<p>Delegates the call to the parent store.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">storeKey</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>The store key of the record.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Error.html">SC.Error</a></span> </dt>
+                    <dd>SC.Error or null if no error associated with the record.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="readQueryError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">readQueryError(<span class="method-arguments">query</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the <code class='syntax js'><span class="class">SC</span>.<span class="class">Error</span></code> object associated with a specific query.</p>
+
+<p>Delegates the call to the parent store.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">query</span> <span class="light fixedFont"><a href="../symbols/SC.Query.html">SC.Query</a></span> 
+                      
+                    </dt>
+                    <dd>The SC.Query with which the error is associated.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Error.html">SC.Error</a></span> </dt>
+                    <dd>SC.Error or null if no error associated with the query.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="reset"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reset(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Resets a store's data hash contents to match its parent.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="storeKeyEditState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">storeKeyEditState(<span class="method-arguments">storeKey</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the current edit status of a storekey.  May be one of <code class='syntax js'><span class="class">INHERITED</span></code>,
+<code class='syntax js'><span class="class">EDITABLE</span></code>, and <code class='syntax js'><span class="class">LOCKED</span></code>.  Used mostly for unit testing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">storeKey</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the store key</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>edit status</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

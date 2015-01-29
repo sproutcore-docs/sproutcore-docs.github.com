@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The <code class='syntax js'><span class="class">SC</span>.<span class="class">StatePathMatcher</span></code> is used to match a given state path match expression 
@@ -689,3 +689,291 @@ satisfied by the given path. </p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.StatePathMatcher.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.StatePathMatcher.html#lastPart">lastPart(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.StatePathMatcher.html#match">match(<span class="method-arguments">path</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="expression"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>expression</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The expression used by this matcher to match against
+given state paths</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="state"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>state</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The state that is used to represent 'this' for the
+matcher's given expression.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>#expression</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="tokens"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tokens</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              A parsed set of tokens from the matcher's given expression
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>#expression</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="lastPart"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">lastPart(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the last part of the expression. So if the
+expression is 'foo.bar' or 'foo~bar' then 'bar' is returned
+in both cases. If the expression is 'this' then 'this is
+returned.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="match"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">match(<span class="method-arguments">path</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will make a state path against this matcher's expression. </p>
+
+<p>The path provided must follow a basic dot-notation path containing
+one or dots '.'. Ex: 'foo', 'foo.bar'</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">path</span> 
+                      
+                    </dt>
+                    <dd>{String} a dot-notation path</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>true if there is a match, otherwise false</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

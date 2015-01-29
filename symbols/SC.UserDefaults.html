@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The UserDefaults object provides an easy way to store user preferences in
@@ -662,3 +662,403 @@ automatically prepended to key names with no slashes in them.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#defaults">defaults(<span class="method-arguments">newDefaults</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#readDefault">readDefault(<span class="method-arguments">keyName</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#resetDefault">resetDefault(<span class="method-arguments">keyName</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#unknownProperty">unknownProperty(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UserDefaults.html#writeDefault">writeDefault(<span class="method-arguments">keyName, value</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="appDomain"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>appDomain</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The default app domain for the user.  Any keys that do not include a
+slash will be prefixed with this app domain key when getting/setting.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="userDomain"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>userDomain</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>the default domain for the user.  This will be used to store keys in
+local storage.  If you do not set this property, the wrong values may be
+returned.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="defaults"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">defaults(<span class="method-arguments">newDefaults</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoke this method to set the builtin defaults.  This will cause all
+properties to change.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">newDefaults</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="readDefault"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">readDefault(<span class="method-arguments">keyName</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Attempts to read a user default from local storage.  If not found on
+<code class='syntax js'><span class="variable">localStorage</span></code>, use the the local defaults, if defined.  If the key passed
+does not include a slash, then add the <code class='syntax js'><span class="variable">appDomain</span></code> or use "app/".</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">keyName</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>read value</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="resetDefault"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">resetDefault(<span class="method-arguments">keyName</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Removed the passed keyName from the written hash and local storage.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">keyName</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.UserDefaults.html">SC.UserDefaults</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="unknownProperty"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unknownProperty(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Is called whenever you .get() or .set() values on this object
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="writeDefault"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">writeDefault(<span class="method-arguments">keyName, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Attempts to write the user default to local storage or at least saves them
+for now.  Also notifies that the value has changed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">keyName</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">SC.UserDefault</span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

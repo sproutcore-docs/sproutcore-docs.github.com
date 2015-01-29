@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A Timer executes a method after a defined period of time.  Timers are
@@ -793,3 +793,809 @@ not interrupt their regular scheduled times.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#.returnTimerToPool">returnTimerToPool(<span class="method-arguments">timer</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#.schedule">schedule(<span class="method-arguments">props</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#.timerFromPool">timerFromPool(<span class="method-arguments">props</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#fire">fire(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#fireTime">fireTime(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#invalidate">invalidate(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#performAction">performAction(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#reset">reset(<span class="method-arguments">props</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Timer.html#schedule">schedule(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="action"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>action</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The action to execute.</p>
+
+<p>The action can be a method name, a property path, or a function.  If you
+pass a method name, it will be invoked on the target object or it will
+be called up the responder chain if target is null.  If you pass a
+property path and it resolves to a function then the function will be
+called.  If you pass a function instead, then the function will be
+called in the context of the target object.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="interval"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>interval</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The time interval in milliseconds.</p>
+
+<p>You generally set this when you create the timer.  If you do not set it
+then the timer will fire as soon as possible in the next run loop.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isPaused"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isPaused</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to <code class='syntax js'><span class="keyword">YES</span></code> to pause the timer.</p>
+
+<p>Pausing a timer does not remove it from the run loop, but it will
+temporarily suspend it from firing.  You should use this property if
+you will want the timer to fire again the future, but you want to prevent
+it from firing temporarily.</p>
+
+<p>If you are done with a timer, you should call invalidate() instead of
+setting this property.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isPooled"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isPooled</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set if the timer should be created from a memory pool.  Normally you will
+want to leave this set, but if you plan to use bindings or observers with
+this timer, then you must set <code class='syntax js'><span class="variable">isPooled</span></code> to <code class='syntax js'><span class="keyword">NO</span></code> to avoid reusing your timer.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isScheduled"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isScheduled</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              YES onces the timer has been scheduled for the first time.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isValid"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isValid</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>YES if the timer can still execute.</p>
+
+<p>This read only property will return <code class='syntax js'><span class="keyword">YES</span></code> as long as the timer may possibly
+fire again in the future.  Once a timer has become invalid, it cannot
+become valid again.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="lastFireTime"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>lastFireTime</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to the current time when the timer last fired.  Used to find the
+next 'frame' to execute.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="repeats"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>repeats</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              YES if you want the timer to execute repeatedly.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="startTime"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>startTime</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Timer start date offset.</p>
+
+<p>The start date determines when the timer will be scheduled.  The first
+time the timer fires will be interval milliseconds after the start
+date.</p>
+
+<p>Generally you will not set this property yourself.  Instead it will be
+set automatically to the current run loop start date when you schedule
+the timer.  This ensures that all timers scheduled in the same run loop
+cycle will execute in the sync with one another.</p>
+
+<p>The value of this property is an offset like what you get if you call
+<code class='syntax js'><span class="class">Date</span>.<span class="variable">now</span>().</code></p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="target"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>target</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The target object whose method will be invoked when the time fires.</p>
+
+<p>You can set either a target/action property or you can pass a specific
+method.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="until"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>until</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Last date when the timer will execute.</p>
+
+<p>If you have set repeats to <code class='syntax js'><span class="keyword">YES</span></code>, then you can also set this property to
+have the timer automatically stop executing past a certain date.</p>
+
+<p>This property should contain an offset value like <code class='syntax js'><span class="variable">startOffset</span></code>.  However if
+you set it to a Date object on create, it will be converted to an offset
+for you.</p>
+
+<p>If this property is null, then the timer will continue to repeat until you
+call invalidate().</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".returnTimerToPool"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">returnTimerToPool(<span class="method-arguments">timer</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a timer instance to the timer pool for later use.  This is done
+automatically when a timer is invalidated if <code class='syntax js'><span class="variable">isPooled</span></code> is <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">timer</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".schedule"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">schedule(<span class="method-arguments">props</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">props</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".timerFromPool"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">timerFromPool(<span class="method-arguments">props</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new timer from the timer pool, copying the passed properties onto
+the timer instance.  If the timer pool is currently empty, this will return
+a new instance.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">props</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="fire"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fire(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Immediately fires the timer.</p>
+
+<p>If the timer is not-repeating, it will be invalidated.  If it is repeating
+you can call this method without interrupting its normal schedule.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="fireTime"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fireTime(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Computed property returns the next time the timer should fire.  This
+property resets each time the timer fires.  Returns -1 if the timer
+cannot fire again.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="invalidate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invalidate(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invalidates the timer so that it will not execute again.  If a timer has
+been scheduled, it will be removed from the run loop immediately.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Timer.html">SC.Timer</a></span> </dt>
+                    <dd>The receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="performAction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">performAction(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Actually fires the action. You can override this method if you need
+to change how the timer fires its action.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="reset"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reset(<span class="method-arguments">props</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Resets the timer settings with the new settings.  This is the method
+called by the Timer pool when a timer is reused.  You will not normally
+call this method yourself, though you could override it if you need to
+reset additional properties when a timer is reused.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">props</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Timer.html">SC.Timer</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="schedule"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">schedule(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Schedules the timer to execute in the runloop.</p>
+
+<p>This method is called automatically if you create the timer using the
+schedule() class method.  If you create the timer manually, you will
+need to call this method yourself for the timer to execute.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Timer.html">SC.Timer</a></span> </dt>
+                    <dd>The receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

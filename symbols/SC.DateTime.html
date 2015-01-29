@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A class representation of a date and time. It's basically a wrapper around
@@ -719,3 +719,1306 @@ it is running.  Any time zone can be specified when creating an
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Freezable.html">SC.Freezable</a>: </dt>
+              <dd><a href="../symbols/SC.Freezable.html#isFreezable">isFreezable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Copyable.html">SC.Copyable</a>: </dt>
+              <dd><a href="../symbols/SC.Copyable.html#isCopyable">isCopyable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#.compare">compare(<span class="method-arguments">a, b</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#.compareDate">compareDate(<span class="method-arguments">a, b</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#.create">create(<span class="method-arguments">options</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#.difference">difference(<span class="method-arguments">a, b, format</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#.parse">parse(<span class="method-arguments">str, fmt</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#adjust">adjust(<span class="method-arguments">options, <span style="font-style: italic;">resetCascadingly</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#advance">advance(<span class="method-arguments">options</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#copy">copy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#dayOrdinal">dayOrdinal(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#isEqual">isEqual(<span class="method-arguments">aDateTime</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#toFormattedString">toFormattedString(<span class="method-arguments">format</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#toISO8601">toISO8601(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#toTimezone">toTimezone(<span class="method-arguments">timezone</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DateTime.html#unknownProperty">unknownProperty(<span class="method-arguments">key</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".abbreviatedDayNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>abbreviatedDayNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".abbreviatedMonthNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>abbreviatedMonthNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".AMPMNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>AMPMNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['AM', 'PM']</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".dayNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>dayNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isFrozen"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isFrozen</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              A `SC.DateTime` instance is frozen by default for better performance.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".monthNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>monthNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".recordFormat"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>recordFormat</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The default format (ISO 8601) in which DateTimes are stored in a record.
+Change this value if your backend sends and receives dates in another
+format.</p>
+
+<p>This value can also be customized on a per-attribute basis with the format
+property. For example:</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="variable">attr</span>(<span class="class">SC</span>.<span class="class">DateTime</span>, { <span class="variable">format</span>: <span class="string">'%d/%m/%Y %H:%M:%S'</span> })
+</code></pre>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.DATETIME_ISO8601</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="timezone"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>timezone</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Integer</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".timezone"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DateTime.</span><b>timezone</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Integer</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The offset, in minutes, between UTC and the local system time. This
+property is computed at loading time and should never be changed.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>new Date().getTimezoneOffset()</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".compare"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">compare(<span class="method-arguments">a, b</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This will tell you which of the two passed <code class='syntax js'><span class="class">DateTime</span></code> is greater by
+comparing their number of milliseconds since
+January, 1st 1970 00:00:00.0 UTC.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">a</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the first DateTime instance</dd>
+                  
+                    <dt>
+                      <span class="method-param">b</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the second DateTime instance</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Integer</span> </dt>
+                    <dd><p>-1 if a &lt; b,
++1 if a > b,
+0 if a == b</p></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".compareDate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">compareDate(<span class="method-arguments">a, b</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This will tell you which of the two passed DateTime is greater
+by only comparing the date parts of the passed objects. Only dates
+with the same timezone can be compared.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">a</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the first DateTime instance</dd>
+                  
+                    <dt>
+                      <span class="method-param">b</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the second DateTime instance</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Integer</span> </dt>
+                    <dd><p>-1 if a &lt; b,
++1 if a > b,
+0 if a == b</p></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                  <dt class="heading">Throws:</dt>
+                  
+                    <dt>
+                      <span class="light fixedFont"><a href="../symbols/SC.html#.DATETIME_COMPAREDATE_TIMEZONE_ERROR">SC.DATETIME_COMPAREDATE_TIMEZONE_ERROR</a></span>  <b></b>
+                    </dt>
+                    <dd><p>if the passed arguments
+don't have the same timezone</p></dd>
+                  
+                
+                
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name=".create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments">options</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> object advanced according the the given parameters.
+The parameters can be:</p>
+
+<ul>
+<li>none, to create a <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> instance initialized to the current
+date and time in the local timezone,</li>
+<li>a integer, the number of milliseconds since
+January, 1st 1970 00:00:00.0 UTC</li>
+<li>a options hash that can contain any of the following properties: year,
+month, day, hour, minute, second, millisecond, timezone</li>
+</ul>
+
+<p>Note that if you attempt to create a <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> instance that has already
+been created, then, for performance reasons, a cached value may be
+returned.</p>
+
+<p>The timezone option is the offset, in minutes, between UTC and local time.
+If you don't pass a timezone option, the date object is created in the
+local timezone. If you want to create a UTC+2 (CEST) date, for example,
+then you should pass a timezone of -120.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">options</span> 
+                      
+                    </dt>
+                    <dd>one of the three kind of parameters described above</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> </dt>
+                    <dd><p>the <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> instance that corresponds to the
+passed parameters, possibly fetched from cache</p></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".difference"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">difference(<span class="method-arguments">a, b, format</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the interval of time between the two passed in DateTimes in units
+according to the format.</p>
+
+<p>You can display the difference in weeks (w), days (d), hours (h), minutes (M)
+or seconds (S).</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">a</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the first DateTime instance</dd>
+                  
+                    <dt>
+                      <span class="method-param">b</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the second DateTime instance</dd>
+                  
+                    <dt>
+                      <span class="method-param">format</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the interval to get the difference in</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".parse"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">parse(<span class="method-arguments">str, fmt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> object created from a given string parsed with a given
+format. Returns <code class='syntax js'><span class="keyword">null</span></code> if the parsing fails.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">str</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the string to parse</dd>
+                  
+                    <dt>
+                      <span class="method-param">fmt</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the format to parse the string with</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">DateTime</span> </dt>
+                    <dd>the DateTime corresponding to the string parameter</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd><a href="../symbols/SC.DateTime.html#toFormattedString">SC.DateTime#toFormattedString</a> for a description of the format parameter</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="adjust"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">adjust(<span class="method-arguments">options, <span style="font-style: italic;">resetCascadingly</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> object where one or more of the elements have been adjusted
+according to the <code class='syntax js'><span class="variable">options</span></code> parameter. The possible options that can be adjusted are <code class='syntax js'><span class="variable">timezone</span></code>,
+<code class='syntax js'><span class="variable">year</span></code>, <code class='syntax js'><span class="variable">month</span></code>, <code class='syntax js'><span class="variable">day</span></code>, <code class='syntax js'><span class="variable">hour</span></code>, <code class='syntax js'><span class="variable">minute</span></code>, <code class='syntax js'><span class="variable">second</span></code> and <code class='syntax js'><span class="variable">millisecond</span></code>.</p>
+
+<p>This is particularly useful when we want to get to a certain date or time based on an existing
+date or time without having to know all the elements of the existing date.</p>
+
+<p>For example, say we needed a datetime for midnight on whatever day we are given. The easiest
+way to do this is to take the datetime we are given and adjust it. For example,</p>
+
+<pre><code class='syntax js'><span class="keyword">var</span> <span class="variable">midnight</span> = <span class="variable">someDate</span>.<span class="variable">adjust</span>({ <span class="variable">hour</span>: <span class="number integer">24</span> }); <span class="comment">// Midnight on whatever day `someDate` is.</span>
+</code></pre>
+
+<h3 id="adjustingtime">Adjusting Time</h3>
+
+<p>The time options, <code class='syntax js'><span class="variable">hour</span></code>, <code class='syntax js'><span class="variable">minute</span></code>, <code class='syntax js'><span class="variable">second</span></code>, <code class='syntax js'><span class="variable">millisecond</span></code>, are reset cascadingly by default.
+So for example, if only the hour is passed, then the minute, second, and millisecond will be set
+to 0. Or for another example, if the hour and minute are passed, then second and millisecond
+would be set to 0. To disable this simply pass <code class='syntax js'><span class="variable">false</span></code> as the second argument to <code class='syntax js'><span class="variable">adjust</span></code>.</p>
+
+<h3 id="adjustingtimezone">Adjusting Timezone</h3>
+
+<p>If a time zone is passed in the options hash, all dates and times are assumed to be local to it,
+and the returned <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> instance has that time zone. If none is passed, it defaults to
+the value of <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span>.<span class="variable">timezone</span></code>.</p>
+
+<p>Note that passing only a time zone does not affect the actual milliseconds since Jan 1, 1970,
+only the time zone in which it is expressed when displayed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">options</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the amount of date/time to advance the receiver</dd>
+                  
+                    <dt>
+                      <span class="method-param">resetCascadingly</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>whether to reset the time elements cascadingly from hour down to millisecond. Default `true`.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> </dt>
+                    <dd>copy of receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="advance"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">advance(<span class="method-arguments">options</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a new <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> object where one or more of the elements have been advanced
+according to the <code class='syntax js'><span class="variable">options</span></code> parameter. The possible options that can be advanced are <code class='syntax js'><span class="variable">year</span></code>,
+<code class='syntax js'><span class="variable">month</span></code>, <code class='syntax js'><span class="variable">day</span></code>, <code class='syntax js'><span class="variable">hour</span></code>, <code class='syntax js'><span class="variable">minute</span></code>, <code class='syntax js'><span class="variable">second</span></code> and <code class='syntax js'><span class="variable">millisecond</span></code>.</p>
+
+<p>Note, you should not use floating point values as it might give unpredictable results.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">options</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the amount of date/time to advance the receiver</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">DateTime</span> </dt>
+                    <dd>copy of the receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="copy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">copy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a copy of the receiver. Because of the way <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> is designed,
+it just returns the receiver.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="dayOrdinal"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dayOrdinal(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the suffix of the date for use in english eg 21st 22nd 22rd
+speech.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="isEqual"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isEqual(<span class="method-arguments">aDateTime</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns <code class='syntax js'><span class="keyword">YES</span></code> if the passed <code class='syntax js'><span class="class">SC</span>.<span class="class">DateTime</span></code> is equal to the receiver, ie: if their
+number of milliseconds since January, 1st 1970 00:00:00.0 UTC are equal.
+This is the preferred method for testing equality.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">aDateTime</span> <span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> 
+                      
+                    </dt>
+                    <dd>the DateTime to compare to</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.DateTime#compare</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="toFormattedString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toFormattedString(<span class="method-arguments">format</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Formats the receiver according to the given format string. Should behave
+like the C strftime function.</p>
+
+<p>The format parameter can contain the following characters:</p>
+
+<ul>
+<li><code class='syntax js'>%<span class="variable">a</span></code> -- The abbreviated weekday name ("Sun")</li>
+<li><code class='syntax js'>%<span class="class">A</span></code> -- The full weekday name ("Sunday")</li>
+<li><code class='syntax js'>%<span class="variable">b</span></code> -- The abbreviated month name ("Jan")</li>
+<li><code class='syntax js'>%<span class="class">B</span></code> -- The full month name ("January")</li>
+<li><code class='syntax js'>%<span class="variable">c</span></code> -- The preferred local date and time representation</li>
+<li><code class='syntax js'>%<span class="variable">d</span></code> -- Day of the month (01..31)</li>
+<li><code class='syntax js'>%<span class="class">D</span></code> -- Day of the month (0..31)</li>
+<li><code class='syntax js'>%<span class="class">E</span></code> -- Elapsed time, according to localized text formatting strings. See below.</li>
+<li><code class='syntax js'>%<span class="variable">h</span></code> -- Hour of the day, 24-hour clock (0..23)</li>
+<li><code class='syntax js'>%<span class="class">H</span></code> -- Hour of the day, 24-hour clock (00..23)</li>
+<li><code class='syntax js'>%<span class="variable">i</span></code> -- Hour of the day, 12-hour clock (1..12)</li>
+<li><code class='syntax js'>%<span class="class">I</span></code> -- Hour of the day, 12-hour clock (01..12)</li>
+<li><code class='syntax js'>%<span class="variable">j</span></code> -- Day of the year (001..366)</li>
+<li><code class='syntax js'>%<span class="variable">m</span></code> -- Month of the year (01..12)</li>
+<li><code class='syntax js'>%<span class="class">M</span></code> -- Minute of the hour (00..59)</li>
+<li><code class='syntax js'>%<span class="variable">o</span></code> -- The day's ordinal abbreviation ('st', 'nd', 'rd', etc.)</li>
+<li><code class='syntax js'>%<span class="variable">p</span></code> -- Meridian indicator ("AM" or "PM")</li>
+<li><code class='syntax js'>%<span class="class">S</span></code> -- Second of the minute (00..60)</li>
+<li><code class='syntax js'>%<span class="variable">s</span></code> -- Milliseconds of the second (000..999)</li>
+<li><code class='syntax js'>%<span class="class">U</span></code> -- Week number of the current year,
+  starting with the first Sunday as the first
+  day of the first week (00..53)</li>
+<li><code class='syntax js'>%<span class="class">W</span></code> -- Week number of the current year,
+  starting with the first Monday as the first
+  day of the first week (00..53)</li>
+<li><code class='syntax js'>%<span class="variable">w</span></code> -- Day of the week (Sunday is 0, 0..6)</li>
+<li><code class='syntax js'>%<span class="variable">x</span></code> -- Preferred representation for the date alone, no time</li>
+<li><code class='syntax js'>%<span class="class">X</span></code> -- Preferred representation for the time alone, no date</li>
+<li><code class='syntax js'>%<span class="variable">y</span></code> -- Year without a century (00..99)</li>
+<li><code class='syntax js'>%<span class="class">Y</span></code> -- Year with century</li>
+<li><code class='syntax js'>%<span class="class">Z</span></code> -- Time zone (ISO 8601 formatted)</li>
+<li><code class='syntax js'>%%</code> -- Literal "%" character</li>
+</ul>
+
+<p>The Elapsed date format is a special, SproutCore specific formatting
+feature which will return an accurate-ish, human readable indication
+of elapsed time. For example, it might return "In 5 minutes", or "A year
+ago".</p>
+
+<p>For example,</p>
+
+<pre><code class='syntax js'><span class="keyword">var</span> <span class="variable">date</span> = <span class="class">SC</span>.<span class="class">DateTime</span>.<span class="variable">create</span>();
+
+<span class="variable">date</span>.<span class="variable">toFormattedString</span>(<span class="string">&quot;%E&quot;</span>); <span class="comment">// &quot;Right now&quot;</span>
+
+<span class="variable">date</span>.<span class="variable">advance</span>({ <span class="variable">minute</span>: <span class="number integer">4</span> });
+<span class="variable">date</span>.<span class="variable">toFormattedString</span>(<span class="string">&quot;%E&quot;</span>); <span class="comment">// &quot;In 4 minutes&quot;</span>
+
+<span class="variable">date</span>.<span class="variable">advance</span>({ <span class="variable">day</span>: -<span class="number integer">7</span> });
+<span class="variable">date</span>.<span class="variable">toFormattedString</span>(<span class="string">&quot;%E&quot;</span>); <span class="comment">// &quot;About a week ago&quot;</span>
+</code></pre>
+
+<p>To customize the output for the %E formatter, override the date
+localization strings inside of in your app.  The English localization
+strings used are:</p>
+
+<pre><code class='syntax js'><span class="string">'_SC.DateTime.now'</span> : <span class="string">'Right now'</span>,
+<span class="string">'_SC.DateTime.secondIn'</span> : <span class="string">'In a moment'</span>,
+<span class="string">'_SC.DateTime.secondsIn'</span> : <span class="string">'In %e seconds'</span>,
+<span class="string">'_SC.DateTime.minuteIn'</span> : <span class="string">'In a minute'</span>,
+<span class="string">'_SC.DateTime.minutesIn'</span> : <span class="string">'In %e minutes'</span>,
+<span class="string">'_SC.DateTime.hourIn'</span> : <span class="string">'An hour from now'</span>,
+<span class="string">'_SC.DateTime.hoursIn'</span> : <span class="string">'In about %e hours'</span>,
+<span class="string">'_SC.DateTime.dayIn'</span> : <span class="string">'Tomorrow at %i:%M %p'</span>,
+<span class="string">'_SC.DateTime.daysIn'</span> : <span class="string">'%A at %i:%M %p'</span>,
+<span class="string">'_SC.DateTime.weekIn'</span> : <span class="string">'Next week'</span>,
+<span class="string">'_SC.DateTime.weeksIn'</span> : <span class="string">'In %e weeks'</span>,
+<span class="string">'_SC.DateTime.monthIn'</span> : <span class="string">'Next month'</span>,
+<span class="string">'_SC.DateTime.monthsIn'</span> : <span class="string">'In %e months'</span>,
+<span class="string">'_SC.DateTime.yearIn'</span> : <span class="string">'Next year'</span>,
+<span class="string">'_SC.DateTime.yearsIn'</span> : <span class="string">'In %e years'</span>,
+
+<span class="string">'_SC.DateTime.secondAgo'</span> : <span class="string">'A moment ago'</span>,
+<span class="string">'_SC.DateTime.secondsAgo'</span> : <span class="string">'%e seconds ago'</span>,
+<span class="string">'_SC.DateTime.minuteAgo'</span> : <span class="string">'A minute ago'</span>,
+<span class="string">'_SC.DateTime.minutesAgo'</span> : <span class="string">'%e minutes ago'</span>,
+<span class="string">'_SC.DateTime.hourAgo'</span> : <span class="string">'An hour ago'</span>,
+<span class="string">'_SC.DateTime.hoursAgo'</span> : <span class="string">'About %e hours ago'</span>,
+<span class="string">'_SC.DateTime.dayAgo'</span> : <span class="string">'Yesterday at %i:%M %p'</span>,
+<span class="string">'_SC.DateTime.daysAgo'</span> : <span class="string">'%A at %i:%M %p'</span>,
+<span class="string">'_SC.DateTime.weekAgo'</span> : <span class="string">'About a week ago'</span>,
+<span class="string">'_SC.DateTime.weeksAgo'</span> : <span class="string">'%e weeks ago'</span>,
+<span class="string">'_SC.DateTime.monthAgo'</span> : <span class="string">'About a month ago'</span>,
+<span class="string">'_SC.DateTime.monthsAgo'</span> : <span class="string">'%e months ago'</span>,
+<span class="string">'_SC.DateTime.yearAgo'</span> : <span class="string">'Last year'</span>,
+<span class="string">'_SC.DateTime.yearsAgo'</span> : <span class="string">'%e years ago'</span>
+</code></pre>
+
+<p>Notice the special "%e" parameter in the localized strings.  This will be
+replaced with the number of intervals (seconds, minutes, weeks, etc) that
+are appropriate.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">format</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the format string</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd>the formatted string</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="toISO8601"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toISO8601(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Formats the receiver according ISO 8601 standard. It is equivalent to
+calling <code class='syntax js'><span class="variable">toFormattedString</span></code> with the <code class='syntax js'><span class="string">'%Y-%m-%dT%H:%M:%S%Z'</span></code> format string.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd>the formatted string</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="toTimezone"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toTimezone(<span class="method-arguments">timezone</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a copy of the receiver with the timezone set to the passed
+timezone. The returned value is equal to the receiver (ie <code class='syntax js'><span class="class">SC</span>.<span class="class">Compare</span></code>
+returns 0), it is just the timezone representation that changes.</p>
+
+<p>If you don't pass any argument, the target timezone is assumed to be 0,
+ie UTC.</p>
+
+<p>Note that this method does not change the underlying position in time,
+but only the time zone in which it is displayed. In other words, the underlying
+number of milliseconds since Jan 1, 1970 does not change.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">timezone</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="unknownProperty"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unknownProperty(<span class="method-arguments">key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generic getter.</p>
+
+<p>The properties you can get are:</p>
+
+<ul>
+<li><code class='syntax js'><span class="variable">year</span></code></li>
+<li><code class='syntax js'><span class="variable">month</span></code> (January is 1, contrary to JavaScript Dates for which January is 0)</li>
+<li><code class='syntax js'><span class="variable">day</span></code></li>
+<li><code class='syntax js'><span class="variable">dayOfWeek</span></code> (Sunday is 0)</li>
+<li><code class='syntax js'><span class="variable">hour</span></code></li>
+<li><code class='syntax js'><span class="variable">minute</span></code></li>
+<li><code class='syntax js'><span class="variable">second</span></code></li>
+<li><code class='syntax js'><span class="variable">millisecond</span></code></li>
+<li><code class='syntax js'><span class="variable">milliseconds</span></code>, the number of milliseconds since
+January, 1st 1970 00:00:00.0 UTC</li>
+<li><code class='syntax js'><span class="variable">elapsed</span></code>, the number of milliseconds until (-), or since (+), the date.</li>
+<li><code class='syntax js'><span class="variable">isLeapYear</span></code>, a boolean value indicating whether the receiver's year
+is a leap year</li>
+<li><code class='syntax js'><span class="variable">daysInMonth</span></code>, the number of days of the receiver's current month</li>
+<li><code class='syntax js'><span class="variable">dayOfYear</span></code>, January 1st is 1, December 31th is 365 for a common year</li>
+<li><code class='syntax js'><span class="variable">week</span></code> or <code class='syntax js'><span class="variable">week1</span></code>, the week number of the current year, starting with
+the first Sunday as the first day of the first week (00..53)</li>
+<li><code class='syntax js'><span class="variable">week0</span></code>, the week number of the current year, starting with
+the first Monday as the first day of the first week (00..53)</li>
+<li><code class='syntax js'><span class="variable">lastMonday</span></code>, <code class='syntax js'><span class="variable">lastTuesday</span></code>, etc., <code class='syntax js'><span class="variable">nextMonday</span></code>,
+<code class='syntax js'><span class="variable">nextTuesday</span></code>, etc., the date of the last or next weekday in
+comparison to the receiver.</li>
+</ul>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the property name to get</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>the value asked for</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

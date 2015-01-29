@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The root object for a responder chain.  A responder context can dispatch
@@ -663,3 +663,401 @@ Every <code class='syntax js'><span class="class">SC</span>.<span class="class">
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.makeFirstResponder">makeFirstResponder(<span class="method-arguments">responder, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.nextResponder">nextResponder(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.nextResponderFor">nextResponderFor(<span class="method-arguments">responder</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.resetFirstResponder">resetFirstResponder(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.responderNameFor">responderNameFor(<span class="method-arguments">responder</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ResponderContext.html#.sendAction">sendAction(<span class="method-arguments">action, sender, <span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".defaultResponder"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.ResponderContext.</span><b>defaultResponder</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Responder.html">SC.Responder</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".firstResponder"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.ResponderContext.</span><b>firstResponder</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".trace"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.ResponderContext.</span><b>trace</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".makeFirstResponder"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">makeFirstResponder(<span class="method-arguments">responder, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Makes the passed responder into the new <code class='syntax js'><span class="variable">firstResponder</span></code> for this
+responder context.  This will cause the current first responder to lose
+its responder status and possibly <code class='syntax js'><span class="variable">keyResponder</span></code> status as well.</p>
+
+<p>When you change the first responder, this will send callbacks to
+responders up the chain until you reach a shared responder, at which point
+it will stop notifying.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">responder</span> <span class="light fixedFont"><a href="../symbols/SC.Responder.html">SC.Responder</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont">Event</span> 
+                      
+                    </dt>
+                    <dd>that cause this to become first responder</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ResponderContext.html">SC.ResponderContext</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".nextResponder"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">nextResponder(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".nextResponderFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">nextResponderFor(<span class="method-arguments">responder</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Finds the next responder for the passed responder based on the responder's
+<code class='syntax js'><span class="variable">nextResponder</span></code> property.  If the property is a string, then lookup the path
+in the receiver.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">responder</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".resetFirstResponder"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">resetFirstResponder(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Re-enters the current responder (calling willLoseFirstResponder and didBecomeFirstResponder).
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".responderNameFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">responderNameFor(<span class="method-arguments">responder</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Finds the responder name by searching the responders one time.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">responder</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".sendAction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">sendAction(<span class="method-arguments">action, sender, <span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Send the passed action down the responder chain, starting with the
+current first responder.  This will look for the first responder that
+actually implements the action method and returns <code class='syntax js'><span class="keyword">YES</span></code> or no value when
+called.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">action</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>name of action</dd>
+                  
+                    <dt>
+                      <span class="method-param">sender</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object sending the action</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>additional context info</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Responder.html">SC.Responder</a></span> </dt>
+                    <dd>the responder that handled it or null</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

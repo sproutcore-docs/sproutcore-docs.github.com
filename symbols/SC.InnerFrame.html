@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>InnerFrame provides the <code class='syntax js'><span class="variable">innerFrameForSize</span></code> function, which will return a frame for the given size adjusted
@@ -642,3 +642,227 @@ to fit within the given outer size, according to the align and scale properties.
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InnerFrame.html#.innerFrameForSize">innerFrameForSize(<span class="method-arguments">sourceWidth, sourceHeight, destWidth, destHeight</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".align"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InnerFrame.</span><b>align</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Align the shape within its frame. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_TOP_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_TOP</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_TOP_RIGHT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_CENTER</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_RIGHT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_BOTTOM_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_BOTTOM</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_BOTTOM_RIGHT</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_CENTER</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".scale"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InnerFrame.</span><b>scale</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines how the shape will scale to fit within its containing space. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">SCALE_NONE</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">FILL</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">BEST_FILL</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">BEST_FIT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">BEST_FIT_DOWN_ONLY</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.FILL</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".innerFrameForSize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">innerFrameForSize(<span class="method-arguments">sourceWidth, sourceHeight, destWidth, destHeight</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a frame (x, y, width, height) fitting the source size (sourceWidth &amp; <code class='syntax js'><span class="variable">sourceHeight</span></code>) within the
+destination size (destWidth &amp; <code class='syntax js'><span class="variable">destHeight</span></code>) according to the align and scale properties.  This is essential to
+positioning child views or elements within parent views or elements in elegant ways.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">sourceWidth</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">sourceHeight</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">destWidth</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">destHeight</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>the inner frame with properties: {x: value, y: value, width: value, height: value }</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

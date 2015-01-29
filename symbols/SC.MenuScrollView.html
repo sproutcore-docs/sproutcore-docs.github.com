@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Implements a scroll view for menus.  This class extends <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollView</span></code> for
@@ -674,3 +674,321 @@ is done using <code class='syntax js'><span class="variable">valueBinding</span>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.ScrollView.html">SC.ScrollView</a>: </dt>
+              <dd><a href="../symbols/SC.ScrollView.html#acceptsMultitouch">acceptsMultitouch</a>, <a href="../symbols/SC.ScrollView.html#autohidesHorizontalScroller">autohidesHorizontalScroller</a>, <a href="../symbols/SC.ScrollView.html#autohidesVerticalScroller">autohidesVerticalScroller</a>, <a href="../symbols/SC.ScrollView.html#canScale">canScale</a>, <a href="../symbols/SC.ScrollView.html#canScrollHorizontal">canScrollHorizontal</a>, <a href="../symbols/SC.ScrollView.html#containerView">containerView</a>, <a href="../symbols/SC.ScrollView.html#contentView">contentView</a>, <a href="../symbols/SC.ScrollView.html#decelerationRate">decelerationRate</a>, <a href="../symbols/SC.ScrollView.html#fadeOutDelay">fadeOutDelay</a>, <a href="../symbols/SC.ScrollView.html#hasVerticalScroller">hasVerticalScroller</a>, <a href="../symbols/SC.ScrollView.html#horizontalAlign">horizontalAlign</a>, <a href="../symbols/SC.ScrollView.html#horizontalFade">horizontalFade</a>, <a href="../symbols/SC.ScrollView.html#horizontalLineScroll">horizontalLineScroll</a>, <a href="../symbols/SC.ScrollView.html#horizontalOverlay">horizontalOverlay</a>, <a href="../symbols/SC.ScrollView.html#horizontalPageScroll">horizontalPageScroll</a>, <a href="../symbols/SC.ScrollView.html#horizontalScrollerLayout">horizontalScrollerLayout</a>, <a href="../symbols/SC.ScrollView.html#horizontalScrollerView">horizontalScrollerView</a>, <a href="../symbols/SC.ScrollView.html#horizontalScrollOffset">horizontalScrollOffset</a>, <a href="../symbols/SC.ScrollView.html#initialHorizontalAlign">initialHorizontalAlign</a>, <a href="../symbols/SC.ScrollView.html#initialVerticalAlign">initialVerticalAlign</a>, <a href="../symbols/SC.ScrollView.html#isHorizontalScrollerVisible">isHorizontalScrollerVisible</a>, <a href="../symbols/SC.ScrollView.html#isScrollable">isScrollable</a>, <a href="../symbols/SC.ScrollView.html#isVerticalScrollerVisible">isVerticalScrollerVisible</a>, <a href="../symbols/SC.ScrollView.html#maximumHorizontalScrollOffset">maximumHorizontalScrollOffset</a>, <a href="../symbols/SC.ScrollView.html#maximumScale">maximumScale</a>, <a href="../symbols/SC.ScrollView.html#maximumVerticalScrollOffset">maximumVerticalScrollOffset</a>, <a href="../symbols/SC.ScrollView.html#minimumHorizontalScrollOffset">minimumHorizontalScrollOffset</a>, <a href="../symbols/SC.ScrollView.html#minimumScale">minimumScale</a>, <a href="../symbols/SC.ScrollView.html#minimumVerticalScrollOffset">minimumVerticalScrollOffset</a>, <a href="../symbols/SC.ScrollView.html#scale">scale</a>, <a href="../symbols/SC.ScrollView.html#scaleGestureThreshold">scaleGestureThreshold</a>, <a href="../symbols/SC.ScrollView.html#scrollGestureThreshold">scrollGestureThreshold</a>, <a href="../symbols/SC.ScrollView.html#scrollLockGestureThreshold">scrollLockGestureThreshold</a>, <a href="../symbols/SC.ScrollView.html#verticalAlign">verticalAlign</a>, <a href="../symbols/SC.ScrollView.html#verticalFade">verticalFade</a>, <a href="../symbols/SC.ScrollView.html#verticalLineScroll">verticalLineScroll</a>, <a href="../symbols/SC.ScrollView.html#verticalOverlay">verticalOverlay</a>, <a href="../symbols/SC.ScrollView.html#verticalPageScroll">verticalPageScroll</a>, <a href="../symbols/SC.ScrollView.html#verticalScrollerLayout">verticalScrollerLayout</a>, <a href="../symbols/SC.ScrollView.html#verticalScrollerView">verticalScrollerView</a>, <a href="../symbols/SC.ScrollView.html#verticalScrollOffset">verticalScrollOffset</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.View.html">SC.View</a>: </dt>
+              <dd><a href="../symbols/SC.View.html#acceptsFirstResponder">acceptsFirstResponder</a>, <a href="../symbols/SC.View.html#ariaHidden">ariaHidden</a>, <a href="../symbols/SC.View.html#ariaRole">ariaRole</a>, <a href="../symbols/SC.View.html#attributeBindings">attributeBindings</a>, <a href="../symbols/SC.View.html#autoMixins">autoMixins</a>, <a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViewLayout">childViewLayout</a>, <a href="../symbols/SC.View.html#childViewLayoutOptions">childViewLayoutOptions</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNameBindings">classNameBindings</a>, <a href="../symbols/SC.View.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.View.html#createdByParent">createdByParent</a>, <a href="../symbols/SC.View.html#designMode">designMode</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#enabledState">enabledState</a>, <a href="../symbols/SC.View.html#firstKeyView">firstKeyView</a>, <a href="../symbols/SC.View.html#hasLayout">hasLayout</a>, <a href="../symbols/SC.View.html#hasTouch">hasTouch</a>, <a href="../symbols/SC.View.html#hasVisibility">hasVisibility</a>, <a href="../symbols/SC.View.html#isBuildingIn">isBuildingIn</a>, <a href="../symbols/SC.View.html#isBuildingOut">isBuildingOut</a>, <a href="../symbols/SC.View.html#isChildViewLayoutLive">isChildViewLayoutLive</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isFixedHeight">isFixedHeight</a>, <a href="../symbols/SC.View.html#isFixedPosition">isFixedPosition</a>, <a href="../symbols/SC.View.html#isFixedSize">isFixedSize</a>, <a href="../symbols/SC.View.html#isFixedWidth">isFixedWidth</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#lastKeyView">lastKeyView</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#modeAdjust">modeAdjust</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#renderDelegateName">renderDelegateName</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#shouldInheritEnabled">shouldInheritEnabled</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#themeName">themeName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#transitionAdjust">transitionAdjust</a>, <a href="../symbols/SC.View.html#transitionAdjustOptions">transitionAdjustOptions</a>, <a href="../symbols/SC.View.html#transitionHide">transitionHide</a>, <a href="../symbols/SC.View.html#transitionHideOptions">transitionHideOptions</a>, <a href="../symbols/SC.View.html#transitionIn">transitionIn</a>, <a href="../symbols/SC.View.html#transitionInOptions">transitionInOptions</a>, <a href="../symbols/SC.View.html#transitionOut">transitionOut</a>, <a href="../symbols/SC.View.html#transitionOutOptions">transitionOutOptions</a>, <a href="../symbols/SC.View.html#transitionShow">transitionShow</a>, <a href="../symbols/SC.View.html#transitionShowOptions">transitionShowOptions</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Responder.html">SC.Responder</a>: </dt>
+              <dd><a href="../symbols/SC.Responder.html#hasFirstResponder">hasFirstResponder</a>, <a href="../symbols/SC.Responder.html#isFirstResponder">isFirstResponder</a>, <a href="../symbols/SC.Responder.html#responderContext">responderContext</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="bottomScrollerView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>bottomScrollerView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The bottom scroller view class. This will be replaced with a view instance when the
+MenuScrollView is created unless <code class='syntax js'><span class="variable">hasVerticalScroller</span></code> is false.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.MenuScrollerView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="canScrollVertical"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>canScrollVertical</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Returns true if the view has both a vertical scroller and the scroller is visible.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="classNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>classNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              SC.View.prototype
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['sc-menu-scroll-view']</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.View.html#classNames">SC.View#classNames</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="controlSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>controlSize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Control Size for Menu content: change verticalLineScroll
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.REGULAR_CONTROL_SIZE</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.Control.html">SC.Control</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="hasHorizontalScroller"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasHorizontalScroller</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>YES if the view should maintain a horizontal scroller. This property must be set when the view
+is created.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>false</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="topScrollerView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>topScrollerView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The top scroller view class. This will be replaced with a view instance when the MenuScrollView
+is created unless <code class='syntax js'><span class="variable">hasVerticalScroller</span></code> is false.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.MenuScrollerView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

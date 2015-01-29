@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A RangeObserver is used by Arrays to automatically observe all of the
@@ -650,3 +650,515 @@ this object in a way that is more optimized for your particular design.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#beginObserving">beginObserving(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#create">create(<span class="method-arguments">source, indexSet, target, method, context, isDeep</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#destroy">destroy(<span class="method-arguments">source</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#endObserving">endObserving(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#extend">extend(<span class="method-arguments">attrs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#objectPropertyDidChange">objectPropertyDidChange(<span class="method-arguments">the, key, value, rev</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#rangeDidChange">rangeDidChange(<span class="method-arguments">changes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RangeObserver.html#update">update(<span class="method-arguments">source, indexSet</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="isRangeObserver"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isRangeObserver</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="beginObserving"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">beginObserving(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Configures observing for each item in the current range.  Should update
+the observing array with the list of observed objects so they can be
+torn down later</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments">source, indexSet, target, method, context, isDeep</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates a new range observer owned by the source.  The <code class='syntax js'><span class="variable">indexSet</span></code> you pass
+must identify the indexes you are interested in observing.  The passed
+target/method will be invoked whenever the observed range changes.</p>
+
+<p>Note that changes to a range are buffered until the end of a run loop
+unless a property on the record itself changes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">source</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the source array</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexSet</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>set of indexes to observer</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the target</dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a>|<a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the method to invoke</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>optional context to include in callback</dd>
+                  
+                    <dt>
+                      <span class="method-param">isDeep</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>if YES, observe property changes as well</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>instance</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="destroy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">destroy(<span class="method-arguments">source</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Destroys an active ranger observer, cleaning up first.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">source</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the source array</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="endObserving"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">endObserving(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Remove observers for any objects currently begin observed.  This is
+called whenever the observed range changes due to an array change or
+due to destroying the observer.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="extend"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">extend(<span class="method-arguments">attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Create subclasses for the RangeObserver.  Pass one or more attribute
+hashes.  Use this to create customized RangeObservers if needed for your
+classes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> <span class="light fixedFont">Hash</span> 
+                      
+                    </dt>
+                    <dd>one or more attribute hashes</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>extended range observer class</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="objectPropertyDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectPropertyDidChange(<span class="method-arguments">the, key, value, rev</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Whenever an object changes, notify the delegate
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">the</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object that changed</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the property that changed</dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont">Null</span> 
+                      
+                    </dt>
+                    <dd>No longer used</dd>
+                  
+                    <dt>
+                      <span class="method-param">rev</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>The revision of the change</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="rangeDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">rangeDidChange(<span class="method-arguments">changes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Whenever the actual objects in the range changes, notify the delegate
+then begin observing again.  Usually this method will be passed an
+IndexSet with the changed indexes.  The range observer will only notify
+its delegate if the changed indexes include some of all of the indexes
+this range observer is monitoring.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">changes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>optional set of changed indexes</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="update"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">update(<span class="method-arguments">source, indexSet</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Updates the set of indexes the range observer applies to.  This will
+stop observing the old objects for changes and start observing the
+new objects instead.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">source</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the source array</dd>
+                  
+                    <dt>
+                      <span class="method-param">indexSet</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>The index set representing the change</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.RangeObserver.html">SC.RangeObserver</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

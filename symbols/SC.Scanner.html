@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A Scanner reads a string and interprets the characters into numbers. You
@@ -654,3 +654,389 @@ items.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Scanner.html#scan">scan(<span class="method-arguments">len</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Scanner.html#scanArray">scanArray(<span class="method-arguments">ary</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Scanner.html#scanInt">scanInt(<span class="method-arguments">min_len, <span style="font-style: italic;">max_len</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Scanner.html#skipString">skipString(<span class="method-arguments">str</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="scanLocation"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>scanLocation</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Integer</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current scan location. It is incremented by the scanner as the
+characters are processed.
+The default is 0: the beginning of the string.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="string"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>string</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The string to scan. You usually pass it to the create method:</p>
+
+<p><code class='syntax js'><span class="class">SC</span>.<span class="class">Scanner</span>.<span class="variable">create</span>(</code>{string: 'May, 8th'});</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="scan"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scan(<span class="method-arguments">len</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Reads some characters from the string, and increments the scan location
+accordingly.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">len</span> <span class="light fixedFont">Integer</span> 
+                      
+                    </dt>
+                    <dd>The amount of characters to read</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd>The characters</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                  <dt class="heading">Throws:</dt>
+                  
+                    <dt>
+                      <span class="light fixedFont"><a href="../symbols/SC.html#.SCANNER_OUT_OF_BOUNDS_ERROR">SC.SCANNER_OUT_OF_BOUNDS_ERROR</a></span>  <b></b>
+                    </dt>
+                    <dd>If asked to read too many characters</dd>
+                  
+                
+                
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="scanArray"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scanArray(<span class="method-arguments">ary</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Attempts to scan any string in a given array.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">ary</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>the array of strings to scan</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Integer</span> </dt>
+                    <dd>The index of the scanned string of the given array</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                  <dt class="heading">Throws:</dt>
+                  
+                    <dt>
+                      <span class="light fixedFont"><a href="../symbols/SC.html#.SCANNER_SCAN_ARRAY_ERROR">SC.SCANNER_SCAN_ARRAY_ERROR</a></span>  <b></b>
+                    </dt>
+                    <dd>If no string of the given array is found</dd>
+                  
+                
+                
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="scanInt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scanInt(<span class="method-arguments">min_len, <span style="font-style: italic;">max_len</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Reads some characters from the string and interprets it as an integer.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">min_len</span> <span class="light fixedFont">Integer</span> 
+                      
+                    </dt>
+                    <dd>The minimum amount of characters to read</dd>
+                  
+                    <dt>
+                      <span class="method-param">max_len</span> <span class="light fixedFont">Integer</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>The maximum amount of characters to read (defaults to the minimum)</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Integer</span> </dt>
+                    <dd>The scanned integer</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                  <dt class="heading">Throws:</dt>
+                  
+                    <dt>
+                      <span class="light fixedFont"><a href="../symbols/SC.html#.SCANNER_INT_ERROR">SC.SCANNER_INT_ERROR</a></span>  <b></b>
+                    </dt>
+                    <dd>If asked to read non numeric characters</dd>
+                  
+                
+                
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="skipString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">skipString(<span class="method-arguments">str</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Attempts to skip a given string.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">str</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>The string to skip</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if the given string was successfully scanned, NO otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                  <dt class="heading">Throws:</dt>
+                  
+                    <dt>
+                      <span class="light fixedFont"><a href="../symbols/SC.html#.SCANNER_SKIP_ERROR">SC.SCANNER_SKIP_ERROR</a></span>  <b></b>
+                    </dt>
+                    <dd>If the given string could not be scanned</dd>
+                  
+                
+                
+                
+                
+                </dl>
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

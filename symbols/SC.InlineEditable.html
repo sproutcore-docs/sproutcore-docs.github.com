@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This mixin is used for views that show a seperate editor view to edit.
@@ -696,3 +696,670 @@ is editing, and their delegates.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.beginEditing">beginEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.commitEditing">commitEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.discardEditing">discardEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorDidBeginEditing">inlineEditorDidBeginEditing(<span class="method-arguments">editor, value, editable</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorDidCommitEditing">inlineEditorDidCommitEditing(<span class="method-arguments">editor, value, editable</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorDidDiscardEditing">inlineEditorDidDiscardEditing(<span class="method-arguments">editor, editable</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorShouldBeginEditing">inlineEditorShouldBeginEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorWillBeginEditing">inlineEditorWillBeginEditing(<span class="method-arguments">editor, value, editable</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.InlineEditable.html#.inlineEditorWillDiscardEditing">inlineEditorWillDiscardEditing(<span class="method-arguments">editor, editable</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".exampleEditor"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineEditable.</span><b>exampleEditor</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.InlineEditor.html">SC.InlineEditor</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The view that will be used to edit this view. Defaults to
+<code class='syntax js'><span class="class">SC</span>.<span class="class">InlineTextFieldView</span></code>, which is simply a text field that positions itself
+over the view being edited.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.InlineTextFieldView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".inlineEditorDelegate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineEditable.</span><b>inlineEditorDelegate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.InlineEditorDelegate.html">SC.InlineEditorDelegate</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Delegate that will be notified of events related to the editing
+process. Also responsible for managing the lifecycle of the editor.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.InlineTextFieldDelegate</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".isEditable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineEditable.</span><b>isEditable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Flag to enable or disable editing.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".isEditing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineEditable.</span><b>isEditing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Indicates whether the view is currently editing. Attempting to
+<code class='syntax js'><span class="variable">beginEditing</span></code> a view that is already editing will fail.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".isInlineEditable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.InlineEditable.</span><b>isInlineEditable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".beginEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">beginEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Tells the view to start editing. This will create an editor for it
+and transfer control to the editor.</p>
+
+<p>Will fail if the delegate returns <code class='syntax js'><span class="keyword">NO</span></code> to <code class='syntax js'><span class="variable">inlineEditorShouldBeginEditing</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>whether the view successfully entered edit mode</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".commitEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">commitEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Tells the view to save the value currently in the editor and finish
+editing. The delegate will be consulted first by calling
+<code class='syntax js'><span class="variable">inlineEditorShouldCommitEditing</span></code>, and the operation will not be
+allowed if the delegate returns <code class='syntax js'><span class="keyword">NO</span></code>.</p>
+
+<p>Will fail if the delegate returns <code class='syntax js'><span class="keyword">NO</span></code> to <code class='syntax js'><span class="variable">inlineEditorShouldCommitEditing</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>whether the delegate allowed the value to be committed</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".discardEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">discardEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Tells the view to leave edit mode and revert to the value it had
+before editing. May fail if the delegate returns <code class='syntax js'><span class="keyword">NO</span></code> to
+<code class='syntax js'><span class="variable">inlineEditorShouldDiscardEditing</span></code>. It is possible for the delegate to
+return false to <code class='syntax js'><span class="variable">inlineEditorShouldDiscardEditing</span></code> but true to
+<code class='syntax js'><span class="variable">inlineEditorShouldCommitEditing</span></code>, so a client view may attempt to
+call <code class='syntax js'><span class="variable">commitEditing</span></code> in case <code class='syntax js'><span class="variable">discardEditing</span></code> fails.</p>
+
+<p>Will fail if the delegate returns <code class='syntax js'><span class="keyword">NO</span></code> to <code class='syntax js'><span class="variable">inlineEditorShouldDiscardEditing</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>whether the delegate allowed the view to discard its value</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorDidBeginEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorDidBeginEditing(<span class="method-arguments">editor, value, editable</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Sets isEditing to YES once editing has begun.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">editable</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorDidCommitEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorDidCommitEditing(<span class="method-arguments">editor, value, editable</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>By default, commiting editing simply sets the value that the editor
+returned and cleans up.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">editable</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorDidDiscardEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorDidDiscardEditing(<span class="method-arguments">editor, editable</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Calls <code class='syntax js'><span class="variable">inlineEditorDidEndEditing</span></code> for backwards compatibility and then
+cleans up.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">editable</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorShouldBeginEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorShouldBeginEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Allows the view to begin editing if it is editable and it is not
+already editing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>if the view is allowed to begin editing</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorWillBeginEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorWillBeginEditing(<span class="method-arguments">editor, value, editable</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                By default, the editor starts with the value of the view being edited.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">editable</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inlineEditorWillDiscardEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inlineEditorWillDiscardEditing(<span class="method-arguments">editor, editable</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Calls inlineEditorWillEndEditing for backwards compatibility.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">editor</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">editable</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

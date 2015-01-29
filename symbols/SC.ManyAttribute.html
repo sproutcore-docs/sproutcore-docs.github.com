@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>ManyAttribute is a subclass of <code class='syntax js'><span class="class">RecordAttribute</span></code> and handles to-many
@@ -697,3 +697,364 @@ on the many array. In the future this should be automatic.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.RecordAttribute.html">SC.RecordAttribute</a>: </dt>
+              <dd><a href="../symbols/SC.RecordAttribute.html#aggregate">aggregate</a>, <a href="../symbols/SC.RecordAttribute.html#defaultValue">defaultValue</a>, <a href="../symbols/SC.RecordAttribute.html#isEditable">isEditable</a>, <a href="../symbols/SC.RecordAttribute.html#isRecordAttribute">isRecordAttribute</a>, <a href="../symbols/SC.RecordAttribute.html#isRequired">isRequired</a>, <a href="../symbols/SC.RecordAttribute.html#key">key</a>, <a href="../symbols/SC.RecordAttribute.html#lazilyInstantiate">lazilyInstantiate</a>, <a href="../symbols/SC.RecordAttribute.html#type">type</a>, <a href="../symbols/SC.RecordAttribute.html#useIsoDate">useIsoDate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyAttribute.html#inverseDidAddRecord">inverseDidAddRecord(<span class="method-arguments">the, key, inverseRecord, key</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyAttribute.html#inverseDidRemoveRecord">inverseDidRemoveRecord(<span class="method-arguments">the, key, inverseRecord, key</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="inverse"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>inverse</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set the foreign key on content objects that represent the inversion of
+this relationship. The inverse property should be a <code class='syntax js'><span class="variable">toOne</span>()</code> or
+<code class='syntax js'><span class="variable">toMany</span>()</code> relationship as well. Modifying this many array will modify
+the <code class='syntax js'><span class="variable">inverse</span></code> property as well.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isMaster"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isMaster</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code> then modifying this relationships will mark the owner record
+dirty. If set to <code class='syntax js'><span class="keyword">NO</span></code>, then modifying this relationship will not alter
+this record.  You should use this property only if you have an inverse
+property also set. Only one of the inverse relationships should be marked
+as master so you can control which record should be committed.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="orderBy"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>orderBy</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If set and you have an inverse relationship, will be used to determine the
+order of an object when it is added to an array. You can pass a function
+or an array of property keys.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="supportNewRecords"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>supportNewRecords</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines whether the new record support of <code class='syntax js'><span class="class">SC</span>.<span class="class">ManyArray</span></code> should be
+enabled or not.</p>
+
+<p>Normally, all records in the relationship should already have been previously
+committed to a remote data store and have an actual <code class='syntax js'><span class="variable">id</span></code>. However, with
+<code class='syntax js'><span class="variable">supportNewRecords</span></code> set to true, adding records without an <code class='syntax js'><span class="variable">id</span></code>to the
+relationship will assign unique temporary ids to the new records.
+Note:* You must update the relationship after the new records are successfully
+committed and have real ids. This is done by calling <code class='syntax js'><span class="variable">updateNewRecordId</span>()</code>
+on the many array. In the future this should be automatic.</p>
+
+<p>If you wish to turn this off, <code class='syntax js'><span class="class">SC</span>.<span class="class">ManyArray</span></code> will throw an exception if you
+add a record without an id to the relationship. If you use temporary <code class='syntax js'><span class="variable">id</span></code>s
+for new record, you will need to manually update the relationship, but
+run the risk of committing inverse records with temporary <code class='syntax js'><span class="variable">id</span></code>s in their
+datahashes.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+                <dt class="heading">Since:</dt>
+                <dd>SproutCore 1.11.0</dd>
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="inverseDidAddRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverseDidAddRecord(<span class="method-arguments">the, key, inverseRecord, key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by an inverse relationship whenever the receiver is added to the
+inverse relationship.  This will set the value of this inverse record to
+the new record.</p>
+
+<p>You should never call this directly.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">the</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record owning this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the key for this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record that was added to inverse</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>key on inverse that was modified</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="inverseDidRemoveRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverseDidRemoveRecord(<span class="method-arguments">the, key, inverseRecord, key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by an inverse relationship whenever the receiver is no longer part
+of the relationship.  If this matches the inverse setting of the attribute
+then it will update itself accordingly.</p>
+
+<p>You should never call this directly.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">the</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record owning this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the key for this attribute</dd>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>record that was removed from inverse</dd>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>key on inverse that was modified</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

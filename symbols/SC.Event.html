@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           
@@ -677,3 +677,1192 @@
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.add">add(<span class="method-arguments">elem, eventType, target, method, context, useCapture</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.create">create(<span class="method-arguments">e</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.handle">handle(<span class="method-arguments">event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.remove">remove(<span class="method-arguments">elem, eventType, target, method</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.simulateEvent">simulateEvent(<span class="method-arguments">elem, eventType, attrs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.trigger">trigger(<span class="method-arguments">elem, eventType, event, donative</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#.unload">unload(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#allowDefault">allowDefault(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#averagedTouchesForView">averagedTouchesForView(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#commandCodes">commandCodes(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#getCharString">getCharString(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#preventDefault">preventDefault(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#stop">stop(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#stopPropagation">stopPropagation(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#touchesForResponder">touchesForResponder(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Event.html#touchesForView">touchesForView(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".fire"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>fire</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Alias for trigger() method.  This provides a Prototype-like API
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="hasCustomEventHandling"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasCustomEventHandling</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to <code class='syntax js'><span class="keyword">YES</span></code> if you have called either <code class='syntax js'><span class="variable">preventDefault</span></code>() or <code class='syntax js'><span class="variable">stopPropagation</span></code>().
+This allows a generic event handler to notice if you want to provide
+detailed control over how the browser handles the real event.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".MOUSE_WHEEL_DELTA_LIMIT"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>MOUSE_WHEEL_DELTA_LIMIT</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This represents the limit in the delta before a different multiplier
+will be applied. Because we can't generated an accurate mouse
+wheel event ahead of time, and browsers deliver differing values
+for mouse wheel deltas, this is necessary to ensure that
+browsers that scale their values largely are dealt with correctly
+in the future.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>1000</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".MOUSE_WHEEL_MULTIPLIER"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>MOUSE_WHEEL_MULTIPLIER</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>We need this because some browsers deliver different values
+for mouse wheel deltas. Once the first mouse wheel event has
+been run, this value will get set.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>1</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="normalized"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>normalized</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Always YES to indicate the event was normalized.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".observe"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>observe</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Alias for add() method.  This provides a Prototype-like API.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".special"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>special</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This hash contains handlers for special or custom events.  You can add
+your own handlers for custom events here by simply naming the event and
+including a hash with the following properties:</p>
+
+<ul>
+<li>setup: this function should setup the handler or return <code class='syntax js'><span class="keyword">NO</span></code></li>
+<li>teardown: this function should remove the event listener</li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".stopObserving"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Event.</span><b>stopObserving</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Alias for remove() method.  This provides a Prototype-like API
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".add"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">add(<span class="method-arguments">elem, eventType, target, method, context, useCapture</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Bind an event to an element.</p>
+
+<p>This method will cause the passed handler to be executed whenever a
+relevant event occurs on the named element.  This method supports a
+variety of handler types, depending on the kind of support you need.</p>
+
+<h2 id="simplefunctionhandlers">Simple Function Handlers</h2>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">Event</span>.<span class="variable">add</span>(<span class="variable">anElement</span>, <span class="string">&quot;click&quot;</span>, <span class="variable">myClickHandler</span>) ;
+</code></pre>
+
+<p>The most basic type of handler you can pass is a function.  This function
+will be executed every time an event of the type you specify occurs on the
+named element.  You can optionally pass an additional context object which
+will be included on the event in the event.data property.</p>
+
+<p>When your handler function is called, the function's "this" property
+will point to the element the event occurred on.</p>
+
+<p>The click handler for this method must have a method signature like:</p>
+
+<pre><code class='syntax js'><span class="keyword">function</span>(<span class="variable">event</span>) { <span class="keyword">return</span> <span class="keyword">YES</span>|<span class="keyword">NO</span>; }
+</code></pre>
+
+<h2 id="methodinvocations">Method Invocations</h2>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">Event</span>.<span class="variable">add</span>(<span class="variable">anElement</span>, <span class="string">&quot;click&quot;</span>, <span class="variable">myObject</span>, <span class="variable">myObject</span>.<span class="variable">aMethod</span>) ;
+</code></pre>
+
+<p>Optionally you can specify a target object and a method on the object to
+be invoked when the event occurs.  This will invoke the method function
+with the target object you pass as "this".  The method should have a
+signature like:</p>
+
+<pre><code class='syntax js'><span class="keyword">function</span>(<span class="variable">event</span>, <span class="variable">targetElement</span>) { <span class="keyword">return</span> <span class="keyword">YES</span>|<span class="keyword">NO</span>; }
+</code></pre>
+
+<p>Like function handlers, you can pass an additional context data paramater
+that will be included on the event in the event.data property.</p>
+
+<h2 id="handlerreturnvalues">Handler Return Values</h2>
+
+<p>Both handler functions should return <code class='syntax js'><span class="keyword">YES</span></code> if you want the event to
+continue to propagate and NO if you want it to stop.  Returning NO will
+both stop bubbling of the event and will prevent any default action
+taken by the browser.  You can also control these two behaviors separately
+by calling the <code class='syntax js'><span class="variable">stopPropagation</span></code>() or <code class='syntax js'><span class="variable">preventDefault</span></code>() methods on the event
+itself, returning YES from your method.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>Although SproutCore's event implementation is based on <code class='syntax js'><span class="variable">jQuery</span></code>, it is
+much simpler in design.  Notably, it does not support namespaced events
+and you can only pass a single type at a time.</p>
+
+<p>If you need more advanced event handling, consider the <code class='syntax js'><span class="class">SC</span>.<span class="class">ClassicResponder</span></code>
+functionality provided by SproutCore or use your favorite DOM library.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">elem</span> <span class="light fixedFont">Element</span> 
+                      
+                    </dt>
+                    <dd>a DOM element, window, or document object</dd>
+                  
+                    <dt>
+                      <span class="method-param">eventType</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the event type you want to respond to</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The target object for a method call or a function.</dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>optional method or method name if target passed</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>optional context to pass to the handler as event.data</dd>
+                  
+                    <dt>
+                      <span class="method-param">useCapture</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments">e</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Standard method to create a new event.  Pass the native browser event you
+wish to wrap if needed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">e</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".handle"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">handle(<span class="method-arguments">event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method will handle the passed event, finding any registered listeners
+and executing them.  If you have an event you want handled, you can
+manually invoke this method.  This function expects it's "this" value to
+be the element the event occurred on, so you should always call this
+method like:</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">Event</span>.<span class="variable">handle</span>.<span class="variable">call</span>(<span class="variable">element</span>, <span class="variable">event</span>) ;
+</code></pre>
+
+<p>Note that like other parts of this library, the handle function does not
+support namespaces.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd>{DOMEvent} the event to handle</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".remove"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">remove(<span class="method-arguments">elem, eventType, target, method</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Removes a specific handler or all handlers for an event or event+type.</p>
+
+<p>To remove a specific handler, you must pass in the same function or the
+same target and method as you passed into <code class='syntax js'><span class="class">SC</span>.<span class="class">Event</span>.<span class="variable">add</span>().</code>  See that method
+for full documentation on the parameters you can pass in.</p>
+
+<p>If you omit a specific handler but provide both an element and <code class='syntax js'><span class="variable">eventType</span></code>,
+then all handlers for that element will be removed.  If you provide only
+and element, then all handlers for all events on that element will be
+removed.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>Although SproutCore's event implementation is based on <code class='syntax js'><span class="variable">jQuery</span></code>, it is
+much simpler in design.  Notably, it does not support namespaced events
+and you can only pass a single type at a time.</p>
+
+<p>If you need more advanced event handling, consider the <code class='syntax js'><span class="class">SC</span>.<span class="class">ClassicResponder</span></code>
+functionality provided by SproutCore or use your favorite DOM library.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">elem</span> <span class="light fixedFont">Element</span> 
+                      
+                    </dt>
+                    <dd>a DOM element, window, or document object</dd>
+                  
+                    <dt>
+                      <span class="method-param">eventType</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the event type to remove</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The target object for a method call.  Or a function.</dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>optional name of method</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".simulateEvent"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">simulateEvent(<span class="method-arguments">elem, eventType, attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a simulated event object.  This is mostly useful for unit
+testing.  You can pass the return value of this property into the
+trigger() method to actually send the event.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">elem</span> <span class="light fixedFont">Element</span> 
+                      
+                    </dt>
+                    <dd>the element the event targets</dd>
+                  
+                    <dt>
+                      <span class="method-param">eventType</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>event type.  mousedown, mouseup, etc</dd>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> <span class="light fixedFont">Hash</span> 
+                      
+                    </dt>
+                    <dd>optional additional attributes to apply to event.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Hash</span> </dt>
+                    <dd>simulated event object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".trigger"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">trigger(<span class="method-arguments">elem, eventType, event, donative</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Trigger an event execution immediately.  You can use this method to
+simulate arbitrary events on arbitrary elements.</p>
+
+<h2 id="limitations">Limitations</h2>
+
+<p>Note that although this is based on the <code class='syntax js'><span class="variable">jQuery</span></code> implementation, it is
+much simpler.  Notably namespaced events are not supported and you cannot
+trigger events globally.</p>
+
+<p>If you need more advanced event handling, consider the <code class='syntax js'><span class="class">SC</span>.<span class="class">Responder</span></code>
+functionality provided by SproutCore or use your favorite DOM library.</p>
+
+<h2 id="example">Example</h2>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">Event</span>.<span class="variable">trigger</span>(<span class="variable">view</span>.<span class="variable">get</span>(<span class="string">'layer'</span>), <span class="string">'mousedown'</span>);
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">elem</span> 
+                      
+                    </dt>
+                    <dd>{Element} the target element</dd>
+                  
+                    <dt>
+                      <span class="method-param">eventType</span> 
+                      
+                    </dt>
+                    <dd>{String} the event type</dd>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd>{SC.Event} [event] pre-normalized event to pass to handler</dd>
+                  
+                    <dt>
+                      <span class="method-param">donative</span> 
+                      
+                    </dt>
+                    <dd>??</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>Return value of trigger or undefined if not fired</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".unload"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unload(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called just before the window unloads to unhook all
+registered events.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="allowDefault"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">allowDefault(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Indicates that you want to allow the normal default behavior.  Sets
+the <code class='syntax js'><span class="variable">hasCustomEventHandling</span></code> property to <code class='syntax js'><span class="keyword">YES</span></code> but does not cancel the event.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="averagedTouchesForView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">averagedTouchesForView(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns average data--x, y, and d (distance)--for the touches owned by the
+supplied view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param"></span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>touches an array of SC.Touch objects</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="commandCodes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">commandCodes(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns characters with command codes for the event.</p>
+
+<p>The first value is a normalized command code identifying the modifier keys that are pressed in
+combination with a character key. Command codes can be used to map key combinations to an action
+in the application. A basic example of a normalized command code would be <code class='syntax js'><span class="variable">ctrl_x</span></code>, which
+corresponds to the combination of the <code class='syntax js'><span class="variable">command</span></code> key with the <code class='syntax js'><span class="variable">x</span></code> key being pressed on OS X or
+the <code class='syntax js'><span class="variable">ctrl</span></code> key with the <code class='syntax js'><span class="variable">x</span></code> key in Windows.</p>
+
+<p>The second value is the character string by itself. So for <code class='syntax js'><span class="variable">ctrl_x</span></code>, this would be simply <code class='syntax js'><span class="variable">x</span></code>. However,
+for <code class='syntax js'><span class="variable">alt_x</span></code> it would be <code class='syntax js'>≈</code> and for <code class='syntax js'><span class="variable">alt_shift_x</span></code>, it would be <code class='syntax js'>˛</code>.</p>
+
+<h2 id="considerationsfordifferentoss">Considerations for Different OS's</h2>
+
+<p>At this time, the meta (command) key in OS X is mapped to the <code class='syntax js'><span class="variable">ctrl_</span></code> command code prefix. This
+means that on OS X, command + s, and on Windows, ctrl + s, both become the same command code, <code class='syntax js'><span class="variable">ctrl_s</span></code>.</p>
+
+<p>Note that the order of command code prefixes is important and goes in the order: <code class='syntax js'><span class="variable">ctrl_</span></code>, <code class='syntax js'><span class="variable">alt_</span></code>,
+<code class='syntax js'><span class="variable">shift_</span></code>. The following are examples of command codes:
+ctrl_x
+alt_x
+ctrl_shift_x
+ctrl_alt_shift_x
+alt_shift_x</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="getCharString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getCharString(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns the pressed character as a String.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="preventDefault"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">preventDefault(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Implements W3C standard.  Will prevent the browser from performing its
+default action on this event.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stop"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stop(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Stops both the default action and further propagation.  This is more
+convenient than calling both.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="stopPropagation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">stopPropagation(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Implements W3C standard.  Prevents further bubbling of the event.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="touchesForResponder"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesForResponder(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Same as touchesForView, but sounds better for responders.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param"></span> <span class="light fixedFont"><a href="../symbols/SC.RootResponder.html">SC.RootResponder</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>touches an array of SC.Touch objects</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="touchesForView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesForView(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns the touches owned by the supplied view.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param"></span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> </dt>
+                    <dd>touches an array of SC.Touch objects</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

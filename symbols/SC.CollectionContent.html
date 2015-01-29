@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This mixin provides standard methods used by a CollectionView to provide
@@ -647,3 +647,574 @@ object you set as content.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentGroupIndexes">contentGroupIndexes(<span class="method-arguments">collection, content</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexCollapse">contentIndexCollapse(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexDisclosureState">contentIndexDisclosureState(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexExpand">contentIndexExpand(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexIsEnabled">contentIndexIsEnabled(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexIsGroup">contentIndexIsGroup(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexIsSelected">contentIndexIsSelected(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.CollectionContent.html#.contentIndexOutlineLevel">contentIndexOutlineLevel(<span class="method-arguments">collection, content, idx</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isCollectionContent"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.CollectionContent.</span><b>isCollectionContent</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Used to detect the mixin by SC.CollectionView
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".contentGroupIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentGroupIndexes(<span class="method-arguments">collection, content</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Optionally return an index set containing the indexes that may be group
+views.  For each group view, the delegate will actually be asked to
+confirm the view is a group using the <code class='syntax js'><span class="variable">contentIndexIsGroup</span></code>() method.</p>
+
+<p>If grouping is not enabled, return null.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the calling view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexCollapse"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexCollapse(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called to collapse a content index item if it is currently in an open
+disclosure state.  The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexDisclosureState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexDisclosureState(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a constant indicating the disclosure state of the item.  Must be
+one of <code class='syntax js'><span class="class">SC</span>.<span class="class">BRANCH_OPEN</span></code>, <code class='syntax js'><span class="class">SC</span>.<span class="class">BRANCH_CLOSED</span></code>, <code class='syntax js'><span class="class">SC</span>.<span class="class">LEAF_NODE</span>.</code>  If you return one
+of the BRANCH options then the item may be rendered with a disclosure
+triangle open or closed.  If you return <code class='syntax js'><span class="class">SC</span>.<span class="class">LEAF_NODe</span></code> then the item will
+be rendered as a leaf node.</p>
+
+<p>Default returns <code class='syntax js'><span class="class">SC</span>.<span class="class">LEAF_NODE</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES, NO, or SC.MIXED_STATE</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexExpand"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexExpand(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called to expand a content index item if it is currently in a closed
+disclosure state.  The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexIsEnabled"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexIsEnabled(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns <code class='syntax js'><span class="keyword">YES</span></code> if the content index should be enabled.  Default looks at the
+<code class='syntax js'><span class="variable">isEnabled</span></code> state of the collection view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES, NO, or SC.MIXED_STATE</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexIsGroup"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexIsGroup(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns <code class='syntax js'><span class="keyword">YES</span></code> if the item at the specified content index should be rendered
+using the <code class='syntax js'><span class="variable">groupExampleView</span></code> instead of the regular <code class='syntax js'><span class="variable">exampleView</span></code>.  Note that
+a group view is different from a branch/leaf view.  Group views often
+appear with different layout and a different look and feel.</p>
+
+<p>Default always returns <code class='syntax js'><span class="keyword">NO</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES, NO, or SC.MIXED_STATE</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexIsSelected"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexIsSelected(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Return <code class='syntax js'><span class="keyword">YES</span></code> if the content index should be selected.  Default behavior
+looks at the selection property on the view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES, NO, or SC.MIXED_STATE</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".contentIndexOutlineLevel"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">contentIndexOutlineLevel(<span class="method-arguments">collection, content, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the outline level for the item at the specified index.  Can be
+used to display hierarchical lists.</p>
+
+<p>Default always returns -1 (no outline).</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">collection</span> <span class="light fixedFont"><a href="../symbols/SC.CollectionView.html">SC.CollectionView</a></span> 
+                      
+                    </dt>
+                    <dd>the collection view</dd>
+                  
+                    <dt>
+                      <span class="method-param">content</span> <span class="light fixedFont"><a href="../symbols/SC.Array.html">SC.Array</a></span> 
+                      
+                    </dt>
+                    <dd>the content object</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES, NO, or SC.MIXED_STATE</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

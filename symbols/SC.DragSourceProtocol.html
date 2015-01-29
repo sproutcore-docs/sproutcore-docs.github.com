@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The <code class='syntax js'><span class="class">SC</span>.<span class="class">DragSourceProtocol</span></code> protocol defines the properties and methods that you may implement in
@@ -644,3 +644,462 @@ this protocol.*</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragDidBegin">dragDidBegin(<span class="method-arguments">drag, loc</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragDidCancel">dragDidCancel(<span class="method-arguments">drag, loc, op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragDidEnd">dragDidEnd(<span class="method-arguments">drag, loc, op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragDidMove">dragDidMove(<span class="method-arguments">drag, loc</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragDidSucceed">dragDidSucceed(<span class="method-arguments">drag, loc, op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragSlideBackDidEnd">dragSlideBackDidEnd(<span class="method-arguments">drag</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DragSourceProtocol.html#.dragSourceOperationMaskFor">dragSourceOperationMaskFor(<span class="method-arguments">drag, dropTarget</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".ignoreModifierKeysWhileDragging"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DragSourceProtocol.</span><b>ignoreModifierKeysWhileDragging</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If this property is set to <code class='syntax js'><span class="keyword">NO</span></code> or is not implemented, then the user may
+modify the drag operation by changing the modifier keys they have
+pressed.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".dragDidBegin"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragDidBegin(<span class="method-arguments">drag, loc</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called when the drag begins. You can use this to do any
+visual highlighting to indicate that the receiver is the source of the
+drag.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The Drag instance managing this drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">loc</span> <span class="light fixedFont">Point</span> 
+                      
+                    </dt>
+                    <dd>The point in *window* coordinates where the drag
+      began.  You can use convertOffsetFromView() to convert this to local
+      coordinates.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragDidCancel"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragDidCancel(<span class="method-arguments">drag, loc, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called if the drag ends without being handled, or if a drop
+target handles it but returns <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing the drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">loc</span> <span class="light fixedFont">Point</span> 
+                      
+                    </dt>
+                    <dd>The point in WINDOW coordinates where the drag
+      ended.</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>Provided for consistency. Always SC.DRAG_NONE.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragDidEnd"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragDidEnd(<span class="method-arguments">drag, loc, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called when the drag ended, regardless of whether it succeeded
+or not. You can use this to do any cleanup.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing the drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">loc</span> <span class="light fixedFont">Point</span> 
+                      
+                    </dt>
+                    <dd>The point in WINDOW coordinates where the drag
+      ended.</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>The drag operation that was performed. One of
+      SC.DRAG_COPY, SC.DRAG_MOVE, SC.DRAG_LINK, or SC.DRAG_NONE.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragDidMove"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragDidMove(<span class="method-arguments">drag, loc</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called whenever the drag image is moved.  This is
+similar to the <code class='syntax js'><span class="variable">dragUpdated</span>()</code> method called on drop targets.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The Drag instance managing this drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">loc</span> <span class="light fixedFont">Point</span> 
+                      
+                    </dt>
+                    <dd>The point in *window* coordinates where the drag
+      mouse is.  You can use convertOffsetFromView() to convert this to local
+      coordinates.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragDidSucceed"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragDidSucceed(<span class="method-arguments">drag, loc, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method is called if the drag ends and is successfully handled by a
+drop target (i.e. the drop target returns any operation other than
+<code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span>).</code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing the drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">loc</span> <span class="light fixedFont">Point</span> 
+                      
+                    </dt>
+                    <dd>The point in WINDOW coordinates where the drag
+      ended.</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>The drag operation that was performed. One of
+      SC.DRAG_COPY, SC.DRAG_MOVE, or SC.DRAG_LINK.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragSlideBackDidEnd"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragSlideBackDidEnd(<span class="method-arguments">drag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>If a drag is canceled or not handled, and has its <code class='syntax js'><span class="variable">slideBack</span></code> property set
+to <code class='syntax js'><span class="keyword">YES</span></code>, then the drag's ghost view will slide back to its initial location.
+<code class='syntax js'><span class="variable">dragDidEnd</span></code> is called immediately upon <code class='syntax js'><span class="variable">mouseUp</span></code>; <code class='syntax js'><span class="variable">dragSlideBackDidEnd</span></code> is called
+after the slide-back animation completes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing the drag.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragSourceOperationMaskFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragSourceOperationMaskFor(<span class="method-arguments">drag, dropTarget</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Return a bitwise OR'd mask of the drag operations allowed on the
+specified target.  If you don't care about the target, just return a
+constant value. If a drag's source does not implement this method,
+it will assume that any drag operation (SC.DRAG_ANY) is allowed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The SC.Drag instance managing this drag.</dd>
+                  
+                    <dt>
+                      <span class="method-param">dropTarget</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The proposed target of the drop.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

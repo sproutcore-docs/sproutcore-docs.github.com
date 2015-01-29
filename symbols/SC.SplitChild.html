@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Child views of SplitViews should use this mixin to get their positioning
@@ -694,3 +694,544 @@ calls adjust().</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitChild.html#splitChildLayoutDidChange">splitChildLayoutDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitChild.html#splitViewLayoutDirectionDidChange">splitViewLayoutDirectionDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="allowsIndirectAdjustments"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>allowsIndirectAdjustments</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>When <code class='syntax js'><span class="keyword">NO</span></code>, the view can only be adjusted when the user drags a divider
+immediately adjacent to it. If YES, the view can be adjusted indirectly
+from earlier dividers as well.</p>
+
+<p>For example, assume you have a 3-pane setup. Increasing the size of left pane will
+resize the middle one until its minimum size is reached. SplitView will then
+try to adjust the right pane. If the right pane has <code class='syntax js'><span class="variable">allowsIndirectAdjustments</span></code>
+set to <code class='syntax js'><span class="keyword">YES</span></code>, SplitView will shrink the right pane to make way. If NO, the
+left pane will be unable to resize further.</p>
+
+<p>Default: <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="autoResizeStyle"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>autoResizeStyle</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>When (and if) the view should automatically resize due to the SplitView changing size.</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_AUTOMATIC</span></code>: always resize when the SplitView changes size.</li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_MANUAL</span></code>: resize only when the user moves a divider, or all
+<code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_AUTOMATIC</span></code> views have already been resized as much as possible.</li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">FIXED_SIZE</span></code>: Never resize.</li>
+</ul>
+
+<p>If you specify an <code class='syntax js'><span class="variable">autoResizeStyle</span></code>, it will be used. If you leave it at <code class='syntax js'><span class="variable">undefined</span></code>,
+it will look at <code class='syntax js'><span class="variable">size</span></code>: if a <code class='syntax js'><span class="variable">size</span></code> is supplied, it will use <code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_MANUAL</span></code>; otherwise
+it will use <code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_AUTOMATIC</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>based on size</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="canCollapse"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>canCollapse</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, the <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> can collapse this view when the user
+double-clicks an adjacent divider, or when the view is resized
+to a size smaller than the <code class='syntax js'><span class="variable">collapseAtSize</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="collapseAtSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>collapseAtSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If the user attempts to resize the view to a size below this number,
+the view will collapse.</p>
+
+<p>If undefined, the view cannot be collapsed due to a resize.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="compensatesForMovement"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>compensatesForMovement</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">NO</span></code>, moving the divider before this view will not resize the view, but
+instead, move it—causing further views to move as well. Most SplitView
+children will want this set to YES.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isSplitDivider"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isSplitDivider</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Set to YES if your Split Child is a divider view.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="maximumSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maximumSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The maximum size for the <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> child. This view will
+be unable to be resized to a size larger than this value.</p>
+
+<p>If undefined, there is no limit.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>100</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="minimumSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minimumSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum size for the <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> child. This view will
+be unable to be resized smaller than this size.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>100</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="position"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>position</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>[RO] The current position of the <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span>.</code> This is read-only, and is set
+by the SplitView as it positions the views.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="positionOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>positionOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An amount to add to the position when adjusting layout.</p>
+
+<p>For example, if <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> positions this view at 100, and
+<code class='syntax js'><span class="variable">positionOffset</span></code> is -5, the view's layout will will have a position of 95.</p>
+
+<p>This can be used in conjunction with <code class='syntax js'><span class="variable">sizeOffset</span></code> to make dividers
+overlap the other views in the SplitView to have a larger grab area.</p>
+
+<p>TODO: Get this value from theme.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="size"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>size</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current size of the <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> child. Use this to set the default
+size.</p>
+
+<p>If you specify a size, <code class='syntax js'><span class="variable">autoResizeStyle</span></code> will default to <code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_MANUAL</span></code>;
+if you don't, SplitView will assume you want it to fill the available space
+and use <code class='syntax js'><span class="class">SC</span>.<span class="class">RESIZE_AUTOMATIC</span>.</code></p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>undefined</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="sizeOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>sizeOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An amount to add to the assigned size when adjusting layout.</p>
+
+<p>For example, if <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitView</span></code> gives this view a size of 1, but the
+<code class='syntax js'><span class="variable">sizeOffset</span></code> is 10, the view's layout will be given a width or height of 11.</p>
+
+<p>This can be used in conjunction with <code class='syntax js'><span class="variable">positionOffset</span></code> to make dividers
+overlap the other views in the SplitView to have a larger grab area.</p>
+
+<p>TODO: Get this value from theme.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="splitChildLayoutDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">splitChildLayoutDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when either the position or size of the child has changed, and layout
+needs to be updated accordingly. You may override this method to take into
+account any custom layout. The default handles the position- and <code class='syntax js'><span class="variable">sizeOffset</span></code>
+properties by adding them to the position and size, respectively.</p>
+
+<p>For instance, while the default implementation changes left/right/width/height
+to fill in one direction and fit in the allocated position in the other, you could
+make it only set left/width or top/height.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="splitViewLayoutDirectionDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">splitViewLayoutDirectionDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A TreeController manages a tree of model objects that you might want to
@@ -663,3 +663,223 @@ can be used as the content of a CollectionView.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.ObjectController.html">SC.ObjectController</a>: </dt>
+              <dd><a href="../symbols/SC.ObjectController.html#allowsMultipleContent">allowsMultipleContent</a>, <a href="../symbols/SC.ObjectController.html#content">content</a>, <a href="../symbols/SC.ObjectController.html#isEditable">isEditable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Controller.html">SC.Controller</a>: </dt>
+              <dd><a href="../symbols/SC.Controller.html#destroyContentOnReplace">destroyContentOnReplace</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="arrangedObjects"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>arrangedObjects</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Array.html">SC.Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Returns an <code class='syntax js'><span class="class">SC</span>.<span class="class">Array</span></code> object that actually will represent the tree as a
+flat array suitable for use by a CollectionView.  Other than binding this
+property as the content of a CollectionView, you generally should not
+use this property directly.  Instead, work on the tree content using the
+TreeController like you would any other ObjectController.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="treeItemChildrenKey"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>treeItemChildrenKey</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to the name of the property on your content object that holds the
+children array for each tree node.  The default is "treeItemChildren".</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>"treeItemChildren"</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="treeItemIsExpandedKey"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>treeItemIsExpandedKey</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If your content support expanding and collapsing of content, then set this
+property to the name of the key on your model that should be used to
+determine the expansion state of the item.  The default is
+"treeItemIsExpanded"</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>"treeItemIsExpanded"</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="treeItemIsGrouped"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>treeItemIsGrouped</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set to <code class='syntax js'><span class="keyword">YES</span></code> if you want the top-level items in the tree to be displayed as
+group items in the collection view.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

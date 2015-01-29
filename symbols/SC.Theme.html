@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Represents a theme, and is also the core theme in which SC looks for
@@ -681,3 +681,354 @@ class names from the derived theme shouldn't be included.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Theme.html#.addTheme">addTheme(<span class="method-arguments">theme</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Theme.html#.create">create(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Theme.html#.find">find(<span class="method-arguments">themeName</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Theme.html#.invisibleSubtheme">invisibleSubtheme(<span class="method-arguments">name</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Theme.html#.subtheme">subtheme(<span class="method-arguments">name</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".classNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Theme.</span><b>classNames</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Class names for the theme.</p>
+
+<p>These class names include the name of the theme and the names
+of all parent themes. You can also add your own.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".isTheme"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Theme.</span><b>isTheme</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walks like a duck.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".addTheme"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addTheme(<span class="method-arguments">theme</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds a child theme to the theme. This allows the theme to be located
+by SproutCore views and such later.</p>
+
+<p>Each theme is registered in the "themes" property by name. Calling
+find(name) will return the theme with the given name.</p>
+
+<p>Because the themes property is an object begetted from (based on) any
+parent theme's "themes" property, if the theme cannot be found in this
+theme, it will be found in any parent themes.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">theme</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates a new theme based on this one. The name of the new theme will
+be added to the <code class='syntax js'><span class="variable">classNames</span></code> set.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".find"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">find(<span class="method-arguments">themeName</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Finds a theme by name within this theme (the theme must have
+previously been added to this theme or a base theme by using <code class='syntax js'><span class="variable">addTheme</span></code>, or
+been registered as a root theme).</p>
+
+<p>If the theme found is not a root theme, this will specialize the theme so
+that it includes all class names for this theme.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">themeName</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".invisibleSubtheme"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invisibleSubtheme(<span class="method-arguments">name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Semi-private, only used by <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code> to create "invisible" subthemes. You
+should never need to call this directly, nor even worry about.</p>
+
+<p>Invisible subthemes are only available when find is called<em> on this theme</em>;
+if find() is called on a child theme, it will<em> not</em> locate this theme.</p>
+
+<p>The reason for "invisible" subthemes is that <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code> will create a subtheme
+when it finds a theme name that doesn't exist. For example, imagine that you
+have a parent view with theme "base", and a child view with theme "popup".
+If no "popup" theme can be found inside "base", <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code> will call
+base.subtheme. This will create a new theme with the name "popup",
+derived from "base". Everyone is happy.</p>
+
+<p>But what happens if you then change the parent theme to "ace"? The view
+will try again to find "popup", and it will find it-- but it will still be
+a child theme of "base"; <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code><em> needs</em> to re-subtheme it, but it won't
+know it needs to, because it has been found.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">name</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".subtheme"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">subtheme(<span class="method-arguments">name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates a child theme based on this theme, with the given name,
+and automatically registers it as a child theme.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">name</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

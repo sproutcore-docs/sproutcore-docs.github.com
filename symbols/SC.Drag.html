@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>An instance of this object is created whenever a drag occurs.  The instance
@@ -728,3 +728,929 @@ window.</p></li>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.addDropTarget">addDropTarget(<span class="method-arguments">target</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.addScrollableView">addScrollableView(<span class="method-arguments">target</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.inspectOperation">inspectOperation(<span class="method-arguments">op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.removeDropTarget">removeDropTarget(<span class="method-arguments">target</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.removeScrollableView">removeScrollableView(<span class="method-arguments">target</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#.start">start(<span class="method-arguments">ops</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#dataForType">dataForType(<span class="method-arguments">dataType</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#dataTypes">dataTypes(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#hasDataType">hasDataType(<span class="method-arguments">dataType</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#hideGhostView">hideGhostView(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#touchesDragged">touchesDragged(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Drag.html#unhideGhostView">unhideGhostView(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="allowedDragOperations"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>allowedDragOperations</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Returns the currently allowed <code class='syntax js'><span class="variable">dragOperations</span></code> for the drag.  This will be
+set just before any callbacks are invoked on a drop target.  The drag
+source is given an opportunity to set these operations.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="data"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>data</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Optional hash of data.  Used if no <code class='syntax js'><span class="variable">dataSource</span></code> was provided.</p>
+
+<p>Drag sources can provide a hash of data when the drag begins instead of
+specifying an actual <code class='syntax js'><span class="variable">dataSource</span></code>.  The data is stored in this property.
+If you are implementing a drop target, use the <code class='syntax js'><span class="variable">dataTypes</span></code> property and
+<code class='syntax js'><span class="variable">dataForTypes</span>()</code> method to access data instead of working directly with
+these properties.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="dataSource"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>dataSource</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.DragDataSourceProtocol.html">SC.DragDataSourceProtocol</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Optional object used to provide the data for the drag.</p>
+
+<p>Drag source can designate a <code class='syntax js'><span class="variable">dataSource</span></code> object to generate the data for
+a drag dynamically.  The data source can and often is the drag source
+object itself.</p>
+
+<p>Data Source objects must comply with the <code class='syntax js'><span class="class">SC</span>.<span class="class">DragDataSourceProtocol</span></code> interface.  If
+you do not want to implement this interface, you can provide the data
+directly with the data property.</p>
+
+<p>If you are implementing a drop target, use the <code class='syntax js'><span class="variable">dataTypes</span></code> property and
+<code class='syntax js'><span class="variable">dataForTypes</span>()</code> method to access data instead of working directly with
+these properties.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="dragView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>dragView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The view that was used as the source of the <code class='syntax js'><span class="variable">ghostView</span></code>.</p>
+
+<p>The drag view is not moved from its original location during a drag.
+Instead, the DOM content of the view is cloned and managed by the
+<code class='syntax js'><span class="variable">ghostView</span></code>.  If you want to visually indicate that the view is being
+moved, you should set ghost to <code class='syntax js'><span class="keyword">YES</span></code>.
+If <code class='syntax js'><span class="variable">dragView</span></code> is not provided the source is used instead.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="ghost"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>ghost</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, the <code class='syntax js'><span class="variable">dragView</span></code> is automatically hidden while dragging around the
+ghost.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="ghostActsLikeCursor"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>ghostActsLikeCursor</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, then the <code class='syntax js'><span class="variable">ghostView</span></code> will acts like a cursor and attach directly
+to the mouse/touch location.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="ghostOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>ghostOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Point</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The origin to slide back to in the coordinate of the <code class='syntax js'><span class="variable">dragView</span></code>'s
+<code class='syntax js'><span class="variable">containerView</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="ghostView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>ghostView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The view actually dragged around the screen. This is created automatically
+from the <code class='syntax js'><span class="variable">dragView</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="location"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>location</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Point</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current location of the mouse pointer in window coordinates. This is
+updated as long as the mouse button is pressed or touch is active. Drop targets are
+encouraged to update this property in their <code class='syntax js'><span class="variable">dragUpdated</span>()</code> method
+implementations.</p>
+
+<p>The <code class='syntax js'><span class="variable">ghostView</span></code> will be positioned at this location.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="slideBack"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>slideBack</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, then the <code class='syntax js'><span class="variable">ghostView</span></code> will slide back to its original location if
+drag is cancelled.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="source"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>source</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">SC.DragSource</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The source object used to coordinate this drag.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="sourceIsDraggable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>sourceIsDraggable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">NO</span></code>, the source will not be copied, clone, no ghost view will get created,
+and it won't be moved.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".addDropTarget"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addDropTarget(<span class="method-arguments">target</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Register the view object as a drop target.</p>
+
+<p>This method is called automatically whenever a view is created with the
+<code class='syntax js'><span class="variable">isDropTarget</span></code> property set to <code class='syntax js'><span class="keyword">YES</span></code>.  You generally will not need to call it
+yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>a view implementing the SC.DropTargetProtocol protocol</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".addScrollableView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addScrollableView(<span class="method-arguments">target</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Register the view object as a scrollable view.  These views will
+auto-scroll during a drag.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The view that should be auto-scrolled</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".inspectOperation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inspectOperation(<span class="method-arguments">op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Convenience method to turn an operation mask into a descriptive string.
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_desktop_debug_drag.js.html">drag.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">op</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".removeDropTarget"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeDropTarget(<span class="method-arguments">target</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Unregister the view object as a drop target.</p>
+
+<p>This method is called automatically whenever a view is removed from the
+hierarchy.  You generally will not need to call it yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>A previously registered drop target</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".removeScrollableView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeScrollableView(<span class="method-arguments">target</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Remove the view object as a scrollable view.  These views will auto-scroll
+during a drag.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>A previously registered scrollable view</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".start"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">start(<span class="method-arguments">ops</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This is the method you use to initiate a new drag.  See class documentation
+for more info on the options taken by this method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">ops</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="dataForType"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dataForType(<span class="method-arguments">dataType</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Retrieve the data for the specified <code class='syntax js'><span class="variable">dataType</span></code> from the drag source.</p>
+
+<p>Drop targets can use this method during their <code class='syntax js'><span class="variable">performDragOperation</span>()</code>
+method to retrieve the actual data provided by the drag data source.  This
+data may be generated dynamically depending on the data source.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">dataType</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>data type you want to retrieve.  Should be one of
+      the values returned in the dataTypes property</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>The generated data.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="dataTypes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dataTypes(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Data types supported by this drag operation.</p>
+
+<p>Returns an array of data types supported by the drag source.  This may be
+generated dynamically depending on the data source.</p>
+
+<p>If you are implementing a drag source, you will need to provide these data
+types so that drop targets can detect if they can accept your drag data.</p>
+
+<p>If you are implementing a drop target, you should inspect this property
+on your <code class='syntax js'><span class="variable">dragEntered</span>()</code> and <code class='syntax js'><span class="variable">prepareForDragOperation</span>()</code> methods to determine
+if you can handle any of the data types offered up by the drag source.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="hasDataType"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hasDataType(<span class="method-arguments">dataType</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Checks for a named data type in the drag.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">dataType</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the data type</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if data type is present in dataTypes array.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="hideGhostView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hideGhostView(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Hide the ghostView.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="touchesDragged"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesDragged(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="unhideGhostView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">unhideGhostView(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Unhide the ghostView.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

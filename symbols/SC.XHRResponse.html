@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Concrete implementation of <code class='syntax js'><span class="class">SC</span>.<span class="class">Response</span></code> that implements support for using XHR requests. This is
@@ -651,3 +651,289 @@ please @see <code class='syntax js'><span class="class">SC</span>.<span class="c
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Response.html">SC.Response</a>: </dt>
+              <dd><a href="../symbols/SC.Response.html#address">address</a>, <a href="../symbols/SC.Response.html#body">body</a>, <a href="../symbols/SC.Response.html#errorObject">errorObject</a>, <a href="../symbols/SC.Response.html#errorValue">errorValue</a>, <a href="../symbols/SC.Response.html#isCancelled">isCancelled</a>, <a href="../symbols/SC.Response.html#isError">isError</a>, <a href="../symbols/SC.Response.html#isJSON">isJSON</a>, <a href="../symbols/SC.Response.html#isResponse">isResponse</a>, <a href="../symbols/SC.Response.html#isXML">isXML</a>, <a href="../symbols/SC.Response.html#listeners">listeners</a>, <a href="../symbols/SC.Response.html#originalRequest">originalRequest</a>, <a href="../symbols/SC.Response.html#request">request</a>, <a href="../symbols/SC.Response.html#status">status</a>, <a href="../symbols/SC.Response.html#timedOut">timedOut</a>, <a href="../symbols/SC.Response.html#timeoutTimer">timeoutTimer</a>, <a href="../symbols/SC.Response.html#type">type</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.XHRResponse.html#cancelTransport">cancelTransport(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.XHRResponse.html#createRequest">createRequest(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.XHRResponse.html#header">header(<span class="method-arguments">key</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.XHRResponse.html#headers">headers(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.XHRResponse.html#invokeTransport">invokeTransport(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="encodedBody"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>encodedBody</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Implement transport-specific support for fetching tasks
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>#rawRequest</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="cancelTransport"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">cancelTransport(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cancels the request.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="createRequest"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">createRequest(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates the correct XMLHttpRequest object for this browser.</p>
+
+<p>You can override this if you need to, for example, create an XHR on a
+different domain name from an iframe.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">XMLHttpRequest|ActiveXObject</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="header"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">header(<span class="method-arguments">key</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Returns a header value if found.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>The header key</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="headers"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">headers(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Implement transport-specific support for fetching all headers
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="invokeTransport"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invokeTransport(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Starts the transport of the request
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">XMLHttpRequest|ActiveXObject</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:57 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

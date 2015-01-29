@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p><code class='syntax js'><span class="class">SC</span>.<span class="variable">routes</span></code> manages the browser location. You can change the hash part of the
@@ -674,3 +674,635 @@ in the URLs, so that all your website's URLs are consistent.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#add">add(<span class="method-arguments">route, target, method</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#deparam">deparam(<span class="method-arguments">string, coerce</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#hashChange">hashChange(<span class="method-arguments">event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#informLocation">informLocation(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#location">location(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#locationDidChange">locationDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#ping">ping(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#popState">popState(<span class="method-arguments">event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.routes.html#trigger">trigger(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="baseURI"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>baseURI</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The base URI used to resolve routes (which are relative URLs). Only used
+when <code class='syntax js'><span class="variable">usesHistory</span></code> is equal to <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>The build tools automatically configure this value if you have the
+html5_history option activated in the Buildfile:</p>
+
+<pre><code class='syntax js'><span class="variable">config</span> :<span class="variable">my_app</span>, :<span class="variable">html5_history</span> =&gt; <span class="variable">true</span>
+</code></pre>
+
+<p>Alternatively, it uses by default the value of the href attribute of the
+<base> tag of the HTML document. For example:</p>
+
+<pre><code class='syntax js'>&lt;<span class="variable">base</span> <span class="variable">href</span>=<span class="string">&quot;http://domain.tld/my_app&quot;</span>&gt;
+</code></pre>
+
+<p>The value can also be customized before or during the execution of the
+main() method.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>http://www.w3.org/TR/html5/semantics.html#the-base-element</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="usesHistory"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>usesHistory</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>A read-only boolean indicating whether or not HTML5 history is used. Based
+on the value of <code class='syntax js'><span class="variable">wantsHistory</span></code> and the browser's support for <code class='syntax js'><span class="variable">pushState</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>wantsHistory</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="wantsHistory"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>wantsHistory</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Set this property to <code class='syntax js'><span class="keyword">YES</span></code> if you want to use HTML5 history, if available on
+the browser, instead of the location hash.</p>
+
+<p>HTML 5 history uses the history.pushState method and the window's popstate
+event.</p>
+
+<p>By default it is <code class='syntax js'><span class="keyword">NO</span></code>, so your URLs will look like:</p>
+
+<pre><code class='syntax js'><span class="variable">http</span>:<span class="comment">//domain.tld/my_app#notes/edit/4</span>
+</code></pre>
+
+<p>If set to <code class='syntax js'><span class="keyword">YES</span></code> and the browser supports <code class='syntax js'><span class="variable">pushState</span></code>(), your URLs will look
+like:</p>
+
+<pre><code class='syntax js'><span class="variable">http</span>:<span class="comment">//domain.tld/my_app/notes/edit/4</span>
+</code></pre>
+
+<p>You will also need to make sure that <code class='syntax js'><span class="variable">baseURI</span></code> is properly configured, as
+well as your server so that your routes are properly pointing to your
+SproutCore application.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>http://dev.w3.org/html5/spec/history.html#the-history-interface</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="add"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">add(<span class="method-arguments">route, target, method</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds a route handler. Routes have the following format:</p>
+
+<ul>
+<li>'users/show/5' is a static route and only matches this exact string,</li>
+<li>':action/:controller/:id' is a dynamic route and the handler will be
+called with the 'action', 'controller' and 'id' parameters passed in a
+hash,</li>
+<li><p>'*url' is a wildcard route, it matches the whole route and the handler
+will be called with the 'url' parameter passed in a hash.</p>
+
+<p>Route types can be combined, the following are valid routes:</p></li>
+<li><p>'users/:action/:id'</p></li>
+<li>':controller/show/:id'</li>
+<li>':controller/*url'</li>
+</ul>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">route</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the route to be registered</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the object on which the method will be called, or
+      directly the function to be called to handle the route</dd>
+                  
+                    <dt>
+                      <span class="method-param">method</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>the method to be called on target to handle the
+      route, can be a function or a string</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="deparam"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">deparam(<span class="method-arguments">string, coerce</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Function to create an object out of a urlencoded param string.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">string</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the parameter string</dd>
+                  
+                    <dt>
+                      <span class="method-param">coerce</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>coerce the values? (Default NO)</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="hashChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hashChange(<span class="method-arguments">event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Event handler for the hashchange event. Called automatically by the browser
+if it supports the hashchange event, or by our timer if not.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="informLocation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">informLocation(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="location"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">location(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The current location hash. It is the part in the browser's location after
+the '#' mark.</p>
+
+<p>The following code</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="variable">routes</span>.<span class="variable">set</span>(<span class="string">'location'</span>, <span class="string">'notes/edit/4'</span>);
+</code></pre>
+
+<p>will change the location to http://domain.tld/my_app#notes/edit/4 and call
+the correct route handler if it has been registered with the add method.</p>
+
+<p>You can also pass additional parameters. They will be relayed to the route
+handler. For example, the following code</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="variable">routes</span>.<span class="variable">add</span>(<span class="string">':controller/:action/:id'</span>, <span class="class">MyApp</span>, <span class="class">MyApp</span>.<span class="variable">route</span>);
+<span class="class">SC</span>.<span class="variable">routes</span>.<span class="variable">set</span>(<span class="string">'location'</span>, <span class="string">'notes/show/4?format=xml&amp;language=fr'</span>);
+</code></pre>
+
+<p>will change the location to
+http://domain.tld/my_app#notes/show/4?format=xml&amp;language=fr and call the
+<code class='syntax js'><span class="class">MyApp</span>.<span class="variable">route</span></code> method with the following argument:</p>
+
+<pre><code class='syntax js'>{ <span class="variable">route</span>: <span class="string">'notes/show/4'</span>,
+  <span class="variable">params</span>: <span class="string">'?format=xml&amp;language=fr'</span>,
+  <span class="variable">controller</span>: <span class="string">'notes'</span>,
+  <span class="variable">action</span>: <span class="string">'show'</span>,
+  <span class="variable">id</span>: <span class="string">'4'</span>,
+  <span class="variable">format</span>: <span class="string">'xml'</span>,
+  <span class="variable">language</span>: <span class="string">'fr'</span> }
+</code></pre>
+
+<p>The location can also be set with a hash, the following code</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="variable">routes</span>.<span class="variable">set</span>(<span class="string">'location'</span>,
+  { <span class="variable">route</span>: <span class="string">'notes/edit/4'</span>, <span class="variable">format</span>: <span class="string">'xml'</span>, <span class="variable">language</span>: <span class="string">'fr'</span> });
+</code></pre>
+
+<p>will change the location to
+http://domain.tld/my_app#notes/show/4?format=xml&amp;language=fr.</p>
+
+<p>The 'notes/show/4&amp;format=xml&amp;language=fr' syntax for passing parameters,
+using a '&amp;' instead of a '?', as used in SproutCore 1.0 is still supported.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="locationDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">locationDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Observer of the 'location' property that calls the correct route handler
+when the location changes.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="ping"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">ping(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>You usually don't need to call this method. It is done automatically after
+the application has been initialized.</p>
+
+<p>It registers for the hashchange event if available. If not, it creates a
+timer that looks for location changes every 150ms.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="popState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">popState(<span class="method-arguments">event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="trigger"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">trigger(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Triggers a route even if already in that route (does change the location, if it
+is not already changed, as well).</p>
+
+<p>If the location is not the same as the supplied location, this simply lets "location"
+handle it (which ends up coming back to here).</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

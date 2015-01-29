@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The request manager coordinates all of the active XHR requests. It will
@@ -655,3 +655,480 @@ in which order.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.cancel">cancel(<span class="method-arguments">response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.cancelAll">cancelAll(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.fireRequestIfNeeded">fireRequestIfNeeded(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.isInFlight">isInFlight(<span class="method-arguments">response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.isPending">isPending(<span class="method-arguments">response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.sendRequest">sendRequest(<span class="method-arguments">request</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.manager.html#.transportDidClose">transportDidClose(<span class="method-arguments">response</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".inflight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Request.manager.</span><b>inflight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Current requests that are inflight.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>[]</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".maxRequests"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Request.manager.</span><b>maxRequests</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Maximum number of concurrent requests allowed. 6 for all browsers.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>6</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".pending"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Request.manager.</span><b>pending</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Requests that are pending and have not been started yet.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>[]</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".cancel"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">cancel(<span class="method-arguments">response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Cancels a specific request. If the request is pending it will simply
+be removed. Otherwise it will actually be cancelled.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>a response object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if cancelled</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".cancelAll"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">cancelAll(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cancels all inflight and pending requests.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if any items were cancelled.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".fireRequestIfNeeded"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fireRequestIfNeeded(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Checks the inflight queue. If there is an open slot, this will move a
+request from pending to inflight.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".isInFlight"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isInFlight(<span class="method-arguments">response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Checks if the response is in the inflight queue.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>a response object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>is response in inflight queue</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".isPending"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isPending(<span class="method-arguments">response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Checks if the response is in the pending queue.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>a response object</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>is response in pending queue</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".sendRequest"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">sendRequest(<span class="method-arguments">request</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked by the send() method on a request. This will create a new low-
+level transport object and queue it if needed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">request</span> <span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> 
+                      
+                    </dt>
+                    <dd>the request to send</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Object.html">SC.Object</a></span> </dt>
+                    <dd>response object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".transportDidClose"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">transportDidClose(<span class="method-arguments">response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by a response/transport object when finishes running. Removes
+the transport from the queue and kicks off the next one.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">response</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           
@@ -674,3 +674,583 @@
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.TemplateView.html">SC.TemplateView</a>: </dt>
+              <dd><a href="../symbols/SC.TemplateView.html#templateName">templateName</a>, <a href="../symbols/SC.TemplateView.html#templates">templates</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.CoreView.html">SC.CoreView</a>: </dt>
+              <dd><a href="../symbols/SC.CoreView.html#isAttached">isAttached</a>, <a href="../symbols/SC.CoreView.html#isVisibleInWindow">isVisibleInWindow</a>, <a href="../symbols/SC.CoreView.html#viewState">viewState</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#arrayContentDidChange">arrayContentDidChange(<span class="method-arguments">addedObjects, removedObjects, changeIndex</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#arrayContentWillChange">arrayContentWillChange(<span class="method-arguments">start, removedCount, addedCount</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#didCreateLayer">didCreateLayer(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#invalidateFrame">invalidateFrame(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#inverseTemplate">inverseTemplate(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#itemTagName">itemTagName(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateCollectionView.html#itemViewClass">itemViewClass(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="content"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>content</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Array.html">SC.Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              A list of items to be displayed by the TemplateCollectionView.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="emptyView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>emptyView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.TemplateView.html">SC.TemplateView</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              An optional view to display if content is set to an empty array.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="inverseTemplateName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>inverseTemplateName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The name of a template to lookup if no inverse template is provided.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="itemView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>itemView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.TemplateView.html">SC.TemplateView</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.TemplateView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="itemViewTemplate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>itemViewTemplate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Function.html">Function</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The template used to render each item in the collection.</p>
+
+<p>This should be a function that takes a content object and returns
+a string of HTML that will be inserted into the DOM.</p>
+
+<p>In general, you should set the <code class='syntax js'><span class="variable">itemViewTemplateName</span></code> property instead of
+setting the <code class='syntax js'><span class="variable">itemViewTemplate</span></code> property yourself. If you created the
+<code class='syntax js'><span class="class">SC</span>.<span class="class">TemplateCollectionView</span></code> using the Handlebars {{#collection}} helper, this
+will be set for you automatically.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="itemViewTemplateName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>itemViewTemplateName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The name of the template to lookup if no item view template is provided.</p>
+
+<p>The collection will look for a template with this name in the global
+<code class='syntax js'><span class="class">SC</span>.<span class="class">TEMPLATES</span></code> hash. Usually this hash will be populated for you
+automatically when you include <code class='syntax js'>.<span class="variable">handlebars</span></code> files in your project.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="tagName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tagName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Name of the tag that is used for the collection</p>
+
+<p>If the tag is a list ('ul' or 'ol') each item will be wrapped into a 'li' tag.
+If the tag is a table ('table', 'thead', 'tbody') each item will be wrapped into a 'tr' tag.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>ul</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="arrayContentDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">arrayContentDidChange(<span class="method-arguments">addedObjects, removedObjects, changeIndex</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when a mutation to the underlying content array occurs.</p>
+
+<p>This method will replay that mutation against the views that compose the
+<code class='syntax js'><span class="class">SC</span>.<span class="class">TemplateCollectionView</span></code>, ensuring that the view reflects the model.</p>
+
+<p>This enumerable observer is added in <code class='syntax js'><span class="variable">contentDidChange</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">addedObjects</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>the objects that were added to the content</dd>
+                  
+                    <dt>
+                      <span class="method-param">removedObjects</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>the objects that were removed from the content</dd>
+                  
+                    <dt>
+                      <span class="method-param">changeIndex</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index at which the changes occurred</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="arrayContentWillChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">arrayContentWillChange(<span class="method-arguments">start, removedCount, addedCount</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">start</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">removedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">addedCount</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="didCreateLayer"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">didCreateLayer(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="invalidateFrame"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">invalidateFrame(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="inverseTemplate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverseTemplate(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                A template to render when there is no content or the content length is 0.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="itemTagName"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">itemTagName(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="itemViewClass"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">itemViewClass(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

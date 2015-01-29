@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This is a very simple object that makes it easier to use the
@@ -798,3 +798,361 @@ used to develop this class:</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="hasNewVersion"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>hasNewVersion</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether there is a new version of the application's cache or not.</p>
+
+<p>This property is undefined until it can be determined that a new version exists
+or not.  Note that the new version may not necessarily be valid.  You
+should check <code class='syntax js'><span class="variable">isNewVersionValid</span></code> after determining that <code class='syntax js'><span class="variable">hasNewVersion</span></code> is
+true.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>undefined</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="interval"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>interval</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The interval in milliseconds to poll for updates when shouldPoll is true.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>1800000 (30 minutes)</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isNewVersionValid"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>isNewVersionValid</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether the new version is valid or not.</p>
+
+<p>This property is undefined until it can be determined that a new version exists
+or doesn't exist and if it does exist, whether it is valid or not.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>undefined</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isReadyForOffline"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>isReadyForOffline</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether the application may be run offline or not.</p>
+
+<p>This property is undefined until it can be determined that the application
+has been cached or not cached.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>undefined</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="progress"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>progress</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The progress of the application cache between 0.0 (0%) and 1.0 (100%).
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0.0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="shouldPoll"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>shouldPoll</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether or not to regularly check for updates to the application cache
+while the application is running.</p>
+
+<p>This is useful for applications that are left open for several hours at a
+time, such as a SproutCore application being used in business.  In order to
+ensure that the users have the latest version, you can set this property
+to true to have the application regularly check for updates.</p>
+
+<p>Updates are run using the background task queue, so as to pose the smallest
+detriment possible to performance.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>false</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="status"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>status</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current window.applicationCache status.</p>
+
+<p>This is a KVO mapping of window.applicationCache.status.  Possible values
+are:
+window.applicationCache.UNCACHED
+window.applicationCache.IDLE
+window.applicationCache.CHECKING
+window.applicationCache.DOWNLOADING
+window.applicationCache.UPDATEREADY
+window.applicationCache.OBSOLETE</p>
+
+<p>Because of the various interpretations these statuses can mean, you will
+likely find it easier to use the helper properties on <code class='syntax js'><span class="class">SC</span>.<span class="variable">appCache</span></code> instead.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

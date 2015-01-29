@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Base class for all render delegates.</p>
@@ -771,3 +771,371 @@ can match it like this:</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#create">create(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#get">get(<span class="method-arguments">propertyName</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#getPropertyFor">getPropertyFor(<span class="method-arguments">dataSource, propertyName</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#render">render(<span class="method-arguments">dataSource, context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#reopen">reopen(<span class="method-arguments">mixin</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.RenderDelegate.html#update">update(<span class="method-arguments">dataSource, jquery</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="className"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>className</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>All render delegates should have a class name. Any time a render delegate is
+used, this name should be added as a class name (<code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code>s do this
+automatically).</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Creates a new render delegate based on this one. When you want to
+create a render delegate, you call this:</p>
+
+<pre><code class='syntax js'><span class="class">MyTheme</span>.<span class="variable">myRenderDelegate</span> = <span class="class">SC</span>.<span class="class">RenderDelegate</span>.<span class="variable">create</span>({
+  <span class="variable">className</span>: <span class="string">'my-render-delegate'</span>,
+  <span class="variable">render</span>: <span class="keyword">function</span>(<span class="variable">dataSource</span>, <span class="variable">context</span>) {
+    <span class="comment">// your code here...</span>
+  }
+})
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="get"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">get(<span class="method-arguments">propertyName</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the specified property from this render delegate.
+Implemented to match <code class='syntax js'><span class="class">SC</span>.<span class="class">Object</span>'<span class="variable">s</span></code> API.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">propertyName</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="getPropertyFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getPropertyFor(<span class="method-arguments">dataSource, propertyName</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Gets or generates the named property for the specified
+<code class='syntax js'><span class="variable">dataSource</span></code>. If a method <code class='syntax js'><span class="variable">propertyName</span> + <span class="string">'For'</span></code> is found,
+it will be used to compute the value, <code class='syntax js'><span class="variable">dataSource</span></code>
+being passed as an argument. Otherwise, it will simply
+be looked up on the render delegate.</p>
+
+<p>NOTE: this implementation is a reference implementation. It
+is overridden in the sizing code (helpers/sizing.js) to be
+size-sensitive.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">dataSource</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">propertyName</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="render"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">render(<span class="method-arguments">dataSource, context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Writes the DOM representation of this render delegate to the
+supplied <code class='syntax js'><span class="class">SC</span>.<span class="class">RenderContext</span></code>, using the supplied <code class='syntax js'><span class="variable">dataSource</span></code>
+for any data needed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">dataSource</span> <span class="light fixedFont">DataSource</span> 
+                      
+                    </dt>
+                    <dd>An object from which to get
+    data. See documentation on data sources above.</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/SC.RenderContext.html">SC.RenderContext</a></span> 
+                      
+                    </dt>
+                    <dd>A context to render DOM into.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="reopen"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reopen(<span class="method-arguments">mixin</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds extra capabilities to this render delegate.</p>
+
+<p>You can use this to add helpers to all render delegates:</p>
+
+<pre><code class='syntax js'><span class="class">SC</span>.<span class="class">RenderDelegate</span>.<span class="variable">reopen</span>({
+   <span class="variable">myHelperMethod</span>: <span class="keyword">function</span>(<span class="variable">dataSource</span>) { ... }
+ });
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">mixin</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="update"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">update(<span class="method-arguments">dataSource, jquery</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Updates the DOM representation of this render delegate using
+the supplied <code class='syntax js'><span class="variable">jQuery</span></code> instance and <code class='syntax js'><span class="variable">dataSource</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">dataSource</span> <span class="light fixedFont">DataSource</span> 
+                      
+                    </dt>
+                    <dd>An object from which to get
+    data. See documentation on data sources above.</dd>
+                  
+                    <dt>
+                      <span class="method-param">jquery</span> <span class="light fixedFont"><a href="../symbols/_global_.html#jQuery">jQuery</a></span> 
+                      
+                    </dt>
+                    <dd>A jQuery instance containing the DOM
+    element to update. This will be the DOM generated by `render()`.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

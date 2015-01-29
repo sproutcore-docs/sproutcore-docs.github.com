@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           
@@ -656,3 +656,744 @@
         
 
         
+        
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#angles">angles(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchAddedToSession">touchAddedToSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchCancelledInSession">touchCancelledInSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchEndedInSession">touchEndedInSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchesMovedInSession">touchesMovedInSession(<span class="method-arguments">touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchSessionCancelled">touchSessionCancelled(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchSessionEnded">touchSessionEnded(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SwipeGesture.html#touchSessionStarted">touchSessionStarted(<span class="method-arguments">touch</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="direction"> </a>
+          <!-- If the field is deprecated. -->
+          <div class="field-deprecated">Deprecated: Version 1.11. Please use the `angles` property instead.</div>
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>direction</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.SWIPE_HORIZONTAL</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="name"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>name</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>"swipe"</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="swipeDistance"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>swipeDistance</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The distance in pixels that touches must move in a single direction to be far enough in order to
+be considered a swipe. If the touches don't move <code class='syntax js'><span class="variable">swipeDistance</span></code> amount of pixels, then the
+gesture will not trigger.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>40</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="swipeVelocity"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>swipeVelocity</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The velocity in pixels per millisecond that touches must be traveling to begin a swipe motion.
+If the touches are moving slower than the velocity, the swipe start point won't be set.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0.5</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="tolerance"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tolerance</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Amount of degrees that a touch is allowed to vary off of the target angle(s).
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>15</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="angles"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">angles(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The angles that the swipe will accept, between 0° and ±180°. The angles start from the right
+side (0°) and end at the left side (±180°). With the positive angles passing through<em> down</em>
+(+90°) and the negative angles passing through<em> up</em> (-90°). The following ASCII art shows the
+directions of the angles,</p>
+
+<pre><code class='syntax js'>-<span class="number integer">90</span>° (<span class="variable">up</span>)
+                  |
+                  |
+(<span class="variable">left</span>) ± <span class="number integer">180</span>° --------- <span class="number integer">0</span>° (<span class="variable">right</span>)
+                  |
+                  |
+         (<span class="variable">down</span>) +<span class="number integer">90</span>°
+</code></pre>
+
+<p>To make this easier, there are several predefined angles arrays that you can use,
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_HORIZONTAL</span></code> ([180, 0]), i.e. left or right
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_VERTICAL</span></code> ([-90, 90]), i.e. up or down
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_ANY</span></code> (null), i.e. 0° to up, down, left or right
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_LEFT</span></code> ([180]), i.e. left only
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_RIGHT</span></code> ([0]), i.e. right only
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_UP</span></code> ([-90]), i.e. up only
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_DOWN</span></code> ([90]), down only</p>
+
+<p>However, you can provide any combination of angles that you want. For example, to support
+45° angled swipes to the right and straight swipes to the left, we would use,</p>
+
+<p>angles: [180, -45, 45] // 180° straight left, -45° up &amp; right, 45° down &amp; right</p>
+
+<h2 id="howtousetheangles">How to use the angles.</h2>
+
+<p>When the <code class='syntax js'><span class="variable">swipe</span></code> event fires, the angle of the swipe is passed to your view allowing you to
+recognize which of the supported angles matched the swipe.</p>
+
+<p>Note, there is one special case, as defined by <code class='syntax js'><span class="class">SC</span>.<span class="class">SWIPE_ANY</span></code>, which is to set angles to <code class='syntax js'><span class="keyword">null</span></code>
+in order to support swipes in<em> any</em> direction. The code will look for a swipe (unidirectional
+fast motion) in any direction and pass the observed angle to the <code class='syntax js'><span class="variable">swipe</span></code> handler.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="touchAddedToSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchAddedToSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The swipe gesture is always interested in a touch session, because it is only concerned in how
+the session ends. If it ends with a fast unidirectional sliding movement, then it is a swipe.</p>
+
+<p>Note, that for multiple touches, touches are expected to start while other touches are already
+moving. When touches are added we update the swipe start position. This means that inadvertent
+taps that occur while swiping could break a swipe recognition by making the swipe too short to
+register.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be added to the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches already in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True as long as the new touch doesn't start too late after the first touch.</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchAddedToSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchCancelledInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchCancelledInSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The swipe gesture is always interested in a touch session, because it is only concerned in how
+the session ends. If it ends with a fast unidirectional sliding movement, then it is a swipe.</p>
+
+<p>Note, that a touch may cancel while swiping (went off screen inadvertently). Because of this we
+don't immediately reduce the number of touches in the swipe, because if the rest of the touches
+end right away in a swipe, it's best to consider the cancelled touch as part of the group.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be removed from the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchCancelledInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchEndedInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchEndedInSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The swipe gesture is always interested in a touch session, because it is only concerned in how
+the session ends. If it ends with a fast unidirectional sliding movement, then it is a swipe.</p>
+
+<p>Note, that touches are expected to end while swiping. Because of this we don't immediately
+reduce the number of touches in the swipe, because if the rest of the touches also end right
+away in a swiping motion, it's best to consider this ended touch as part of the group.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be removed from the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True if it is the first touch to end or a subsequent touch that ends not too long after the first touch ended.</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchEndedInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchesMovedInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesMovedInSession(<span class="method-arguments">touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The swipe gesture is always interested in a touch session, because it is only concerned in how
+the session ends. If it ends with a fast unidirectional sliding movement, then it is a swipe.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>All touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True as long as none of the touches have moved too far off-axis to be a clean swipe.</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchesMovedInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionCancelled"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionCancelled(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cleans up all touch session variables.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchSessionCancelled</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionEnded"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionEnded(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cleans up all touch session variables and triggers the gesture.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchSessionEnded</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionStarted"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionStarted(<span class="method-arguments">touch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

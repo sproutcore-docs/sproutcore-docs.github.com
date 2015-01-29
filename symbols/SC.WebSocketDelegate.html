@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A WebSocket Delegate is consulted by <code class='syntax js'><span class="class">SC</span>.<span class="class">WebSocket</span></code> when events are received.
@@ -650,3 +650,301 @@ You may want to handle this events before propagate them to eventual listeners.<
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocketDelegate.html#.webSocketDidClose">webSocketDidClose(<span class="method-arguments">webSocket, closeEvent</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocketDelegate.html#.webSocketDidError">webSocketDidError(<span class="method-arguments">webSocket, event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocketDelegate.html#.webSocketDidOpen">webSocketDidOpen(<span class="method-arguments">webSocket, event</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocketDelegate.html#.webSocketDidReceiveMessage">webSocketDidReceiveMessage(<span class="method-arguments">webSocket, data</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isWebSocketDelegate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.WebSocketDelegate.</span><b>isWebSocketDelegate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".webSocketDidClose"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">webSocketDidClose(<span class="method-arguments">webSocket, closeEvent</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The websocket connection is close. Return true to prevent a
+reconnection or further handling.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">webSocket</span> 
+                      
+                    </dt>
+                    <dd>{SC.WebSocket} The webSocket object</dd>
+                  
+                    <dt>
+                      <span class="method-param">closeEvent</span> 
+                      
+                    </dt>
+                    <dd>{CloseEvent} The closeEvent</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>Return true to prevent further handling</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".webSocketDidError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">webSocketDidError(<span class="method-arguments">webSocket, event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Call when an error occur.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">webSocket</span> 
+                      
+                    </dt>
+                    <dd>{SC.WebSocket} The webSocket object</dd>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd>{Event}</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>Return true to prevent further handling</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".webSocketDidOpen"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">webSocketDidOpen(<span class="method-arguments">webSocket, event</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                The passed webSocket connection is open.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">webSocket</span> 
+                      
+                    </dt>
+                    <dd>{SC.WebSocket} The webSocket object</dd>
+                  
+                    <dt>
+                      <span class="method-param">event</span> 
+                      
+                    </dt>
+                    <dd>{Event}</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".webSocketDidReceiveMessage"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">webSocketDidReceiveMessage(<span class="method-arguments">webSocket, data</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>A message has been received. Before processing it, you have
+a chance to check it. </p>
+
+<p>For example, if <code class='syntax js'><span class="variable">isJSON</span></code> is true, you will want to check if the message
+is a correct JSON.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">webSocket</span> 
+                      
+                    </dt>
+                    <dd>{SC.WebSocket} The webSocket object</dd>
+                  
+                    <dt>
+                      <span class="method-param">data</span> 
+                      
+                    </dt>
+                    <dd>{String}</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>Return true to prevent further handling</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:57 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

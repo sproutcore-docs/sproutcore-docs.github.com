@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A tree item is a model object that acts as a node in a tree-like data
@@ -677,3 +677,461 @@ null or an empty index set.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TreeItemContent.html#.treeItemBranchIndexes">treeItemBranchIndexes(<span class="method-arguments">parent, index</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TreeItemContent.html#.treeItemCollapse">treeItemCollapse(<span class="method-arguments">parent, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TreeItemContent.html#.treeItemDisclosureState">treeItemDisclosureState(<span class="method-arguments">parent, idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TreeItemContent.html#.treeItemExpand">treeItemExpand(<span class="method-arguments">parent, idx</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isTreeItemContent"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.TreeItemContent.</span><b>isTreeItemContent</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".treeItemChildren"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.TreeItemContent.</span><b>treeItemChildren</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Array.html">SC.Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Property returns the children for this tree item.  The default simply
+returns null.  If you implement this mixin, you MUST implement this
+property to return the actual tree item children for the item.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".treeItemIsExpanded"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.TreeItemContent.</span><b>treeItemIsExpanded</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The default property used to determine if the tree item is expanded.  You
+can implement you model object to update this property or you can override
+<code class='syntax js'><span class="variable">treeItemDisclosureState</span></code>() to compute the disclosure state however you
+want.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".treeItemIsGrouped"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.TreeItemContent.</span><b>treeItemIsGrouped</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Indicates whether the tree item should be rendered as a group or not.
+This property is only useful on the root item in your tree.  Setting it to
+<code class='syntax js'><span class="keyword">YES</span></code> on any other item will be ignored.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".treeItemBranchIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">treeItemBranchIndexes(<span class="method-arguments">parent, index</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns an index set containing the child indexes of the item that are
+themselves branches.  This will only be called on tree items with a branch
+disclosure state.</p>
+
+<p>If the passed parent and index are both null, then the receiver is the
+root node in the tree.</p>
+
+<p>The default implementation iterates over the item's children to get the
+disclosure state of each one.  Child items with a branch disclosure state
+will have their index added to the return index set.</p>
+
+<p>You may want to override this method to provide a more efficient
+implementation if you are working with large data sets and can infer which
+children are branches without iterating over each one.</p>
+
+<p>If you know for sure that all of the child items for this item are leaf
+nodes and not branches, simply override this method to return null.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">parent</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the parent item containing this item</dd>
+                  
+                    <dt>
+                      <span class="method-param">index</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index of the item in the parent</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>branch indexes</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".treeItemCollapse"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">treeItemCollapse(<span class="method-arguments">parent, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Collapse the tree item.  The default implementation will change the
+<code class='syntax js'><span class="variable">treeItemIsExpanded</span></code> property, but you can override this method to handle
+collapsing anyway you like.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">parent</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the parent item containing this item</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index of the item in the parent</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".treeItemDisclosureState"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">treeItemDisclosureState(<span class="method-arguments">parent, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the disclosure state for the tree item, which appears at the
+index of the parent's <code class='syntax js'><span class="variable">treeItemChildren</span></code> array.  The response must be one of
+<code class='syntax js'><span class="class">SC</span>.<span class="class">BRANCH_OPEN</span></code>, <code class='syntax js'><span class="class">SC</span>.<span class="class">BRANCH_CLOSED</span></code> or <code class='syntax js'><span class="class">SC</span>.<span class="class">LEAF_NODE</span>.</code></p>
+
+<p>If the parent parameter is null, then this item is part of the root
+children array.</p>
+
+<p>This method will only be called for tree items that have children.  Tree
+items with no children are assumed to be leaf nodes.</p>
+
+<p>The default implementation uses the <code class='syntax js'><span class="variable">treeItemIsExpanded</span></code> property to
+determine if the item should be open or closed.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">parent</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the parent item containing this item</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index of the item in the parent</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>branch state</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".treeItemExpand"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">treeItemExpand(<span class="method-arguments">parent, idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Expand the tree item.  The default implementation will change the
+<code class='syntax js'><span class="variable">treeItemIsExpanded</span></code> property, but you can override this method to handle
+collapsing anyway you like.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">parent</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the parent item containing this item</dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index of the item in the parent</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

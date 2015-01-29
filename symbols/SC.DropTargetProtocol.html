@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The <code class='syntax js'><span class="class">SC</span>.<span class="class">DropTargetProtocol</span></code> protocol defines the properties and methods that you may implement
@@ -660,3 +660,555 @@ this protocol.*</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.acceptDragOperation">acceptDragOperation(<span class="method-arguments">drag, op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.computeDragOperations">computeDragOperations(<span class="method-arguments">drag, evt, op</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.dragEnded">dragEnded(<span class="method-arguments">drag, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.dragEntered">dragEntered(<span class="method-arguments">drag, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.dragExited">dragExited(<span class="method-arguments">drag, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.dragStarted">dragStarted(<span class="method-arguments">drag, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.dragUpdated">dragUpdated(<span class="method-arguments">drag, evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.DropTargetProtocol.html#.performDragOperation">performDragOperation(<span class="method-arguments">drag, op</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isDropTarget"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.DropTargetProtocol.</span><b>isDropTarget</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Must be true when your view is instantiated.</p>
+
+<p>Drop targets must be specially registered in order to receive drop
+events.  SproutCore knows to register your view when this property
+is true on view creation.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".acceptDragOperation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">acceptDragOperation(<span class="method-arguments">drag, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when the user releases the mouse.</p>
+
+<p>This method gives your drop target one last opportunity to choose to
+accept the proposed drop operation.  You might use this method to
+perform fine-grained checks on the drop location, for example.
+Return true to accept the drop operation.</p>
+
+<p>The default implementation returns <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing this drag</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>The proposed drag operation. A drag constant</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if operation is OK, NO to cancel.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".computeDragOperations"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">computeDragOperations(<span class="method-arguments">drag, evt, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when the drag needs to determine which drag operations are
+valid in a given area.</p>
+
+<p>Override this method to return an OR'd mask of the allowed drag
+operations.  If the user drags over a droppable area within another
+droppable area, the drag will latch onto the deepest view that returns one
+or more available operations.</p>
+
+<p>The default implementation returns <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The current drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> 
+                      
+                    </dt>
+                    <dd>The most recent mouse move event.  Use to get
+      location</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>The proposed drag operation. A drag constant</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">DragOps</span> </dt>
+                    <dd><p>A mask of all the drag operations allowed or
+<code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code></p></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragEnded"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragEnded(<span class="method-arguments">drag, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called on all drop targets when the drag ends.</p>
+
+<p>For example, the user might have dragged the view off the screen and let
+go or they might have hit escape.  Override this method to perform any
+final cleanup.  This will be called instead of <code class='syntax js'><span class="variable">dragExited</span></code>.</p>
+
+<p>The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The current drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> 
+                      
+                    </dt>
+                    <dd>The most recent mouse move event. Use to get location.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragEntered"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragEntered(<span class="method-arguments">drag, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when the drag first enters the droppable area, if it returns a
+drag operations other than <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code>.</p>
+
+<p>The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> 
+                      
+                    </dt>
+                    <dd>{SC.Drag} The current drag object.</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd>{SC.Event} The most recent mouse move event.  Use to get location</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragExited"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragExited(<span class="method-arguments">drag, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when the user exits your droppable area or the drag ends
+and you were the last targeted droppable area.</p>
+
+<p>Override this method to perform any clean up on your UI such as hiding
+a special highlight state or removing insertion points.</p>
+
+<p>The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The current drag object</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> 
+                      
+                    </dt>
+                    <dd>The most recent mouse move event. Use to get location.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragStarted"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragStarted(<span class="method-arguments">drag, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called when the drag is started, regardless of where or not your drop
+target is current. You can use this to highlight your drop target
+as "eligible".</p>
+
+<p>The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The current drag object.</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> 
+                      
+                    </dt>
+                    <dd>The most recent mouse move event.  Use to get location</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".dragUpdated"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">dragUpdated(<span class="method-arguments">drag, evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called periodically when a drag is over your droppable area.</p>
+
+<p>Override this method this to update various elements of the drag state,
+including the location of ghost view.  You should  use this method to
+implement snapping.</p>
+
+<p>This method will be called periodically, even if the user is not moving
+the drag.  If you perform expensive operations, be sure to check the
+<code class='syntax js'><span class="variable">mouseLocation</span></code> property of the drag to determine if you actually need to
+update anything before doing your expensive work.</p>
+
+<p>The default implementation does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The current drag object.</dd>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> <span class="light fixedFont"><a href="../symbols/SC.Event.html">SC.Event</a></span> 
+                      
+                    </dt>
+                    <dd>The most recent mouse move event. Use to get location</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".performDragOperation"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">performDragOperation(<span class="method-arguments">drag, op</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called to actually perform the drag operation.</p>
+
+<p>Override this method to actually perform the drag operation.  This method
+is only called if you returned <code class='syntax js'><span class="keyword">YES</span></code> in <code class='syntax js'><span class="variable">acceptDragOperation</span>()</code>.</p>
+
+<p>Return the operation that was actually performed or <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code> if the
+operation was aborted.</p>
+
+<p>The default implementation returns <code class='syntax js'><span class="class">SC</span>.<span class="class">DRAG_NONE</span></code></p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">drag</span> <span class="light fixedFont"><a href="../symbols/SC.Drag.html">SC.Drag</a></span> 
+                      
+                    </dt>
+                    <dd>The drag instance managing this drag</dd>
+                  
+                    <dt>
+                      <span class="method-param">op</span> <span class="light fixedFont">DragOp</span> 
+                      
+                    </dt>
+                    <dd>The proposed drag operation. A drag constant.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">DragOp</span> </dt>
+                    <dd>Drag Operation actually performed</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

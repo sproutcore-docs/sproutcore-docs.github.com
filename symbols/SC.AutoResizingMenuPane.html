@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           Extends SC.MenuPane to add support for automatic resizing.
@@ -649,3 +649,221 @@
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="exampleView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>exampleView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The view class to use when creating new menu item views.</p>
+
+<p>The menu pane will automatically create an instance of the view class you
+set here for each item in the <code class='syntax js'><span class="variable">items</span></code> array. You may provide your own
+subclass for this property to display the customized content.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.AutoResizingMenuItemView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="menuWidthPadding"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>menuWidthPadding</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The amount to add to any calculated width.</p>
+
+<p>If no value is specified, it will be determined from the <code class='syntax js'><span class="variable">controlSize</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>menuWidthPadding from render delegate, or 0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="minimumMenuWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minimumMenuWidth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum width for this menu if it is to be automatically resized.</p>
+
+<p>If no value is specified, it will be determined from the <code class='syntax js'><span class="variable">controlSize</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>minimumMenuWidth from render delegate, or 0.</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="shouldAutoResize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>shouldAutoResize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, the menu should automatically resize its width to fit its items.</p>
+
+<p>This will swap out the default <code class='syntax js'><span class="class">SC</span>.<span class="class">MenuItemView</span>.</code> If you are using a custom
+<code class='syntax js'><span class="variable">exampleView</span></code>, you will need to mix <code class='syntax js'><span class="class">SC</span>.<span class="class">AutoResize</span></code> into your <code class='syntax js'><span class="variable">exampleView</span></code>
+and set <code class='syntax js'><span class="variable">shouldAutoResize</span></code> to <code class='syntax js'><span class="keyword">NO</span></code> (the actual resizing will be handled
+by <code class='syntax js'><span class="class">SC</span>.<span class="class">MenuPane</span>).</code></p>
+
+<p>This property must be set before instantiation; any changes after instantiation
+will not function properly.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

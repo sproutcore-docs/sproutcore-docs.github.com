@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>This is a simple undo manager. It manages groups of actions which return
@@ -784,3 +784,767 @@ undo actions.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#beginUndoGroup">beginUndoGroup(<span class="method-arguments">name</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#endUndoGroup">endUndoGroup(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#redo">redo(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#registerGroupedUndoAction">registerGroupedUndoAction(<span class="method-arguments">target, action, context, name</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#registerUndoAction">registerUndoAction(<span class="method-arguments">target, action, context, name</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#reset">reset(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#setActionName">setActionName(<span class="method-arguments">name</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.UndoManager.html#undo">undo(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="canRedo"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>canRedo</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if there is an redo action on the stack. Use to validate your menu item or enable
+your button.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="canUndo"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>canUndo</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if there is an undo action on the stack. Use to validate your menu item or enable
+your button.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isRedoing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isRedoing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isUndoing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isUndoing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="maxStackLength"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maxStackLength</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The maximum number of undo groups the receiver holds.
+The undo stack is unlimited by default.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="redoActionName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>redoActionName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If name arguments are passed into <code class='syntax js'><span class="variable">registerUndoAction</span></code> or related methods, then this property
+will expose the last redo action's name. You can use this to show the user what type of
+action will be redone (for example "Redo typing" or "Redo delete").</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="redoActionTimestamp"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>redoActionTimestamp</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Exposes the timestamp of the most recent redo action.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="undoActionName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>undoActionName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If name arguments are passed into <code class='syntax js'><span class="variable">registerUndoAction</span></code> or related methods, then this property
+will expose the last undo action's name. You can use this to show the user what type of action
+will be undone (for example "typing" or "delete").</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="undoActionTimestamp"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>undoActionTimestamp</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.DateTime.html">SC.DateTime</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Exposes the timestamp of the most recent undo action.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="beginUndoGroup"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">beginUndoGroup(<span class="method-arguments">name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Begins a new undo group.</p>
+
+<p>Whenever you start an action that you expect to need to bundle under a single
+undo action in the menu, you should begin an undo group.  This way any
+undo actions registered by other parts of the application will be
+automatically bundled into this one action.</p>
+
+<p>When you are finished performing the action, balance this with a call to
+<code class='syntax js'><span class="variable">endUndoGroup</span>()</code>. (You can call <code class='syntax js'><span class="variable">undo</span></code> or <code class='syntax js'><span class="variable">redo</span></code> with an open group; the group
+will simply be closed and processed as normal.)</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">name</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="endUndoGroup"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">endUndoGroup(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Ends a group of undo functions. All functions in an undo group will be undone or redone
+together when <code class='syntax js'><span class="variable">undo</span></code> or <code class='syntax js'><span class="variable">redo</span></code> is called.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>beginUndoGroup()</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="redo"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">redo(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Tries to redo the last action. Fails if a redo group is currently open.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if succeeded, NO otherwise.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="registerGroupedUndoAction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">registerGroupedUndoAction(<span class="method-arguments">target, action, context, name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Registers an undo action to the current group. If no group is open, opens a new
+one.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The action's target (`this`).</dd>
+                  
+                    <dt>
+                      <span class="method-param">action</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>The method on `target` to be called.</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The context passed to the action when called.</dd>
+                  
+                    <dt>
+                      <span class="method-param">name</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>An optional human-readable name for the undo action. Sets or
+      changes the current group's name.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="registerUndoAction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">registerUndoAction(<span class="method-arguments">target, action, context, name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Registers an undo action. If called while an undo is in progress (i.e. from your
+undo method, or from observers which it triggers), registers a redo action instead.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The action's target (`this`).</dd>
+                  
+                    <dt>
+                      <span class="method-param">action</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>The method on `target` to be called.</dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The context passed to the action when called.</dd>
+                  
+                    <dt>
+                      <span class="method-param">name</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>An optional human-readable name for the undo action.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="reset"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reset(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Resets the undo and redo stacks.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="setActionName"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">setActionName(<span class="method-arguments">name</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Change the name of the current undo group.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">name</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="undo"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">undo(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Tries to undo the last action. Fails if an undo group is currently open.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if succeeded, NO otherwise.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

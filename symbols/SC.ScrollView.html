@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Implements a complete scroll view. SproutCore implements its own JS-based scrolling in order
@@ -882,3 +882,2477 @@ OS X-style fading overlaid scrollers, you can use the following:</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.View.html">SC.View</a>: </dt>
+              <dd><a href="../symbols/SC.View.html#acceptsFirstResponder">acceptsFirstResponder</a>, <a href="../symbols/SC.View.html#ariaHidden">ariaHidden</a>, <a href="../symbols/SC.View.html#ariaRole">ariaRole</a>, <a href="../symbols/SC.View.html#attributeBindings">attributeBindings</a>, <a href="../symbols/SC.View.html#autoMixins">autoMixins</a>, <a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViewLayout">childViewLayout</a>, <a href="../symbols/SC.View.html#childViewLayoutOptions">childViewLayoutOptions</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNameBindings">classNameBindings</a>, <a href="../symbols/SC.View.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.View.html#createdByParent">createdByParent</a>, <a href="../symbols/SC.View.html#designMode">designMode</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#enabledState">enabledState</a>, <a href="../symbols/SC.View.html#firstKeyView">firstKeyView</a>, <a href="../symbols/SC.View.html#hasLayout">hasLayout</a>, <a href="../symbols/SC.View.html#hasTouch">hasTouch</a>, <a href="../symbols/SC.View.html#hasVisibility">hasVisibility</a>, <a href="../symbols/SC.View.html#isBuildingIn">isBuildingIn</a>, <a href="../symbols/SC.View.html#isBuildingOut">isBuildingOut</a>, <a href="../symbols/SC.View.html#isChildViewLayoutLive">isChildViewLayoutLive</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isFixedHeight">isFixedHeight</a>, <a href="../symbols/SC.View.html#isFixedPosition">isFixedPosition</a>, <a href="../symbols/SC.View.html#isFixedSize">isFixedSize</a>, <a href="../symbols/SC.View.html#isFixedWidth">isFixedWidth</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#lastKeyView">lastKeyView</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#modeAdjust">modeAdjust</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#renderDelegateName">renderDelegateName</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#shouldInheritEnabled">shouldInheritEnabled</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#themeName">themeName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#transitionAdjust">transitionAdjust</a>, <a href="../symbols/SC.View.html#transitionAdjustOptions">transitionAdjustOptions</a>, <a href="../symbols/SC.View.html#transitionHide">transitionHide</a>, <a href="../symbols/SC.View.html#transitionHideOptions">transitionHideOptions</a>, <a href="../symbols/SC.View.html#transitionIn">transitionIn</a>, <a href="../symbols/SC.View.html#transitionInOptions">transitionInOptions</a>, <a href="../symbols/SC.View.html#transitionOut">transitionOut</a>, <a href="../symbols/SC.View.html#transitionOutOptions">transitionOutOptions</a>, <a href="../symbols/SC.View.html#transitionShow">transitionShow</a>, <a href="../symbols/SC.View.html#transitionShowOptions">transitionShowOptions</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Responder.html">SC.Responder</a>: </dt>
+              <dd><a href="../symbols/SC.Responder.html#hasFirstResponder">hasFirstResponder</a>, <a href="../symbols/SC.Responder.html#isFirstResponder">isFirstResponder</a>, <a href="../symbols/SC.Responder.html#responderContext">responderContext</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollBy">scrollBy(<span class="method-arguments">x, y</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollDownLine">scrollDownLine(<span class="method-arguments">lines</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollDownPage">scrollDownPage(<span class="method-arguments">pages</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollLeftLine">scrollLeftLine(<span class="method-arguments">lines</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollLeftPage">scrollLeftPage(<span class="method-arguments">pages</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollRightLine">scrollRightLine(<span class="method-arguments">lines</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollRightPage">scrollRightPage(<span class="method-arguments">pages</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollTo">scrollTo(<span class="method-arguments">x, y</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollToRect">scrollToRect(<span class="method-arguments">rect</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollToVisible">scrollToVisible(<span class="method-arguments">view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollUpLine">scrollUpLine(<span class="method-arguments">lines</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#scrollUpPage">scrollUpPage(<span class="method-arguments">pages</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ScrollView.html#touchStart">touchStart(<span class="method-arguments">touch</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="acceptsMultitouch"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>acceptsMultitouch</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd>SC.View.prototype.acceptsMultitouch</dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="autohidesHorizontalScroller"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>autohidesHorizontalScroller</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If true, the horizontal scroller will automatically hide if the <code class='syntax js'><span class="variable">contentView</span></code> is smaller than the
+visible area.  The <code class='syntax js'><span class="variable">hasHorizontalScroller</span></code> property must be set to true in order for this property
+to have any effect.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="autohidesVerticalScroller"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>autohidesVerticalScroller</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If true, the vertical scroller will automatically hide if the <code class='syntax js'><span class="variable">contentView</span></code> is smaller than the
+visible area.  The <code class='syntax js'><span class="variable">hasVerticalScroller</span></code> property must be set to true in order for this property
+to have any effect.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="canScale"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>canScale</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Determines whether scaling is allowed.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>false</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="canScrollHorizontal"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>canScrollHorizontal</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Returns true if the view has both a horizontal scroller and the scroller is visible.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="canScrollVertical"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          <div class="field-readonly">Read Only</div>
+
+          <span class="property"><b>canScrollVertical</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Returns true if the view has both a vertical scroller and the scroller is visible.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="classNames"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>classNames</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>['sc-scroll-view']</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.View.html#classNames">SC.View#classNames</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="containerView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>containerView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.ContainerView.html">SC.ContainerView</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The container view that will wrap your content view.  You can replace this property with your own
+custom class if you prefer.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ContainerView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="contentView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>contentView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The content view you want the scroll view to manage.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="decelerationRate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>decelerationRate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The scroll deceleration rate.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.SCROLL.DRAG_SCROLL_DECELERATION</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="fadeOutDelay"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>fadeOutDelay</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Determines how long (in seconds) scrollbars wait before fading out.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0.4</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="hasHorizontalScroller"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasHorizontalScroller</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if the view should maintain a horizontal scroller.   This property must be set when the
+view is created.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="hasVerticalScroller"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasVerticalScroller</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if the view should maintain a vertical scroller.   This property must be set when the
+view is created.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalAlign"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalAlign</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The horizontal alignment for non-filling content inside of the ScrollView. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_RIGHT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_CENTER</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_CENTER</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalFade"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalFade</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines whether the horizontal scroller should fade out while in overlay mode. Has no effect
+if <code class='syntax js'><span class="variable">horizontalOverlay</span></code> is set to false.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalLineScroll"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalLineScroll</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Amount to scroll one horizontal line.</p>
+
+<p>Used by the default implementation of <code class='syntax js'><span class="variable">scrollLeftLine</span></code>() and
+<code class='syntax js'><span class="variable">scrollRightLine</span></code>().</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>20</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalOverlay"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalOverlay</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Use this to overlay the horizontal scroller.</p>
+
+<p>This ensures that the content container will not resize to accommodate the horizontal scroller,
+hence overlaying the scroller on top of the container.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalPageScroll"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalPageScroll</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Amount to scroll one horizontal page.</p>
+
+<p>Used by the default implementation of <code class='syntax js'><span class="variable">scrollLeftPage</span></code>() and <code class='syntax js'><span class="variable">scrollRightPage</span></code>().</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>value of frame.width</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalScrollerLayout"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalScrollerLayout</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Use to control the positioning of the horizontal scroller. If you do not set 'horizontalOverlay' to
+true, then the content view will be automatically sized to meet the left edge of the vertical
+scroller, wherever it may be.</p>
+
+<p>This allows you to easily, for example, have “one pixel higher and one pixel lower” scroll bars
+that blend into their parent views.</p>
+
+<p>If you do set 'horizontalOverlay' to true, then the scroller view will “float on top” of the content view.</p>
+
+<p>Example: { left: -1, bottom: 0, right: -1 }</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalScrollerView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalScrollerView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The horizontal scroller view class. This will be replaced with a view instance when the
+ScrollView is created unless <code class='syntax js'><span class="variable">hasHorizontalScroller</span></code> is false.</p>
+
+<p>If <code class='syntax js'><span class="variable">horizontalOverlay</span></code> is <code class='syntax js'><span class="variable">true</span></code>, the default view used will be an <code class='syntax js'><span class="class">SC</span>.<span class="class">OverlayScrollerView</span></code>,
+otherwise <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollerView</span></code> will be used.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ScrollerView | SC.OverlayScrollerView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="horizontalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>horizontalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current horizontal scroll offset. Changing this value will update both the position of the
+<code class='syntax js'><span class="variable">contentView</span></code> and the horizontal scroller, if there is one.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="initialHorizontalAlign"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>initialHorizontalAlign</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Your content view's initial horizontal alignment, if wider than the container. This allows you to e.g.
+center the content view when zoomed out, but begin with it zoomed in and left-aligned. If not specified,
+defaults to value of <code class='syntax js'><span class="variable">horizontalAlign</span></code>. May be:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_RIGHT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_CENTER</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_LEFT</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="initialVerticalAlign"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>initialVerticalAlign</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Your content view's initial vertical alignment, if taller than the container. This allows you to e.g.
+center the content view when zoomed out, but begin with it zoomed in and top-aligned. If not specified,
+defaults to the value of <code class='syntax js'><span class="variable">verticalAlign</span></code>. May be:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_TOP</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_BOTTOM</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_MIDDLE</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_TOP</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isHorizontalScrollerVisible"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isHorizontalScrollerVisible</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if the horizontal scroller should be visible. You can change this property value anytime to
+show or hide the horizontal scroller.  If you do not want to use a horizontal scroller at all, you
+should instead set <code class='syntax js'><span class="variable">hasHorizontalScroller</span></code> to false to avoid creating a scroller view in the first
+place.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isScrollable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isScrollable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isVerticalScrollerVisible"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isVerticalScrollerVisible</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>True if the vertical scroller should be visible. You can change this property value anytime to
+show or hide the vertical scroller.  If you do not want to use a vertical scroller at all, you
+should instead set <code class='syntax js'><span class="variable">hasVerticalScroller</span></code> to false to avoid creating a scroller view in the first
+place.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="maximumHorizontalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maximumHorizontalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The maximum horizontal scroll offset allowed given the current <code class='syntax js'><span class="variable">contentView</span></code> size and the size of
+the scroll view.  If horizontal scrolling is disabled, this will always return 0.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="maximumScale"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maximumScale</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The maximum scale.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>2.0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="maximumVerticalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maximumVerticalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The maximum vertical scroll offset allowed given the current <code class='syntax js'><span class="variable">contentView</span></code> size and the size of
+the scroll view.  If vertical scrolling is disabled, this will always return 0 (or whatever
+alignment dictates).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="minimumHorizontalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minimumHorizontalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum horizontal scroll offset allowed given the current <code class='syntax js'><span class="variable">contentView</span></code> size and the size of
+the scroll view.  If horizontal scrolling is disabled, this will always return 0 (or whatever alignment dictates).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="minimumScale"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minimumScale</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The minimum scale.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0.25</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="minimumVerticalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minimumVerticalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum vertical scroll offset allowed given the current <code class='syntax js'><span class="variable">contentView</span></code> size and the size of
+the scroll view.  If vertical scrolling is disabled, this will always return 0 (or whatever alignment dictates).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="scale"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>scale</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current scale. Setting this will adjust the scale of the <code class='syntax js'><span class="variable">contentView</span></code>.</p>
+
+<p>If the <code class='syntax js'><span class="variable">contentView</span></code> implements the <code class='syntax js'><span class="class">SC</span>.<span class="class">Scalable</span></code> protocol, it will instead pass the scale to the <code class='syntax js'><span class="variable">contentView</span></code>'s
+<code class='syntax js'><span class="variable">applyScale</span></code> method instead.</p>
+
+<p>Note that on platforms that allow bounce, setting scale outside of the minimum/maximumScale bounds will
+result in a bounce. It is up to the developer to alert this view when the action is over and it should
+bounce back.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>1.0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="scaleGestureThreshold"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>scaleGestureThreshold</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This determines how much a gesture must pinch or spread apart (in pixels) before it is registered as a scale action.</p>
+
+<p>You can change this value for all instances of <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollView</span></code> in your application by overriding
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SCROLL</span>.<span class="class">SCALE_GESTURE_THRESHOLD</span></code> at launch time.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.SCROLL.SCALE_GESTURE_THRESHOLD</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="scrollGestureThreshold"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>scrollGestureThreshold</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This determines how far (in pixels) a gesture must move before it is registered as a scroll.</p>
+
+<p>You can change this value for all instances of <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollView</span></code> in your application by overriding
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SCROLL</span>.<span class="class">SCROLL_THRESHOLD</span></code> at launch time.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.SCROLL.SCROLL_GESTURE_THRESHOLD</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="scrollLockGestureThreshold"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>scrollLockGestureThreshold</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Once a vertical or horizontal scroll has been triggered, this determines how far (in pixels) the gesture
+must move on the other axis to trigger a two-axis scroll. If your scroll view's content is omnidirectional
+(e.g. a map) you should set this value to 0.</p>
+
+<p>You can change this value for all instances of <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollView</span></code> in your application by overriding
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SCROLL</span>.<span class="class">SCROLL_LOCK_GESTURE_THRESHOLD</span></code> at launch time.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.SCROLL.SCROLL_LOCK_GESTURE_THRESHOLD</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalAlign"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalAlign</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The vertical alignment for non-filling content inside of the ScrollView. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_TOP</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_BOTTOM</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_MIDDLE</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_TOP</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalFade"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalFade</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines whether the vertical scroller should fade out while in overlay mode. Has no effect if
+<code class='syntax js'><span class="variable">verticalOverlay</span></code> is set to false.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalLineScroll"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalLineScroll</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Amount to scroll one vertical line.</p>
+
+<p>Used by the default implementation of <code class='syntax js'><span class="variable">scrollDownLine</span></code>() and <code class='syntax js'><span class="variable">scrollUpLine</span></code>().</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>20</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalOverlay"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalOverlay</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Use this to overlay the vertical scroller.</p>
+
+<p>This ensures that the content container will not resize to accommodate the vertical scroller,
+hence overlaying the scroller on top of the container.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalPageScroll"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalPageScroll</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Amount to scroll one vertical page.</p>
+
+<p>Used by the default implementation of <code class='syntax js'><span class="variable">scrollUpPage</span></code>() and <code class='syntax js'><span class="variable">scrollDownPage</span></code>().</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>value of frame.height</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalScrollerLayout"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalScrollerLayout</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Use to control the positioning of the vertical scroller. If you do not set 'verticalOverlay' to
+true, then the content view will be automatically sized to meet the left edge of the vertical
+scroller, wherever it may be.</p>
+
+<p>This allows you to easily, for example, have “one pixel higher and one pixel lower” scroll bars
+that blend into their parent views.</p>
+
+<p>If you do set 'verticalOverlay' to true, then the scroller view will “float on top” of the content view.</p>
+
+<p>Example: { top: -1, bottom: -1, right: 0 }</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalScrollerView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalScrollerView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The vertical scroller view class. This will be replaced with a view instance when the
+ScrollView is created unless <code class='syntax js'><span class="variable">hasVerticalScroller</span></code> is false.</p>
+
+<p>If <code class='syntax js'><span class="variable">verticalOverlay</span></code> is <code class='syntax js'><span class="variable">true</span></code>, the default view used will be an <code class='syntax js'><span class="class">SC</span>.<span class="class">OverlayScrollerView</span></code>,
+otherwise <code class='syntax js'><span class="class">SC</span>.<span class="class">ScrollerView</span></code> will be used.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ScrollerView | SC.OverlayScrollerView</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="verticalScrollOffset"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>verticalScrollOffset</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The current vertical scroll offset. Changing this value will update both the position of the
+<code class='syntax js'><span class="variable">contentView</span></code> and the vertical scroller, if there is one.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>0</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                SC.Object.prototype
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="scrollBy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollBy(<span class="method-arguments">x, y</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver in the horizontal and vertical directions by the amount specified, if
+allowed.  The actual scroll amount will be constrained by the current scroll minimums and
+maximums. (If you wish to scroll outside of those bounds, you should call <code class='syntax js'><span class="variable">scrollTo</span></code> directly.)</p>
+
+<p>If you only want to scroll in one direction, pass null or 0 for the other direction.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">x</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>change in the x direction (or hash)</dd>
+                  
+                    <dt>
+                      <span class="method-param">y</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>change in the y direction</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollDownLine"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollDownLine(<span class="method-arguments">lines</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver down one or more lines if allowed.  If number of
+lines is not specified, scrolls one line.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">lines</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollDownPage"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollDownPage(<span class="method-arguments">pages</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver down one or more page if allowed.  If number of
+pages is not specified, scrolls one page.  The page size is determined by
+the <code class='syntax js'><span class="variable">verticalPageScroll</span></code> value.  By default this is the size of the current
+scrollable area.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">pages</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollLeftLine"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollLeftLine(<span class="method-arguments">lines</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver left one or more lines if allowed.  If number of
+lines is not specified, scrolls one line.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">lines</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollLeftPage"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollLeftPage(<span class="method-arguments">pages</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver left one or more page if allowed.  If number of
+pages is not specified, scrolls one page.  The page size is determined by
+the <code class='syntax js'><span class="variable">verticalPageScroll</span></code> value.  By default this is the size of the current
+scrollable area.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">pages</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollRightLine"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollRightLine(<span class="method-arguments">lines</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver right one or more lines if allowed.  If number of
+lines is not specified, scrolls one line.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">lines</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollRightPage"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollRightPage(<span class="method-arguments">pages</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver right one or more page if allowed.  If number of
+pages is not specified, scrolls one page.  The page size is determined by
+the <code class='syntax js'><span class="variable">verticalPageScroll</span></code> value.  By default this is the size of the current
+scrollable area.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">pages</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollTo"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollTo(<span class="method-arguments">x, y</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls to the specified x,y coordinates.  This should be the offset into the <code class='syntax js'><span class="variable">contentView</span></code> that
+you want to appear at the top-left corner of the scroll view.</p>
+
+<p>This method will contain the actual scroll based on whether the view can scroll in the named
+direction and the maximum distance it can scroll.</p>
+
+<p>If you only want to scroll in one direction, pass null for the other direction.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">x</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the x scroll location</dd>
+                  
+                    <dt>
+                      <span class="method-param">y</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the y scroll location</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollToRect"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollToRect(<span class="method-arguments">rect</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scroll to the supplied rectangle.</p>
+
+<p>If the rectangle is bigger than the viewport, the top-left
+will be preferred.</p>
+
+<p>(Note that if your content is scaled, the rectangle must be
+relative to the <code class='syntax js'><span class="variable">contentView</span></code>'s scale, not the ScrollView's.)</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">rect</span> <span class="light fixedFont">Rect</span> 
+                      
+                    </dt>
+                    <dd>Rectangle to which to scroll.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if scroll position was changed.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollToVisible"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollToVisible(<span class="method-arguments">view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scroll the view to make the view's frame visible.  For this to make sense,
+the view should be a subview of the <code class='syntax js'><span class="variable">contentView</span></code>.  Otherwise the results
+will be undefined.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>view to scroll or null to scroll receiver visible</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if scroll position was changed</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollUpLine"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollUpLine(<span class="method-arguments">lines</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver up one or more lines if allowed.  If number of
+lines is not specified, scrolls one line.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">lines</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="scrollUpPage"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scrollUpPage(<span class="method-arguments">pages</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Scrolls the receiver up one or more page if allowed.  If number of
+pages is not specified, scrolls one page.  The page size is determined by
+the <code class='syntax js'><span class="variable">verticalPageScroll</span></code> value.  By default this is the size of the current
+scrollable area.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">pages</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of lines</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ScrollView.html">SC.ScrollView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="touchStart"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchStart(<span class="method-arguments">touch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

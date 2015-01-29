@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A <code class='syntax js'><span class="class">ManyArray</span></code> is used to map an array of record ids back to their
@@ -669,3 +669,660 @@ behavior of ManyArray by passing settings to the <code class='syntax js'><span c
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Enumerable.html">SC.Enumerable</a>: </dt>
+              <dd><a href="../symbols/SC.Enumerable.html#isEnumerable">isEnumerable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Array.html">SC.Array</a>: </dt>
+              <dd><a href="../symbols/SC.Array.html#isSCArray">isSCArray</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#addInverseRecord">addInverseRecord(<span class="method-arguments">inverseRecord</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#editableStoreIds">editableStoreIds(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#inverse">inverse(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#isEditable">isEditable(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#isMaster">isMaster(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#orderBy">orderBy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#readOnlyStoreIds">readOnlyStoreIds(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#removeInverseRecord">removeInverseRecord(<span class="method-arguments">inverseRecord</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#store">store(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#storeKey">storeKey(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#toString">toString(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ManyArray.html#updateNewRecordId">updateNewRecordId(<span class="method-arguments">rec</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="manyAttribute"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>manyAttribute</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.ManyAttribute.html">SC.ManyAttribute</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The `ManyAttribute` that created this array.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="propertyName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>propertyName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If set will be used by the many array to get an editable version of the
+<code class='syntax js'><span class="variable">storeIds</span></code> from the owner.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="record"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>record</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Record.html">SC.Record</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If set, the record will be notified whenever the array changes so that
+it can change its own state</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="recordType"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>recordType</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p><code class='syntax js'><span class="variable">recordType</span></code> will tell what type to transform the record to when
+materializing the record.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="supportNewRecords"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>supportNewRecords</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines whether the new record (i.e. unsaved) support should be enabled
+or not.</p>
+
+<p>Normally, all records in the many array should already have been previously
+committed to a remote data store and have an actual <code class='syntax js'><span class="variable">id</span></code>. However, with
+<code class='syntax js'><span class="variable">supportNewRecords</span></code> set to true, adding records without an <code class='syntax js'><span class="variable">id</span></code>to the many
+array will assign unique temporary ids to the new records.
+Note:* You must update the many array after the new records are successfully
+committed and have real ids. This is done by calling <code class='syntax js'><span class="variable">updateNewRecordId</span>()</code>
+on the many array. In the future this should be automatic.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>false</dd>
+              
+              
+              
+                <dt class="heading">Since:</dt>
+                <dd>SproutCore 1.11.0</dd>
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="addInverseRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">addInverseRecord(<span class="method-arguments">inverseRecord</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the <code class='syntax js'><span class="class">ManyAttribute</span></code> whenever a record is added on the inverse
+of the relationship.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>the record this array is a part of</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ManyArray.html">SC.ManyArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="editableStoreIds"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">editableStoreIds(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns an editable array of <code class='syntax js'><span class="variable">storeId</span></code>s.  Marks the owner records as
+modified.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="inverse"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">inverse(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Computed from owner many attribute
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isEditable"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isEditable(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Computed from owner many attribute
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="isMaster"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">isMaster(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Computed from owner many attribute
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="orderBy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">orderBy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Computed from owner many attribute
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="readOnlyStoreIds"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">readOnlyStoreIds(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the <code class='syntax js'><span class="variable">storeId</span></code>s in read-only mode.  Avoids modifying the record
+unnecessarily.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="removeInverseRecord"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">removeInverseRecord(<span class="method-arguments">inverseRecord</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by the <code class='syntax js'><span class="class">ManyAttribute</span></code> whenever a record is removed on the inverse
+of the relationship.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">inverseRecord</span> <span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> 
+                      
+                    </dt>
+                    <dd>the record that was removed</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ManyArray.html">SC.ManyArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="store"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">store(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The store that owns this record array.  All record arrays must have a
+store to function properly.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="storeKey"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">storeKey(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The <code class='syntax js'><span class="variable">storeKey</span></code> for the parent record of this many array.  Editing this
+array will place the parent record into a <code class='syntax js'><span class="class">READY_DIRTY</span></code> state.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="toString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toString(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="updateNewRecordId"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">updateNewRecordId(<span class="method-arguments">rec</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this when a new record that was added to the many array previously
+has been committed and now has a proper <code class='syntax js'><span class="variable">id</span></code>. This will fix up the temporary
+id that was used to allow the new record to be a part of this many array.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">rec</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

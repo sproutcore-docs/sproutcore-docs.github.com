@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Implements basic target + action support for views. To use, simply set the <code class='syntax js'><span class="variable">action</span></code> property on
@@ -707,3 +707,350 @@ passed to <code class='syntax js'><span class="variable">fireAction</span>()</co
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ActionSupport.html#fireAction">fireAction(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ActionSupport.html#initMixin">initMixin(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="action"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>action</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The name of the method to call when <code class='syntax js'><span class="variable">fireAction</span></code> is called.</p>
+
+<p>This property is used in conjunction with the <code class='syntax js'><span class="variable">target</span></code> property to execute a method when
+<code class='syntax js'><span class="variable">fireAction</span></code> is called. If you do not specify a target, then the responder chain will be
+searched for a view that implements the named action. If you do set a target, then the button
+will only try to call the method on that target.</p>
+
+<p>The action method of the target should implement the following signature:</p>
+
+<pre><code class='syntax js'><span class="variable">methodName</span>: <span class="keyword">function</span> (<span class="variable">sender</span>, <span class="variable">context</span>) {
+  <span class="keyword">return</span>; <span class="comment">// Optional: return a value to the sender.</span>
+}
+</code></pre>
+
+<h3 id="supportingmultipleactions">Supporting multiple actions</h3>
+
+<p>The most correct way to handle variable properties in SproutCore is to use a computed property.
+For example, imagine if the action depended on a property, <code class='syntax js'><span class="variable">isReady</span></code>. While we could set
+<code class='syntax js'><span class="variable">action</span></code> accordingly each time prior to calling <code class='syntax js'><span class="variable">fireAction</span>()</code> like so,</p>
+
+<pre><code class='syntax js'><span class="variable">mouseUp</span>: <span class="keyword">function</span> () {
+  <span class="keyword">var</span> <span class="variable">isReady</span> = <span class="this">this</span>.<span class="variable">get</span>(<span class="string">'isReady'</span>);
+
+  <span class="keyword">if</span> (<span class="variable">isReady</span>) {
+    <span class="this">this</span>.<span class="variable">set</span>(<span class="string">'action'</span>, <span class="string">'doReadyAction'</span>);
+  } <span class="keyword">else</span> {
+    <span class="this">this</span>.<span class="variable">set</span>(<span class="string">'action'</span>, <span class="string">'doNotReadyAction'</span>);
+  }
+
+  <span class="this">this</span>.<span class="variable">fireAction</span>();
+}
+</code></pre>
+
+<p>This is a bit wasteful (imagine <code class='syntax js'><span class="variable">isReady</span></code> doesn't change very often) and leaves <code class='syntax js'><span class="variable">action</span></code> in
+an improper state (i.e. what if <code class='syntax js'><span class="variable">isReady</span></code> changes without a call to <code class='syntax js'><span class="variable">mouseUp</span></code>, then <code class='syntax js'><span class="variable">action</span></code> is
+incorrect for any code that may reference it).</p>
+
+<p>The better approach is to make <code class='syntax js'><span class="variable">action</span></code> a computed property dependent on <code class='syntax js'><span class="variable">isReady</span></code>.</p>
+
+<p>For example, the previous example would be better as,</p>
+
+<pre><code class='syntax js'><span class="variable">action</span>: <span class="keyword">function</span> () {
+  <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">get</span>(<span class="string">'isReady'</span>) ? <span class="string">'doReadyAction'</span> : <span class="string">'doNotReadyAction'</span>;
+}.<span class="variable">property</span>(<span class="string">'isReady'</span>), <span class="comment">// .cacheable() - optional to cache the result (consider memory used to cache result vs. computation time to compute result)</span>
+
+<span class="variable">mouseUp</span>: <span class="keyword">function</span> () {
+  <span class="this">this</span>.<span class="variable">fireAction</span>(); <span class="comment">// Fires with current value of `action`.</span>
+}
+</code></pre>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="actionContext"> </a>
+          <!-- If the field is deprecated. -->
+          <div class="field-deprecated">Deprecated: Version 1.11.0. Please specify `context` argument when calling fireAction method.</div>
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>actionContext</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="target"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>target</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The target to invoke the action on when <code class='syntax js'><span class="variable">fireAction</span></code> is called.</p>
+
+<p>If you set this target, the action will be called on the target object directly when the button
+is clicked.  If you leave this property set to <code class='syntax js'><span class="keyword">null</span></code>, then the responder chain will be
+searched for a view that implements the action when the button is pressed.</p>
+
+<p>The action method of the target should implement the following signature:</p>
+
+<pre><code class='syntax js'><span class="variable">methodName</span>: <span class="keyword">function</span> (<span class="variable">sender</span>, <span class="variable">context</span>) {
+  <span class="keyword">return</span>; <span class="comment">// Optional: return a value to the sender.</span>
+}
+</code></pre>
+
+<h3 id="supportingmultipletargets">Supporting multiple targets</h3>
+
+<p>The most correct way to handle variable properties in SproutCore is to use a computed property.
+For example, imagine if the target depended on a property, <code class='syntax js'><span class="variable">isReady</span></code>. While we could set
+<code class='syntax js'><span class="variable">target</span></code> accordingly each time prior to calling <code class='syntax js'><span class="variable">fireAction</span>()</code> like so,</p>
+
+<pre><code class='syntax js'><span class="variable">mouseUp</span>: <span class="keyword">function</span> () {
+  <span class="keyword">var</span> <span class="variable">isReady</span> = <span class="this">this</span>.<span class="variable">get</span>(<span class="string">'isReady'</span>);
+
+  <span class="keyword">if</span> (<span class="variable">isReady</span>) {
+    <span class="this">this</span>.<span class="variable">set</span>(<span class="string">'target'</span>, <span class="class">MyApp</span>.<span class="variable">readyTarget</span>);
+  } <span class="keyword">else</span> {
+    <span class="this">this</span>.<span class="variable">set</span>(<span class="string">'target'</span>, <span class="class">MyApp</span>.<span class="variable">notReadyTarget</span>);
+  }
+
+  <span class="this">this</span>.<span class="variable">fireAction</span>();
+}
+</code></pre>
+
+<p>This is a bit wasteful (imagine <code class='syntax js'><span class="variable">isReady</span></code> doesn't change very often) and leaves <code class='syntax js'><span class="variable">target</span></code> in
+an improper state (i.e. what if <code class='syntax js'><span class="variable">isReady</span></code> changes without a call to <code class='syntax js'><span class="variable">mouseUp</span></code>, then <code class='syntax js'><span class="variable">target</span></code> is
+incorrect for any code that may reference it).</p>
+
+<p>The better approach is to make <code class='syntax js'><span class="variable">target</span></code> a computed property dependent on <code class='syntax js'><span class="variable">isReady</span></code>.</p>
+
+<p>For example, the previous example would be better as,</p>
+
+<pre><code class='syntax js'><span class="variable">target</span>: <span class="keyword">function</span> () {
+  <span class="keyword">return</span> <span class="this">this</span>.<span class="variable">get</span>(<span class="string">'isReady'</span>) ? <span class="class">MyApp</span>.<span class="variable">readyTarget</span> : <span class="class">MyApp</span>.<span class="variable">notReadyTarget</span>;
+}.<span class="variable">property</span>(<span class="string">'isReady'</span>), <span class="comment">// .cacheable() - optional to cache the result (consider memory used to cache result vs. computation time to compute result)</span>
+
+<span class="variable">mouseUp</span>: <span class="keyword">function</span> () {
+  <span class="this">this</span>.<span class="variable">fireAction</span>(); <span class="comment">// Fires with current value of `target`.</span>
+}
+</code></pre>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="fireAction"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fireAction(<span class="method-arguments"><span style="font-style: italic;">context</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Perform the current action on the current target with the given context. If no target is set,
+then the responder chain will be searched for an object that implements the action.</p>
+
+<p>You can pass the <code class='syntax js'><span class="variable">context</span></code> parameter, which is useful in order to provide additional
+information to the target, such as the current state of the sender when the action was
+triggered.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>additional context information to pass to the target</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>true if successful; false otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="initMixin"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">initMixin(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

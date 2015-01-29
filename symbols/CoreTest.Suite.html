@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A test Suite defines a group of reusable unit tests that can be added to a 
@@ -698,3 +698,527 @@ as their first parameter when invoked.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#create">create(<span class="method-arguments">attrs, attrs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#define">define(<span class="method-arguments">func</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#desc">desc(<span class="method-arguments">str</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#destroyObject">destroyObject(<span class="method-arguments">obj</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#generate">generate(<span class="method-arguments">desc, attrs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#module">module(<span class="method-arguments">desc</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#newObject">newObject(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#setup">setup(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/CoreTest.Suite.html#teardown">teardown(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="basedesc"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>basedesc</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The base description string.  This should accept two formatting options,
+a sub description and a detailed description.  This is the description
+set when you call extend()</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="definitions"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>definitions</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Definition functions.  These are invoked in order when  you generate a 
+suite to add unit tests and modules to the test plan.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="create"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">create(<span class="method-arguments">attrs, attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this method to define a new test suite.  Pass one or more hashes of
+properties you want added to the new suite.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> <span class="light fixedFont">Hash</span> 
+                      
+                    </dt>
+                    <dd>one or more attribute hashes</dd>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/CoreTest.Suite.html">CoreTest.Suite</a></span> </dt>
+                    <dd>subclass of suite.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="define"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">define(<span class="method-arguments">func</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Adds the passed function to the array of definitions that will be invoked
+when the suite is generated.</p>
+
+<p>The passed function should expect to have the TestSuite instance passed
+as the first and only parameter.  The function should actually define 
+a module and tests, which will be added to the test suite.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">func</span> <span class="light fixedFont"><a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>definition function</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/CoreTest.Suite.html">CoreTest.Suite</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="desc"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">desc(<span class="method-arguments">str</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a module description by merging the based description, sub 
+description and the passed description.  This is usually used inside of 
+a suite definition function.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">str</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>detailed description for this module</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd>generated description</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="destroyObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">destroyObject(<span class="method-arguments">obj</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Default method to destroy a generated object instance after a test has 
+completed.  If you override <code class='syntax js'><span class="variable">newObject</span></code>() you can also override this method
+to cleanup the object you just created.</p>
+
+<p>Default method does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">obj</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="generate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">generate(<span class="method-arguments">desc, attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generate a new test suite instance, adding the suite definitions to the 
+current test plan.  Pass a description of the test suite as well as one or
+more attribute hashes to apply to the test plan.</p>
+
+<p>The description you add will be prefixed in front of the 'desc' property
+on the test plan itself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">desc</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>suite description</dd>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> <span class="light fixedFont">Hash</span> 
+                      
+                    </dt>
+                    <dd>one or more attribute hashes</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/CoreTest.Suite.html">CoreTest.Suite</a></span> </dt>
+                    <dd>suite instance</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="module"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">module(<span class="method-arguments">desc</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Generates a default module with the description you provide.  This is 
+a convenience function for use inside of a definition function.  You could
+do the same thing by calling:</p>
+
+<pre><code class='syntax js'><span class="keyword">var</span> <span class="class">T</span> = <span class="this">this</span> ;
+<span class="variable">module</span>(<span class="class">T</span>.<span class="variable">desc</span>(<span class="variable">description</span>), {
+  <span class="variable">setup</span>: <span class="keyword">function</span>() { <span class="class">T</span>.<span class="variable">setup</span>(); },
+  <span class="variable">teardown</span>: <span class="keyword">function</span>() { <span class="class">T</span>.<span class="variable">teardown</span>(); }
+}
+</code></pre>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">desc</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>detailed description</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/CoreTest.Suite.html">CoreTest.Suite</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="newObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">newObject(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Default method to create a new object instance.  You will probably want
+to override this method when you generate() a suite with a function that
+can generate the type of object you want to test.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>generated object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="setup"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">setup(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Default setup method for use with modules.  This method will call the
+<code class='syntax js'><span class="variable">newObject</span></code>() method and set its return value on the object property of 
+the receiver.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="teardown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">teardown(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Default teardown method for use with modules.  This method will call the
+<code class='syntax js'><span class="variable">destroyObject</span></code>() method, passing the current object property on the 
+receiver.  It will also clear the object property.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

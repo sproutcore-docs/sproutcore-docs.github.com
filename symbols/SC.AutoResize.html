@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Use this mixin to make your view automatically resize based upon its value,
@@ -726,3 +726,798 @@ rather than the user of <code class='syntax js'><span class="class">SC</span>.<s
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.applyAttributesToContext">applyAttributesToContext(<span class="method-arguments">orig, context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.fitTextToFrame">fitTextToFrame(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.fontPropertyDidChange">fontPropertyDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.measuredSizeDidChange">measuredSizeDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.measureSize">measureSize(<span class="method-arguments">batch</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.prepareLayerForStringMeasurement">prepareLayerForStringMeasurement(<span class="method-arguments">layer</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.scheduleMeasurement">scheduleMeasurement(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.AutoResize.html#.viewDidResize">viewDidResize(<span class="method-arguments">orig</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".autoFitDiscreteFontSizes"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>autoFitDiscreteFontSizes</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">NO</span></code>, the calculated font size may be any size between <code class='syntax js'><span class="variable">minFontSize</span></code> and
+<code class='syntax js'><span class="variable">maxFontSize</span></code>. If YES, it will only be either <code class='syntax js'><span class="variable">minFontSize</span></code> or <code class='syntax js'><span class="variable">maxFontSize</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".batchResizeId"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>batchResizeId</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If this property is provided, all views that share the same value for this property will be resized as a batch for increased performance.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".calculatedFontSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>calculatedFontSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If shouldAutoFitText is YES, this is the calculated font size.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".maxFontSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>maxFontSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The maximum font size to use when automatically fitting text. If <code class='syntax js'><span class="variable">shouldAutoFitText</span></code> is set,
+this<em> must</em> be supplied.</p>
+
+<p>Font size is in pixels.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".maxHeight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>maxHeight</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If provided, will limit the maximum height to this value.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".maxWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>maxWidth</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If provided, will limit the maximum width to this value.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".measuredSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>measuredSize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Rect</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The measured size of the view's content (the value of the <code class='syntax js'><span class="variable">autoResizeField</span></code>).
+This property is observable, and, if used in conjunction with setting
+<code class='syntax js'><span class="variable">shouldAutoResize</span></code> to <code class='syntax js'><span class="keyword">NO</span></code>, allows you to customize the 'sizing' part, using
+<code class='syntax js'><span class="class">SC</span>.<span class="class">AutoResize</span></code> purely for its measuring code.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".minFontSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>minFontSize</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum font size to use when automatically fitting text. If <code class='syntax js'><span class="variable">shouldAutoFitText</span></code> is set,
+this<em> must</em> be supplied.</p>
+
+<p>Font size is in pixels.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".shouldAutoFitText"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldAutoFitText</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, the view's text will be resized to fit the view. This is applied<em> after</em> any
+resizing, so will only take affect if <code class='syntax js'><span class="variable">shouldAutoResize</span></code> is off, or a maximum width/height
+is set.</p>
+
+<p>You also must set a minimum and maximum font size. Any auto resizing will happen at the
+maximum size, and then the text will be resized as necessary.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".shouldAutoResize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldAutoResize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If <code class='syntax js'><span class="keyword">YES</span></code>, automatically resizes the view (default). If NO, only measures,
+setting 'measuredSize' to the measured value (you can bind to <code class='syntax js'><span class="variable">measuredSize</span></code>
+and update size manually).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldCacheSizes"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldCacheSizes</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Caches sizes for measured strings. This cache does not have a max size, so
+should only be used when a view has a limited number of possible values.
+Multiple views that have the same <code class='syntax js'><span class="variable">batchResizeId</span></code> will share the same cache.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldMeasureSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldMeasureSize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If NO, prevents SC.AutoResize from doing anything at all.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldResizeHeight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldResizeHeight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines if the view's height should be resized
+on calculation. Default is <code class='syntax js'><span class="keyword">NO</span></code> to retain backwards
+compatibility.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldResizeWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.AutoResize.</span><b>shouldResizeWidth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines if the view's width should be resized
+on calculation.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".applyAttributesToContext"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">applyAttributesToContext(<span class="method-arguments">orig, context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Extends renderSettingsToContext to add font size if shouldAutoFitText is YES.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">orig</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".fitTextToFrame"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fitTextToFrame(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Fits the text into the frame's size, minus autoResizePadding.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".fontPropertyDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fontPropertyDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".measuredSizeDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">measuredSizeDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Observes the measured size and actually performs the resize if necessary.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".measureSize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">measureSize(<span class="method-arguments">batch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Measures the size of the view.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">batch</span> 
+                      
+                    </dt>
+                    <dd>For internal use during batch resizing.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".prepareLayerForStringMeasurement"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">prepareLayerForStringMeasurement(<span class="method-arguments">layer</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>If we are fitting text, the layer must be measured with its font size set to our
+maximum font size.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">layer</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".scheduleMeasurement"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">scheduleMeasurement(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Schedules a measurement to happen later.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".viewDidResize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">viewDidResize(<span class="method-arguments">orig</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Whenever the view resizes, the text fitting must be reevaluated.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">orig</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           
@@ -641,3 +641,571 @@
         
 
         
+        
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchAddedToSession">touchAddedToSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchCancelledInSession">touchCancelledInSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchEndedInSession">touchEndedInSession(<span class="method-arguments">touch, touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchesMovedInSession">touchesMovedInSession(<span class="method-arguments">touchesInSession</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchSessionCancelled">touchSessionCancelled(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchSessionEnded">touchSessionEnded(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.PinchGesture.html#touchSessionStarted">touchSessionStarted(<span class="method-arguments">touch</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="name"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>name</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>"pinch"</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="pinchDelay"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>pinchDelay</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The amount of time in milliseconds that touches should stop moving before a <code class='syntax js'><span class="variable">pinchEnd</span></code> event
+will fire. When a pinch gesture begins, the <code class='syntax js'><span class="variable">pinchStart</span></code> event is fired and as long as the
+touches continue to change distance, multiple <code class='syntax js'><span class="variable">pinch</span></code> events will fire. If the touches remain
+active but don't change distance any longer, then after <code class='syntax js'><span class="variable">pinchDelay</span></code> milliseconds the <code class='syntax js'><span class="variable">pinchEnd</span></code>
+event will fire.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>500</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="touchAddedToSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchAddedToSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The pinch gesture is always interested in the touch session. When a new touch is added, the
+distance between all of the touches is registered in order to check for distance changes
+equating to a pinch gesture.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be added to the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches already in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True.</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchAddedToSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchCancelledInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchCancelledInSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>If a touch cancels, the pinch remains interested (even if there's only one touch left, because a
+second touch may appear again), but updates its internal variable for tracking for pinch
+movements.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be removed from the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchCancelledInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchEndedInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchEndedInSession(<span class="method-arguments">touch, touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>If a touch ends, the pinch remains interested (even if there's only one touch left, because a
+second touch may appear again), but updates its internal variable for tracking for pinch
+movements.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch to be removed from the session.</dd>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>The touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchEndedInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchesMovedInSession"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesMovedInSession(<span class="method-arguments">touchesInSession</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The pinch is only interested in more than one touch moving. If there are multiple touches
+moving and the distance between the touches has changed then a <code class='syntax js'><span class="variable">pinchStart</span></code> event will fire.
+If the touches keep expanding or contracting, the <code class='syntax js'><span class="variable">pinch</span></code> event will repeatedly fire. Finally,
+if the touch distance stops changing and enough time passes (value of <code class='syntax js'><span class="variable">pinchDelay</span></code>), the
+<code class='syntax js'><span class="variable">pinchEnd</span></code> event will fire.</p>
+
+<p>Therefore, it's possible for a pinch gesture to start and end more than once in a single touch
+session. For example, a person may touch two fingers down, expand them to zoom in (<code class='syntax js'><span class="variable">pinchStart</span></code>
+and multiple <code class='syntax js'><span class="variable">pinch</span></code> events fire) and then if they stop or move their fingers in one direction
+in tandem to scroll content (<code class='syntax js'><span class="variable">pinchEnd</span></code> event fires after <code class='syntax js'><span class="variable">pinchDelay</span></code> exceeded). If the person
+then starts expanding their fingers again without lifting them, a new set of pinch events will
+fire.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touchesInSession</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>All touches in the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>True.</dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchesMovedInSession</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionCancelled"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionCancelled(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cleans up all touch session variables.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchSessionCancelled</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionEnded"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionEnded(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Cleans up all touch session variables and triggers the gesture.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchSessionEnded</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+            <a name="touchSessionStarted"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchSessionStarted(<span class="method-arguments">touch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Registers the scale of the view when it starts.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> <span class="light fixedFont"><a href="../symbols/SC.Touch.html">SC.Touch</a></span> 
+                      
+                    </dt>
+                    <dd>The touch that started the session.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">void</span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+                <dl class="detailList">
+                
+                
+                
+                  <dt class="heading">See:</dt>
+                  
+                    <dd>SC.Gesture#touchSessionStarted</dd>
+                  
+                
+                
+                </dl>
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

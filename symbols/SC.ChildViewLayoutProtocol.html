@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The <code class='syntax js'><span class="class">SC</span>.<span class="class">ChildViewLayoutProtocol</span></code> protocol defines the properties and methods that you may
@@ -639,3 +639,205 @@ use this protocol.*</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildViewLayoutProtocol.html#.layoutChildViews">layoutChildViews(<span class="method-arguments">view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildViewLayoutProtocol.html#.layoutDependsOnSize">layoutDependsOnSize(<span class="method-arguments">view</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".childLayoutProperties"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.ChildViewLayoutProtocol.</span><b>childLayoutProperties</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An<em> optional</em> array of properties that should be observed on the child views in order
+to re-lay out the child views when changes occur. For example, most child
+view layout plugins will want to adjust the layout of the views whenever
+any view is hidden or becomes visible. Therefore, the parent view should
+re-run the child view layout whenever any child view's <code class='syntax js'><span class="variable">isVisible</span></code> property
+changes and thus, <code class='syntax js'><span class="variable">childLayoutProperties</span></code> should include at least the
+<code class='syntax js'><span class="variable">isVisible</span></code> property name.</p>
+
+<p>For another example, the included stack child layout plugins both have the
+same <code class='syntax js'><span class="variable">childLayoutProperties</span></code> defined:</p>
+
+<pre><code class='syntax js'><span class="variable">childLayoutProperties</span>: [<span class="string">'marginBefore'</span>, <span class="string">'marginAfter'</span>, <span class="string">'isVisible'</span>]
+</code></pre>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".layoutChildViews"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">layoutChildViews(<span class="method-arguments">view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This<em> required</em> method will be called by the view each time that it needs
+to re-lay out its child views. The plugin should then as efficiently as
+possible, calculate each child views' new layout and call adjust on the
+child views.</p>
+
+<p>For code examples, see <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span>.<span class="class">VERTICAL_STACK</span></code> and <code class='syntax js'><span class="class">SC</span>.<span class="class">View</span>.<span class="class">HORIZONTAL_STACK</span></code>
+in the core foundation framework.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The view that is using this plugin.</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".layoutDependsOnSize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">layoutDependsOnSize(<span class="method-arguments">view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This<em> optional</em> method will be called when the view initializes itself. By
+returning <code class='syntax js'><span class="variable">true</span></code> from this call, we would be indicating that whenever the
+view's size changes, it should re-lay out the child views.</p>
+
+<p>For instance, if the layout of the child views depends on the parent view's
+size, we should return <code class='syntax js'><span class="variable">true</span></code>. If the layout of the child views is
+independent of the parent view's size, we can return false to improve
+performance.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The view that is using this plugin.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>`true` if the view's size should be observed in order to re-lay out the child views.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

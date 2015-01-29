@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>The Editable mixin is a standard protocol used to activate keyboard editing
@@ -671,3 +671,307 @@ then you can simply apply this mixin and not override any methods.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Editable.html#.beginEditing">beginEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Editable.html#.commitEditing">commitEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Editable.html#.discardEditing">discardEditing(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".isEditable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Editable.</span><b>isEditable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Indicates whether a view is editable or not.  You can optionally
+implement the methods in this mixin to disallow editing is <code class='syntax js'><span class="variable">isEditable</span></code> is
+<code class='syntax js'><span class="keyword">NO</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".isEditing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Editable.</span><b>isEditing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Indicates whether editing is currently in progress.  The methods you
+implement should generally up this property as appropriate when you
+begin and end editing.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".beginEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">beginEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Begins editing on the view.</p>
+
+<p>This method is called by other views when they want you to begin editing.
+You should write this method to become first responder, perform any
+additional setup needed to begin editing and then return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>If for some reason you do not want to allow editing right now, you can
+also return <code class='syntax js'><span class="keyword">NO</span></code>.  If your view is already editing, then you should not
+restart editing again but just return YES.</p>
+
+<p>The default implementation checks to see if editing is allowed, then
+becomes first responder and updates the <code class='syntax js'><span class="variable">isEditing</span></code> property if appropriate.
+Generally you will want to replace this method with your own
+implementation and not call the default.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if editing began or is in progress, NO otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".commitEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">commitEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Ends editing on the view, committing any changes that were made to the
+view value in the meantime.</p>
+
+<p>This method is called by other views when they want to end editing,
+saving any changes that were made to the view in the meantime.  When this
+method is called you should resign first responder, save the latest
+value of the view and return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>If your view cannot save the current state of the view for some reason
+(for example if validation fails), then you should return <code class='syntax js'><span class="keyword">NO</span></code>.  Properly
+implemented clients may then try to call <code class='syntax js'><span class="variable">discardEditing</span></code>() to force your
+view to resign first responder anyway.</p>
+
+<p>Some views apply changes to their value immediately during an edit instead
+of waiting for the view to end editing.  If this is the case, you should
+still implement <code class='syntax js'><span class="variable">commitEditing</span></code> but you simply may not save any value
+changes.</p>
+
+<p>If this method is called on a view that is not currently editing, you
+should always just return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>The default implementation sets <code class='syntax js'><span class="variable">isEditing</span></code> to <code class='syntax js'><span class="keyword">NO</span></code>, resigns first responder
+and returns YES.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if changes were discarded and editing ended.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".discardEditing"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">discardEditing(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Ends editing on the view, discarding any changes that were made to the
+view value in the meantime.</p>
+
+<p>This method is called by other views when they want to cancel editing
+that began earlier.  When this method is called you should resign first
+responder, restore the original value of the view and return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>If your view cannot revert back to its original state before editing began
+then you can implement this method to simply return <code class='syntax js'><span class="keyword">NO</span></code>.  A properly
+implemented client may try to call <code class='syntax js'><span class="variable">commitEditing</span></code>() instead to force your
+view to end editing anyway.</p>
+
+<p>If this method is called on a view that is not currently editing, you
+should always just return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>The default implementation does not support discarding changes and always
+returns <code class='syntax js'><span class="keyword">NO</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if changes were discarded and editing ended.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

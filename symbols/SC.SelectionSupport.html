@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Implements common selection management properties for controllers.</p>
@@ -673,3 +673,526 @@ already applied to <code class='syntax js'><span class="class">SC</span>.<span c
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.deselectObject">deselectObject(<span class="method-arguments">object</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.deselectObjects">deselectObjects(<span class="method-arguments">objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.firstSelectableObject">firstSelectableObject(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.hasSelection">hasSelection(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.selection">selection(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.selectObject">selectObject(<span class="method-arguments">object, extend</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.selectObjects">selectObjects(<span class="method-arguments">objects, extend</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SelectionSupport.html#.updateSelectionAfterContentChange">updateSelectionAfterContentChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".allowsEmptySelection"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.SelectionSupport.</span><b>allowsEmptySelection</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If YES, allow empty selection Default is YES.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".allowsMultipleSelection"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.SelectionSupport.</span><b>allowsMultipleSelection</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If YES, multiple selection is allowed. Default is YES.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".allowsSelection"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.SelectionSupport.</span><b>allowsSelection</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If YES, selection is allowed. Default is YES.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".hasSelectionSupport"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.SelectionSupport.</span><b>hasSelectionSupport</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Walk like a duck.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".deselectObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">deselectObject(<span class="method-arguments">object</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Deselects the passed object in your content.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/SC.Object.html">SC.Object</a></span> 
+                      
+                    </dt>
+                    <dd>single object to select</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".deselectObjects"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">deselectObjects(<span class="method-arguments">objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Deselects the passed objects in your content.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/SC.Enumerable.html">SC.Enumerable</a></span> 
+                      
+                    </dt>
+                    <dd>objects to select</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".firstSelectableObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">firstSelectableObject(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Override to return the first selectable object.  For example, if you
+have groups or want to otherwise limit the kinds of objects that can be
+selected.</p>
+
+<p>the default implementation returns <code class='syntax js'><span class="variable">firstObject</span></code> property.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>first selectable object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".hasSelection"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">hasSelection(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                YES if the receiver currently has a non-zero selection.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".selection"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">selection(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This is the current selection.  You can make this selection and another
+controller's selection work in concert by binding them together. You
+generally have a master selection that relays changes TO all the others.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".selectObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">selectObject(<span class="method-arguments">object, extend</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Selects a single passed object in your content.  If you set "extend" to
+<code class='syntax js'><span class="keyword">YES</span></code> then this will attempt to extend your selection as well.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object to select</dd>
+                  
+                    <dt>
+                      <span class="method-param">extend</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>optionally set to YES to extend selection</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".selectObjects"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">selectObjects(<span class="method-arguments">objects, extend</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Selects the passed objects in your content.  If you set "extend" to <code class='syntax js'><span class="keyword">YES</span></code>,
+then this will attempt to extend your selection as well.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/SC.Enumerable.html">SC.Enumerable</a></span> 
+                      
+                    </dt>
+                    <dd>objects to select</dd>
+                  
+                    <dt>
+                      <span class="method-param">extend</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>optionally set to YES to extend selection</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".updateSelectionAfterContentChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">updateSelectionAfterContentChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this method whenever your source content changes to ensure the
+selection always remains up-to-date and valid.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

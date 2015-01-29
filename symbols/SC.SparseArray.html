@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A dynamically filled array.  A SparseArray makes it easy for you to create
@@ -667,3 +667,843 @@ the server.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Enumerable.html">SC.Enumerable</a>: </dt>
+              <dd><a href="../symbols/SC.Enumerable.html#isEnumerable">isEnumerable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Array.html">SC.Array</a>: </dt>
+              <dd><a href="../symbols/SC.Array.html#isSCArray">isSCArray</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#.array">array(<span class="method-arguments">len</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#definedIndexes">definedIndexes(<span class="method-arguments">indexes</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#indexOf">indexOf(<span class="method-arguments">obj</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#length">length(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#objectAt">objectAt(<span class="method-arguments">idx, omitMaterializing</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#objectsDidChangeInRange">objectsDidChangeInRange(<span class="method-arguments">the</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#provideLength">provideLength(<span class="method-arguments">length</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#provideObjectAtIndex">provideObjectAtIndex(<span class="method-arguments">index, the</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#provideObjectsInRange">provideObjectsInRange(<span class="method-arguments">range, array</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#rangeRequestCompleted">rangeRequestCompleted(<span class="method-arguments">start</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#replace">replace(<span class="method-arguments">idx, amt, objects</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#requestIndex">requestIndex(<span class="method-arguments">idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#reset">reset(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SparseArray.html#wasRangeRequested">wasRangeRequested(<span class="method-arguments">rangeStart</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="rangeWindowSize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>rangeWindowSize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The minimum range of elements that should be requested from the delegate.
+If this value is set to larger than 1, then the sparse array will always
+fit a requested index into a range of this size and request it.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="requestedRangeIndex"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>requestedRangeIndex</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>This array contains all the start_indexes of ranges requested. This is to
+avoid calling <code class='syntax js'><span class="variable">sparseArrayDidRequestRange</span></code> to often. Indexes are removed and
+added as range requests are completed.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".array"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">array(<span class="method-arguments">len</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Convenience metohd returns a new sparse array with a default length already
+provided.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">len</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the length of the array</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="definedIndexes"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">definedIndexes(<span class="method-arguments">indexes</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the set of indexes that are currently defined on the sparse array.
+If you pass an optional index set, the search will be limited to only
+those indexes.  Otherwise this method will return an index set containing
+all of the defined indexes.  Currently this can be quite expensive if
+you have a lot of indexes defined.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">indexes</span> <span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> 
+                      
+                    </dt>
+                    <dd>optional from indexes</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.IndexSet.html">SC.IndexSet</a></span> </dt>
+                    <dd>defined indexes</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="indexOf"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">indexOf(<span class="method-arguments">obj</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Optimized version of <code class='syntax js'><span class="variable">indexOf</span></code>().  Asks the delegate to provide the index
+of the specified object.  If the delegate does not implement this method
+then it will search the internal array directly.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">obj</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the object to search for</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>the discovered index or -1 if not found</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Make sure to create the index array during init so that it is not shared
+between all instances.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="length"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">length(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The length of the sparse array.  The delegate for the array should set
+this length.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="objectAt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectAt(<span class="method-arguments">idx, omitMaterializing</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the object at the specified index.  If the value for the index
+is currently undefined, invokes the <code class='syntax js'><span class="variable">didRequestIndex</span></code>() method to notify
+the delegate.</p>
+
+<p>The <code class='syntax js'><span class="variable">omitMaterializing</span></code> flag ensures that the object will not be materialized,
+but it simply checks for the presence of an object at the specified index
+and will return <code class='syntax js'><span class="keyword">YES</span></code> (or undefined if not found). This is useful in the case
+of SparseArrays, where you might NOT want to request the index to be loaded,
+but simply need a shallow check to see if the position has been filled.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index to get</dd>
+                  
+                    <dt>
+                      <span class="method-param">omitMaterializing</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>the object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="objectsDidChangeInRange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectsDidChangeInRange(<span class="method-arguments">the</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invalidates the array content in the specified range.  This is not the
+same as editing an array.  Rather it will cause the array to reload the
+content from the delegate again when it is requested.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">the</span> <span class="light fixedFont">Range</span> 
+                      
+                    </dt>
+                    <dd>range</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="provideLength"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">provideLength(<span class="method-arguments">length</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Call this method from a delegate to provide a length for the sparse array.
+If you pass null for this property, it will essentially "reset" the array
+causing your delegate to be called again the next time another object
+requests the array length.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">length</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the length or null</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="provideObjectAtIndex"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">provideObjectAtIndex(<span class="method-arguments">index, the</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Convenience method to provide a single object at a specified index.  Under
+the covers this calls <code class='syntax js'><span class="variable">provideObjectsInRange</span></code>() so you can override only
+that method and this one will still work.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">index</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index to insert</dd>
+                  
+                    <dt>
+                      <span class="method-param">the</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>object to insert</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="provideObjectsInRange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">provideObjectsInRange(<span class="method-arguments">range, array</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>This method sets the content for the specified to the objects in the
+passed array.  If you change the way SparseArray implements its internal
+tracking of objects, you should override this method along with
+<code class='syntax js'><span class="variable">objectAt</span></code>().</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">range</span> <span class="light fixedFont">Range</span> 
+                      
+                    </dt>
+                    <dd>the range to apply to</dd>
+                  
+                    <dt>
+                      <span class="method-param">array</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>the array of objects to insert</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="rangeRequestCompleted"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">rangeRequestCompleted(<span class="method-arguments">start</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">start</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="replace"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">replace(<span class="method-arguments">idx, amt, objects</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Array primitive edits the objects at the specified index unless the
+delegate rejects the change.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index to begin to replace</dd>
+                  
+                    <dt>
+                      <span class="method-param">amt</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the number of items to replace</dd>
+                  
+                    <dt>
+                      <span class="method-param">objects</span> <span class="light fixedFont"><a href="../symbols/Array.html">Array</a></span> 
+                      
+                    </dt>
+                    <dd>the new objects to set instead</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="requestIndex"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">requestIndex(<span class="method-arguments">idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called by <code class='syntax js'><span class="variable">objectAt</span></code>() whenever you request an index that has not yet been
+loaded.  This will possibly expand the index into a range and then invoke
+an appropriate method on the delegate to request the data.</p>
+
+<p>It will check if the range has been already requested.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the index to retrieve</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="reset"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">reset(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Resets the SparseArray, causing it to reload its content from the
+delegate again.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.SparseArray.html">SC.SparseArray</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="wasRangeRequested"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">wasRangeRequested(<span class="method-arguments">rangeStart</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">rangeStart</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

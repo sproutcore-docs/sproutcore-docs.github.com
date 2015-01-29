@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p><code class='syntax js'><span class="class">SC</span>.<span class="class">TemplateView</span></code> allows you to create a view that uses the Handlebars templating
@@ -657,3 +657,333 @@ generate a function from a string containing Handlebars markup.</p>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.CoreView.html">SC.CoreView</a>: </dt>
+              <dd><a href="../symbols/SC.CoreView.html#isAttached">isAttached</a>, <a href="../symbols/SC.CoreView.html#isVisibleInWindow">isVisibleInWindow</a>, <a href="../symbols/SC.CoreView.html#viewState">viewState</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateView.html#context">context(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateView.html#mouseDown">mouseDown(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateView.html#render">render(<span class="method-arguments">context</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateView.html#template">template(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TemplateView.html#update">update(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="templateName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>templateName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The name of the template to lookup if no template is provided.</p>
+
+<p><code class='syntax js'><span class="class">SC</span>.<span class="class">TemplateView</span></code> will look for a template with this name in the global
++SC.TEMPLATES+ hash. Usually this hash will be populated for you
+automatically when you include +.handlebars+ files in your project.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="templates"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>templates</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The hash in which to look for +templateName+. Defaults to SC.TEMPLATES.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="context"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">context(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The object from which templates should access properties.</p>
+
+<p>This object will be passed to the template function each time the render
+method is called, but it is up to the individual function to decide what
+to do with it.</p>
+
+<p>By default, this will be the view itself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseDown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDown(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Since <code class='syntax js'><span class="variable">mouseUp</span></code> events will not fire unless we return <code class='syntax js'><span class="keyword">YES</span></code> to <code class='syntax js'><span class="variable">mouseDown</span></code>, the
+default <code class='syntax js'><span class="variable">mouseDown</span></code> implementation returns YES if a <code class='syntax js'><span class="variable">mouseDown</span></code> method exists.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="render"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">render(<span class="method-arguments">context</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>When the view is asked to render, we look for the appropriate template
+function and invoke it, then push its result onto the passed
+<code class='syntax js'><span class="class">SC</span>.<span class="class">RenderContext</span></code> instance.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> <span class="light fixedFont"><a href="../symbols/SC.RenderContext.html">SC.RenderContext</a></span> 
+                      
+                    </dt>
+                    <dd>the render context</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="template"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">template(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The template used to render the view. This should be a function that
+accepts an optional context parameter and returns a string of HTML that
+will be inserted into the DOM relative to its parent view.</p>
+
+<p>In general, you should set the +templateName+ property instead of setting
+the template yourself.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="update"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">update(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

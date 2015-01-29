@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Implements support for AJAX requests using XHR, XHR2 and other protocols.</p>
@@ -884,3 +884,1631 @@ setting <code class='syntax js'><span class="variable">isJSON</span></code> to t
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Copyable.html">SC.Copyable</a>: </dt>
+              <dd><a href="../symbols/SC.Copyable.html#isCopyable">isCopyable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Freezable.html">SC.Freezable</a>: </dt>
+              <dd><a href="../symbols/SC.Freezable.html#isFreezable">isFreezable</a>, <a href="../symbols/SC.Freezable.html#isFrozen">isFrozen</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#.deleteUrl">deleteUrl(<span class="method-arguments">address</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#.getUrl">getUrl(<span class="method-arguments">address</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#.patchUrl">patchUrl(<span class="method-arguments">address, body</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#.postUrl">postUrl(<span class="method-arguments">address, body</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#.putUrl">putUrl(<span class="method-arguments">address, body</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#async">async(<span class="method-arguments">flag</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#clearHeaders">clearHeaders(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#copy">copy(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#credentials">credentials(<span class="method-arguments">flag</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#didReceive">didReceive(<span class="method-arguments">request, response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#didSend">didSend(<span class="method-arguments">request, response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#header">header(<span class="method-arguments">key, value</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#json">json(<span class="method-arguments">flag</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#notify">notify(<span class="method-arguments"><span style="font-style: italic;">statusOrEvent</span>, target, action</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#resend">resend(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#send">send(<span class="method-arguments"><span style="font-style: italic;">body</span></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#timeoutAfter">timeoutAfter(<span class="method-arguments">timeout</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#willReceive">willReceive(<span class="method-arguments">request, response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#willSend">willSend(<span class="method-arguments">request, response</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Request.html#xml">xml(<span class="method-arguments">flag</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="address"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>address</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The URL this request to go to.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="allowCredentials"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>allowCredentials</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether to allow credentials, such as Cookies, in the request. While this has no effect on
+requests to the same domain, cross-domain requests require that the transport be configured to
+allow the inclusion of credentials such as Cookies.</p>
+
+<p>You can change this property using the chainable <code class='syntax js'><span class="variable">credentials</span>()</code> helper method (or set it directly).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="attachIdentifyingHeaders"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>attachIdentifyingHeaders</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Specifies whether or not the request will have custom headers attached
+to it. By default, <code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span></code> attaches X-Requested-With and
+X-SproutCore-Version headers to all outgoing requests. This allows
+you to override that behavior.</p>
+
+<p>You may want to set this to <code class='syntax js'><span class="keyword">NO</span></code> if you are making simple CORS requests
+in compatible browsers. See <a href="http://www.w3.org/TR/cors/">CORS
+Spec for more information.</a></p>
+
+<p>TODO: Add unit tests for this feature</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="body"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>body</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a>|<a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The body of the request.  May be an object if <code class='syntax js'><span class="variable">isJSON</span></code> or <code class='syntax js'><span class="variable">isXML</span></code> is set,
+otherwise should be a string.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="encodedBody"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>encodedBody</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Object.html">Object</a>|<a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The body, encoded as JSON or XML if needed.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>#body</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="headers"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>headers</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Current set of headers for the request
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isAsynchronous"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isAsynchronous</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Sends the request asynchronously instead of blocking the browser. You
+should almost always make requests asynchronous. You can change this
+options with the async() helper option (or simply set it directly).</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isJSON"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isJSON</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Processes the request and response as JSON if possible. You can change
+this option with the json() helper method.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isSameDomain"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isSameDomain</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether the request is within the same domain or not. The response class may use this property
+to determine specific cross domain configurations.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isXML"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isXML</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Process the request and response as XML if possible. You can change this
+option with the xml() helper method.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="responseClass"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>responseClass</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.Response.html">SC.Response</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Underlying response class to actually handle this request. Currently the
+only supported option is <code class='syntax js'><span class="class">SC</span>.<span class="class">XHRResponse</span></code> which uses a traditional
+XHR transport.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.XHRResponse</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="source"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>source</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The original request for copied requests.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="timeout"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>timeout</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>An optional timeout value of the request, in milliseconds. The timer
+begins when <code class='syntax js'><span class="class">SC</span>.<span class="class">Response</span></code>#fire is actually invoked by the request manager
+and not necessarily when <code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span></code>#send is invoked. If this timeout is
+reached before a response is received, the equivalent of
+<code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span>.<span class="variable">manager</span></code>#cancel() will be invoked on the <code class='syntax js'><span class="class">SC</span>.<span class="class">Response</span></code> instance
+and the <code class='syntax js'><span class="variable">didReceive</span></code>() callback will be called.</p>
+
+<p>An exception will be thrown if you try to invoke send() on a request that
+has both a timeout and <code class='syntax js'><span class="variable">isAsyncronous</span></code> set to <code class='syntax js'><span class="keyword">NO</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="type"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>type</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The HTTP method to use.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>'GET'</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".deleteUrl"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">deleteUrl(<span class="method-arguments">address</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Helper method for quickly setting up a DELETE request.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">address</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>url of request</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".getUrl"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getUrl(<span class="method-arguments">address</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Helper method for quickly setting up a GET request.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">address</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>url of request</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".patchUrl"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">patchUrl(<span class="method-arguments">address, body</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Helper method for quickly setting up a PATCH request.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">address</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>url of request</dd>
+                  
+                    <dt>
+                      <span class="method-param">body</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".postUrl"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">postUrl(<span class="method-arguments">address, body</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Helper method for quickly setting up a POST request.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">address</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>url of request</dd>
+                  
+                    <dt>
+                      <span class="method-param">body</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".putUrl"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">putUrl(<span class="method-arguments">address, body</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Helper method for quickly setting up a PUT request.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">address</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>url of request</dd>
+                  
+                    <dt>
+                      <span class="method-param">body</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="async"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">async(<span class="method-arguments">flag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Converts the current request to be asynchronous.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">flag</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>YES to make asynchronous, NO or undefined. Default YES.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="clearHeaders"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">clearHeaders(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Clears the list of headers that were set on this request.
+This could be used by a subclass to blow-away any custom
+headers that were added by the super class.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="copy"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">copy(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns a copy of the current request. This will only copy certain
+properties so if you want to add additional properties to the copy you
+will need to override copy() in a subclass.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>new request</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="credentials"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">credentials(<span class="method-arguments">flag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Converts the current request to request allowing credentials or not.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">flag</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>YES to request allowing credentials, NO to disallow credentials. Default YES.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="didReceive"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">didReceive(<span class="method-arguments">request, response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked after a response has been processed but before any listeners are
+notified. You can do any standard processing on the request at this
+point. If you don't want to allow notifications to continue, call
+response.cancel()</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">request</span> <span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> 
+                      
+                    </dt>
+                    <dd>A copy of the request object, frozen</dd>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>The object that will wrap the response</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="didSend"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">didSend(<span class="method-arguments">request, response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked on the original request object just after the request is sent to
+the server. You might use this callback to update some state in your
+application.</p>
+
+<p>The passed request is a frozen copy of the request, indicating the
+options set at the time of the request.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">request</span> <span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> 
+                      
+                    </dt>
+                    <dd>A copy of the request object, frozen</dd>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>The object that will wrap the response</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES on success, NO on failure</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="header"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">header(<span class="method-arguments">key, value</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>To set headers on the request object. Pass either a single key/value
+pair or a hash of key/value pairs. If you pass only a header name, this
+will return the current value of the header.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">key</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|Hash</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a>|<a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="json"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">json(<span class="method-arguments">flag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Converts the current request to use JSON.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">flag</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>YES to make JSON, NO or undefined. Default YES.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="notify"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">notify(<span class="method-arguments"><span style="font-style: italic;">statusOrEvent</span>, target, action</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Configures a callback to execute as a request progresses or completes. You
+must pass at least a target and action/method to this and optionally an
+event name or status code.</p>
+
+<p>You may also pass additional arguments which will then be passed along to
+your callback.</p>
+
+<h2 id="scopingwithstatuscodes">Scoping With Status Codes</h2>
+
+<p>If you pass a status code as the first argument to this method, the
+accompanying notification callback will only be called if the response
+status matches the status code. For example, if you pass 201 (or
+<code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span>.<span class="class">CREATED</span>)</code>, the accompanying method will only be called if the
+response status from the server is also 201.</p>
+
+<p>You can also pass "generic" status codes such as 200, 300, or 400, which
+will be invoked anytime the status code is in the same range and if a more
+specific notifier was not registered first and returned <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>Finally, passing a status code of 0 or no status at all will cause your
+method to be executed no matter what the resulting status is unless a
+more specific notifier was registered first and returned <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+
+<p>For example,</p>
+
+<pre><code class='syntax js'><span class="keyword">var</span> <span class="variable">req</span> = <span class="class">SC</span>.<span class="class">Request</span>.<span class="variable">create</span>({<span class="variable">type</span>: <span class="string">'POST'</span>});
+<span class="variable">req</span>.<span class="variable">notify</span>(<span class="number integer">201</span>, <span class="this">this</span>, <span class="this">this</span>.<span class="variable">reqWasCreated</span>);  <span class="comment">// Handle a specific status code</span>
+<span class="variable">req</span>.<span class="variable">notify</span>(<span class="number integer">401</span>, <span class="this">this</span>, <span class="this">this</span>.<span class="variable">reqWasUnauthorized</span>);  <span class="comment">// Handle a specific status code</span>
+<span class="variable">req</span>.<span class="variable">notify</span>(<span class="number integer">400</span>, <span class="this">this</span>, <span class="this">this</span>.<span class="variable">reqDidRedirect</span>);  <span class="comment">// Handle any 4xx status</span>
+<span class="variable">req</span>.<span class="variable">notify</span>(<span class="this">this</span>, <span class="keyword">function</span>(<span class="variable">response</span>, <span class="variable">arg1</span>, <span class="variable">arg2</span>) {
+  <span class="comment">// do something</span>
+}, <span class="variable">arg1</span>, <span class="variable">arg2</span>);  <span class="comment">// Handle any status.  Also, passing additional arguments to the callback handler</span>
+</code></pre>
+
+<h2 id="notifyingonprogressevents">Notifying on Progress Events</h2>
+
+<p>If you pass a progress event name your callback will be called each time
+the event fires on the response.  For example, the XMLHttpRequest Level 2
+specification defines several progress events: loadstart, progress, abort,
+error, load, timeout and loadend.  Therefore, when using the default
+<code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span></code> <code class='syntax js'><span class="variable">responseClass</span></code>, <code class='syntax js'><span class="class">SC</span>.<span class="class">XHRResponse</span></code>, you can be notified of each of
+these events by simply providing the matching event name.</p>
+
+<p>Note that many older browsers do not support XMLHttpRequest Level 2.  See
+http://caniuse.com/xhr2 for a list of supported browsers.</p>
+
+<p>For example,</p>
+
+<p>var req = <code class='syntax js'><span class="class">SC</span>.<span class="class">Request</span>.<span class="variable">create</span>(</code>{type: 'GET'});
+  req.notify('progress', this, this.reqDidProgress); // Handle 'progress' events
+  req.notify('abort', this, this.reqDidAbort); // Handle 'abort' events
+  req.notify('upload.progress', this, this.reqUploadDidProgress); // Handle 'progress' events on the XMLHttpRequestUpload
+  req.send();</p>
+
+<h2 id="callbackformat">Callback Format</h2>
+
+<p>Your notification callback should expect to receive the Response object as
+the first parameter for status code notifications and the Event object for
+progress notifications; plus any additional parameters that you pass. If
+your callback handles the notification and to prevent further handling, it
+should return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">statusOrEvent</span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd>{Number|String} A Number status code or String Event name.</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> 
+                      
+                    </dt>
+                    <dd>{Object} The target object for the callback action.</dd>
+                  
+                    <dt>
+                      <span class="method-param">action</span> 
+                      
+                    </dt>
+                    <dd>{String|Function} The method name or function to call on the target.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>The SC.Request object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="resend"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">resend(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Resends the current request. This is more efficient than calling send()
+for requests that have already been used in a send. Otherwise acts just
+like send(). Does not take a body argument.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> </dt>
+                    <dd>new response object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="send"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">send(<span class="method-arguments"><span style="font-style: italic;">body</span></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Will fire the actual request. If you have set the request to use JSON
+mode then you can pass any object that can be converted to JSON as the
+body. Otherwise you should pass a string body.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">body</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Object.html">Object</a></span> 
+                      <i>Optional</i>
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> </dt>
+                    <dd>New response object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="timeoutAfter"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">timeoutAfter(<span class="method-arguments">timeout</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Sets the maximum amount of time the request will wait for a response.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">timeout</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>The timeout in milliseconds.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="willReceive"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">willReceive(<span class="method-arguments">request, response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked when a response has been received but not yet processed. This is
+your chance to fix up the response based on the results. If you don't
+want to continue processing the response call response.cancel().</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">request</span> <span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> 
+                      
+                    </dt>
+                    <dd>A copy of the request object, frozen</dd>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>The object that will wrap the response</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="willSend"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">willSend(<span class="method-arguments">request, response</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked on the original request object just before a copied request is
+frozen and then sent to the server. This gives you one last change to
+fixup the request; possibly adding headers and other options.</p>
+
+<p>If you do not want the request to actually send, call cancel().</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">request</span> <span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> 
+                      
+                    </dt>
+                    <dd>A copy of the request object, not frozen</dd>
+                  
+                    <dt>
+                      <span class="method-param">response</span> <span class="light fixedFont"><a href="../symbols/SC.Response.html">SC.Response</a></span> 
+                      
+                    </dt>
+                    <dd>The object that will wrap the response</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="xml"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">xml(<span class="method-arguments">flag</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Converts the current request to use XML.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">flag</span> <span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> 
+                      
+                    </dt>
+                    <dd>YES to make XML, NO or undefined. Default YES.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Request.html">SC.Request</a></span> </dt>
+                    <dd>recevier</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Normal SproutCore views are absolutely positioned--parent views have relatively
@@ -714,3 +714,526 @@ settings such as animation once only, and have everything "just work".</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FlowedLayout.html#.applyPlanToView">applyPlanToView(<span class="method-arguments">view, layout</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".align"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>align</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The alignment of items within rows or columns. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_LEFT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_CENTER</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_RIGHT</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">ALIGN_JUSTIFY</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.ALIGN_LEFT</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".autoResize"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>autoResize</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether the view should automatically resize (to allow scrolling, for instance)
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".canWrap"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>canWrap</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If YES, flowing child views are allowed to wrap to new rows or columns.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".defaultFlowSpacing"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>defaultFlowSpacing</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>A set of spacings (left, top, right, bottom) for subviews. Defaults to 0s all around.
+This is the amount of space that will be before, after, above, and below the view. These
+spacings do not collapse into each other.</p>
+
+<p>You can also set <code class='syntax js'><span class="variable">flowSpacing</span></code> on any child view, or implement <code class='syntax js'><span class="variable">flowSpacingForView</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>`{ left: 0, bottom: 0, top: 0, right: 0 }`</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".flowPadding"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>flowPadding</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash
+
+    Padding around the edges of this flow layout view. This is useful for
+    situations where you don't control the layout of the FlowedLayout view;
+    for instance, when the view is the contentView for a SC.ScrollView.</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>`{ left: 0, bottom: 0, top: 0, right: 0 }`</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".flowSizeForChild"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>flowSizeForChild</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Returns the flow size for a given view, excluding spacing. The default version
+checks the view's <code class='syntax js'><span class="variable">calculatedWidth</span></code>/Height, then its frame.</p>
+
+<p>For spacers, this returns an empty size.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".flowSpacingForChild"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>flowSpacingForChild</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Hash</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Returns the flow spacings for a given view. By default, returns the view's <code class='syntax js'><span class="variable">flowSpacing</span></code>,
+and if they don't exist, the <code class='syntax js'><span class="variable">defaultFlowSpacing</span></code> for this view.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".layoutDirection"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>layoutDirection</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The direction of flow. Possible values:</p>
+
+<ul>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">LAYOUT_HORIZONTAL</span></code></li>
+<li><code class='syntax js'><span class="class">SC</span>.<span class="class">LAYOUT_VERTICAL</span></code></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>SC.LAYOUT_HORIZONTAL</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldIncludeChildInFlow"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>shouldIncludeChildInFlow</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Determines whether the specified child view should be included in the flow layout.
+By default, if it has <code class='syntax js'><span class="variable">isVisible</span></code>: <code class='syntax js'><span class="keyword">NO</span></code> or <code class='syntax js'><span class="variable">useAbsoluteLayout</span></code>: YES, it will not be included.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>NO</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldResizeHeight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>shouldResizeHeight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name=".shouldResizeWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.FlowedLayout.</span><b>shouldResizeWidth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>YES</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".applyPlanToView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">applyPlanToView(<span class="method-arguments">view, layout</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Applies the given layout to the view.
+Override this if you would like your view to, for example, animate to a new position.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">view</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">layout</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           A `ChildArray` is used to map an array of `ChildRecord` objects.
@@ -654,3 +654,461 @@
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Enumerable.html">SC.Enumerable</a>: </dt>
+              <dd><a href="../symbols/SC.Enumerable.html#isEnumerable">isEnumerable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Array.html">SC.Array</a>: </dt>
+              <dd><a href="../symbols/SC.Array.html#isSCArray">isSCArray</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#editableChildren">editableChildren(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#normalize">normalize(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#objectAt">objectAt(<span class="method-arguments">idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#readOnlyChildren">readOnlyChildren(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#replace">replace(<span class="method-arguments">idx, amt, recs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#store">store(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#storeKey">storeKey(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.ChildArray.html#toString">toString(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="defaultRecordType"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>defaultRecordType</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              If set, it is the default record `recordType`
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="propertyName"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>propertyName</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The name of the attribute in the parent record's datahash that represents
+this child array's data.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="record"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>record</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>If set, the parent record will be notified whenever the array changes so that
+it can change its own state</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="editableChildren"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">editableChildren(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns an editable child array of JavaScript Objects.</p>
+
+<p>Any changes to this array will not affect the parent record's datahash.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="normalize"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">normalize(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Calls normalize on each object in the array
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="objectAt"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectAt(<span class="method-arguments">idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Looks up the store id in the store ids array and materializes a
+records.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>index of the object to retrieve.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Record.html">SC.Record</a></span> </dt>
+                    <dd>The nested record if found or undefined if not.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="readOnlyChildren"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">readOnlyChildren(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the original child array of JavaScript Objects.</p>
+
+<p>Note: Avoid modifying this array directly, because changes will not be
+reflected by this <code class='syntax js'><span class="class">SC</span>.<span class="class">ChildArray</span>.</code></p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="replace"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">replace(<span class="method-arguments">idx, amt, recs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Pass through to the underlying array.  The passed in objects should be
+nested <code class='syntax js'><span class="class">SC</span>.<span class="class">Records</span></code>, which can be converted to JavaScript objects or
+JavaScript objects themselves.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>index of the object to replace.</dd>
+                  
+                    <dt>
+                      <span class="method-param">amt</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>number of objects to replace starting at idx.</dd>
+                  
+                    <dt>
+                      <span class="method-param">recs</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>array with records to replace. These may be JavaScript objects or nested SC.Record objects.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.ChildArray.html">SC.ChildArray</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="store"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">store(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                The store that owns this child array's parent record.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="storeKey"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">storeKey(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                The storeKey for the parent record of this child array.
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="toString"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">toString(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

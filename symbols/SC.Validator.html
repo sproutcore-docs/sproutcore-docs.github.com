@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Validators provide a way for you to implement simple form field validation
@@ -672,3 +672,902 @@ value has not changed and then call form.errorFor(field,str) ;</li>
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#.fieldValueForObject">fieldValueForObject(<span class="method-arguments">object, form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#.findFor">findFor(<span class="method-arguments">form, field, validatorKey</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#.objectForFieldValue">objectForFieldValue(<span class="method-arguments">value, form, field</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#attachTo">attachTo(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#detachFrom">detachFrom(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#fieldValueForObject">fieldValueForObject(<span class="method-arguments">object, form, view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#objectForFieldValue">objectForFieldValue(<span class="method-arguments">value, form, view</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validate">validate(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validateChange">validateChange(<span class="method-arguments">form, field, oldValue:</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validateError">validateError(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validateKeyDown">validateKeyDown(<span class="method-arguments">form, field, char</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validatePartial">validatePartial(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.Validator.html#validateSubmit">validateSubmit(<span class="method-arguments">form, field</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".NO_CHANGE"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Validator.</span><b>NO_CHANGE</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Return value when validation was not performed.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name=".OK"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.Validator.</span><b>OK</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Return value when validation was performed and value is OK.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".fieldValueForObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fieldValueForObject(<span class="method-arguments">object, form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Convenience class method to call the <code class='syntax js'><span class="variable">fieldValueForObject</span></code>() instance
+method you define in your subclass.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">form</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".findFor"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">findFor(<span class="method-arguments">form, field, validatorKey</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked by a field whenever a validator is attached to the field.</p>
+
+<p>The passed <code class='syntax js'><span class="variable">validatorKey</span></code> can be a validator instance, a validator class
+or a string naming a validator. To make your validator
+visible, you should name your validator under the <code class='syntax js'><span class="class">SC</span>.<span class="class">Validator</span></code> base.
+for example <code class='syntax js'><span class="class">SC</span>.<span class="class">Validator</span>.<span class="class">Number</span></code> would get used for the 'number' 
+validator key.</p>
+
+<p>This understands <code class='syntax js'><span class="variable">validatorKey</span></code> strings in the following format:
+'key' or 'multiple_words' will find validators Key and MultipleWords
+if you want to share a single validator among multiple fields (for
+  example to validate that two passwords are the same) set a name inside
+  brackets. i.e. 'password[pwd]'.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                    <dt>
+                      <span class="method-param">validatorKey</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the key to validate</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Validator.html">SC.Validator</a></span> </dt>
+                    <dd>validator instance or null</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".objectForFieldValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectForFieldValue(<span class="method-arguments">value, form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Convenience class method to call the <code class='syntax js'><span class="variable">objectForFieldValue</span></code>() instance
+method you define in your subclass.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">form</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="attachTo"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">attachTo(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called on all validators when they are attached to a field.  </p>
+
+<p>You can use this to do any setup that you need.  The default does nothing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="detachFrom"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">detachFrom(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Called on a validator just before it is removed from a field.  You can 
+tear down any setup you did for the <code class='syntax js'><span class="variable">attachTo</span></code>() method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="fieldValueForObject"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fieldValueForObject(<span class="method-arguments">object, form, view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the value to set in the field for the passed object value.  </p>
+
+<p>The form and view to be set MAY (but will not always) be passed also.  You
+should override this method to help convert an input object into a value
+that can be displayed by the field.  For example, you might convert a 
+date to a property formatted string or a number to a properly formatted
+value.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">object</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The object to transform</dd>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>The form this field belongs to. (optional)</dd>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The view the value is required for.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>a value (usually a string) suitable for display</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="objectForFieldValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">objectForFieldValue(<span class="method-arguments">value, form, view</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the object value for the passed string.</p>
+
+<p>The form and view MAY (but wil not always) be passed also.  You should
+override this method to convert a field value, such as string, into an
+object value suitable for consumption by the rest of the app.  For example
+you may convert a string into a date or a number.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">value</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the field value.  (Usually a String).</dd>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>The form this field belongs to. (optional)</dd>
+                  
+                    <dt>
+                      <span class="method-param">view</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>The view this value was pulled from.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> </dt>
+                    <dd>an object suitable for consumption by the app.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validate"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validate(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Validate the field value.  </p>
+
+<p>You can implement standard behavior for your validator by using the validate()
+and <code class='syntax js'><span class="variable">validateError</span></code>() methods.  validate() should return <code class='syntax js'><span class="keyword">NO</span></code> if the field is not
+valid, YES otherwise.  If you return NO from this method, then the <code class='syntax js'><span class="variable">validateError</span></code>()
+method will be called so you can generate an error object describing the specific problem.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form this view belongs to</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate.  Responds to fieldValue.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if field is valid.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validateChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validateChange(<span class="method-arguments">form, field, oldValue:</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked just before the user ends editing of the field.</p>
+
+<p>This is a primitive validation method.  You can implement the two higher-level
+methods (validate() and <code class='syntax js'><span class="variable">validateError</span></code>()) if you prefer.</p>
+
+<p>The default implementation calls your validate() method and then <code class='syntax js'><span class="variable">validateError</span></code>()
+if validate() returns <code class='syntax js'><span class="keyword">NO</span></code>.  This method should return <code class='syntax js'><span class="class">SC</span>.<span class="class">VALIDATE_OK</span></code> if validation
+succeeded or an error object if it fails.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                    <dt>
+                      <span class="method-param">oldValue:</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the value of the field before the change</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>SC.VALIDATE_OK or an error object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validateError"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validateError(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns an error object if the field is invalid.</p>
+
+<p>This is the other standard validator method that can be used to implement basic validation.
+  Return an error object explaining why the field is not valid.  It will only be called if
+  validate() returned <code class='syntax js'><span class="keyword">NO</span></code>.</p>
+
+<p>The default implementation of this method returns a generic error message with the loc
+  string "Invalid.Generate({fieldValue})".  You can simply define this loc string in
+  strings.js if you prefer or you can override this method to provide a more specific error message.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form this view belongs to</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate.  Responds to fieldValue.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.Error.html">SC.Error</a></span> </dt>
+                    <dd>an error object</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validateKeyDown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validateKeyDown(<span class="method-arguments">form, field, char</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked when the user presses a key.  </p>
+
+<p>This method is used to restrict the letters and numbers the user is 
+  allowed to enter.  You should not use this method to perform full 
+  validation on the field.  Instead use <code class='syntax js'><span class="variable">validatePartial</span></code>().</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                    <dt>
+                      <span class="method-param">char</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>the characters being added</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a></span> </dt>
+                    <dd>YES if allowed, NO otherwise</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validatePartial"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validatePartial(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked 1ms after the user types a key (if a change is allowed).  </p>
+
+<p>You can use this validate the new partial string and return an error if 
+  needed. The default will validate a partial only if there was already an 
+  error. This allows the user to try to get it right before you bug them.</p>
+
+<p>Unlike the other methods, you should return <code class='syntax js'><span class="class">SC</span>.<span class="class">VALIDATE_NO_CHANGE</span></code> if you
+  did not actually validate the partial string.  If you return 
+  <code class='syntax js'><span class="class">SC</span>.<span class="class">VALIDATE_OK</span></code> then any showing errors will be hidden.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>SC.VALIDATE_OK, SC.VALIDATE_NO_CHANGE or an error object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="validateSubmit"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">validateSubmit(<span class="method-arguments">form, field</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Invoked just before the form is submitted.</p>
+
+<p>This method gives your validators one last chance to perform validation
+  on the form as a whole.  The default version does the same thing as the 
+  <code class='syntax js'><span class="variable">validateChange</span></code>() method.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">form</span> <span class="light fixedFont"><a href="../symbols/SC.FormView.html">SC.FormView</a></span> 
+                      
+                    </dt>
+                    <dd>the form for the field</dd>
+                  
+                    <dt>
+                      <span class="method-param">field</span> <span class="light fixedFont"><a href="../symbols/SC.View.html">SC.View</a></span> 
+                      
+                    </dt>
+                    <dd>the field to validate</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt></dt>
+                    <dd>SC.VALIDATE_OK or an error object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

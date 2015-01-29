@@ -601,7 +601,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>A SplitThumb may be placed inside any view in a SplitView, and can even
@@ -648,3 +648,440 @@ should move the divider to the left, or the divider to the right.</p>
         
 
         
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+          <h2>Class Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.mouseDown">mouseDown(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.mouseDragged">mouseDragged(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.mouseUp">mouseUp(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.movesChild">movesChild(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.splitCursorStyle">splitCursorStyle(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.splitCursorStyleDidChange">splitCursorStyleDidChange(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.touchEnd">touchEnd(<span class="method-arguments">touch</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.touchesDragged">touchesDragged(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.SplitThumb.html#.touchStart">touchStart(<span class="method-arguments">touch</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+        
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name=".movesSibling"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><span class="light">SC.SplitThumb.</span><b>movesSibling</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">TYPE</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Decides whether an ancestor of this SplitThumb view or one of its
+siblings is to be moved in response to events.</p>
+
+<p>Usually, you want events to move a divider. If the SplitThumb is inside
+a view which is<em> not</em> a divider, you probably want to move one of the
+view's siblings-one that<em> is</em> a divider.</p>
+
+<p>You can tell <code class='syntax js'><span class="class">SC</span>.<span class="class">SplitThumb</span></code> to:</p>
+
+<ul>
+<li><p><code class='syntax js'><span class="class">SC</span>.<span class="class">MOVES_AUTOMATIC_CHILD</span></code>: if the SplitView child is either first or last,
+moves the adjacent child (likely a divider). Otherwise moves the child itself.</p></li>
+<li><p><code class='syntax js'><span class="class">SC</span>.<span class="class">MOVES_CHILD</span></code>: moves the child itself, not one of its siblings. Divider
+views could use this setting.</p></li>
+<li><p><code class='syntax js'><span class="class">SC</span>.<span class="class">MOVES_PREVIOUS_CHILD</span></code>: moves the previous child. For instance, in a
+two-pane setup, if the SplitThumb is in the rightmost child, this will
+move the divider between the two children.</p></li>
+<li><p><code class='syntax js'><span class="class">SC</span>.<span class="class">MOVES_NEXT_CHILD</span></code>: moves the next child.</p></li>
+</ul>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+          <section class="detail">
+          <h1>Class Method Detail</h1>
+          
+            <a name=".mouseDown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDown(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".mouseDragged"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDragged(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".mouseUp"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseUp(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".movesChild"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">movesChild(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The child which should be moved by any mouse or touch events. Should usually
+be a divider view.</p>
+
+<p>The default implementation calculates the child by first finding
+the ancestor of this view that is a direct child of the SplitView,
+and then either returning it or one of its immediate siblings, depending
+on the value of the <code class='syntax js'><span class="variable">movesSibling</span></code> property.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".splitCursorStyle"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">splitCursorStyle(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>The name of the CSS cursor that should be used for splitting.
+The containing SplitView will adopt this cursor if and when this
+view is dragged.</p>
+
+<p>Computed based on the SplitView's <code class='syntax js'><span class="variable">layoutDirection</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".splitCursorStyleDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">splitCursorStyleDidChange(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name=".touchEnd"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchEnd(<span class="method-arguments">touch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".touchesDragged"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchesDragged(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name=".touchStart"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">touchStart(<span class="method-arguments">touch</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">touch</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+        
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:55 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

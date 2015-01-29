@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>Base view for managing a view backed by an input element.  Since the web
@@ -642,3 +642,584 @@ use one of the subclasses implemented by your target platform such as
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.View.html">SC.View</a>: </dt>
+              <dd><a href="../symbols/SC.View.html#acceptsMultitouch">acceptsMultitouch</a>, <a href="../symbols/SC.View.html#ariaHidden">ariaHidden</a>, <a href="../symbols/SC.View.html#ariaRole">ariaRole</a>, <a href="../symbols/SC.View.html#attributeBindings">attributeBindings</a>, <a href="../symbols/SC.View.html#autoMixins">autoMixins</a>, <a href="../symbols/SC.View.html#backgroundColor">backgroundColor</a>, <a href="../symbols/SC.View.html#childViewLayout">childViewLayout</a>, <a href="../symbols/SC.View.html#childViewLayoutOptions">childViewLayoutOptions</a>, <a href="../symbols/SC.View.html#childViews">childViews</a>, <a href="../symbols/SC.View.html#childViewsNeedLayout">childViewsNeedLayout</a>, <a href="../symbols/SC.View.html#classNameBindings">classNameBindings</a>, <a href="../symbols/SC.View.html#classNames">classNames</a>, <a href="../symbols/SC.View.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.View.html#createdByParent">createdByParent</a>, <a href="../symbols/SC.View.html#designMode">designMode</a>, <a href="../symbols/SC.View.html#displayProperties">displayProperties</a>, <a href="../symbols/SC.View.html#enabledState">enabledState</a>, <a href="../symbols/SC.View.html#firstKeyView">firstKeyView</a>, <a href="../symbols/SC.View.html#hasLayout">hasLayout</a>, <a href="../symbols/SC.View.html#hasTouch">hasTouch</a>, <a href="../symbols/SC.View.html#hasVisibility">hasVisibility</a>, <a href="../symbols/SC.View.html#isBuildingIn">isBuildingIn</a>, <a href="../symbols/SC.View.html#isBuildingOut">isBuildingOut</a>, <a href="../symbols/SC.View.html#isChildViewLayoutLive">isChildViewLayoutLive</a>, <a href="../symbols/SC.View.html#isEnabled">isEnabled</a>, <a href="../symbols/SC.View.html#isFixedHeight">isFixedHeight</a>, <a href="../symbols/SC.View.html#isFixedPosition">isFixedPosition</a>, <a href="../symbols/SC.View.html#isFixedSize">isFixedSize</a>, <a href="../symbols/SC.View.html#isFixedWidth">isFixedWidth</a>, <a href="../symbols/SC.View.html#isKeyResponder">isKeyResponder</a>, <a href="../symbols/SC.View.html#isTextSelectable">isTextSelectable</a>, <a href="../symbols/SC.View.html#isView">isView</a>, <a href="../symbols/SC.View.html#isVisible">isVisible</a>, <a href="../symbols/SC.View.html#lastKeyView">lastKeyView</a>, <a href="../symbols/SC.View.html#layerLocationNeedsUpdate">layerLocationNeedsUpdate</a>, <a href="../symbols/SC.View.html#layerNeedsUpdate">layerNeedsUpdate</a>, <a href="../symbols/SC.View.html#layout">layout</a>, <a href="../symbols/SC.View.html#modeAdjust">modeAdjust</a>, <a href="../symbols/SC.View.html#nextKeyView">nextKeyView</a>, <a href="../symbols/SC.View.html#page">page</a>, <a href="../symbols/SC.View.html#pane">pane</a>, <a href="../symbols/SC.View.html#parentView">parentView</a>, <a href="../symbols/SC.View.html#previousKeyView">previousKeyView</a>, <a href="../symbols/SC.View.html#renderDelegateName">renderDelegateName</a>, <a href="../symbols/SC.View.html#shouldInheritCursor">shouldInheritCursor</a>, <a href="../symbols/SC.View.html#shouldInheritEnabled">shouldInheritEnabled</a>, <a href="../symbols/SC.View.html#tagName">tagName</a>, <a href="../symbols/SC.View.html#themeName">themeName</a>, <a href="../symbols/SC.View.html#toolTip">toolTip</a>, <a href="../symbols/SC.View.html#touchBoundary">touchBoundary</a>, <a href="../symbols/SC.View.html#transitionAdjust">transitionAdjust</a>, <a href="../symbols/SC.View.html#transitionAdjustOptions">transitionAdjustOptions</a>, <a href="../symbols/SC.View.html#transitionHide">transitionHide</a>, <a href="../symbols/SC.View.html#transitionHideOptions">transitionHideOptions</a>, <a href="../symbols/SC.View.html#transitionIn">transitionIn</a>, <a href="../symbols/SC.View.html#transitionInOptions">transitionInOptions</a>, <a href="../symbols/SC.View.html#transitionOut">transitionOut</a>, <a href="../symbols/SC.View.html#transitionOutOptions">transitionOutOptions</a>, <a href="../symbols/SC.View.html#transitionShow">transitionShow</a>, <a href="../symbols/SC.View.html#transitionShowOptions">transitionShowOptions</a>, <a href="../symbols/SC.View.html#useStaticLayout">useStaticLayout</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Responder.html">SC.Responder</a>: </dt>
+              <dd><a href="../symbols/SC.Responder.html#hasFirstResponder">hasFirstResponder</a>, <a href="../symbols/SC.Responder.html#isFirstResponder">isFirstResponder</a>, <a href="../symbols/SC.Responder.html#responderContext">responderContext</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Control.html">SC.Control</a>: </dt>
+              <dd><a href="../symbols/SC.Control.html#controlSize">controlSize</a>, <a href="../symbols/SC.Control.html#errorLabel">errorLabel</a>, <a href="../symbols/SC.Control.html#fieldKey">fieldKey</a>, <a href="../symbols/SC.Control.html#fieldLabel">fieldLabel</a>, <a href="../symbols/SC.Control.html#isActive">isActive</a>, <a href="../symbols/SC.Control.html#isControl">isControl</a>, <a href="../symbols/SC.Control.html#isSelected">isSelected</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#$input">$input(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#acceptsFirstResponder">acceptsFirstResponder(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#didCreateLayer">didCreateLayer(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#fieldValue">fieldValue(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#fieldValueDidChange">fieldValueDidChange(<span class="method-arguments">partialChange</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#getFieldValue">getFieldValue(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#keyDown">keyDown(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#mouseDown">mouseDown(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#mouseEntered">mouseEntered(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#mouseExited">mouseExited(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#mouseUp">mouseUp(<span class="method-arguments">evt</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#setFieldValue">setFieldValue(<span class="method-arguments">newValue</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.FieldView.html#willDestroyLayer">willDestroyLayer(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="$input"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">$input(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Override to return an CoreQuery object that selects the input elements
+for the view.  If this method is defined, the field view will
+automatically edit the attrbutes of the input element to reflect the
+current <code class='syntax js'><span class="variable">isEnabled</span></code> state among other things.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="acceptsFirstResponder"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">acceptsFirstResponder(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Override of <code class='syntax js'><span class="class">SC</span>.<span class="class">Responder</span>.<span class="variable">prototype</span>.<span class="variable">acceptsFirstResponder</span>.</code></p>
+
+<p>Tied to the <code class='syntax js'><span class="variable">isEnabledInPane</span></code> state.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="didCreateLayer"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">didCreateLayer(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code> view state callback.</p>
+
+<p>After the layer is created, set the field value and begin observing
+change events on the input field.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="fieldValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fieldValue(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><em>field</em>isMouseDown: <code class='syntax js'><span class="keyword">NO</span></code>,</p>
+
+<p>/**
+  The raw value of the field itself.  This is computed from the 'value'
+  property by passing it through any validator you might have set.  This is
+  the value that will be set on the field itself when the view is updated.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="fieldValueDidChange"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">fieldValueDidChange(<span class="method-arguments">partialChange</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Your class should call this method anytime you think the value of the
+input element may have changed.  This will retrieve the value and update
+the value property of the view accordingly.</p>
+
+<p>If this is a partial change (i.e. the user is still editing the field and
+you expect the value to change further), then be sure to pass <code class='syntax js'><span class="keyword">YES</span></code> for the
+<code class='syntax js'><span class="variable">partialChange</span></code> parameter.  This will change the kind of validation done on
+the value.  Otherwise, the validator may mark the field as having an error
+when the user is still in mid-edit.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">partialChange</span> 
+                      
+                    </dt>
+                    <dd>(optional) YES if this is a partial change.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/Boolean.html">Boolean</a>|<a href="../symbols/SC.Error.html">SC.Error</a></span> </dt>
+                    <dd>result of validation.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="getFieldValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">getFieldValue(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Override to retrieve the actual value of the field.</p>
+
+<p>The default implementation will simply retrieve the value attribute from
+the first input tag in the receiver view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/String.html">String</a></span> </dt>
+                    <dd>value</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="keyDown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">keyDown(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">RootResponder</span></code> event handler.</p>
+
+<p>Simply allow <code class='syntax js'><span class="variable">keyDown</span></code> &amp; <code class='syntax js'><span class="variable">keyUp</span></code> to pass through to the default web browser
+implementation.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseDown"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDown(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">RootResponder</span></code> event handler.</p>
+
+<p>Allow the browser to do its normal event handling for the mouse down
+event.  But first, set <code class='syntax js'><span class="variable">isActive</span></code> to <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseEntered"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseEntered(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">RootResponder</span></code> event handler.</p>
+
+<p>If mouse was down and we renter the button area, set the active state again.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseExited"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseExited(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">RootResponder</span></code> event handler.</p>
+
+<p>Remove the active class on <code class='syntax js'><span class="variable">mouseExited</span></code> if mouse is down.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseUp"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseUp(<span class="method-arguments">evt</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">RootResponder</span></code> event handler.</p>
+
+<p>On mouse up, remove the <code class='syntax js'><span class="variable">isActive</span></code> class and then allow the browser to do
+its normal thing.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="setFieldValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">setFieldValue(<span class="method-arguments">newValue</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Override to set the actual value of the field.</p>
+
+<p>The default implementation will simple copy the <code class='syntax js'><span class="variable">newValue</span></code> to the value
+attribute of any input tags in the receiver view.  You can override this
+method to provide specific functionality needed by your view.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">newValue</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>the value to display.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.FieldView.html">SC.FieldView</a></span> </dt>
+                    <dd>receiver</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="willDestroyLayer"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">willDestroyLayer(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p><code class='syntax js'><span class="class">SC</span>.<span class="class">View</span></code> state callback.</p>
+
+<p>Removes the change event from the input field.</p>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:54 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

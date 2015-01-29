@@ -603,7 +603,7 @@
           
           </span>
 
-          
+        
         </p>
 
           <p>An abstract object that manages the state of the columns behind a
@@ -740,3 +740,1203 @@
         
 
         
+        
+          
+            <dl class="inheritsList">
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Object.html">SC.Object</a>: </dt>
+              <dd><a href="../symbols/SC.Object.html#concatenatedProperties">concatenatedProperties</a>, <a href="../symbols/SC.Object.html#isDestroyed">isDestroyed</a>, <a href="../symbols/SC.Object.html#isObject">isObject</a>, <a href="../symbols/SC.Object.html#nextProperty">nextProperty</a>, <a href="../symbols/SC.Object.html#object">object</a>, <a href="../symbols/SC.Object.html#property">property</a>, <a href="../symbols/SC.Object.html#target">target</a>, <a href="../symbols/SC.Object.html#toInvalidate">toInvalidate</a></dd>
+            
+              <dt>Fields borrowed from <a href="../symbols/SC.Observable.html">SC.Observable</a>: </dt>
+              <dd><a href="../symbols/SC.Observable.html#isObservable">isObservable</a></dd>
+            
+            </dl>
+          
+        
+        </div>
+      
+
+
+
+
+<!-- ============================== methods summary ======================== -->
+      
+      
+        
+        
+      
+        
+        
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#clippingFrame">clippingFrame(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#computeLayout">computeLayout(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#containerView">containerView(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#createItemView">createItemView(<span class="method-arguments">exampleClass, idx, attrs</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#displayValue">displayValue(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#init">init(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#layoutForContentIndex">layoutForContentIndex(<span class="method-arguments">index</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#mouseDownInTableHeaderView">mouseDownInTableHeaderView(<span class="method-arguments">evt, header</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#mouseDraggedInTableHeaderView">mouseDraggedInTableHeaderView(<span class="method-arguments">evt, header</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#mouseUpInTableHeaderView">mouseUpInTableHeaderView(<span class="method-arguments">evt, header</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#render">render(<span class="method-arguments">context, firstTime</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#rowHeightForContentIndex">rowHeightForContentIndex(<span class="method-arguments">idx</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.TableColumn.html#rowOffsetForContentIndex">rowOffsetForContentIndex(<span class="method-arguments">idx</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
+      
+<!-- ============================== events summary ======================== -->
+      
+
+
+
+<!-- ============================== field details ========================== -->
+      
+        <section class="detail">
+        <h1>
+          Field Detail
+        </h1>
+        
+          <a name="columns"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>columns</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Array.html">Array</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>A collection of <code class='syntax js'><span class="class">SC</span>.<span class="class">TableColumn</span></code> objects. Modify the array to adjust the
+columns.</p>
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="exampleView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>exampleView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Which view to use for a table row.
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="flexibleColumn"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>flexibleColumn</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.TableColumn.html">SC.TableColumn</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Which column will alter its size so that the columns fill the available
+width of the table. If <code class='syntax js'><span class="keyword">null</span></code>, the last column will stretch.</p>
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="hasTableHead"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasTableHead</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>if <code class='syntax js'><span class="keyword">YES</span></code>, the table view will generate a head row at the top of the table
+view.</p>
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="hasUniformRowHeights"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>hasUniformRowHeights</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether all rows in the table will have the same pixel height. If so, we
+can compute offsets very cheaply.</p>
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="icon"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>icon</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Reference to the URL for this column's icon. If <code class='syntax js'><span class="keyword">null</span></code>, there is no
+icon associated with the column.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isFlexible"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isFlexible</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Whether the column gets wider or narrower based on the size of the
+table. Only one column in a TableView is allowed to be flexible.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isReorderable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isReorderable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether the column can be drag-reordered.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isSortable"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isSortable</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether the column can be sorted.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="key"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>key</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The internal name of the column. <code class='syntax js'><span class="class">SC</span>.<span class="class">TableRowView</span></code> objects expect their
+<code class='syntax js'><span class="variable">content</span></code> to be an object with keys corresponding to the column's keys.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="maxWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>maxWidth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              How wide the column will allow itself to be.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="minWidth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>minWidth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              How narrow the column will allow itself to be.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="rowHeight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>rowHeight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              How high each row should be, in pixels.
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="sortedColumn"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>sortedColumn</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.TableColumn.html">SC.TableColumn</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>Which column is currently the "active" column for sorting purposes.
+Doesn't say anything about sorting direction; for that, read the
+<code class='syntax js'><span class="variable">sortState</span></code> property of the sorted column.</p>
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="sortState"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>sortState</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The sort state of this particular column. Can be one of
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SORT_ASCENDING</span></code>, <code class='syntax js'><span class="class">SC</span>.<span class="class">SORT_DESCENDING</span></code>, or <code class='syntax js'><span class="keyword">null</span></code>. For instance, if
+<code class='syntax js'><span class="class">SC</span>.<span class="class">SORT_ASCENDING</span></code>, means that the table is being sorted on this column
+in the ascending direction. If <code class='syntax js'><span class="keyword">null</span></code>, means that the table is sorted
+on another column.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="tableContent"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tableContent</b></span>
+
+          <!-- The type of field -->
+          
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The content property of the controlling <code class='syntax js'><span class="class">SC</span>.<span class="class">TableView</span>.</code> This is needed
+because the <code class='syntax js'><span class="class">SC</span>.<span class="class">TableHeader</span></code> views use this class to find out how to
+render table content (when necessary).</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="tableHeadHeight"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tableHeadHeight</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The height of the table head in pixels.
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="tableHeadView"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>tableHeadView</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.View.html">SC.View</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The view that serves as the head view for the table (if any).
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="title"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>title</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>The display name of the column. Will appear in the table header for this
+column.</p>
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="width"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>width</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type">Number</span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Width of the column.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+        </section>
+      
+
+
+<!-- ============================== method details ========================= -->
+      
+        
+        
+      
+        
+        
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="clippingFrame"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">clippingFrame(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="computeLayout"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">computeLayout(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="containerView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">containerView(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="createItemView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">createItemView(<span class="method-arguments">exampleClass, idx, attrs</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">exampleClass</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">attrs</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="displayValue"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">displayValue(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table_cell.js.html">table_cell.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="init"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">init(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table_cell.js.html">table_cell.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+
+              
+            </div>
+          
+            <a name="layoutForContentIndex"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">layoutForContentIndex(<span class="method-arguments">index</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Computes the layout for a specific content index by combining the current
+row heights.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">index</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>content index</dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseDownInTableHeaderView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDownInTableHeaderView(<span class="method-arguments">evt, header</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">header</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseDraggedInTableHeaderView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseDraggedInTableHeaderView(<span class="method-arguments">evt, header</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">header</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="mouseUpInTableHeaderView"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">mouseUpInTableHeaderView(<span class="method-arguments">evt, header</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">evt</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">header</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="render"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">render(<span class="method-arguments">context, firstTime</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table_cell.js.html">table_cell.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">context</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                    <dt>
+                      <span class="method-param">firstTime</span> 
+                      
+                    </dt>
+                    <dd></dd>
+                  
+                
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="rowHeightForContentIndex"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">rowHeightForContentIndex(<span class="method-arguments">idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the row height for the specified content index.  This will take
+into account custom row heights and group rows.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>the row height in pixels</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="rowOffsetForContentIndex"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">rowOffsetForContentIndex(<span class="method-arguments">idx</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Returns the top offset for the specified content index.  This will take
+into account any custom row heights and group views.</p>
+                
+                  <br />
+                  <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_table_views_table.js.html">table.js</a>.</span>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">idx</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>the content index</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont">Number</span> </dt>
+                    <dd>the row offset in pixels</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
+      
+
+<!-- ============================== event details ========================= -->
+      
+
+
+
+<!-- ============================== footer ================================= -->
+        <div class="fineprint" style="clear:both">
+          
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jan 29 2015 13:05:56 GMT-0600 (CST)
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
