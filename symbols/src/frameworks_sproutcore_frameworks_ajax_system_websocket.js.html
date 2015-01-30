@@ -41,71 +41,71 @@
 <span class='line'> 34</span>   @extends SC.DelegateSupport
 <span class='line'> 35</span>   @author Nicolas BADIA
 <span class='line'> 36</span> */</span><span class="WHIT">
-<span class='line'> 37</span> </span><span class="NAME">SC.WebSocket</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="NAME">SC.DelegateSupport</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.WebSocketDelegate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 38</span> 
-<span class='line'> 39</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 40</span>     The URL of the WebSocket server.
-<span class='line'> 41</span> 
-<span class='line'> 42</span>     @type String
-<span class='line'> 43</span>     @default null
-<span class='line'> 44</span>   */</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="NAME">server</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 46</span> 
-<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 48</span>     Whether the connection is open or not.
-<span class='line'> 49</span> 
-<span class='line'> 50</span>     @type Boolean
-<span class='line'> 51</span>     @readOnly
-<span class='line'> 52</span>   */</span><span class="WHIT">
-<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="NAME">isConnected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 54</span> 
-<span class='line'> 55</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 56</span>     In order to handle authentification, set `isAuth` to `false` in the
-<span class='line'> 57</span>     `webSocketDidOpen` delegate method just after sending a request to
-<span class='line'> 58</span>     authenticate the connection. This way, any futher messages will be put in the
-<span class='line'> 59</span>     queue until the server tells you that the connection is authenticated. Once it
-<span class='line'> 60</span>     is, you should set `isAuth` to `true` to resume the queue.
-<span class='line'> 61</span> 
-<span class='line'> 62</span>     If you don't need authentication, leave `isAuth` as `null`.
-<span class='line'> 63</span> 
-<span class='line'> 64</span>     @type Boolean
-<span class='line'> 65</span>     @default null
-<span class='line'> 66</span>   */</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">isAuth</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 68</span> 
-<span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 70</span>     Processes the messages as JSON if possible.
-<span class='line'> 71</span> 
-<span class='line'> 72</span>     @type Boolean
-<span class='line'> 73</span>     @default true
-<span class='line'> 74</span>   */</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="NAME">isJSON</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 76</span> 
-<span class='line'> 77</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 78</span>     A WebSocket delegate.
-<span class='line'> 79</span> 
-<span class='line'> 80</span>     @see SC.WebSocketDelegate
-<span class='line'> 81</span>     @type SC.WebSocketDelegate
-<span class='line'> 82</span>     @default null
-<span class='line'> 83</span>   */</span><span class="WHIT">
-<span class='line'> 84</span> </span><span class="WHIT">  </span><span class="NAME">delegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 85</span> 
-<span class='line'> 86</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 87</span>     Whether to attempt to reconnect automatically if the connection is closed or not.
-<span class='line'> 88</span> 
-<span class='line'> 89</span>     @type SC.WebSocketDelegate
-<span class='line'> 90</span>     @default true
-<span class='line'> 91</span>   */</span><span class="WHIT">
-<span class='line'> 92</span> </span><span class="WHIT">  </span><span class="NAME">autoReconnect</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 93</span> 
-<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="COMM">/**
-<span class='line'> 95</span>     The interval in milliseconds to wait before trying to reconnect.
-<span class='line'> 96</span> 
-<span class='line'> 97</span>     @type SC.WebSocketDelegate
-<span class='line'> 98</span>     @default null
-<span class='line'> 99</span>   */</span><span class="WHIT">
-<span class='line'>100</span> </span><span class="WHIT">  </span><span class="NAME">reconnectInterval</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">10000</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// 10 seconds</span><span class="WHIT">
-<span class='line'>101</span> 
+<span class='line'> 37</span> </span><span class="NAME">SC.WebSocket</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Object.extend</span><span class="PUNC">(</span><span class="NAME">SC.DelegateSupport</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">SC.WebSocketDelegate</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="WHIT">  </span><span class="COMM">/** @scope SC.WebSocket.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 39</span> 
+<span class='line'> 40</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 41</span>     The URL of the WebSocket server.
+<span class='line'> 42</span> 
+<span class='line'> 43</span>     @type String
+<span class='line'> 44</span>     @default null
+<span class='line'> 45</span>   */</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="NAME">server</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 47</span> 
+<span class='line'> 48</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 49</span>     Whether the connection is open or not.
+<span class='line'> 50</span> 
+<span class='line'> 51</span>     @type Boolean
+<span class='line'> 52</span>     @readOnly
+<span class='line'> 53</span>   */</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="NAME">isConnected</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 55</span> 
+<span class='line'> 56</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 57</span>     In order to handle authentification, set `isAuth` to `false` in the
+<span class='line'> 58</span>     `webSocketDidOpen` delegate method just after sending a request to
+<span class='line'> 59</span>     authenticate the connection. This way, any futher messages will be put in the
+<span class='line'> 60</span>     queue until the server tells you that the connection is authenticated. Once it
+<span class='line'> 61</span>     is, you should set `isAuth` to `true` to resume the queue.
+<span class='line'> 62</span> 
+<span class='line'> 63</span>     If you don't need authentication, leave `isAuth` as `null`.
+<span class='line'> 64</span> 
+<span class='line'> 65</span>     @type Boolean
+<span class='line'> 66</span>     @default null
+<span class='line'> 67</span>   */</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="WHIT">  </span><span class="NAME">isAuth</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 71</span>     Processes the messages as JSON if possible.
+<span class='line'> 72</span> 
+<span class='line'> 73</span>     @type Boolean
+<span class='line'> 74</span>     @default true
+<span class='line'> 75</span>   */</span><span class="WHIT">
+<span class='line'> 76</span> </span><span class="WHIT">  </span><span class="NAME">isJSON</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 79</span>     A WebSocket delegate.
+<span class='line'> 80</span> 
+<span class='line'> 81</span>     @see SC.WebSocketDelegate
+<span class='line'> 82</span>     @type SC.WebSocketDelegate
+<span class='line'> 83</span>     @default null
+<span class='line'> 84</span>   */</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="WHIT">  </span><span class="NAME">delegate</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 88</span>     Whether to attempt to reconnect automatically if the connection is closed or not.
+<span class='line'> 89</span> 
+<span class='line'> 90</span>     @type SC.WebSocketDelegate
+<span class='line'> 91</span>     @default true
+<span class='line'> 92</span>   */</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="NAME">autoReconnect</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">true</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 94</span> 
+<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 96</span>     The interval in milliseconds to wait before trying to reconnect.
+<span class='line'> 97</span> 
+<span class='line'> 98</span>     @type SC.WebSocketDelegate
+<span class='line'> 99</span>     @default null
+<span class='line'>100</span>   */</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">  </span><span class="NAME">reconnectInterval</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="NUMB">10000</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="COMM">// 10 seconds</span><span class="WHIT">
 <span class='line'>102</span> 
 <span class='line'>103</span> </span><span class="WHIT">  </span><span class="COMM">// ..........................................................</span><span class="WHIT">
 <span class='line'>104</span> </span><span class="WHIT">  </span><span class="COMM">// PUBLIC METHODS</span><span class="WHIT">

@@ -655,6 +655,11 @@ WebSocket events.</p>
           <ul>
           
             <li>
+              <a href="../symbols/SC.WebSocket.html#autoReconnect">autoReconnect</a>
+              
+            </li>
+          
+            <li>
               SC.WebSocket.<a href="../symbols/SC.WebSocket.html#.CLOSED">CLOSED</a>
               
             </li>
@@ -670,7 +675,37 @@ WebSocket events.</p>
             </li>
           
             <li>
+              <a href="../symbols/SC.WebSocket.html#delegate">delegate</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.WebSocket.html#isAuth">isAuth</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.WebSocket.html#isConnected">isConnected</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.WebSocket.html#isJSON">isJSON</a>
+              
+            </li>
+          
+            <li>
               SC.WebSocket.<a href="../symbols/SC.WebSocket.html#.OPEN">OPEN</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.WebSocket.html#reconnectInterval">reconnectInterval</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/SC.WebSocket.html#server">server</a>
               
             </li>
           
@@ -705,6 +740,31 @@ WebSocket events.</p>
       
         
         
+          <h2>Instance Methods</h2>
+          <ul class="methods">
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocket.html#close">close(<span class="method-arguments">code, reason</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocket.html#connect">connect(<span class="method-arguments"></span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocket.html#notify">notify(<span class="method-arguments">target, target, action</span>)</a>
+              
+            </li>
+          
+            
+            <li class="fixedFont"><a href="../symbols/SC.WebSocket.html#send">send(<span class="method-arguments">message</span>)</a>
+              
+            </li>
+          
+          </ul>
+        
       
 <!-- ============================== events summary ======================== -->
       
@@ -717,6 +777,43 @@ WebSocket events.</p>
         <h1>
           Field Detail
         </h1>
+        
+          <a name="autoReconnect"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>autoReconnect</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether to attempt to reconnect automatically if the connection is closed or not.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
         
           <a name=".CLOSED"> </a>
           <!-- If the field is deprecated. -->
@@ -829,6 +926,155 @@ WebSocket events.</p>
           </div>
 
         
+          <a name="delegate"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>delegate</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              A WebSocket delegate.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+                <dt class="heading">See:</dt>
+                
+                <dd><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></dd>
+                
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isAuth"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isAuth</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              <p>In order to handle authentification, set <code class='syntax js'><span class="variable">isAuth</span></code> to <code class='syntax js'><span class="variable">false</span></code> in the
+<code class='syntax js'><span class="variable">webSocketDidOpen</span></code> delegate method just after sending a request to
+authenticate the connection. This way, any futher messages will be put in the
+queue until the server tells you that the connection is authenticated. Once it
+is, you should set <code class='syntax js'><span class="variable">isAuth</span></code> to <code class='syntax js'><span class="variable">true</span></code> to resume the queue.</p>
+
+<p>If you don't need authentication, leave <code class='syntax js'><span class="variable">isAuth</span></code> as <code class='syntax js'><span class="keyword">null</span></code>.</p>
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="isConnected"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isConnected</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether the connection is open or not.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="isJSON"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>isJSON</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Processes the messages as JSON if possible.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>true</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
           <a name=".OPEN"> </a>
           <!-- If the field is deprecated. -->
           
@@ -866,6 +1112,80 @@ WebSocket events.</p>
           </div>
 
         
+          <a name="reconnectInterval"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>reconnectInterval</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The interval in milliseconds to wait before trying to reconnect.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
+          <a name="server"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>server</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/String.html">String</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              The URL of the WebSocket server.
+              
+              
+            </div>
+
+            
+
+            
+              <dl class="detailList">
+              
+                <dt class="heading">Default value:</dt>
+                <dd>null</dd>
+              
+              
+              
+
+            </dl>
+            
+          </div>
+
+        
         </section>
       
 
@@ -877,6 +1197,206 @@ WebSocket events.</p>
       
         
         
+          <section class="detail">
+          <h1>Instance Method Detail</h1>
+          
+            <a name="close"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">close(<span class="method-arguments">code, reason</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Close the connection.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">code</span> <span class="light fixedFont">Number</span> 
+                      
+                    </dt>
+                    <dd>A numeric value indicating the status code explaining why the connection is being closed. If this parameter is not specified, a default value of 1000 (indicating a normal "transaction complete" closure) is assumed.</dd>
+                  
+                    <dt>
+                      <span class="method-param">reason</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>A human-readable string explaining why the connection is closing. This string must be no longer than 123 bytes of UTF-8 text (not characters).</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
+                    <dd>The SC.WebSocket object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="connect"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">connect(<span class="method-arguments"></span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                Open the WebSocket connection.
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
+                    <dd>The SC.WebSocket object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="notify"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">notify(<span class="method-arguments">target, target, action</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Configures a callback to execute when an event happens. You must pass at least a target and
+method to this and optionally an event name.</p>
+
+<p>You may also pass additional arguments which will then be passed along to your callback.</p>
+
+<p>Example:</p>
+
+<pre><code class='syntax js'><span class="keyword">var</span> <span class="variable">websocket</span> = <span class="class">SC</span>.<span class="class">WebSocket</span>.<span class="variable">create</span>({ <span class="variable">server</span>: <span class="string">'ws://server'</span> }).<span class="variable">connect</span>();
+
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onopen'</span>, <span class="this">this</span>, <span class="string">'wsWasOpened'</span>);
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onmessage'</span>, <span class="this">this</span>, <span class="string">'wsReceivedMessage'</span>);
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onclose'</span>, <span class="this">this</span>, <span class="string">'wsWasClose'</span>);
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onerror'</span>, <span class="this">this</span>, <span class="string">'wsDidError'</span>);
+</code></pre>
+
+<h2 id="callbackformat">Callback Format</h2>
+
+<p>Your notification callback should expect to receive the WebSocket object as
+the first parameter and the event or message; plus any additional parameters that you pass. If your callback handles the notification and to prevent further handling, it
+should return <code class='syntax js'><span class="keyword">YES</span></code>.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
+                      
+                    </dt>
+                    <dd>String Event name.</dd>
+                  
+                    <dt>
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The target object for the callback action.</dd>
+                  
+                    <dt>
+                      <span class="method-param">action</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Function.html">Function</a></span> 
+                      
+                    </dt>
+                    <dd>The method name or function to call on the target.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
+                    <dd>The SC.WebSocket object.</dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+            <a name="send"> </a>
+            <div class="fixedFont">
+              <!-- If the method is deprecated. -->
+              
+              <span class="methodname">send(<span class="method-arguments">message</span>)</span>
+            </div>
+
+            <div class="method-content">
+              <div class="description">
+                <p>Send the message on the WebSocket. If the connection is not yet open or authenticated (as
+necessary), the message will be put in the queue.</p>
+
+<p>If <code class='syntax js'><span class="variable">isJSON</span></code> is true (the default for <code class='syntax js'><span class="class">SC</span>.<span class="class">WebSocket</span>)</code>, the message will be stringified JSON.</p>
+                
+                
+              </div>
+
+              
+
+              
+                <dl class="parameters">
+                
+                  <dt class="heading">Parameters:</dt>
+                  
+                    <dt>
+                      <span class="method-param">message</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Object.html">Object</a></span> 
+                      
+                    </dt>
+                    <dd>The message to send.</dd>
+                  
+                
+                
+                  <dt class="heading">Returns:</dt>
+                  
+                    <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
+                    <dd></dd>
+                  
+                
+                </dl>
+              
+
+              
+            </div>
+          
+        </section>
+        
       
 
 <!-- ============================== event details ========================= -->
@@ -887,7 +1407,7 @@ WebSocket events.</p>
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 10:37:07 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 10:48:57 GMT-0600 (CST)
         </div>
       </section>
     </div>
