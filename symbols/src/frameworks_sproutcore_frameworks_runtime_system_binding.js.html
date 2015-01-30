@@ -980,13 +980,13 @@
 <span class='line'>973</span>     radix) and Boolean values will be 1 or 0 if true or false accordingly. Other edge cases like NaN
 <span class='line'>974</span>     or other non-Numbers will also return 0.
 <span class='line'>975</span> 
-<span class='line'>976</span>     Example results:
+<span class='line'>976</span>     Example results,
 <span class='line'>977</span> 
-<span class='line'>978</span>       * null => 0
-<span class='line'>979</span>       * undefined => 0
-<span class='line'>980</span>       * '123' => 123
-<span class='line'>981</span>       * true => 1
-<span class='line'>982</span>       * {} => 0
+<span class='line'>978</span>     - null => 0
+<span class='line'>979</span>     - undefined => 0
+<span class='line'>980</span>     - '123' => 123
+<span class='line'>981</span>     - true => 1
+<span class='line'>982</span>     - {} => 0
 <span class='line'>983</span> 
 <span class='line'>984</span>     @param {String} fromPathOrRadix from path or the radix for the parsing or null for 10
 <span class='line'>985</span>     @param {String} radix the radix for the parsing or null for 10
@@ -1166,13 +1166,13 @@
 <span class='line'>1159</span>     Adds a transform that will *always* return a String value. Null and undefined values will return
 <span class='line'>1160</span>     an empty string while all other non-String values will be transformed using the toString method.
 <span class='line'>1161</span> 
-<span class='line'>1162</span>     Example results:
+<span class='line'>1162</span>     Example results,
 <span class='line'>1163</span> 
-<span class='line'>1164</span>       * null => ''
-<span class='line'>1165</span>       * undefined => ''
-<span class='line'>1166</span>       * 123 => '123'
-<span class='line'>1167</span>       * true => 'true'
-<span class='line'>1168</span>       * {} => '[object Object]' (i.e. x = {}; return x.toString())
+<span class='line'>1164</span>     - null => ''
+<span class='line'>1165</span>     - undefined => ''
+<span class='line'>1166</span>     - 123 => '123'
+<span class='line'>1167</span>     - true => 'true'
+<span class='line'>1168</span>     - {} => '[object Object]' (i.e. x = {}; return x.toString())
 <span class='line'>1169</span> 
 <span class='line'>1170</span>     @param {String} fromPath from path or null
 <span class='line'>1171</span>     @returns {SC.Binding} this

@@ -790,7 +790,7 @@ be a server, local storage, or any other persistent code.</p>
             </li>
           
             
-            <li class="fixedFont"><a href="../symbols/SC.Store.html#chainAutonomousStore">chainAutonomousStore(<span class="method-arguments">attrs, newStoreClass</span>)</a>
+            <li class="fixedFont"><a href="../symbols/SC.Store.html#chainAutonomousStore">chainAutonomousStore(<span class="method-arguments"><span style="font-style: italic;">attrs</span>, <span style="font-style: italic;">newStoreClass</span></span>)</a>
               
             </li>
           
@@ -1887,44 +1887,46 @@ when you are finished with the chained store altogether.</p>
             <div class="fixedFont">
               <!-- If the method is deprecated. -->
               
-              <span class="methodname">chainAutonomousStore(<span class="method-arguments">attrs, newStoreClass</span>)</span>
+              <span class="methodname">chainAutonomousStore(<span class="method-arguments"><span style="font-style: italic;">attrs</span>, <span style="font-style: italic;">newStoreClass</span></span>)</span>
             </div>
 
             <div class="method-content">
               <div class="description">
-                <p>Creates an autonomous nested store that is connected to the data source.
-Use this kind of nested store to ensure that all records that are committed into main store are first of all committed on the server.</p>
+                <p>Creates an autonomous nested store that is connected to the data source.</p>
 
-<p>ns = store.chainAutonomousStore();
-... perform changes into the nested store
-ns.commitRecords( ...,callback );
-or...
-<code class='syntax js'><span class="variable">newRecord</span></code>.commitRecord( ..., callback );</p>
+<p>Use this kind of nested store to ensure that all records that are committed into the main store
+are first of all committed to the server.</p>
 
-<p>into the callback method:
-  A. If using a transaction model: "all or nothing" where all rows are handled into a single transaction</p>
+<p>For example,</p>
 
-<pre><code class='syntax js'><span class="keyword">if</span> <span class="variable">the</span> <span class="variable">transaction</span> <span class="variable">is</span> <span class="variable">successful</span>, <span class="variable">commit</span> <span class="variable">the</span> <span class="variable">successful</span> <span class="variable">changes</span> <span class="variable">into</span> <span class="variable">the</span> <span class="variable">main</span> <span class="variable">store</span> <span class="variable">and</span> <span class="variable">destroy</span>:
-   <span class="variable">ns</span>.<span class="variable">commitSuccessfulChanges</span>();
-   <span class="variable">ns</span>.<span class="variable">destroy</span>();
+<pre><code class='syntax js'><span class="variable">nestedStore</span> = <span class="variable">store</span>.<span class="variable">chainAutonomousStore</span>();
 
-<span class="keyword">if</span> <span class="variable">not</span> <span class="variable">successful</span>, <span class="variable">handle</span> <span class="variable">the</span> <span class="variable">error</span>, <span class="variable">allow</span> <span class="variable">corrections</span> <span class="keyword">if</span> <span class="variable">needed</span>, <span class="variable">etc</span>.
+<span class="comment">// ... commit all changes from the nested store to the remote data store</span>
+<span class="variable">nestedStore</span>.<span class="variable">commitRecords</span>();
+
+<span class="comment">// or commit the changes of a nested store's record to the remote data store ...</span>
+<span class="variable">nestedRecord</span>.<span class="variable">commitRecord</span>();
 </code></pre>
 
-<p>B. If using a transaction model: "independent rows" where the edited rows are independent and committed separately into the backend database
-     When only some of them have been accepted by the server, the overall transaction is only partially
-     successful therefore the nested store will contain rows with different statuses.
-     In such case, into the callback method only the accepted rows should be pushed to the main store using <code class='syntax js'><span class="variable">commitSuccessfulChanges</span></code>()</p>
+<h2 id="resolvingnestedstorecommitswiththemainstore">Resolving nested store commits with the main store</h2>
 
-<pre><code class='syntax js'><span class="variable">ns</span>.<span class="variable">commitSuccessfulChanges</span>();
-   ...
- <span class="keyword">if</span> <span class="variable">some</span> <span class="variable">of</span> <span class="variable">the</span> <span class="variable">rows</span> <span class="variable">were</span> <span class="variable">not</span> <span class="variable">accepted</span> <span class="variable">by</span> <span class="variable">the</span> <span class="variable">backend</span>, <span class="variable">allow</span> <span class="variable">corrections</span>, <span class="variable">attempt</span> <span class="variable">another</span> <span class="variable">commit</span>, <span class="variable">etc</span>.:
-   <span class="variable">ns</span>.<span class="variable">commitRecords</span>( ...,<span class="variable">callback</span> );
-   ... <span class="variable">the</span> <span class="variable">callback</span> <span class="variable">will</span> <span class="variable">be</span> <span class="variable">invoked</span> <span class="variable">again</span>
+<p>When the committed changes are deemed successful (either by observing the status of the modified
+record(s) or by using callbacks with <code class='syntax js'><span class="variable">commitRecord</span></code>/commitRecords), the changes can be passed back
+to the main store.</p>
 
- <span class="class">Important</span> <span class="variable">note</span>: <span class="class">In</span> <span class="variable">the</span> <span class="keyword">case</span> <span class="variable">of</span> <span class="variable">such</span> <span class="variable">configuration</span>, <span class="keyword">in</span> <span class="variable">order</span> <span class="variable">to</span> <span class="variable">preserve</span> <span class="variable">the</span> <span class="variable">consistency</span> <span class="variable">of</span> <span class="variable">the</span> <span class="variable">main</span> <span class="variable">store</span> <span class="keyword">with</span>
- <span class="variable">the</span> <span class="variable">backend</span> <span class="variable">database</span>, <span class="variable">it</span> <span class="variable">is</span> <span class="variable">recommended</span> <span class="variable">to</span> <span class="variable">systematically</span> <span class="variable">call</span> <span class="variable">commitSuccessfulChanges</span>() <span class="variable">when</span> <span class="variable">receiving</span> <span class="variable">the</span> <span class="variable">answer</span> <span class="variable">from</span> <span class="variable">the</span> <span class="variable">server</span>.
+<p>In the case that the commits are all successful, simply commit to the main store using
+<code class='syntax js'><span class="variable">commitSuccessfulChanges</span></code>. Note, that using <code class='syntax js'><span class="variable">commitSuccessfulChanges</span></code> rather than the standard
+<code class='syntax js'><span class="variable">commitChanges</span></code> ensures that only clean changes propagate back to the main store.</p>
+
+<p>For example,</p>
+
+<pre><code class='syntax js'><span class="variable">nestedStore</span>.<span class="variable">commitSuccessfulChanges</span>();
 </code></pre>
+
+<p>In the case that some or all of the commits fail, you can still use <code class='syntax js'><span class="variable">commitSuccessfulChanges</span></code> to
+update only those commits that have succeeded in the main store or wait until all commits have
+succeeded. Regardless, it will be up to your application to act on the failures and work with
+the user to resolve all failures until the nested store records are all clean.</p>
                 
                 
               </div>
@@ -1938,15 +1940,15 @@ or...
                   
                     <dt>
                       <span class="method-param">attrs</span> <span class="light fixedFont">Hash</span> 
-                      
+                      <i>Optional</i>
                     </dt>
-                    <dd>optional attributes to set on new store</dd>
+                    <dd>attributes to set on new store</dd>
                   
                     <dt>
                       <span class="method-param">newStoreClass</span> <span class="light fixedFont">Class</span> 
-                      
+                      <i>Optional</i>
                     </dt>
-                    <dd>optional the class of the newly-created nested store (defaults to SC.NestedStore)</dd>
+                    <dd>the class of the newly-created nested store (defaults to SC.NestedStore)</dd>
                   
                 
                 
@@ -5287,7 +5289,7 @@ this param is ignored.</p>
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 10:48:57 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 11:50:22 GMT-0600 (CST)
         </div>
       </section>
     </div>
