@@ -51,60 +51,60 @@
 <span class='line'> 44</span>   These examples may help identify the difference. First, let's look at the classic inheritance
 <span class='line'> 45</span>   model,
 <span class='line'> 46</span> 
-<span class='line'> 47</span>     // This is the "root" class. All subclasses of MyApp.Person will be unique from MyApp.Person.
-<span class='line'> 48</span>     MyApp.Person = SC.Record.extend({});
+<span class='line'> 47</span>       // This is the "root" class. All subclasses of MyApp.Person will be unique from MyApp.Person.
+<span class='line'> 48</span>       MyApp.Person = SC.Record.extend({});
 <span class='line'> 49</span> 
-<span class='line'> 50</span>     // As a subclass, MyApp.Female inherits from a MyApp.Person, but is not "equal" to it.
-<span class='line'> 51</span>     MyApp.Female = MyApp.Person.extend({
-<span class='line'> 52</span>       isFemale: true
-<span class='line'> 53</span>     });
+<span class='line'> 50</span>       // As a subclass, MyApp.Female inherits from a MyApp.Person, but is not "equal" to it.
+<span class='line'> 51</span>       MyApp.Female = MyApp.Person.extend({
+<span class='line'> 52</span>         isFemale: true
+<span class='line'> 53</span>       });
 <span class='line'> 54</span> 
-<span class='line'> 55</span>     // As a subclass, MyApp.Male inherits from a MyApp.Person, but is not "equal" to it.
-<span class='line'> 56</span>     MyApp.Male = MyApp.Person.extend({
-<span class='line'> 57</span>       isMale: true
-<span class='line'> 58</span>     });
+<span class='line'> 55</span>       // As a subclass, MyApp.Male inherits from a MyApp.Person, but is not "equal" to it.
+<span class='line'> 56</span>       MyApp.Male = MyApp.Person.extend({
+<span class='line'> 57</span>         isMale: true
+<span class='line'> 58</span>       });
 <span class='line'> 59</span> 
-<span class='line'> 60</span>     // Load two unique records into the store.
-<span class='line'> 61</span>     MyApp.store.createRecord(MyApp.Female, { guid: '1' });
-<span class='line'> 62</span>     MyApp.store.createRecord(MyApp.Male, { guid: '2' });
+<span class='line'> 60</span>       // Load two unique records into the store.
+<span class='line'> 61</span>       MyApp.store.createRecord(MyApp.Female, { guid: '1' });
+<span class='line'> 62</span>       MyApp.store.createRecord(MyApp.Male, { guid: '2' });
 <span class='line'> 63</span> 
-<span class='line'> 64</span>     // Now we can see that these records are isolated from each other.
-<span class='line'> 65</span>     var female = MyApp.store.find(MyApp.Person, '1'); // Returns an SC.Record.EMPTY record.
-<span class='line'> 66</span>     var male = MyApp.store.find(MyApp.Person, '2'); // Returns an SC.Record.EMPTY record.
+<span class='line'> 64</span>       // Now we can see that these records are isolated from each other.
+<span class='line'> 65</span>       var female = MyApp.store.find(MyApp.Person, '1'); // Returns an SC.Record.EMPTY record.
+<span class='line'> 66</span>       var male = MyApp.store.find(MyApp.Person, '2'); // Returns an SC.Record.EMPTY record.
 <span class='line'> 67</span> 
-<span class='line'> 68</span>     // These records are MyApp.Person only.
-<span class='line'> 69</span>     SC.kindOf(female, MyApp.Female); // false
-<span class='line'> 70</span>     SC.kindOf(male, MyApp.Male); // false
+<span class='line'> 68</span>       // These records are MyApp.Person only.
+<span class='line'> 69</span>       SC.kindOf(female, MyApp.Female); // false
+<span class='line'> 70</span>       SC.kindOf(male, MyApp.Male); // false
 <span class='line'> 71</span> 
 <span class='line'> 72</span>   Next, let's make MyApp.Person a polymorphic class,
 <span class='line'> 73</span> 
-<span class='line'> 74</span>     // This is the "root" polymorphic class. All subclasses of MyApp.Person will be able to stand-in as a MyApp.Person.
-<span class='line'> 75</span>     MyApp.Person = SC.Record.extend({
-<span class='line'> 76</span>       isPolymorphic: true
-<span class='line'> 77</span>     });
+<span class='line'> 74</span>       // This is the "root" polymorphic class. All subclasses of MyApp.Person will be able to stand-in as a MyApp.Person.
+<span class='line'> 75</span>       MyApp.Person = SC.Record.extend({
+<span class='line'> 76</span>         isPolymorphic: true
+<span class='line'> 77</span>       });
 <span class='line'> 78</span> 
-<span class='line'> 79</span>     // As a polymorphic subclass, MyApp.Female is "equal" to a MyApp.Person.
-<span class='line'> 80</span>     MyApp.Female = MyApp.Person.extend({
-<span class='line'> 81</span>       isFemale: true
-<span class='line'> 82</span>     });
+<span class='line'> 79</span>       // As a polymorphic subclass, MyApp.Female is "equal" to a MyApp.Person.
+<span class='line'> 80</span>       MyApp.Female = MyApp.Person.extend({
+<span class='line'> 81</span>         isFemale: true
+<span class='line'> 82</span>       });
 <span class='line'> 83</span> 
-<span class='line'> 84</span>     // As a polymorphic subclass, MyApp.Male is "equal" to a MyApp.Person.
-<span class='line'> 85</span>     MyApp.Male = MyApp.Person.extend({
-<span class='line'> 86</span>       isMale: true
-<span class='line'> 87</span>     });
+<span class='line'> 84</span>       // As a polymorphic subclass, MyApp.Male is "equal" to a MyApp.Person.
+<span class='line'> 85</span>       MyApp.Male = MyApp.Person.extend({
+<span class='line'> 86</span>         isMale: true
+<span class='line'> 87</span>       });
 <span class='line'> 88</span> 
-<span class='line'> 89</span>     // Load two unique records into the store.
-<span class='line'> 90</span>     MyApp.store.createRecord(MyApp.Female, { guid: '1' });
-<span class='line'> 91</span>     MyApp.store.createRecord(MyApp.Male, { guid: '2' });
+<span class='line'> 89</span>       // Load two unique records into the store.
+<span class='line'> 90</span>       MyApp.store.createRecord(MyApp.Female, { guid: '1' });
+<span class='line'> 91</span>       MyApp.store.createRecord(MyApp.Male, { guid: '2' });
 <span class='line'> 92</span> 
-<span class='line'> 93</span>     // Now we can see that these records are in fact "equal" to each other. Which means that if we
-<span class='line'> 94</span>     // search for "people", we will get "males" & "females".
-<span class='line'> 95</span>     var female = MyApp.store.find(MyApp.Person, '1'); // Returns record.
-<span class='line'> 96</span>     var male = MyApp.store.find(MyApp.Person, '2'); // Returns record.
+<span class='line'> 93</span>       // Now we can see that these records are in fact "equal" to each other. Which means that if we
+<span class='line'> 94</span>       // search for "people", we will get "males" & "females".
+<span class='line'> 95</span>       var female = MyApp.store.find(MyApp.Person, '1'); // Returns record.
+<span class='line'> 96</span>       var male = MyApp.store.find(MyApp.Person, '2'); // Returns record.
 <span class='line'> 97</span> 
-<span class='line'> 98</span>     // These records are MyApp.Person as well as their unique subclass.
-<span class='line'> 99</span>     SC.kindOf(female, MyApp.Female); // true
-<span class='line'>100</span>     SC.kindOf(male, MyApp.Male); // true
+<span class='line'> 98</span>       // These records are MyApp.Person as well as their unique subclass.
+<span class='line'> 99</span>       SC.kindOf(female, MyApp.Female); // true
+<span class='line'>100</span>       SC.kindOf(male, MyApp.Male); // true
 <span class='line'>101</span> 
 <span class='line'>102</span>   @extends SC.Object
 <span class='line'>103</span>   @see SC.RecordAttribute

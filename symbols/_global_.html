@@ -724,11 +724,6 @@
             </li>
           
             <li>
-              <a href="../symbols/_global_.html#isSupported">isSupported</a>
-              
-            </li>
-          
-            <li>
               <a href="../symbols/_global_.html#isXML">isXML</a>
               
             </li>
@@ -830,6 +825,11 @@
           
             <li>
               <a href="../symbols/_global_.html#supportsOrientationChange">supportsOrientationChange</a>
+              
+            </li>
+          
+            <li>
+              <a href="../symbols/_global_.html#supportsWebSocket">supportsWebSocket</a>
               
             </li>
           
@@ -3196,14 +3196,13 @@ you would verify that <code class='syntax js'><span class="class">SC</span>.<spa
           <span class="property"><b>autoReconnect</b></span>
 
           <!-- The type of field -->
-          
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
 
           <!-- If the field is readonly. -->
 
           <div class="field-content">
             <div class="description">
-              <p>Determines if we should attempt to try an automatic reconnection
-if the connection is close.</p>
+              Whether to attempt to reconnect automatically if the connection is closed or not.
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
@@ -3217,7 +3216,7 @@ if the connection is close.</p>
               <dl class="detailList">
               
                 <dt class="heading">Default value:</dt>
-                <dd>null</dd>
+                <dd>true</dd>
               
               
               
@@ -3381,7 +3380,7 @@ Prefix for browser specific CSS attributes.</p></div>
           <span class="property"><b>delegate</b></span>
 
           <!-- The type of field -->
-          
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
 
           <!-- If the field is readonly. -->
 
@@ -3739,13 +3738,13 @@ you would verify that <code class='syntax js'><span class="class">SC</span>.<spa
 
           <div class="field-content">
             <div class="description">
-              <p>In order to handle authentification, set <code class='syntax js'><span class="variable">isAuth</span></code> to <code class='syntax js'><span class="keyword">NO</span></code> in the
+              <p>In order to handle authentification, set <code class='syntax js'><span class="variable">isAuth</span></code> to <code class='syntax js'><span class="variable">false</span></code> in the
 <code class='syntax js'><span class="variable">webSocketDidOpen</span></code> delegate method just after sending a request to
-authentificate the connection. This way, any futher message will be put in
-queue until the server tels you the connection is authentified. Once it
-did, you should set <code class='syntax js'><span class="variable">isAuth</span></code> to YES to resume the queue.</p>
+authenticate the connection. This way, any futher messages will be put in the
+queue until the server tells you that the connection is authenticated. Once it
+is, you should set <code class='syntax js'><span class="variable">isAuth</span></code> to <code class='syntax js'><span class="variable">true</span></code> to resume the queue.</p>
 
-<p>If you don't need authentification, leave <code class='syntax js'><span class="variable">isAuth</span></code> to null.</p>
+<p>If you don't need authentication, leave <code class='syntax js'><span class="variable">isAuth</span></code> as <code class='syntax js'><span class="keyword">null</span></code>.</p>
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
@@ -3785,7 +3784,7 @@ did, you should set <code class='syntax js'><span class="variable">isAuth</span>
 
           <div class="field-content">
             <div class="description">
-              Determines if the connection is open or not.
+              Whether the connection is open or not.
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
@@ -3935,46 +3934,6 @@ mode, and when losing/regaining network connectivity.</p>
               
                 <dt class="heading">Default value:</dt>
                 <dd>NO</dd>
-              
-              
-              
-
-            </dl>
-            
-          </div>
-
-        
-          <a name="isSupported"> </a>
-          <!-- If the field is deprecated. -->
-          
-
-          <!-- If the field is readonly. -->
-          
-
-          <span class="property"><b>isSupported</b></span>
-
-          <!-- The type of field -->
-          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
-
-          <!-- If the field is readonly. -->
-
-          <div class="field-content">
-            <div class="description">
-              Determines if the browser support the WebSocket protocol.
-              
-                <br />
-                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
-              
-              
-            </div>
-
-            
-
-            
-              <dl class="detailList">
-              
-                <dt class="heading">Default value:</dt>
-                <dd>null</dd>
               
               
               
@@ -4159,13 +4118,13 @@ or <code class='syntax js'><span class="class">SC</span>.<span class="class">POR
           <span class="property"><b>reconnectInterval</b></span>
 
           <!-- The type of field -->
-          
+          <span class="light field-type"><a href="../symbols/SC.WebSocketDelegate.html">SC.WebSocketDelegate</a></span>
 
           <!-- If the field is readonly. -->
 
           <div class="field-content">
             <div class="description">
-              The interval in milliseconds to waits before trying a reconnection.
+              The interval in milliseconds to wait before trying to reconnect.
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
@@ -4236,7 +4195,7 @@ selector functions</p>
 
           <div class="field-content">
             <div class="description">
-              URL of the WebSocket server.
+              The URL of the WebSocket server.
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.
@@ -4641,6 +4600,36 @@ screen on an <code class='syntax js'><span class="variable">iPhone</span></code>
           <div class="field-content">
             <div class="description">
               Whether the browser supports the orientationchange event.
+              
+                <br />
+                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_system_platform.js.html">platform.js</a>.
+              
+              
+            </div>
+
+            
+
+            
+          </div>
+
+        
+          <a name="supportsWebSocket"> </a>
+          <!-- If the field is deprecated. -->
+          
+
+          <!-- If the field is readonly. -->
+          
+
+          <span class="property"><b>supportsWebSocket</b></span>
+
+          <!-- The type of field -->
+          <span class="light field-type"><a href="../symbols/Boolean.html">Boolean</a></span>
+
+          <!-- If the field is readonly. -->
+
+          <div class="field-content">
+            <div class="description">
+              Whether the browser supports WebSocket or not.
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_system_platform.js.html">platform.js</a>.
@@ -5555,7 +5544,7 @@ following parameter(s).</p>
 
             <div class="method-content">
               <div class="description">
-                Call this method to close a connection.
+                Close the connection.
                 
                   <br />
                   <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.</span>
@@ -5571,23 +5560,23 @@ following parameter(s).</p>
                   <dt class="heading">Parameters:</dt>
                   
                     <dt>
-                      <span class="method-param">code</span> 
+                      <span class="method-param">code</span> <span class="light fixedFont">Number</span> 
                       
                     </dt>
-                    <dd>{Number} A numeric value indicating the status code explaining why the connection is being closed. If this parameter is not specified, a default value of 1000 (indicating a normal "transaction complete" closure) is assumed.</dd>
+                    <dd>A numeric value indicating the status code explaining why the connection is being closed. If this parameter is not specified, a default value of 1000 (indicating a normal "transaction complete" closure) is assumed.</dd>
                   
                     <dt>
-                      <span class="method-param">reason</span> 
+                      <span class="method-param">reason</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
                       
                     </dt>
-                    <dd>{String} A human-readable string explaining why the connection is closing. This string must be no longer than 123 bytes of UTF-8 text (not characters).</dd>
+                    <dd>A human-readable string explaining why the connection is closing. This string must be no longer than 123 bytes of UTF-8 text (not characters).</dd>
                   
                 
                 
                   <dt class="heading">Returns:</dt>
                   
                     <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
-                    <dd></dd>
+                    <dd>The SC.WebSocket object.</dd>
                   
                 
                 </dl>
@@ -5681,7 +5670,7 @@ following parameter(s).</p>
 
             <div class="method-content">
               <div class="description">
-                Call this method to open a connection.
+                Open the WebSocket connection.
                 
                   <br />
                   <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.</span>
@@ -5698,7 +5687,7 @@ following parameter(s).</p>
                   <dt class="heading">Returns:</dt>
                   
                     <dt><span class="light fixedFont"><a href="../symbols/SC.WebSocket.html">SC.WebSocket</a></span> </dt>
-                    <dd></dd>
+                    <dd>The SC.WebSocket object.</dd>
                   
                 
                 </dl>
@@ -7271,18 +7260,17 @@ mouse, if present.</p>
 
             <div class="method-content">
               <div class="description">
-                <p>Configures a callback to execute when an event happen. You must pass
-at least a target and action/method to this and optionally an event name.</p>
+                <p>Configures a callback to execute when an event happens. You must pass at least a target and
+method to this and optionally an event name.</p>
 
-<p>You may also pass additional arguments which will then be passed along to
-your callback.</p>
+<p>You may also pass additional arguments which will then be passed along to your callback.</p>
 
 <p>Example:</p>
 
 <pre><code class='syntax js'><span class="keyword">var</span> <span class="variable">websocket</span> = <span class="class">SC</span>.<span class="class">WebSocket</span>.<span class="variable">create</span>({ <span class="variable">server</span>: <span class="string">'ws://server'</span> }).<span class="variable">connect</span>();
 
-<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onopen'</span>, <span class="this">this</span>, <span class="string">'wsWasOpen'</span>);
-<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onmessage'</span>, <span class="this">this</span>, <span class="string">'wsReceivedMessage'</span>); <span class="comment">// You can ommit onmessage here</span>
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onopen'</span>, <span class="this">this</span>, <span class="string">'wsWasOpened'</span>);
+<span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onmessage'</span>, <span class="this">this</span>, <span class="string">'wsReceivedMessage'</span>);
 <span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onclose'</span>, <span class="this">this</span>, <span class="string">'wsWasClose'</span>);
 <span class="variable">webSocket</span>.<span class="variable">notify</span>(<span class="string">'onerror'</span>, <span class="this">this</span>, <span class="string">'wsDidError'</span>);
 </code></pre>
@@ -7307,22 +7295,22 @@ should return <code class='syntax js'><span class="keyword">YES</span></code>.</
                   <dt class="heading">Parameters:</dt>
                   
                     <dt>
-                      <span class="method-param">target</span> 
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a></span> 
                       
                     </dt>
-                    <dd>{String} String Event name.</dd>
+                    <dd>String Event name.</dd>
                   
                     <dt>
-                      <span class="method-param">target</span> 
+                      <span class="method-param">target</span> <span class="light fixedFont"><a href="../symbols/Object.html">Object</a></span> 
                       
                     </dt>
-                    <dd>{Object} The target object for the callback action.</dd>
+                    <dd>The target object for the callback action.</dd>
                   
                     <dt>
-                      <span class="method-param">action</span> 
+                      <span class="method-param">action</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Function.html">Function</a></span> 
                       
                     </dt>
-                    <dd>{String|Function} The method name or function to call on the target.</dd>
+                    <dd>The method name or function to call on the target.</dd>
                   
                 
                 
@@ -8003,8 +7991,10 @@ of the window, or by the window.onorientationchange event.</p>
 
             <div class="method-content">
               <div class="description">
-                <p>Send the passed message. If the connection is not yet open or anthentified,
-the message will be put in the queue.</p>
+                <p>Send the message on the WebSocket. If the connection is not yet open or authenticated (as
+necessary), the message will be put in the queue.</p>
+
+<p>If <code class='syntax js'><span class="variable">isJSON</span></code> is true (the default for <code class='syntax js'><span class="class">SC</span>.<span class="class">WebSocket</span>)</code>, the message will be stringified JSON.</p>
                 
                   <br />
                   <span class="definedin">Defined in: <a href="../symbols/src/frameworks_sproutcore_frameworks_ajax_system_websocket.js.html">websocket.js</a>.</span>
@@ -8020,10 +8010,10 @@ the message will be put in the queue.</p>
                   <dt class="heading">Parameters:</dt>
                   
                     <dt>
-                      <span class="method-param">message</span> 
+                      <span class="method-param">message</span> <span class="light fixedFont"><a href="../symbols/String.html">String</a>|<a href="../symbols/Object.html">Object</a></span> 
                       
                     </dt>
-                    <dd>{String|Object} The message to send.</dd>
+                    <dd>The message to send.</dd>
                   
                 
                 
@@ -11772,7 +11762,7 @@ Safari 6.0
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 09:54:16 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 10:37:06 GMT-0600 (CST)
         </div>
       </section>
     </div>

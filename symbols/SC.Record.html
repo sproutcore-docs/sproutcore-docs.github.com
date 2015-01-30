@@ -641,60 +641,62 @@ able to stand in for any other member.</p>
 <p>These examples may help identify the difference. First, let's look at the classic inheritance
 model,</p>
 
-<p>// This is the "root" class. All subclasses of <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> will be unique from <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.</code>
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> = <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="variable">extend</span>(</code>{});</p>
+<pre><code class='syntax js'><span class="comment">// This is the &quot;root&quot; class. All subclasses of MyApp.Person will be unique from MyApp.Person.</span>
+<span class="class">MyApp</span>.<span class="class">Person</span> = <span class="class">SC</span>.<span class="class">Record</span>.<span class="variable">extend</span>({});
 
-<p>// As a subclass, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span></code> inherits from a <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code>, but is not "equal" to it.
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span></code> = <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>(</code>{
-    <code class='syntax js'><span class="variable">isFemale</span></code>: true
-  });</p>
+<span class="comment">// As a subclass, MyApp.Female inherits from a MyApp.Person, but is not &quot;equal&quot; to it.</span>
+<span class="class">MyApp</span>.<span class="class">Female</span> = <span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>({
+  <span class="variable">isFemale</span>: <span class="variable">true</span>
+});
 
-<p>// As a subclass, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span></code> inherits from a <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code>, but is not "equal" to it.
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span></code> = <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>(</code>{
-    <code class='syntax js'><span class="variable">isMale</span></code>: true
-  });</p>
+<span class="comment">// As a subclass, MyApp.Male inherits from a MyApp.Person, but is not &quot;equal&quot; to it.</span>
+<span class="class">MyApp</span>.<span class="class">Male</span> = <span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>({
+  <span class="variable">isMale</span>: <span class="variable">true</span>
+});
 
-<p>// Load two unique records into the store.
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Female</span></code>, { guid: '1' });
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Male</span></code>, { guid: '2' });</p>
+<span class="comment">// Load two unique records into the store.</span>
+<span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Female</span>, { <span class="variable">guid</span>: <span class="string">'1'</span> });
+<span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Male</span>, { <span class="variable">guid</span>: <span class="string">'2'</span> });
 
-<p>// Now we can see that these records are isolated from each other.
-  var female = <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span></code>, '1'); // Returns an <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="class">EMPTY</span></code> record.
-  var male = <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span></code>, '2'); // Returns an <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="class">EMPTY</span></code> record.</p>
+<span class="comment">// Now we can see that these records are isolated from each other.</span>
+<span class="keyword">var</span> <span class="variable">female</span> = <span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span>, <span class="string">'1'</span>); <span class="comment">// Returns an SC.Record.EMPTY record.</span>
+<span class="keyword">var</span> <span class="variable">male</span> = <span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span>, <span class="string">'2'</span>); <span class="comment">// Returns an SC.Record.EMPTY record.</span>
 
-<p>// These records are <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> only.
-  <code class='syntax js'><span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">female</span></code>, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span>)</code>; // false
-  <code class='syntax js'><span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">male</span></code>, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span>)</code>; // false</p>
+<span class="comment">// These records are MyApp.Person only.</span>
+<span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">female</span>, <span class="class">MyApp</span>.<span class="class">Female</span>); <span class="comment">// false</span>
+<span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">male</span>, <span class="class">MyApp</span>.<span class="class">Male</span>); <span class="comment">// false</span>
+</code></pre>
 
 <p>Next, let's make <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> a polymorphic class,</p>
 
-<p>// This is the "root" polymorphic class. All subclasses of <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> will be able to stand-in as a <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.</code>
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> = <code class='syntax js'><span class="class">SC</span>.<span class="class">Record</span>.<span class="variable">extend</span>(</code>{
-    <code class='syntax js'><span class="variable">isPolymorphic</span></code>: true
-  });</p>
+<pre><code class='syntax js'><span class="comment">// This is the &quot;root&quot; polymorphic class. All subclasses of MyApp.Person will be able to stand-in as a MyApp.Person.</span>
+<span class="class">MyApp</span>.<span class="class">Person</span> = <span class="class">SC</span>.<span class="class">Record</span>.<span class="variable">extend</span>({
+  <span class="variable">isPolymorphic</span>: <span class="variable">true</span>
+});
 
-<p>// As a polymorphic subclass, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span></code> is "equal" to a <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.</code>
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span></code> = <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>(</code>{
-    <code class='syntax js'><span class="variable">isFemale</span></code>: true
-  });</p>
+<span class="comment">// As a polymorphic subclass, MyApp.Female is &quot;equal&quot; to a MyApp.Person.</span>
+<span class="class">MyApp</span>.<span class="class">Female</span> = <span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>({
+  <span class="variable">isFemale</span>: <span class="variable">true</span>
+});
 
-<p>// As a polymorphic subclass, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span></code> is "equal" to a <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.</code>
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span></code> = <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>(</code>{
-    <code class='syntax js'><span class="variable">isMale</span></code>: true
-  });</p>
+<span class="comment">// As a polymorphic subclass, MyApp.Male is &quot;equal&quot; to a MyApp.Person.</span>
+<span class="class">MyApp</span>.<span class="class">Male</span> = <span class="class">MyApp</span>.<span class="class">Person</span>.<span class="variable">extend</span>({
+  <span class="variable">isMale</span>: <span class="variable">true</span>
+});
 
-<p>// Load two unique records into the store.
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Female</span></code>, { guid: '1' });
-  <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Male</span></code>, { guid: '2' });</p>
+<span class="comment">// Load two unique records into the store.</span>
+<span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Female</span>, { <span class="variable">guid</span>: <span class="string">'1'</span> });
+<span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">createRecord</span>(<span class="class">MyApp</span>.<span class="class">Male</span>, { <span class="variable">guid</span>: <span class="string">'2'</span> });
 
-<p>// Now we can see that these records are in fact "equal" to each other. Which means that if we
-  // search for "people", we will get "males" &amp; "females".
-  var female = <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span></code>, '1'); // Returns record.
-  var male = <code class='syntax js'><span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span></code>, '2'); // Returns record.</p>
+<span class="comment">// Now we can see that these records are in fact &quot;equal&quot; to each other. Which means that if we</span>
+<span class="comment">// search for &quot;people&quot;, we will get &quot;males&quot; &amp; &quot;females&quot;.</span>
+<span class="keyword">var</span> <span class="variable">female</span> = <span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span>, <span class="string">'1'</span>); <span class="comment">// Returns record.</span>
+<span class="keyword">var</span> <span class="variable">male</span> = <span class="class">MyApp</span>.<span class="variable">store</span>.<span class="variable">find</span>(<span class="class">MyApp</span>.<span class="class">Person</span>, <span class="string">'2'</span>); <span class="comment">// Returns record.</span>
 
-<p>// These records are <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Person</span></code> as well as their unique subclass.
-  <code class='syntax js'><span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">female</span></code>, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Female</span>)</code>; // true
-  <code class='syntax js'><span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">male</span></code>, <code class='syntax js'><span class="class">MyApp</span>.<span class="class">Male</span>)</code>; // true</p>
+<span class="comment">// These records are MyApp.Person as well as their unique subclass.</span>
+<span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">female</span>, <span class="class">MyApp</span>.<span class="class">Female</span>); <span class="comment">// true</span>
+<span class="class">SC</span>.<span class="variable">kindOf</span>(<span class="variable">male</span>, <span class="class">MyApp</span>.<span class="class">Male</span>); <span class="comment">// true</span>
+</code></pre>
 
         <p>
           
@@ -3949,7 +3951,7 @@ an editable version of the attribute using <code class='syntax js'><span class="
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 09:54:16 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 10:37:06 GMT-0600 (CST)
         </div>
       </section>
     </div>
