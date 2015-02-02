@@ -601,7 +601,7 @@
           
           </span>
 
-        
+          
         </p>
 
           
@@ -656,11 +656,6 @@
             <li>
               <a href="../symbols/_global_.html#cssPrefix">cssPrefix</a>
               <span class="field-summary-deprecated">Deprecated</span>
-            </li>
-          
-            <li>
-              <a href="../symbols/_global_.html#designModes">designModes</a>
-              
             </li>
           
             <li>
@@ -3265,188 +3260,6 @@ Prefix for browser specific CSS attributes.</p></div>
               
                 <br />
                 <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_system_platform.js.html">platform.js</a>.
-              
-              
-            </div>
-
-            
-
-            
-          </div>
-
-        
-          <a name="designModes"> </a>
-          <!-- If the field is deprecated. -->
-          
-
-          <!-- If the field is readonly. -->
-          <div class="field-readonly">Read Only</div>
-
-          <span class="property"><b>designModes</b></span>
-
-          <!-- The type of field -->
-          
-
-          <!-- If the field is readonly. -->
-
-          <div class="field-content">
-            <div class="description">
-              <p>A hash of the design mode thresholds for this application.</p>
-
-<p>While a "design" (the manner views are positioned, shaped and styled) may be
-flexible enough to stretch up for a large display and to compress down
-for a medium sized display, at a certain point it often makes more sense
-to stop stretching and compressing and just implement an additional new design
-specific to the much different display size. In order to make this possible
-and with as much ease as possible, SproutCore includes support for "design
-modes". Design modes are based on the current display size and orientation.</p>
-
-<p>SproutCore supports three size-based design modes by default: 's' for small,
-'m' for medium and 'l' for large. Smartphones and handheld devices like the
-<code class='syntax js'><span class="variable">iPod</span></code> Touch fall within the small category, tablets and normal desktop displays
-fall within the medium category and retina desktops or 4K displays fall
-into the large category.</p>
-
-<p>When the display size crosses a threshold between one size category to
-another, SproutCore will update the design mode of each view in the
-application, giving you a chance to provide overrides for that specific
-size via the special <code class='syntax js'><span class="variable">modeAdjust</span></code> property.</p>
-
-<p>For example, if you wanted to hide a view completely when in the small (s)
-mode you could add:</p>
-
-<pre><code class='syntax js'><span class="comment">//...</span>
-
-<span class="variable">mediumPlusView</span>: <span class="class">SC</span>.<span class="class">View</span>.<span class="variable">extend</span>({
-
-  <span class="comment">// Design mode overrides.</span>
-  <span class="variable">modeAdjust</span>: { <span class="variable">s</span>: { <span class="variable">isVisible</span>: <span class="variable">false</span> } } <span class="comment">// Hide the view in 's' or 'small' mode.</span>
-
-}),
-
-<span class="comment">//...</span>
-</code></pre>
-
-<p>As you can see, we simply indicate the property overrides that we want
-for the specific mode. To adjust the height for medium mode, you could add:</p>
-
-<pre><code class='syntax js'><span class="comment">//...</span>
-
-<span class="variable">myView</span>: <span class="class">SC</span>.<span class="class">View</span>.<span class="variable">extend</span>({
-
-  <span class="comment">// The normal layout always applies.</span>
-  <span class="variable">layout</span>: { <span class="variable">height</span>: <span class="number integer">24</span> },
-
-  <span class="comment">// Design mode overrides.</span>
-  <span class="variable">modeAdjust</span>: { <span class="variable">m</span>: { <span class="variable">layout</span>: { <span class="variable">height</span>: <span class="number integer">30</span> } } <span class="comment">// Adjust the height in 'm' or 'medium' mode.</span>
-
-}),
-
-<span class="comment">//...</span>
-</code></pre>
-
-<p>Note that the values in <code class='syntax js'><span class="variable">modeAdjust</span></code> are overrides for that mode and the
-values will be<em> reset</em> to their original values when leaving that mode.</p>
-
-<p>The second component to design modes is orientation. Each of the size
-categories can have two different orientations: 'l' for landscape or 'p' for
-portrait. Therefore, you may want to alter the design to account for the
-device orientation as well using <code class='syntax js'><span class="variable">modeAdjust</span></code>. To do this, you simply
-specify orientation specific designs with the <code class='syntax js'><span class="variable">_l</span></code> or <code class='syntax js'><span class="variable">_p</span></code> suffix
-accordingly.</p>
-
-<p>For example, you can provide a configuration for a size category with
-slight deviations for orientations of that size all in just a few lines
-of code,</p>
-
-<pre><code class='syntax js'><span class="comment">//...</span>
-
-<span class="variable">customView</span>: <span class="class">SC</span>.<span class="class">View</span>.<span class="variable">extend</span>({
-
-  <span class="comment">// The default alignment for this custom view's contents.</span>
-  <span class="variable">alignment</span>: <span class="class">SC</span>.<span class="class">ALIGN_LEFT</span>,
-
-  <span class="comment">// The default line height for this custom view's contents.</span>
-  <span class="variable">lineHeight</span>: <span class="number integer">40</span>,
-
-  <span class="comment">// Design mode overrides.</span>
-  <span class="variable">modeAdjust</span>: {
-    <span class="variable">m</span>: { <span class="variable">lineHeight</span>: <span class="number integer">50</span> }, <span class="comment">// Overrides for medium mode regardless of orientation.</span>
-    <span class="variable">m_p</span>: { <span class="variable">alignment</span>: <span class="class">SC</span>.<span class="class">ALIGN_CENTER</span> }, <span class="comment">// Overrides for medium - portrait mode.</span>
-    <span class="variable">m_l</span>: { <span class="variable">layout</span>: { <span class="variable">top</span>: <span class="number integer">20</span> } } <span class="comment">// Overrides for medium - landscape mode.</span>
-  }
-
-}),
-
-<span class="comment">//...</span>
-</code></pre>
-
-<h3 id="anoteonstylingfordesignmodes">A note on styling for design modes</h3>
-
-<p>Class names are automatically applied to each view depending on the mode
-as found in the <code class='syntax js'><span class="class">SC</span>.<span class="class">DESIGN_MODE_CLASS_NAMES</span></code> hash. By default, your
-views will have one of three class names added:</p>
-
-<pre><code class='syntax js'>&gt; <span class="string">'sc-small'</span> <span class="keyword">in</span> <span class="variable">small</span> <span class="variable">mode</span>
-&gt; <span class="string">'sc-medium'</span> <span class="keyword">in</span> <span class="variable">medium</span> <span class="variable">mode</span>
-&gt; <span class="string">'sc-large'</span> <span class="keyword">in</span> <span class="variable">large</span> <span class="variable">mode</span>
-</code></pre>
-
-<p>As well, the <code class='syntax js'><span class="variable">body</span></code> element is given an orientation class name that you
-can use as well:</p>
-
-<pre><code class='syntax js'>&gt; <span class="string">'sc-landscape'</span> <span class="keyword">in</span> <span class="variable">landscape</span> <span class="variable">orientation</span>
-&gt; <span class="string">'sc-portrait'</span> <span class="keyword">in</span> <span class="variable">portrait</span> <span class="variable">orientation</span>
-</code></pre>
-
-<h3 id="anoteonoverridinglayouts">A note on overriding layouts</h3>
-
-<p>Layout overrides work slightly differently than regular property overrides,
-because they are set via <code class='syntax js'><span class="variable">adjust</span></code>. This means they apply on<em> top</em> of the
-default layout, they don't replace the default layout. For example,
-the default layout is <code class='syntax js'>{ <span class="variable">left</span>: <span class="number integer">0</span>, <span class="variable">right</span>: <span class="number integer">0</span>, <span class="variable">top</span>: <span class="number integer">0</span>, <span class="variable">bottom</span>: <span class="number integer">0</span> }</code> and if
-we provide a design mode like,</p>
-
-<pre><code class='syntax js'><span class="variable">modeAdjust</span>: { <span class="variable">l</span>: { <span class="variable">layout</span>: { <span class="variable">top</span>: <span class="number integer">50</span> } } }
-</code></pre>
-
-<p>The layout becomes <code class='syntax js'>{ <span class="variable">left</span>: <span class="number integer">0</span>, <span class="variable">right</span>: <span class="number integer">0</span>, <span class="variable">top</span>: <span class="number integer">50</span>, <span class="variable">bottom</span>: <span class="number integer">0</span> }</code>. If we had
-a default layout like <code class='syntax js'>{ <span class="variable">centerX</span>: <span class="number integer">0</span>, <span class="variable">centerY</span>: <span class="number integer">0</span>, <span class="variable">height</span>: <span class="number integer">100</span>, <span class="variable">width</span>: <span class="number integer">100</span> }</code>
-and we wanted to change it to a left positioned layout, we would need to
-null out the centerX value like so,</p>
-
-<pre><code class='syntax js'><span class="variable">modeAdjust</span>: { <span class="variable">l</span>: { <span class="variable">layout</span>: { <span class="variable">centerX</span>: <span class="keyword">null</span>, <span class="variable">left</span>: <span class="number integer">0</span> } } } <span class="comment">// Convert to left positioned layout.</span>
-</code></pre>
-
-<h3 id="anoteonthemediumcategory">A note on the medium category</h3>
-
-<p>The medium category covers tablets<em> and</em> non-retina desktops and laptops.
-While we could try to further differentiate between these two categories,
-there is no safe way to do this and to do so would cause more harm than good.
-Tablets can be connected to mice and keyboards, desktops can have touch
-screens and there is no way to know whether a mouse, touch or pointer is
-going to be used from one event to the next. Therefore the message should
-be clear,<em> you should always design for touch</em>. This means that a medium
-sized design should be expected to work well on a laptop and a tablet.</p>
-
-<h3 id="anoteoncustomizingthedesignmodecategories">A note on customizing the design mode categories</h3>
-
-<p>Design mode thresholds are determined by the area of the display divided by
-the device pixel ratio. In this manner a 1024 x 768 display on a
-handheld device can be differentiated from a 1024 x 768 display on a
-desktop. Through testing and research, the three categories of 'small',
-'medium' and 'large' were chosen with thresholds between them of
-500,000 sq.px and 2,000,000 sq.px.</p>
-
-<p>Therefore, any display area divided by device pixel ratio that is less
-than 500,000 will be considered 'small' and likewise a calculated area
-of over 2,000,000 will be considered 'large'. This should be sufficient
-for almost all device specific designs and as is mentioned earlier,
-trying to get even more fine-grained is a dangerous endeavor. However,
-you can set your own thresholds easily enough by overriding this property.</p>
-              
-                <br />
-                <span class="definedin">Defined in: </span> <a href="../symbols/src/frameworks_sproutcore_frameworks_core_foundation_system_application.js.html">application.js</a>.
               
               
             </div>
@@ -11219,7 +11032,7 @@ Safari 6.0
 <!-- ============================== footer ================================= -->
         <div class="fineprint" style="clear:both">
           
-          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Jan 30 2015 11:50:21 GMT-0600 (CST)
+          Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Feb 02 2015 09:53:33 GMT-0600 (CST)
         </div>
       </section>
     </div>

@@ -32,7 +32,7 @@
 <span class='line'> 25</span>   @since SproutCore 1.0
 <span class='line'> 26</span> */</span><span class="WHIT">
 <span class='line'> 27</span> </span><span class="NAME">SC.Application</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">SC.Responder.extend</span><span class="PUNC">(</span><span class="NAME">SC.ResponderContext</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 28</span> </span><span class="COMM">/** SC.Application.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 28</span> </span><span class="COMM">/** @scope SC.Application.prototype */</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 29</span> 
 <span class='line'> 30</span> </span><span class="WHIT">  </span><span class="COMM">/** @private UNUSED
 <span class='line'> 31</span>     The current design mode of the application and its views.
@@ -194,7 +194,7 @@
 <span class='line'>187</span>     you can set your own thresholds easily enough by overriding this property.
 <span class='line'>188</span> 
 <span class='line'>189</span>     @readonly
-<span class='line'>190</span>     @property {Object}
+<span class='line'>190</span>     @type Object
 <span class='line'>191</span>     @default { s: 500000, m: 2000000, l: Infinity }
 <span class='line'>192</span>   */</span><span class="WHIT">
 <span class='line'>193</span> </span><span class="WHIT">  </span><span class="NAME">designModes</span><span class="PUNC">:</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
