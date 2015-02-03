@@ -1,4 +1,9 @@
 <entry>
-<version>1.10.2</version>
-<url>http://docs.sproutcore.com/feeds/sproutcore.tgz</url>
+  <version>1.11.0</version>
+  <url>http://docs.sproutcore.com/feeds/sproutcore.tgz</url>
+  <other-versions>
+    <version>
+      <name>1.10.2</name>
+    </version>
+  </other-versions>
 </entry>
